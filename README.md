@@ -18,7 +18,7 @@ Hola soy Yariela, tengo 31 años, soy Ingeniero Mecanico, estudiante para Contad
 
 Y yo soy Oscar, 50 años; casado y con dos hijos. 
 Licenciado en Sistemas de la Universidad de Belgrano 1999; con un MBA en Administración de Empresas cursado en la Escuela de Negocios de la misma universidad en 2003 -pendiente de tesis-; actualmente finalizando el Ciclo Profesional Común de la carrera de Abogacía en la UBA, área de conocimiento humanístico complementario a mi formación, que considero clave para desarrollar la vida actual en una era de cambios tan profundos y veloces. 
-Mi experiencia laboral la transité siempre en áreas de Sistemas, Consultoría y Soporte Técnico. Elegí Digital House para reinventarme e ingresar en el fascinante y desafiante mundo del Coding, y reinsertarme así en el mercado laboral.
+Mi experiencia laboral la transité siempre en áreas de Sistemas, Consultoría y Soporte Técnico. Elegí Digital House para reinventarme e ingresar en el fascinante y desafiante mundo del Coding, y reinsertarme así en el mercado laboral de IT.
 
 
 Referentes del mercado
@@ -30,10 +30,10 @@ Un diseño muy lindo y amigable, bajo la tematica de cuidar el planeta vende (bo
 Diseño sencillo y delicado, donde se venden productos para sustituir el plastico y sustituirlo por materiales biodegradables.
 
 3- https://www.biotuc.com/
-Tiene un diseño clásico; simple; funcional y vistoso, conformado por una navvar superior; una sección central con imágenes e información de productos y servicios; y una barra al pie con los links a redes sociales que también repite la navvar. 
+Tiene un diseño funcional, colorido y vistoso aunque un poco cargado de elementos de diverso tipo. La estructura basica está conformada por un header; una sección central o cuerpo con imágenes e información de productos y servicios, un carrousel y formularios; y una barra al pie o footer con los links a redes sociales que también repite los ítems del header. 
 
 4- https://www.dellanatura.cl/
-Este sitio presenta una práctica barra para búsqueda en la sección central superior, entre el header y la navvar; además de un diseño delicado, funcional y bien organizado.
+Este sitio presenta un diseño sobrio, delicado, funcional y bien organizado. Arriba, una práctica barra para búsqueda en la sección central, entre el header y una navvar; seguido, un cuerpo con pocos elementos pero suficientes para que el visitante pueda acceder a toda la info; y por último, el clásico footer con los links de contacto y links de interés.
 
 
 
