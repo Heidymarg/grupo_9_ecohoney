@@ -17,6 +17,12 @@ Hola soy Yariela, tengo 31 años, soy Ingeniero Mecanico, estudiante para Contad
 Soy Nohelia mujer, joven y migrante, estudié Ciencias Políticas y Planificación de Políticas Sociales, me gustan los retos y empezar de nuevo, en esta oportunidad estudiando programación y aprendiendo algo que nunca he conocido, espero que todo salga bien y mi cerebro se abra.
 
 
+Hola mi nombre es Heidy Diaz, tengo 43 años, Profesora Educ. Industrial,
+ en la actualidad soy Docente integradora para un centro de integración, me gusta viajar,
+ aprender, mi limite es el cielo, en mi mundo de la exploración, estoy  en Programación para aprender y obtener experiencias laborales.
+
+
+
 Referentes del mercado
 
 1-https://todarus.org/#catalogo-de-productos
@@ -30,3 +36,12 @@ Referencia sobre como mostrar productos aromaticos y con presentación de colore
 
 4- https://www.jardinorganico.com.ar/
 Modelo de mercado de productos orgánicos, y otras prácticas saludables.
+
+
+
+5.-https://madamebio.co/en/our-products/
+Es una empresa ítalo-colombiana cuyo objetivo es mostrar a las personas, otra forma de cuidarse es posible: sin químicos, sin conservantes, con recetas naturales y ancestrales.
+
+6.-https://floraalmacen.com/collections/almacen
+Un lugar para derrumbar mitos, para reaprender a comer, para ayudarnos entre todos a elegir mejor.
+Dicen que ser saludable “está de moda” y a nosotros nos parece que es la mejor moda que puede existir.
