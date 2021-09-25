@@ -14,6 +14,8 @@ Descripcion de los Integrantes del equipo:
 
 Hola soy Yariela, tengo 31 años, soy Ingeniero Mecanico, estudiante para Contador Publico en la UBA, me encanta aprender, y experimentar en nuevas areas. La experiencia en Digital House es mi primer contacto con el mundo de la programacion, la cual quiero aprovechar al maximo para encontrar oportunidades laborales en el mundo digital.
 
+Soy Nohelia mujer, joven y migrante, estudié Ciencias Políticas y Planificación de Políticas Sociales, me gustan los retos y empezar de nuevo, en esta oportunidad estudiando programación y aprendiendo algo que nunca he conocido, espero que todo salga bien y mi cerebro se abra.
+
 
 Referentes del mercado
 
@@ -23,5 +25,6 @@ Un diseño muy lindo y amigable, bajo la tematica de cuidar el planeta vende (bo
 2- https://ecofami.es/
 Diseño sencillo y delicado, donde se venden productos para sustituir el plastico y sustituirlo por materiales biodegradables.
 
-
+https://propositopuro.com/ 
+Referencia sobre como mostrar productos aromaticos y con presentación de colores
 
