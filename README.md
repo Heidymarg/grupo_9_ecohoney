@@ -23,7 +23,7 @@ Referentes del mercado
 Un diseño muy lindo y amigable, bajo la tematica de cuidar el planeta vende (botellas de agua, protectores solares, cepillos dentales) ecologicos, y tambien brinda informacion de interes a sus usuarios de como esos productos ayudan al planeta.
 
 2- https://ecofami.es/
-Diseño sencillo y delicado, donde se venden productos para sustituir el plastico y sustituirlo por materiales biodegradables.
+Diseño sencillo y delicado, donde se venden productos para sustituir el plastico y reemplazarlos por materiales biodegradables.
 
 https://propositopuro.com/ 
 Referencia sobre como mostrar productos aromaticos y con presentación de colores
