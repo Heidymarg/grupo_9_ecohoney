@@ -14,7 +14,7 @@ Descripcion de los Integrantes del equipo:
 
 Hola soy Yariela, tengo 31 años, soy Ingeniero Mecanico, estudiante para Contador Publico en la UBA, me encanta aprender, y experimentar en nuevas areas. La experiencia en Digital House es mi primer contacto con el mundo de la programacion, la cual quiero aprovechar al maximo para encontrar oportunidades laborales en el mundo digital.
 
-Soy Nohelia, mujer, joven y migrante, estudie Ciencias Políticas y Planificación de Políticas Sociales, me gusta empezar de cero y ponerme retos interesantes, el más actual es estudiar programación, espero con este proyecto aprender y aplicar los conceptos y obtener experiencia para desenvolverme en el mundo IT.
+Soy Nohelia, mujer, joven y migrante, estudié Ciencias Políticas y Planificación de Políticas Sociales, me gusta empezar de cero y ponerme retos interesantes, el más actual es estudiar programación, espero con este proyecto aprender y aplicar los conceptos y obtener experiencia para desenvolverme en el mundo IT.
 
 
 
