@@ -14,7 +14,7 @@ Descripcion de los Integrantes del equipo:
 
 Hola soy Yariela, tengo 31 años, soy Ingeniero Mecanico, estudiante para Contador Publico en la UBA, me encanta aprender, y experimentar en nuevas areas. La experiencia en Digital House es mi primer contacto con el mundo de la programacion, la cual quiero aprovechar al maximo para encontrar oportunidades laborales en el mundo digital.
 
-// Lugar para Heidy y Nohelia
+//Lugar para Heidy y Noelia
 
 Y yo soy Oscar, 50 años; casado y con dos hijos. 
 Licenciado en Sistemas de la Universidad de Belgrano 1999; con un MBA en Administración de Empresas cursado en la Escuela de Negocios de la misma universidad en 2003 -pendiente de tesis-; actualmente finalizando el Ciclo Profesional Común de la carrera de Abogacía en la UBA, área de conocimiento humanístico complementario a mi formación, que considero clave para desarrollar la vida actual en una era de cambios tan profundos y veloces. 
