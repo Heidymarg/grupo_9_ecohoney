@@ -21,7 +21,7 @@ Hola mi nombre es Heidy Diaz, tengo 43 años, Profesora Educ. Industrial,
  aprender, mi limite es el cielo, en mi mundo de la exploración, estoy  en Programación para aprender y obtener experiencias laborales.
 
 Y yo soy Oscar, 50 años; casado hace 20 y con dos hijos adolescentes. 
-Licenciado en Sistemas de la Universidad de Belgrano 1999; con un MBA en Administración de Empresas cursado en la Escuela de Negocios de la misma universidad en 2003 -pendiente de tesis-; actualmente finalizando el (3er año) Ciclo Profesional Común o CPC de la carrera de Abogacía en la UBA, área de conocimiento humanístico complementario a mi formación, que considero clave para desarrollar la vida actual y futura en una era de cambios tan profundos y veloces. 
+Licenciado en Sistemas de la Universidad de Belgrano 1999; con un MBA en Administración de Empresas cursado en la Escuela de Negocios de la misma universidad entre 2003 y 2004 -pendiente de tesis-; actualmente finalizando el (3er año) Ciclo Profesional Común o CPC de la carrera de Abogacía en la UBA, área de conocimiento humanístico complementario a mi formación, que considero clave para desarrollar la vida actual y futura en una era de cambios tan profundos y veloces. 
 Mi experiencia laboral la transité siempre en áreas de Sistemas, Consultoría ISO 27.001 y Soporte Técnico Unix/Solaris. 
 Elegí Digital House para reinventarme profesionalmente e ingresar en el fascinante y desafiante mundo del Coding, y reinsertarme desde la programación web en el mercado laboral de IT.
 
