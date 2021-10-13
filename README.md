@@ -52,3 +52,5 @@ Tiene un diseño funcional, colorido y vistoso aunque un poco cargado de element
 
 8- https://www.dellanatura.cl/
 Este sitio presenta un diseño sobrio, delicado, funcional y bien organizado. Arriba, una práctica barra para búsqueda en la sección central, entre el header y una navvar; seguido, un cuerpo con pocos elementos pero suficientes para que el visitante pueda acceder a toda la info; y por último, el clásico footer con los links de contacto y links de interés.
+
+Link de Espacio de trabajo en Trello https://trello.com/b/JYOgO1hI/grupo-trabajo-integrador
