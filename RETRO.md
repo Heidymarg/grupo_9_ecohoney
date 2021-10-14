@@ -19,3 +19,27 @@ Menos de
 
 Dejar de hacer
 •	Por ahora vamos bien con lo que estamos haciendo
+
+
+Seguir haciendo
+
+-Seguir practicando Consultar las dudas  que tenga
+-Reuniones por zoom
+-Apoyar a los compañeros
+-Comunicándonos por whatssap
+-Aportando ideas para beneficio de todos
+
+
+Más de
+-Seguir aumentando mis niveles de aprendizajes  y aportes organizando las ideas mejor.
+-Más esfuerzo y práctica.
+-Cuando terminé una tarea debo estar más pendiente para notificarlo en el Trello
+
+Comenzar a hacer
+En la actualidad vamos bien con las asiganciones y aportes
+
+Menos de 
+-Por los momentos estamos saliendo adelante
+
+Dejar de hacer
+-Considero que nos comunicamos bien  en la realización de las actividades
