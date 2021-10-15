@@ -1,6 +1,8 @@
 
 URL del repositorio: https://github.com/Heidymarg/grupo_9_ecohoney.git
 
+Link de Espacio de trabajo en Trello https://trello.com/b/JYOgO1hI/grupo-trabajo-integrador
+
 Descripcion:
 Eco HONeY es un e-commerce dedicado a la venta de productos ecologicos, su nombre nace inspirado en las iniciales de sus integrantes (Heidy, Oscar, Nohelia y Yariela) y la e de Eco. 
 Tambien la tienda se especializa en la venta de productos provenientes de las abejas.
