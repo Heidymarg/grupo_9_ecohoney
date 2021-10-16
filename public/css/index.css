@@ -14,8 +14,11 @@ body{
 /*------Header-------*/
 
 header{
+    width: 100vw;
     background-color: rgb(122, 187, 128);
-    padding:30px;
+    padding:50px;
+    position: fixed;
+    z-index: 100;
 }
 
 
@@ -62,8 +65,9 @@ ul li a{
 .buscador{
     width: 90%;
     height: 2.5vh;
-    background-color: rgb(211, 211, 211);
-    margin: 10px 10px;   
+    background-color: rgb(122, 187, 128);
+    margin: 10px 10px;
+    position: fixed;   
 }
 
 .buscar-producto{
@@ -99,13 +103,14 @@ ul li a{
 }
 
 /*------BANNER------*/
-
+/*
 section.banner img{
     width: 100%;
+    height: 41vh;
     margin-top: 20px;
     align-content: center;
 }
-
+*/
 /*MAIN*/
 
 
@@ -209,6 +214,8 @@ display:flex;
 justify-content: space-between;
 }
 
+/* *** Catálogo *** */
+
 .productos-abejas{
     display: flex;
     flex-wrap: wrap;
@@ -222,16 +229,18 @@ justify-content: space-between;
 /*--------IMAGENES AL CATALOGO------*/
 
 .Imagenes-al-catalogo{
-    background-color: white;
+    background-color: rgba(44, 144, 148, 0.959);
+    padding: 17px;
     width: 100%;
     display:flex;
-    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
 }
 
-/*en esta no pude lograr que las imagenes se vean bien del mismo tamaño porque debemos agregar imagenes con resoluciones adecuadas y asi adaptarlas con width y height*/
-.Imagenes-al-catalogo a img{
-    width: 100%;
-    padding: 10px;;
+.imagenes-al-catalogo {
+    width: 423px; 
+    height: 300px;
 }
 
 /*FOOTER*/
@@ -251,7 +260,7 @@ footer{
     }
 
 .redes-sociales-caja{
-    background-color: white;
+    background-color: #c4a977;
     width: 40%;
     justify-content: center;
     }
@@ -285,8 +294,17 @@ footer{
 
 /*-------------MediaQ 361px------------*/
 
-@media (min-width:361px) {
-
+@media (min-width:5px) {
+       
+    .menu-burger {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 5rem;
+        background-color:gold;
+        border-radius: 50px;
+        padding: 10px 5px 10px 5px;        
+    }
     
     .titulo-Especial-abejas{
         background-color: rgba(243, 220, 11, 0.918);
@@ -307,14 +325,22 @@ footer{
     }
 
 
-/*OJO no funciona en 361px SEGUIR PROBANDO..*/
+    /*OJO no funciona en 361px SEGUIR PROBANDO..*/
     main section article {
     margin-bottom: 10px;
     background-color: white;
     position: relative;
     width: 60%;
-    /*display: flex;
-    flex-direction: column;*/
+    }
+
+    .Imagenes-al-catalogo{
+        background-color: rgba(44, 144, 148, 0.959);
+        width: 100%;
+        padding: 17px;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
     }
 
 }
@@ -330,6 +356,18 @@ footer{
     width: 60%;   
 }
 
+.menu-burger {
+    display: none;
+}
+
+section.banner img{
+    /* ver si conviene que el banner aparezca
+    para este tamaño */
+    width: 100%;
+    height: 41vh;
+    margin-top: 20px;
+    align-content: center;
+}
 
 /*----Article para que aparezcan 4--- */
 
@@ -372,9 +410,15 @@ li a {
     
 }
 
-
-
-
+.Imagenes-al-catalogo{
+    background-color: rgba(44, 144, 148, 0.959);
+    width: 100%;
+    padding: 17px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 
 /* -----------1024----------*/
 
@@ -428,14 +472,46 @@ li a {
        font-size: 20px;
         
     }
-}
 
+    .menu-burger {
+        display: none;
+    }
+
+    section.banner img{
+        width: 100%;
+        height: 41vh;
+        margin-top: 20px;
+        align-content: center;
+    }
+
+} /* *** Fin @media(1024px) *** */
+
+.Imagenes-al-catalogo{
+    background-color: rgba(44, 144, 148, 0.959);
+    width: 100%;
+    padding: 17px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 
 /*--------------1440------------*/
 
 @media (min-width: 1440px){
-  .img-logo{
+    .img-logo{
         width: 30%;   
+    }
+    
+    .menu-burger {
+        display: none;
+    }
+    
+    section.banner img{
+        width: 100%;
+        height: 41vh;
+        margin-top: 20px;
+        align-content: center;
     }
 
     .titulo-Especial-abejas{
@@ -456,8 +532,17 @@ li a {
         text-align: center;
     }
 
+} /* *** fin @media(1440) *** */
+
+.Imagenes-al-catalogo{
+    background-color: rgba(44, 144, 148, 0.959);
+    width: 100%;
+    padding: 17px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
-    
 
 /*-------------2560--------------*/
 
@@ -466,4 +551,27 @@ li a {
     .img-logo{
         width: 3vw;   
     }
-}
+    
+    .menu-burger {
+        display: none;
+    }
+    
+    section.banner img{
+        width: 100%;
+        height: 41vh;
+        margin-top: 20px;
+        align-content: center;
+    }
+    
+    .Imagenes-al-catalogo{
+        background-color: rgba(44, 144, 148, 0.959);
+        width: 100%;
+        padding: 17px;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+} /* *** fin @media(2560) *** */
+

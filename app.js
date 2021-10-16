@@ -8,9 +8,7 @@ const PORT    = 3131;
 
 app.use( express.static( path.resolve( __dirname, "./public" ) ) );
 
-app.listen( PORT, () => { console.log( "corriendo puerto 3131 " ) } );
-
-//app.get( "/", (req,res) => { res.send( "Corriendo puerto 3131" ) } );
+app.listen( PORT, () => { console.log( `corriendo puerto ${PORT}` ) } );
 
 app.get( "/", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/index.html" ) ) } );
 app.get( "/views/lineaHogar.html", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/lineahogar.html" ) ) } );
