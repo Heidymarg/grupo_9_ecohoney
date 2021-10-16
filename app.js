@@ -26,4 +26,6 @@ app.get( "/views/lineaProductoDeLasAbejas.html", (req,res) => { res.sendFile( pa
 
 app.get("/login", (req,res)=> { res.sendFile(path.resolve(__dirname, "./views/login.html")) });
 
-    app.get("/registro", (req,res)=> {res.sendFile(path.resolve(__dirname,"./views/registro.html"))});
+app.get("/registro", (req,res)=> {res.sendFile(path.resolve(__dirname,"./views/registro.html"))});
+
+app.get("/carrito", (req,res)=> {res.sendFile(path.resolve(__dirname,"./views/carrito.html"))});
