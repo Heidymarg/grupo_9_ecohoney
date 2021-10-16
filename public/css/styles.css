@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* ******** Debajo, estilos del header ******** */
+header {
+    padding: 0.5rem;
+    background-color: burlywood;
+}
+
+.logo {
+    font-size:larger;
+    width: 13%;
+    height: auto;
+    padding: 23px 37px;
+    border: 1px solid green;
+    background-color: lightseagreen;
+    text-align: center;
+}
+
+.flexvertical {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.flexhorizontal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: center;
+    justify-self: center;
+    justify-content:left;
+}
+
+nav {
+    width: 50%;
+    height: auto;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    padding: 23px 37px;
+    justify-items: center;
+    justify-self: center;
+    justify-content: space-around;
+}
+
+.boton {
+    margin: 3px;
+    padding: 7px 15px 7px 15px;
+    font-size: medium;
+    text-align: center;
+    width: 7em;
+    height: auto;
+    border: 1px solid darkgoldenrod;
+    border-radius: 7px;
+    background-color: olive;
+}
+
+
+/* ******** Fin estilos del header ******** */
+
+/* ******** Debajo, estilos del main ******** */
+main {
+ border: 1px solid olivedrab ;
+}
+.pcaja0{
+     display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 0px 5px 15px 0px;
+    
+}
+
+.pcaja1{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-items:flex-start;
+    justify-content: stretch;
+}
+
+.pboton0 {
+    margin: 3px;
+    padding: 7px 15px 7px 15px;
+    font-size: medium;
+    text-align: center;
+    width: 25%;
+    height: 40px;
+    border: 1px solid darkgoldenrod;
+    border-radius: 7px;
+    background-color: olive;
+}
+
+.pboton1 {
+    margin: 3px;
+    padding: 7px 15px 7px 15px;
+    font-size: medium;
+    text-align: center;
+    width: 40%;
+    height: 40px;
+    border: 1px solid darkgoldenrod;
+    border-radius: 7px;
+    background-color: olive;
+}
+
+.pboton2 {
+    margin: 3px;
+    padding: 7px 15px 7px 15px;
+    font-size: medium;
+    text-align: center;
+    width: 10%;
+    height: 40px;
+    border: 1px solid darkgoldenrod;
+    border-radius: 7px;
+    background-color: olive;
+}
+.pboton3 {
+    margin: 3px;
+    padding: 7px 15px 7px 15px;
+    font-size: medium;
+    text-align: center;
+    width: 25%;
+    height: 40px;
+    border: 1px solid darkgoldenrod;
+    border-radius: 7px;
+   }
+   .pboton4 {
+    margin: 3px;
+    padding: 2px 15px 2px 15px;
+    font-size: xx-small;
+    text-align: center;
+    width: 25%;
+    height: 40px;
+    border: 1px solid darkgoldenrod;
+    border-radius: 7px;
+    background-color: olive;
+}
+
+.producto1{
+    font-size: small;
+    display: flex;
+    flex-direction: row;
+    justify-items:flex-start;
+    justify-content: stretch;
+}
+
+.imgprd {
+    width: 400px;
+    padding: 0px 35px 0px 0px;
+
+}
+
+.prd {
+    margin: 10px;
+    padding:0px 40px 0px 0px;
+    text-align: center;
+}
+.parrafo {
+    width: 80%;
+    text-align: justify;
+    
+    
+}
+
+
+/* ******** Fin estilos del main ******** */
+
+/* ******** Debajo, estilos del footer ******** */
+footer {
+    padding: 1rem;
+    background-color: burlywood;
+}
+.redes-sociales {
+    font-size: small;
+    text-align: center;
+    width: 2rem;
+    height: 1.5rem;
+    padding: 3px;
+    border: 1px solid blue;
+    border-radius: 50%;
+    background-color: skyblue;
+}
+
+/* ******** Fin estilos del footer ******** */
+@media (max-width: 459px) {
+    /* Phones */
+
+    pepe {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        padding: 15px;
+    }
+    .caja1 {
+        color: white;
+        background-color: red;
+        height: 33%;
+        border: 3px solid green;
+        border-radius: 5px;
+    }
+    .caja2 {
+        color: white;
+        background-color: green;
+        height: 33%;
+        border: 3px solid blue;
+        border-radius: 5px;
+    }
+    .caja3 {
+        color: white;
+        background-color: blue;
+        height: 33%;
+        border: 3px solid red;
+        border-radius: 5px;
+    }
+}
+
+@media (min-width: 460px) and (max-width: 767px){
+    /* Tablets */
+
+    pepe {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content:center;
+        padding: 15px;
+    }
+    .caja1 {
+        background-color: yellow;
+        height: 33%;
+        border: 3px solid green;
+        border-radius: 5px;
+    }
+    .caja2 {
+        background-color: orange;
+        height: 33%;
+        border: 3px solid green;
+        border-radius: 5px;
+    }
+    .caja3 {
+        background-color: mediumvioletred;
+        height: 33%;
+        border: 3px solid green;
+        border-radius: 5px;
+    }
+}    
+
+@media (min-width: 768px) {
+    /* Laptops */
+    
+    pepe {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        padding: 15px;
+    }
+    .caja1 {
+        background-color: grey;
+        height: 33%;
+        border: 3px solid green;
+        border-radius: 5px;
+    }
+    .caja2 {
+        background-color: rosybrown;
+        height: 33%;
+        border: 3px solid green;
+        border-radius: 5px;
+    }
+    .caja3 {
+        background-color: lightblue;
+        height: 33%;
+        border: 3px solid green;
+        border-radius: 5px;
+    }    
+}
