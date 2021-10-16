@@ -6,7 +6,15 @@
 }
 
 body{
-    background-color: rgba(44, 144, 148, 0.959)
+    background-color: rgba(44, 144, 148, 0.959);
+    border-collapse: collapse;
+    font-size: 14px;
+     font-family:Roboto,sans-serif;
+    border-radius: 4px;
+    margin: 1.5em 0 12px;
+    padding: 18px 32px 32px;
+    overflow: visible;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
 }
 
 h3{
@@ -54,40 +62,8 @@ ul li a{
     justify-content:space-between;
 }
 
-.buscador{
-    width: 90%;
-    height: 2.5vh;
-    background-color: rgb(211, 211, 211);
-    margin: 10px 10px;   
-}
-
-.buscar-producto{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    
-}
-
-.buscar-producto input{
-    border:none;
-    width:100%;
-    font-size: 20px; 
-    border-radius: 5px;
-    align-content: center;
-}
 
 
-.buscar-producto boton-buscar {
-    position: absolute;
-    width: 55px;
-    top:0px;
-    right: 0px;
-    height: 40px;
-    border: none;
-    background-color: #ffffff;
-    cursor: pointer;
-    text-align: center;
-}
 
 .boton-buscar i{
     font-size: 17px;
@@ -106,7 +82,10 @@ section.banner img{
     width: 100%;
     justify-content:space-around;
      display: flex;
-    padding: 10px;}
+    padding: 10px;
+box-sizing: border-box;
+border-radius: 5px;
+border-collapse: collapse;}
 
     .fecha{
         background-color: white;
@@ -157,3 +136,4 @@ section.banner img{
     .img-logo{
         width: 3vw;   
     }}
+    
