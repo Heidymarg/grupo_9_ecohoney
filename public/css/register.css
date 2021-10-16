@@ -9,6 +9,9 @@ body{
     background-color: rgba(44, 144, 148, 0.959)
 }
 
+h3{
+    color: #000;
+}
 
 header{
     background-color: rgb(122, 187, 128);
@@ -97,53 +100,24 @@ section.banner img{
     align-content: center;
 }
 
-
-
-footer{
-    background-color: #c4a977;
-    text-align:center;
-    padding:30px 0;
-    width:100%;
-    margin: auto;
-    font-size: 20px;
-    }
-
-.flexhorizontal{
-        display: flex;
-        justify-content: space-between;
-    }
-
-.redes-sociales-caja{
+.registro{
     background-color: white;
-    width: 40%;
-    justify-content: center;
+    align-content: center;
+    width: 100%;
+    justify-content:space-around;
+     display: flex;
+    padding: 10px;}
+
+    .fecha{
+        background-color: white;
+        width: 100%;
+        justify-content:space-around;
+        align-content: center;
+         display: flex;
+        padding: 10px
     }
 
-.redes-sociales{
-    text-align: center;
 
-}
-
-
-.fa-facebook-square{
-    color: #4036be;
-    
-}
-
-.fa-twitter-square{
-    color: #3c52ce;
-   
-}
-
-.fa-instagram-square{
-    color: #c735a7;
-    
-}
-
-.fa-whatsapp{
-    color: #198f29;
-    
-}
 
 
 @media (min-width:361px) {

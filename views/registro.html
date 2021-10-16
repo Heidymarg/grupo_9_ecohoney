@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+
+    <script src="https://kit.fontawesome.com/2752ae1859.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/register.css">
     <title>Registro</title>
 
@@ -23,25 +28,29 @@
          
             <div class="form" action="#" method="GET">
                                  <ul>
-               <a href="/register">Creá tu cuenta <i class="far fa-id-card"></i></a>
+              
                   
-        </nav>
-        <div class="burger-menu">
-            <i class="fa fa-bars burger"></i>
-        </div>
-    </header>
+         </header>
+         <h3> Completá tus datos</h3>
     <main class="register">
         <form action="/" method="POST">
+            <div class= "registro">
             <input type="text" name="name" placeholder="Nombre y apellido">
+
             <input type="text" name="user" placeholder="Nombre de usuario">
+
             <input type="email" name="email" placeholder="E-mail">
-            <br>
-            <label for="birth_date"><b>Fecha de nacimiento</b></label>
-            <br>
+        
+             <div class= "fecha">  
             <input type="date" name="birth_date" id="birth_date">
-            <br>
+             </div>
+
+            <input type="documento" name="DNI" placeholder="N° de DNI">
+        
             <input type="text" name="addres" placeholder="Domicilio">
+        </div>
             <h4>Perfil del usuario</h4>
+          
             <div class="profile">
                 <input type="radio" name="profile" value="buy" id="buy">
                 <label for="buy">Comprador</label>
@@ -68,16 +77,18 @@
             
             <h4>Elegí tu foto de usuario</h4>
             <input type="file" name="avatar">
-            <br>
-            <br>
+          
             <input type="password" name="pass" placeholder="Elegí tu contraseña">
             <input type="password" name="pass_confirm" placeholder="Confirmá tu contraseña">
-            <br>
-            <br>
+
+            <div>
+                <input type="checkbox" name="privacidad" value="c" id="c">
+                <label for="c">Acepto los Términos y Condiciones y autorizo el uso de mis datos de acuerdo a la Declaración de Privacidad.</label>
+            </div>
+           
             <input type="submit" value="Enviar">
             <input type="reset" value="Borrar">
-            <br>
-            <br>
+         
         </form>
 </body>
 </html>

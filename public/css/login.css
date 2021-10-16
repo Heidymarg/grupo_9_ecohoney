@@ -32,117 +32,20 @@ header{
 }
 
 
-.nav-bar{
-    display: none; 
-  }
-
-li{
-    list-style-type: none;
- }
-ul li a{
-    text-decoration: none;
-    color: #000;
-}
-
-
 .flex-vertical-login-registro{
     display:flex;
     flex-direction:column;
     justify-content:space-between;
 }
 
-.buscador{
-    width: 90%;
-    height: 2.5vh;
-    background-color: rgb(211, 211, 211);
-    margin: 10px 10px;   
-}
-
-.buscar-producto{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    
-}
-
-.buscar-producto input{
-    border:none;
-    width:100%;
-    font-size: 20px; 
-    border-radius: 5px;
-    align-content: center;
-}
-
-
-.buscar-producto boton-buscar {
-    position: absolute;
-    width: 55px;
-    top:0px;
-    right: 0px;
-    height: 40px;
-    border: none;
-    background-color: #ffffff;
-    cursor: pointer;
-    text-align: center;
-}
-
-.boton-buscar i{
-    font-size: 17px;
-}
-
-
-section.banner img{
-    width: 100%;
-    margin-top: 20px;
-    align-content: center;
-}
-
-
-
-footer{
-    background-color: #c4a977;
-    text-align:center;
-    padding:30px 0;
-    width:100%;
-    margin: auto;
-    font-size: 20px;
-    }
-
-.flexhorizontal{
-        display: flex;
-        justify-content: space-between;
-    }
-
-.redes-sociales-caja{
+.login{
     background-color: white;
-    width: 40%;
-    justify-content: center;
-    }
-
-.redes-sociales{
-    text-align: center;
-
-}
-
-
-.fa-facebook-square{
-    color: #4036be;
-    
-}
-
-.fa-twitter-square{
-    color: #3c52ce;
-   
-}
-
-.fa-instagram-square{
-    color: #c735a7;
-    
-}
-
-.fa-whatsapp{
-    color: #198f29;
-    
+    align-content: center;
+    width: 50%;
+    flex-direction:row;
+    justify-content:space-between;
+     display:list-item;
+    padding: 10px;}
 }
 
 
