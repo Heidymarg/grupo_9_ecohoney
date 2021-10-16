@@ -102,7 +102,7 @@ section.banner img{
 
 .registro{
     background-color: white;
-    align-content: center;
+    align-self: center;
     width: 100%;
     justify-content:space-around;
      display: flex;
@@ -110,11 +110,10 @@ section.banner img{
 
     .fecha{
         background-color: white;
-        width: 100%;
+        width: 10%;
         justify-content:space-around;
-        align-content: center;
-         display: flex;
-        padding: 10px
+        align-self: center;
+             padding: 10px
     }
 
 

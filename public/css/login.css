@@ -32,19 +32,16 @@ header{
 }
 
 
-.flex-vertical-login-registro{
+.contenedorlogin{
     display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+    flex-wrap: wrap;
 }
 
 .login{
     background-color: white;
-    align-content: center;
+    align-items: center;
     width: 50%;
-    flex-direction:row;
     justify-content:space-between;
-     display:list-item;
     padding: 10px;}
 }
 
