@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Roboto',sans-serif;
+    font-family:"Roboto",sans-serif;
     box-sizing: border-box;
 }
 
@@ -9,7 +9,7 @@ body{
     background-color: rgba(44, 144, 148, 0.959);
     border-collapse: collapse;
     font-size: 14px;
-     font-family:Roboto,sans-serif;
+     font-family:"Roboto",sans-serif;
     border-radius: 4px;
     margin: 1.5em 0 12px;
     padding: 18px 32px 32px;
@@ -71,9 +71,9 @@ ul li a{
     justify-content:space-around;
      display: flex;
     padding: 10px;
-box-sizing: border-box;
-border-radius: 5px;
-border-collapse: collapse;}
+    box-sizing: border-box;
+    border-radius: 5px;
+    border-collapse: collapse;}
 
     .fecha{
         background-color: white;
