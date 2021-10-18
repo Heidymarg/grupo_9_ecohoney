@@ -1,50 +1,35 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> Eco HONeY Marketplace </title>
+    <title> Eco HONeY Marketplace </title>
 
-        <!-- Debajo, configuración de la tabla de caracteres idiona no-inglés -->
-        <meta charset="UTF-8">
-        <!-- Fin configuración de la tabla de caracteres idiona no-inglés -->
-        
-        <!-- Debajo, configuración del viewport -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Fin configuración viewport -->
+    <!-- Debajo, configuración de íconos y fonts de terceros (Google, fontawesome)-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
 
-        <!-- Debajo, configuración de íconos y fonts de terceros (Google, fontawesome)-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+    <script src="https://kit.fontawesome.com/2752ae1859.js" crossorigin="anonymous"></script>
+    <!-- Fin configuración de íconos y fonts de terceros (Google, fontawesome)-->
 
-        <script src="https://kit.fontawesome.com/2752ae1859.js" crossorigin="anonymous"></script>
-        <!-- Fin configuración de íconos y fonts de terceros (Google, fontawesome)-->
+    <!-- Debajo, linkeo de las stylesheets-->
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Fin linkeo de las stylesheets-->
+    
+</head>
+<body>
 
-        <!-- Debajo, linkeo de las stylesheets-->
-        <link rel="stylesheet" href="./css/styles.css">
-        <!-- Fin linkeo de las stylesheets-->
-
-
-    </head>
-
-    <body>
-        
-        <header>
-        
-            <section>
-              <!-- Debajo va el código de la navbar y de los botones de Logging y Registro -->
-                <!---------------------------------->
-        
-              <div class="top-header">
-
-                <div class="logo">
-                    <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
-                </div>
-                <!---------------------------------->
-                <nav>
-                    <ul class="nav-bar" type="none">
+    <header class="flex-vertical">
+        <div class="dentro-header">
+            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+            
+            <div class="nav-bar">
+                <nav><!--nav> style="justify-content: space-around;"> -->
+                    <ul type="none">
                         <li><a href="#">Nosotros</a></li>
-                        <li><a href="/header.html"></a></li>
                         <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
                         <li><a href="./views/lineaHogar.html">Categorías</a></li>
                         <li><a href="#">Promociones</a></li>
@@ -52,226 +37,181 @@
                         <li><a href="#">Ayuda</a></li>
                     </ul>
                 </nav>
-                <!----------LOGIN Y REGISTRO---------------->
-                <div class="flex-vertical-login-registro">
-
-                 <div class="boton"><a href="./views/login.html">Loging</a></div>
-                 <div class="boton"><a href="./views/registro.html">Registrate</a></div>
-                </div>
-                <!---------------------------------->
-
-                <div>
-                  <i class="fas fa-bars menu-burger"></i>
-                </div>
-
-              </div>
-
-            </section>    <!--        Fin navbar, Logging y Registro          -->    
-            <!--Buscar producto-->
-            <div class="buscador">
-              <div class="buscar-producto">
-                <input  type= "Buscar" placeholder="Que producto buscas?"></input>
-                  <div class="boton-buscar">
-                    <button type="submit" ><i class="fas fa-search"></i></button>
-                  </div>
-                </div>
             </div>
-        </header>
+            
+            <div class="login-registro">
+                <a href="./views/login.html">Logging</a>
+                <a href="./views/registro.html">Registrate</a>
+            </div>
 
+        </div>
+
+        <div class="menu-burger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="buscador">
+            <input class="buscador-input" type= "Buscar" placeholder="Que producto buscas?"></input>
+            <button type="submit" ><i class="fas fa-search"></i></button>
+        </div>
         
-
-        <!---------Banner Publicitario y algo mas--------->
-        <section class="banner flex-Horizontal">
-            <img src="images/banner-juntos.png" alt="Banner de prueba">
-          </section>
-      
-
-        <main>
-            
-            <div class="flex-Horizontal"> <!--cambie flex-vertical por horizontal, luego adaptamos-->
-                <!---------------OFERTAS------------------->
-              <div class=etiqueta-oferta>
-                <p class="titulo-ofertas">Ofertas especiales</p>
-              </div>
-
-                <section class="Ofertas">
-                    
-                    <div class="productos">
-                    
-                        <article>
-                         
-                          <img src="/images/vaso-plegable.jpg" alt="">
-                  
-                          <div class="contenedor1">
-                          <i class="fas fa-cart-plus"></i>
-                          <p class="precios">$1.800</p>
-                          <p class="descuentos">20% Off</p>
-                          <p class="descripciones">Vaso ecologico termico y Plegable </p>
-                        </div>
-                        </article>
-                  
-                  
-                        <article>
-                          <img src="/images/envoltorio-ecologico-colmena.jpg" alt="">
-                  
-                          <div class="contenedor1">
-                            <i class="fas fa-cart-plus"></i>
-                          <p class="precios">$150</p>
-                          <p class="descuentos">30% Off</p>
-                          <p class="descripciones">Envoltorio ecologico</p>
-                          
-                        </div>
-                        </article>
-                  
-                  
-                        <article>
-                  
-                          <img src="/images/pabilo-organico.jpg" alt="">
-                  
-                          <div class="contenedor1">
-                            <i class="fas fa-cart-plus"></i>
-                          <p class="precios">$200</p>
-                          <p class="descuentos">15% Off</p>
-                          <p class="descripciones">Pabilo</p>
-                        
-                          </div>
-                        </article>
-
-                    </article>
-                  
-                    <article>
-              
-                      <img src="/images/vaso-ecologico-infantil.jpg" alt="">
-              
-                      <div class="contenedor1">
-                        <i class="fas fa-cart-plus"></i>
-                      <p class="precios">$1200</p>
-                      <p class="descuentos">35% Off</p>
-                      <p class="descripciones">Vaso eco infantil</p>
-                    
-                      </div>
-                    </article>
-
-
-                  
-                      </div>
-
-                </section>
-                <!-------------------Fin seccion scrollable de Ofertas----------------->
-                
-                <!---------------Seccion scrollable de promociones---Esta seccion la cambie por especial de abejas.---------------->
-                
-                <!--ETIQUETA ESPECIAL DE ABEJAS-->
-                <div class=Etiqueta-Especial-Abejas>
-                  <p class="titulo-Especial-abejas">Especial de Abejas</p>
-                </div>
-                
-                
-                <!-----ABEJAS---->
-
-                <section class="abejas">
-                    
-                    <div class="productos-abejas">
-                      <article>
-                        <img src="/images/honey-essence.jpg" alt="">
-                        <div class="contenedor1">
-                          <i class="fas fa-cart-plus"></i>
-                          <p class="precios">$2.800</p>
-                          <p class="descuentos">10% Off</p>
-                          <p class="descripciones">Honey essence </p>
-                        </div>
-                      </article>
-                
-                      <article>
-                        <img src="/images/miel-organica.PNG" alt="">
-                        <div class="contenedor1">
-                          <i class="fas fa-cart-plus"></i>
-                          <p class="precios">$550</p>
-                          <p class="descuentos">20% Off</p>
-                          <p class="descripciones">Miel Organica</p>
-                        </div>
-                      </article>
-                
-                      <article>
-                        <img src="/images/envoltorios-de-cera-de-abeja.jpg" alt="">
-                        <div class="contenedor1">
-                          <i class="fas fa-cart-plus"></i>
-                          <p class="precios">$400</p>
-                          <p class="descuentos">15% Off</p>
-                          <p class="descripciones">Envoltorio cera de abeja</p>
-                        </div>
-                      </article>
-
-                  </article>
-                
-                  <article>
-            
-                    <img src="/images/crema-nutritiva.PNG" alt="">
-            
-                    <div class="contenedor1">
-                      <i class="fas fa-cart-plus"></i>
-                    <p class="precios">$800</p>
-                    <p class="descuentos">45% Off</p>
-                    <p class="descripciones">Crema nutritiva</p>
-                  
-                    </div>
-                  </article>
-
-
-                
-                    </div>
-                </section>
-
-
-                <!---------------------------------->
-            
-               <!---------------IMAGENES AL CATALOGO------------------->
-         <!--Caja de imagenes que conectan a los enlaces de categorias hogar-cuidado personal--producto abejas-->  
-         
-        <section class=Imagenes-al-catalogo>
-          <a title="Hogar" href="./views/lineaHogar.html"><img class="imagenes-al-catalogo" src="images/hogar.jpg" alt="Productos del Hogar" /></a>
-          <a title="Cuidado Personal" href="./views/lineaCuidadoPersonal.html"><img style="width: 423px; height: 300px" src="images/cuidado-personal.jpg" alt="Produtos de cuidado Personal" /></a>
-          <a title="Productos Abejas" href=".views/lineaProductoDeLasAbejas.html"><img style="width: 423px; height: 300px" src="images/productos-abejas.png" alt="Productos de las abejas" /></a>
-
+    </header>
+   
+    
+    <main class="flex-vertical">
+        
+        <section>
+            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
         </section>
-        
-        </main>
 
-        <!----------FOOTER----------->
+        <div class="flex-Horizontal"> <!--cambie flex-vertical por horizontal, luego adaptamos-->
+            <!---------------OFERTAS------------------->
+          <div class=etiqueta-oferta>
+            <p class="titulo-ofertas">Ofertas especiales</p>
+          </div>
 
-        <footer>
-
-          <!----
-                    <p>Espacio para información de horarios de atención y delivery, 
-                        puntos de venta y de pick-up, link a Google Maps, etc.
-                    </p>-->
-
-        <section class="flexhorizontal">
-
-              <div>
-                  <ul class="nav-bar-footer" type="none">
-                    <li><a href="#">Puntos de Venta</a></li>
-                    <li><a href="#">Horarios de atencion</a></li>
-                    <li><a href="#">Ayuda</a></li>
-                  </ul>
-                  
-              </div>
-
-                <div class="redes-sociales-caja"><!-- Debajo va el código de navegación a redes sociales -->
-                    <h4>Seguinos en las redes!</h4>
-                    <!---------------------------------->
-                    <div>
-                        <div class="redes-sociales"><a href="#">Facebook</a><i class="fab fa-facebook-square"></i></div>
-                        <div class="redes-sociales"><a href="#">Twitter</a><i class="fab fa-twitter-square"></i></div>
-                        <div class="redes-sociales"><a href="#">Instagram</a><i class="fab fa-instagram-square"></i></div>
-                        <div class="redes-sociales"><a href="#">Whatsapp</a><i class="fab fa-whatsapp"></i></div>
+            <section class="Ofertas">
+                
+                <div class="productos">
+                
+                    <article>
+                        <a href="/views/productoDetallado.html"><img src="/images/vaso-plegable.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i></i>
+                            <p class="precios">$1.800</p>
+                            <p class="descuentos">20% Off</p>
+                            <p class="descripciones">Vaso ecologico termico y Plegable </p>
+                        </div>
+                    </article>
+              
+                    <article>
+                      <a href="/views/productoDetallado.html"><img src="/images/envoltorio-ecologico-colmena.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i>
+                            <p class="precios">$150</p>
+                            <p class="descuentos">30% Off</p>
+                            <p class="descripciones">Envoltorio ecologico</p>      
+                        </div>
+                </article>
+              
+                <article>
+                  <a href="/views/productoDetallado.html"><img src="/images/pabilo-organico.jpg" alt=""></a>
+                    <div class="contenedor1">
+                        <i class="fas fa-cart-plus"></i>
+                        <p class="precios">$200</p>
+                        <p class="descuentos">15% Off</p>
+                        <p class="descripciones">Pabilo</p>
+                        </div>
+                </article>
+              
+                <article>
+                  <a href="/views/productoDetallado.html"><img src="/images/vaso-ecologico-infantil.jpg" alt=""></a>
+                    <div class="contenedor1">
+                        <i class="fas fa-cart-plus"></i>
+                        <p class="precios">$1200</p>
+                        <p class="descuentos">35% Off</p>
+                        <p class="descripciones">Vaso eco infantil</p>
                     </div>
-                <!---------------------------------->
-                </div><!--        Fin navegación a redes sociales            -->
+                </article>
 
+                </div>
             </section>
-        
-        </footer>
-        
-    </body>
+            <!-------------------Fin seccion scrollable de Ofertas----------------->
+            
+            <!---------------Seccion scrollable de promociones---Esta seccion la cambie por especial de abejas.---------------->
+            
+            <!--ETIQUETA ESPECIAL DE ABEJAS-->
+            <div class=Etiqueta-Especial-Abejas>
+              <p class="titulo-Especial-abejas">Especial de Abejas</p>
+            </div>
+            
+            
+            <!-----ABEJAS---->
+
+            <section class="abejas">
+                
+                <div class="productos-abejas">
+                    <article>
+                      <a href="/views/productoDetallado.html"><img src="/images/honey-essence.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i>
+                            <p class="precios">$2.800</p>
+                            <p class="descuentos">10% Off</p>
+                            <p class="descripciones">Honey essence </p>
+                        </div>
+                    </article>
+            
+                    <article>
+                      <a href="/views/productoDetallado.html"><img src="/images/miel-organica.PNG" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i>
+                            <p class="precios">$550</p>
+                            <p class="descuentos">20% Off</p>
+                            <p class="descripciones">Miel Organica</p>
+                        </div>
+                    </article>
+            
+                    <article>
+                      <a href="/views/productoDetallado.html"><img src="/images/envoltorios-de-cera-de-abeja.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i>
+                            <p class="precios">$400</p>
+                            <p class="descuentos">15% Off</p>
+                            <p class="descripciones">Envoltorio cera de abeja</p>
+                        </div>
+                    </article>
+
+                    <article>
+                      <a href="/views/productoDetallado.html"><img src="/images/crema-nutritiva.PNG" alt=""></a>
+                        <div class="contenedor1">
+                        <i class="fas fa-cart-plus"></i>
+                        <p class="precios">$800</p>
+                        <p class="descuentos">45% Off</p>
+                        <p class="descripciones">Crema nutritiva</p>              
+                        </div>
+                    </article>
+                    
+                </div>
+            </section>
+
+        <!---------------IMAGENES AL CATALOGO------------------->
+        <!--Caja de imagenes que conectan a los enlaces de categorias hogar-cuidado personal--producto abejas-->  
+     
+        <section class=Imagenes-al-catalogo>
+            <a title="Hogar" href="./views/lineaHogar.html"><img class="imagenes-al-catalogo" src="/images/hogar.jpg" alt="Productos del Hogar" /></a>
+            <a title="Cuidado Personal" href="./views/lineaCuidadoPersonal.html"><img style="width: 423px; height: 300px" src="/images/cuidado-personal.jpg" alt="Produtos de cuidado Personal" /></a>
+            <a title="Productos Abejas" href="./views/lineaProductoDeLasAbejas.html"><img style="width: 423px; height: 300px" src="/images/productos-abejas.png" alt="Productos de las abejas" /></a>
+        </section>     
+    
+    </main>
+
+    <footer>
+        <section class="flexhorizontal">
+            <div>
+                <ul class="nav-bar-footer" type="none">
+                  <li><a href="#">Puntos de Venta</a></li>
+                  <li><a href="#">Horarios de atencion</a></li>
+                  <li><a href="#">Ayuda</a></li>
+                </ul>
+                
+            </div>
+
+            <div class="redes-sociales-caja"><!-- Debajo va el código de navegación a redes sociales -->
+                <h4>Seguinos en las redes!</h4>
+                <!---------------------------------->
+                <div>
+                    <div class="redes-sociales"><a href="#">Facebook</a><i class="fab fa-facebook-square"></i></div>
+                    <div class="redes-sociales"><a href="#">Twitter</a><i class="fab fa-twitter-square"></i></div>
+                    <div class="redes-sociales"><a href="#">Instagram</a><i class="fab fa-instagram-square"></i></div>
+                    <div class="redes-sociales"><a href="#">Whatsapp</a><i class="fab fa-whatsapp"></i></div>
+                </div>
+            <!---------------------------------->
+            </div><!--        Fin navegación a redes sociales            -->
+        </section>
+      
+      </footer>
+
+    </footer>
+
+</body>
 </html>
