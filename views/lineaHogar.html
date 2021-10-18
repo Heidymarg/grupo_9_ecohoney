@@ -4,9 +4,169 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title> Eco HONeY Marketplace </title>
+
+    <!-- Debajo, configuración de íconos y fonts de terceros (Google, fontawesome)-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+
+    <script src="https://kit.fontawesome.com/2752ae1859.js" crossorigin="anonymous"></script>
+    <!-- Fin configuración de íconos y fonts de terceros (Google, fontawesome)-->
+
+    <!-- Debajo, linkeo de las stylesheets-->
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Fin linkeo de las stylesheets-->
+    
 </head>
 <body>
+
+    <header class="flex-vertical">
+        <div class="dentro-header">
+            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+            
+            <div class="nav-bar">
+                <nav><!--nav> style="justify-content: space-around;"> -->
+                    <ul type="none">
+                        <li><a href="#">Nosotros</a></li>
+                        <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Promociones</a></li>
+                        <li><a href="#">Ofertas</a></li>
+                        <li><a href="#">Ayuda</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="login-registro">
+                <a href="./views/login.html">Logging</a>
+                <a href="./views/registro.html">Registrate</a>
+            </div>
+
+        </div>
+
+        <div class="menu-burger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="buscador">
+            <input class="buscador-input" type= "Buscar" placeholder="Que producto buscas?"></input>
+            <button type="submit" ><i class="fas fa-search"></i></button>
+        </div>
+        
+    </header>
+   
     
+    <main class="flex-vertical">
+        <!--
+        <section>
+            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
+        </section>
+        -->
+        <div class="flex-Horizontal"> <!--cambie flex-vertical por horizontal, luego adaptamos-->
+            <!---------------OFERTAS------------------->
+          <div class=etiqueta-oferta>
+            <p class="titulo-ofertas">Nuestra Línea Hogar</p>
+          </div>
+
+            <section class="Ofertas">
+                <div class="productos">
+                
+                    <article>
+                        <a href="/views/productoDetallado.html"><img src="/images/vaso-plegable.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i></i>
+                            <p class="precios">$1.800</p>
+                            <p class="descuentos">20% Off</p>
+                            <p class="descripciones">Vaso ecologico termico y Plegable </p>
+                        </div>
+                    </article>
+                    <article>
+                        <a href="/views/productoDetallado.html"><img src="/images/vaso-plegable.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i></i>
+                            <p class="precios">$1.800</p>
+                            <p class="descuentos">20% Off</p>
+                            <p class="descripciones">Vaso ecologico termico y Plegable </p>
+                        </div>
+                    </article>
+                    <article>
+                        <a href="/views/productoDetallado.html"><img src="/images/vaso-plegable.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i></i>
+                            <p class="precios">$1.800</p>
+                            <p class="descuentos">20% Off</p>
+                            <p class="descripciones">Vaso ecologico termico y Plegable </p>
+                        </div>
+                    </article>
+                    <article>
+                        <a href="/views/productoDetallado.html"><img src="/images/vaso-plegable.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i></i>
+                            <p class="precios">$1.800</p>
+                            <p class="descuentos">20% Off</p>
+                            <p class="descripciones">Vaso ecologico termico y Plegable </p>
+                        </div>
+                    </article>
+                    <article>
+                        <a href="/views/productoDetallado.html"><img src="/images/vaso-plegable.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i></i>
+                            <p class="precios">$1.800</p>
+                            <p class="descuentos">20% Off</p>
+                            <p class="descripciones">Vaso ecologico termico y Plegable </p>
+                        </div>
+                    </article>
+                    <article>
+                        <a href="/views/productoDetallado.html"><img src="/images/vaso-plegable.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i></i>
+                            <p class="precios">$1.800</p>
+                            <p class="descuentos">20% Off</p>
+                            <p class="descripciones">Vaso ecologico termico y Plegable </p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+        <!---------------IMAGENES AL CATALOGO------------------->
+        <!--Caja de imagenes que conectan a los enlaces de categorias hogar-cuidado personal--producto abejas-->  
+        <section class=Imagenes-al-catalogo>
+            <a title="Cuidado Personal" href="lineaCuidadoPersonal.html"><img style="width: 423px; height: 300px" src="/images/cuidado-personal.jpg" alt="Produtos de cuidado Personal" /></a>
+            <a title="Productos Abejas" href="lineaProductoDeLasAbejas.html"><img style="width: 423px; height: 300px" src="/images/productos-abejas.png" alt="Productos de las abejas" /></a>
+        </section>     
+    
+    </main>
+
+    <footer>
+        <section class="flexhorizontal">
+            <div>
+                <ul class="nav-bar-footer" type="none">
+                  <li><a href="#">Puntos de Venta</a></li>
+                  <li><a href="#">Horarios de atencion</a></li>
+                  <li><a href="#">Ayuda</a></li>
+                </ul>
+                
+            </div>
+
+            <div class="redes-sociales-caja"><!-- Debajo va el código de navegación a redes sociales -->
+                <h4>Seguinos en las redes!</h4>
+                <!---------------------------------->
+                <div>
+                    <div class="redes-sociales"><a href="#">Facebook</a><i class="fab fa-facebook-square"></i></div>
+                    <div class="redes-sociales"><a href="#">Twitter</a><i class="fab fa-twitter-square"></i></div>
+                    <div class="redes-sociales"><a href="#">Instagram</a><i class="fab fa-instagram-square"></i></div>
+                    <div class="redes-sociales"><a href="#">Whatsapp</a><i class="fab fa-whatsapp"></i></div>
+                </div>
+            <!---------------------------------->
+            </div><!--        Fin navegación a redes sociales            -->
+        </section>
+      
+      </footer>
+
+    </footer>
+
 </body>
 </html>
