@@ -23,6 +23,10 @@
     align-items: center;
     align-content: center;
 }
+<<<<<<< HEAD
+*/
+/*MAIN*/
+=======
 /* *** viene copiado de styles.css *** */
 main {
     border: 1px solid olivedrab ;
@@ -137,6 +141,7 @@ main {
        text-align: justify;
        
  }
+>>>>>>> ae270a97b9b844cdc235040e6b62c58f1b0b07c7
 
 /*-----ETIQUETA OFERTAS------*/
 
