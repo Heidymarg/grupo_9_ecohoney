@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,53 +30,41 @@
 
     <body>
         
-        <header>
-        
-            <section>
-              <!-- Debajo va el código de la navbar y de los botones de Logging y Registro -->
-                <!---------------------------------->
-        
-              <div class="top-header">
-
-                <div class="logo">
-                    <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
-                </div>
-                <!---------------------------------->
-                <nav>
-                    <ul class="nav-bar" type="none">
-                        <li><a href="#">Nosotros</a></li>
-                        <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
-                        <li><a href="./views/index.html">Home</a></li>
-                        <li><a href="#">Promociones</a></li>
-                        <li><a href="#">Ofertas</a></li>
-                        <li><a href="#">Ayuda</a></li>
-                    </ul>
-                </nav>
-                <!----------LOGIN Y REGISTRO---------------->
-                <div class="flex-vertical-login-registro">
-
-                 <div class="boton"><a href="./views/login.html">Logging</a></div>
-                 <div class="boton"><a href="./views/registro.html">Registrate</a></div>
-                </div>
-                <!---------------------------------->
-
-                <div>
-                  <i class="fas fa-bars menu-burger"></i>
-                </div>
-
+        <header class="flex-vertical">
+          <div class="dentro-header">
+              <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+              
+              <div class="nav-bar">
+                  <nav><!--nav> style="justify-content: space-around;"> -->
+                      <ul type="none">
+                          <li><a href="#">Nosotros</a></li>
+                          <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
+                          <li><a href="/">Home</a></li>
+                          <li><a href="#">Promociones</a></li>
+                          <li><a href="#">Ofertas</a></li>
+                          <li><a href="#">Ayuda</a></li>
+                      </ul>
+                  </nav>
               </div>
-
-            </section>    <!--        Fin navbar, Logging y Registro          -->    
-            <!--Buscar producto-->
-            <div class="buscador">
-              <div class="buscar-producto">
-                <input  type= "Buscar" placeholder="Que producto buscas?"></input>
-                  <div class="boton-buscar">
-                    <button type="submit" ><i class="fas fa-search"></i></button>
-                  </div>
-                </div>
-            </div>
-        </header>
+              
+              <div class="login-registro">
+                  <a href="/views/login.html">Logging</a>
+                  <a href="/views/registro.html">Registrate</a>
+                  <a href="/views/carrito.html">Mi Carrito<i class="fas fa-cart-plus"></i></a>
+              </div>
+  
+          </div>
+  
+          <div class="menu-burger">
+              <i class="fas fa-bars"></i>
+          </div>
+  
+          <div class="buscador">
+              <input class="buscador-input" type= "Buscar" placeholder="Que producto buscas?"></input>
+              <button type="submit" ><i class="fas fa-search"></i></button>
+          </div>
+          
+      </header>
 
         
 
@@ -85,11 +73,9 @@
       
 
         <main class="flex-vertical">
-          <!----
           <section class="banner flex-Horizontal">
-            <img src="/images/banner-juntos.png" alt="Banner de prueba">
-          </section>
-        -->
+            <img style="height: auto; width: 100vw;" src="/images/banner-juntos.png" alt="Banner de prueba">
+          </section> 
             <article >
                 <div class="pcaja0" >
                  <div > <img class="imgprd"  src="/images/vela_miel2.jpg" alt="velas"></div>
@@ -158,5 +144,4 @@
         
     </body>
 </html>
-=======
->>>>>>> 5c2d3282ed1fee3dd05e5c8c6a950da1e8b51d57
+
