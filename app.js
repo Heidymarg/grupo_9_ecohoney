@@ -19,5 +19,6 @@ app.get( "/views/lineaCuidadoPersonal.html", (req,res) => { res.sendFile( path.r
 app.get( "/views/lineaProductoDeLasAbejas.html", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/lineaProductoDeLasAbejas.html" ) ) } );
 app.get( "/views/login.html", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/login.html" ) ) } );
 app.get( "/views/registro.html", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/registro.html" ) ) } );
+app.get( "/views/carrito.html", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/carrito.html" ) ) } );
 app.get( "/views/productoDetallado.html", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/productoDetallado.html" ) ) } );
 
