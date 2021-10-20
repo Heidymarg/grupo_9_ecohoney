@@ -4,6 +4,13 @@
     font-family: 'Roboto',sans-serif;
     box-sizing: border-box;
 }
+.menu{
+    
+        background-color: #e0e0e0;
+        color: 3c3c3c;
+        text-decoration: none;
+        border-left: 4px solid olivedrab;
+        }
 
 .flex-horizontal {
     width: 100%;
