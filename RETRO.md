@@ -1,4 +1,11 @@
 Retrospectiva
+
+Comenzar a hacer
+•   Establecer con mas precision tiempos de tareas individuales para luego en equipo debatir y ayudarnos con las dudas o problemas que surgen.
+•   Explorar codigos y funciones por fuera de lo visto que haga nuestra pagina visualmente mas atractiva.
+•   Mas compromido con el logro de las tareas individuales.
+
+
 Seguir haciendo
 •	Comunicándonos por Whatsapp (las daylies)
 •	Reuniéndonos por Zoom (supporting)
@@ -16,13 +23,8 @@ Más de
 •   Buscar paginas de referencia para darle mejor forma a la nuestra.
 
 
-Comenzar a hacer
-•   Establecer con mas precision tiempos de tareas individuales para luego en equipo debatir y ayudarnos con las dudas o problemas que surgen.
-•   Explorar codigos y funciones por fuera de lo visto que haga nuestra pagina visualmente mas atractiva.
-•   Mas compromido con el logro de las tareas individuales.
-
 Menos de 
-•   conformarnos con lo hecho.
+•   Conformarnos con lo hecho.
 
 
 Dejar de hacer
