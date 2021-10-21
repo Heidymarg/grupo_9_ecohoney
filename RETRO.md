@@ -13,17 +13,15 @@ Más de
 •	A medida que avanza el proyecto, planificar y documentar más detalladamente en Trello
 •	Seguir coordinando esfuerzos
 •   Aportar ideas innovadoras
-•  Buscar paginas de referencia para darle mejor forma a la nuestra.
+•   Buscar paginas de referencia para darle mejor forma a la nuestra.
 
 
 Comenzar a hacer
-•   Vamos bastante bien con el ritmo de trabajo sin embargo debemos:
 •   Establecer con mas precision tiempos de tareas individuales para luego en equipo debatir y ayudarnos con las dudas o problemas que surgen.
 •   Explorar codigos y funciones por fuera de lo visto que haga nuestra pagina visualmente mas atractiva.
-• Mas compromido con el logro de las tareas individuales.
+•   Mas compromido con el logro de las tareas individuales.
 
 Menos de 
-•	Por ahora vamos bien con lo que estamos haciendo
 •   conformarnos con lo hecho.
 
 
