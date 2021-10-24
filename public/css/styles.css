@@ -148,6 +148,8 @@ justify-content: space-between;
 
 /*--------IMAGENES AL CATALOGO------*/
 
+
+
 .Imagenes-al-catalogo{
     background-color: rgba(44, 144, 148, 0.959);
     padding: 17px;
@@ -162,6 +164,51 @@ justify-content: space-between;
     width: 423px; 
     height: 300px;
 }
+
+
+.example {
+    position: relative;
+    padding: 0;
+    width: 300px;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .content {
+    opacity: 0;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: black;
+    background-color: rgba(200, 200, 200, 0.5);
+    width: 300px;
+    height: 300px;
+    -webkit-transition: all 400ms ease-out;
+    -moz-transition: all 400ms ease-out;
+    -o-transition: all 400ms ease-out;
+    -ms-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+    text-align: center;
+  }
+  
+  .example .content:hover {
+    opacity: 1;
+  }
+  
+  .example .content .text {
+    height: 0;
+    opacity: 1;
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+  }
+  
+  .example .content:hover .text {
+    opacity: 1;
+    transform: translateY(250px);
+    -webkit-transform: translateY(250px);
+  }    
 
 /*FOOTER*/
 
@@ -279,11 +326,28 @@ footer{
 
 @media (min-width:5px) {
 
+<<<<<<< HEAD
 header {
+=======
+    .flex-vertical {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-items: flex-start;
+        align-items: center;
+        flex-wrap: nowrap;
+        align-items: center;
+        align-content: center;
+    } 
+
+
+    
+    header {
+>>>>>>> d616f25db15b2ab8e4c47e78c1b60127e8f19c24
         width: 100vw;
         /*position: fixed;
         top: 0px;*/
-        background-color: rgba(44, 144, 148, 0.959); 
+       background-color: rgba(44, 144, 148, 0.959); */
     }
     
     .dentro-header {
