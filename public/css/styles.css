@@ -18,12 +18,22 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-items: flex-start;
+    justify-items: center;
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
 }
 
+
+.flex-vertical-producto {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+}
 /*MAIN*/
 main {
     border: 1px solid olivedrab ;
@@ -272,7 +282,7 @@ footer{
     width: 95%;
     background-color:rgb(78, 187, 89);
 }
-.flex-vertical   {
+.flex-vertical-producto   {
     display: block;
 }   
 .pcaja1{
@@ -308,6 +318,7 @@ footer{
 .imgprd {
        width: 400px;
        padding: 0px 35px 0px 0px;
+       border-radius: 5px;
    
    }
    
@@ -326,24 +337,7 @@ footer{
 
 @media (min-width:5px) {
 
-<<<<<<< HEAD
 header {
-=======
-    .flex-vertical {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-items: flex-start;
-        align-items: center;
-        flex-wrap: nowrap;
-        align-items: center;
-        align-content: center;
-    } 
-
-
-    
-    header {
->>>>>>> d616f25db15b2ab8e4c47e78c1b60127e8f19c24
         width: 100vw;
         /*position: fixed;
         top: 0px;*/
@@ -485,7 +479,7 @@ header {
         width: 100%;
         background-color:rgb(78, 187, 89);
     }
-    .flex-vertical   {
+    .flex-vertical-producto   {
         display: block;
     }   
     .pcaja1{
@@ -529,6 +523,7 @@ header {
         width: 90%;
         margin-left: 40px;
         margin-top: 10px;
+        border-radius: 5px;
     }
        
     .prd {
@@ -770,6 +765,7 @@ header {
         width: 100%;
         padding: 0px 35px 0px 0px;
         margin-top: 60px;
+        border-radius: 5px;
     }
        
     .prd {
@@ -1003,6 +999,7 @@ header {
     .imgprd {
            width: 400px;
            padding: 0px 35px 0px 0px;
+           border-radius: 5px;
        
        }
        
@@ -1253,6 +1250,7 @@ header {
     .imgprd {
            width: 400px;
            padding: 0px 35px 0px 0px;
+           border-radius: 5px;
        
        }
        
@@ -1488,6 +1486,7 @@ header {
     .imgprd {
            width: 400px;
            padding: 0px 35px 0px 0px;
+           border-radius: 5px;
        
        }
        
