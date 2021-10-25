@@ -18,12 +18,22 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-items: flex-start;
+    justify-items: center;
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
 }
 
+
+.flex-vertical-producto {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+}
 /*MAIN*/
 main {
     border: 1px solid olivedrab ;
@@ -148,6 +158,8 @@ justify-content: space-between;
 
 /*--------IMAGENES AL CATALOGO------*/
 
+
+
 .Imagenes-al-catalogo{
     background-color: rgba(44, 144, 148, 0.959);
     padding: 17px;
@@ -162,6 +174,51 @@ justify-content: space-between;
     width: 423px; 
     height: 300px;
 }
+
+
+.example {
+    position: relative;
+    padding: 0;
+    width: 300px;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .content {
+    opacity: 0;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: black;
+    background-color: rgba(200, 200, 200, 0.5);
+    width: 300px;
+    height: 300px;
+    -webkit-transition: all 400ms ease-out;
+    -moz-transition: all 400ms ease-out;
+    -o-transition: all 400ms ease-out;
+    -ms-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+    text-align: center;
+  }
+  
+  .example .content:hover {
+    opacity: 1;
+  }
+  
+  .example .content .text {
+    height: 0;
+    opacity: 1;
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+  }
+  
+  .example .content:hover .text {
+    opacity: 1;
+    transform: translateY(250px);
+    -webkit-transform: translateY(250px);
+  }    
 
 /*FOOTER*/
 
@@ -221,46 +278,23 @@ footer{
     width: 25px;
 }
 .pcaja0{
-        display: flex;
-       justify-content: space-between;
-       margin: 10px;
-       padding: 0px 5px 15px 0px;
-       background-color:rgb(78, 187, 89);
-
-       
-   }
-   
+    display: block;
+    width: 95%;
+    background-color:rgb(78, 187, 89);
+}
+.flex-vertical-producto   {
+    display: block;
+}   
 .pcaja1{
-       width: 100%;
-       display: flex;
-       flex-direction: row;
-       justify-items:flex-start;
-       justify-content: stretch;
+    display: block;
    }
-   
-.pboton0 {
-       margin: 3px;
-       padding: 7px 15px 7px 15px;
-       font-size: medium;
-       text-align: center;
-       width: 25%;
-       height: 40px;
-       border: 1px solid darkgoldenrod;
-       border-radius: 7px;
-       background-color: olive;
-   }
-   
-.pboton1 {
-       margin: 3px;
-       padding: 7px 15px 7px 15px;
-       font-size: medium;
-       text-align: center;
-       width: 40%;
-       height: 40px;
-       border: 1px solid darkgoldenrod;
-       border-radius: 7px;
-       background-color: olive;
-   }
+.pboton0, .pboton1, .pboton3, .pboton4   {
+    width: 70%;
+    margin: auto;
+    border: 1px solid darkgoldenrod;
+    background-color: olive;
+    padding: 7px 15px 7px 15px;
+} 
    
 .pboton2 {
        margin: 3px;
@@ -272,29 +306,7 @@ footer{
        border: 1px solid darkgoldenrod;
        border-radius: 7px;
        background-color: olive;
-   }
-.pboton3 {
-       margin: 3px;
-       padding: 7px 15px 7px 15px;
-       font-size: medium;
-       text-align: center;
-       width: 30%;
-       height: 40px;
-       border: 1px solid darkgoldenrod;
-       border-radius: 7px;
-      }
-.pboton4 {
-       margin: 3px;
-       padding: 2px 15px 2px 15px;
-       font-size: xx-small;
-       text-align: center;
-       width: 20%;
-       height: 40px;
-       border: 1px solid darkgoldenrod;
-       border-radius: 7px;
-       background-color: olive;
-   }
-   
+}
 .producto1{
        font-size: small;
        display: flex;
@@ -306,13 +318,14 @@ footer{
 .imgprd {
        width: 400px;
        padding: 0px 35px 0px 0px;
+       border-radius: 5px;
    
    }
    
 .prd {
-       margin: 10px;
-       padding:0px 40px 0px 0px;
-       text-align: center;
+    width: 60%;
+    padding: 10px;
+    margin-left: 20%;
    }
 .parrafo {
        width: 80%;
@@ -324,20 +337,7 @@ footer{
 
 @media (min-width:5px) {
 
-    .flex-vertical {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-items: flex-start;
-        align-items: center;
-        flex-wrap: nowrap;
-        align-items: center;
-        align-content: center;
-    } 
-
-
-    
-    header {
+header {
         width: 100vw;
         /*position: fixed;
         top: 0px;*/
@@ -475,102 +475,67 @@ footer{
         width: 25px;
     }
     .pcaja0{
-            display: flex;
-           justify-content: space-between;
-           margin: 10px;
-           padding: 0px 5px 15px 0px;
-           background-color:rgb(78, 187, 89) ;
-    
-           
-       }
-       
+        display: block;
+        width: 100%;
+        background-color:rgb(78, 187, 89);
+    }
+    .flex-vertical-producto   {
+        display: block;
+    }   
     .pcaja1{
-           width: 100%;
-           display: flex;
-           flex-direction: row;
-           justify-items:flex-start;
-           justify-content: stretch;
+        display: block;
        }
-       
-    .pboton0 {
-           margin: 3px;
-           padding: 7px 15px 7px 15px;
-           font-size: medium;
-           text-align: center;
-           width: 25%;
-           height: 40px;
-           border: 1px solid darkgoldenrod;
-           border-radius: 7px;
-           background-color: olive;
-       }
-       
-    .pboton1 {
-           margin: 3px;
-           padding: 7px 15px 7px 15px;
-           font-size: medium;
-           text-align: center;
-           width: 40%;
-           height: 40px;
-           border: 1px solid darkgoldenrod;
-           border-radius: 7px;
-           background-color: olive;
-       }
-       
+    .pboton0, .pboton1, .pboton3, .pboton4   {
+        width: 70%;
+        margin: auto;
+        border: 1px solid blanchedalmond;
+        background-color: springgreen;
+        padding: 7px 15px 7px 15px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        text-align: center;
+    }
+    #iconos-prod {
+        margin: auto;
+        color: white;
+    }
     .pboton2 {
-           margin: 3px;
-           padding: 7px 15px 7px 15px;
-           font-size: medium;
-           text-align: center;
-           width: 10%;
-           height: 40px;
-           border: 1px solid darkgoldenrod;
-           border-radius: 7px;
-           background-color: olive;
-       }
-    .pboton3 {
-           margin: 3px;
-           padding: 7px 15px 7px 15px;
-           font-size: medium;
-           text-align: center;
-           width: 30%;
-           height: 40px;
-           border: 1px solid darkgoldenrod;
-           border-radius: 7px;
-          }
-    .pboton4 {
-           margin: 3px;
-           padding: 2px 15px 2px 15px;
-           font-size: xx-small;
-           text-align: center;
-           width: 20%;
-           height: 40px;
-           border: 1px solid darkgoldenrod;
-           border-radius: 7px;
-           background-color: olive;
-       }
+        margin: 3px;
+        padding: 7px 15px 7px 15px;
+        font-size: medium;
+        text-align: center;
+        width: 10%;
+        height: 40px;
+        border: 1px solid darkgoldenrod;
+        border-radius: 7px;
+        background-color: olive;
+    }
        
     .producto1{
-           font-size: small;
-           display: flex;
-           flex-direction: row;
-           justify-items:flex-start;
-           justify-content: stretch;
-       }
+        font-size: small;
+        display: flex;
+        flex-direction: row;
+        justify-items:flex-start;
+        justify-content: stretch;
+    }
        
     .imgprd {
-           width: 400px;
-           padding: 0px 35px 0px 0px;
-       
-       }
+        width: 90%;
+        margin-left: 40px;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
        
     .prd {
-           margin: 10px;
-           padding:0px 40px 0px 0px;
-           text-align: center;
-       }
+        margin: 10px;
+        padding:0px 40px 0px 0px;
+        text-align: center;
+    }
     .parrafo {
            width: 70%;
            text-align: justify;
+           margin: auto;
+           padding: 10px;
            
      }
   
@@ -579,7 +544,7 @@ footer{
 }
 /*-------------MediaQ 5px------------*/
 
-@media (min-width:769px) {
+@media (min-width:768px) {
     header {
         width: 100vw;
         /*position: fixed;
@@ -716,36 +681,39 @@ footer{
         font-size: 25px;
         width: 25px;
     }
+    .flex-vertical {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+        padding: 10px;
+    }
+    #iconos-prod {
+        color: springgreen;
+    }
     .pcaja0{
-            display: flex;
-           justify-content: space-between;
-           margin: 10px;
-           padding: 0px 5px 15px 0px;
-           background-color:rgb(78, 187, 89) ;
-           width: 100%;
-    
-           
-       }
-       
+        display: flex;
+        flex-direction: row;
+        flex-wrap:nowrap ;
+        justify-items: stretch;
+        align-items: stretch;
+        justify-content: space-between;
+        margin: 10px;
+        padding: 0px 5px 15px 0px;
+        background-color:rgb(78, 187, 89) ;
+        width: 100%;  
+    }     
     .pcaja1{
-           width: 45%;
-           display: flex;
-           flex-direction: row;
-           justify-items:flex-start;
-           justify-content: stretch;
-           
-       }
-       
+        display: flex;  
+        justify-content: space-between;
+    }
     .pboton0 {
-           margin: 3px;
-           padding: 7px 15px 7px 15px;
-           font-size: medium;
-           text-align: center;
-           width: 25%;
-           height: 40px;
-           border: 1px solid darkgoldenrod;
-           border-radius: 7px;
-           background-color: olive;
+        margin: 3px;
+        padding: 7px 15px 7px 15px;
+        font-size: medium;
+        text-align: center;
+        border: 1px solid darkgoldenrod;
+        border-radius: 7px;
+        background-color: olive;
        }
        
     .pboton1 {
@@ -753,8 +721,6 @@ footer{
            padding: 7px 15px 7px 15px;
            font-size: medium;
            text-align: center;
-           width: 40%;
-           height: 40px;
            border: 1px solid darkgoldenrod;
            border-radius: 7px;
            background-color: olive;
@@ -766,7 +732,7 @@ footer{
            font-size: medium;
            text-align: center;
            width: 10%;
-           height: 40px;
+           height: 15%;
            border: 1px solid darkgoldenrod;
            border-radius: 7px;
            background-color: olive;
@@ -776,18 +742,12 @@ footer{
            padding: 7px 15px 7px 15px;
            font-size: medium;
            text-align: center;
-           width: 30%;
-           height: 40px;
            border: 1px solid darkgoldenrod;
+           background-color: olive;
            border-radius: 7px;
           }
     .pboton4 {
            margin: 3px;
-           padding: 2px 15px 2px 15px;
-           font-size: xx-small;
-           text-align: center;
-           width: 20%;
-           height: 40px;
            border: 1px solid darkgoldenrod;
            border-radius: 7px;
            background-color: olive;
@@ -802,19 +762,21 @@ footer{
        }
        
     .imgprd {
-           width: 400px;
-           padding: 0px 35px 0px 0px;
-       
-       }
+        width: 100%;
+        padding: 0px 35px 0px 0px;
+        margin-top: 60px;
+        border-radius: 5px;
+    }
        
     .prd {
-           margin: 10px;
-           padding:0px 40px 0px 0px;
-           text-align: center;
-       }
+        margin: 10px;
+        padding:0px 40px 0px 0px;
+        text-align: center;
+    }
     .parrafo {
            width: 70%;
            text-align: justify;
+           margin-top: 20px;
            
      }
   
@@ -1037,6 +999,7 @@ footer{
     .imgprd {
            width: 400px;
            padding: 0px 35px 0px 0px;
+           border-radius: 5px;
        
        }
        
@@ -1287,6 +1250,7 @@ footer{
     .imgprd {
            width: 400px;
            padding: 0px 35px 0px 0px;
+           border-radius: 5px;
        
        }
        
@@ -1522,6 +1486,7 @@ footer{
     .imgprd {
            width: 400px;
            padding: 0px 35px 0px 0px;
+           border-radius: 5px;
        
        }
        
