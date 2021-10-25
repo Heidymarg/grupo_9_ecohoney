@@ -341,7 +341,7 @@ footer{
         width: 100vw;
         /*position: fixed;
         top: 0px;*/
-       background-color: rgba(44, 144, 148, 0.959); */
+       background-color: rgba(44, 144, 148, 0.959); 
     }
     
     .dentro-header {
@@ -465,7 +465,7 @@ footer{
         flex-wrap: wrap;
         justify-content: space-around;
     }
-   
+     
     
     /* * * * Estylos de Producto Detallado * * * */
     .fa-minus, .fa-plus {

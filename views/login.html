@@ -47,27 +47,43 @@
         
                 <div class="flex-Horizontal"></div>
             </header>
-    <form>
-       
-          <i class="login">
-          <div class="contenedorlogin">
-
-         <h3>¡Hola! Ingresá tú usuario y contraseña</h3>
-
-         <label for="nombre">Usuario:</label>
-        <input type="nombre">
-        
-        <label for="nombre">Contraseña:</label>
-        <input type="contaseña">
-
-        <a href="#">¿Olvidó su contraseña?</a>
-       
-            <input type="contraseña">
-        <div id="lower">
-                        <input type="checkbox"><label class="check" for="checkbox">Mantenme logueado</label>  </div></i> 
+   
+            <h1>INGRESAR</h1>
+            <hr>
+                            </div>
+        <div class="login">
+        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+            <form id="frmSingin" role="form" method="POST" action= ref=inicio&amp;opcion=1" onsubmit="return validarFrm('frmSingin');">
+                <div id="fldemail"><input type="email" id="email" name="email" data-format="email" data-obligatorio="obligatorio" data-tab="" value="" class="form-control text-left" placeholder="Correo electrónico" maxlength="300" autocomplete="on"> <span class="help-block" id="erroremail" style="display: none;"></span></div><br><div id="fldpassword"><input type="password" id="password" name="password" data-format="text" data-obligatorio="obligatorio" data-tab="" value="" class="form-control text-left" placeholder="Contraseña" maxlength="20" autocomplete="on"> <span class="help-block" id="errorpassword" style="display: none;"></span></div><br><button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="Ingresar">Ingresar</button><a href="https://www.tedbodin.com/tienda/my-password/" title="Olvidé mi contraseña" class="btn btn-link btn-block">Olvidé mi contraseña</a>    				</form>
         </div>
-        </form>
-        <section class="flexhorizontal">                 
+    </div>
+        
+    <section class="flexhorizontal">
+        <div>
+            <ul class="nav-bar-footer" type="none">
+              <li><a href="#">Puntos de Venta</a></li>
+              <li><a href="#">Horarios de atencion</a></li>
+              <li><a href="#">Ayuda</a></li>
+            </ul>
+            
+        </div>
+
+        <div class="redes-sociales-caja"><!-- Debajo va el código de navegación a redes sociales -->
+            <h4>Seguinos en las redes!</h4>
+            <!---------------------------------->
+            <div>
+                <div class="redes-sociales"><a href="#">Facebook</a><i class="fab fa-facebook-square"></i></div>
+                <div class="redes-sociales"><a href="#">Twitter</a><i class="fab fa-twitter-square"></i></div>
+                <div class="redes-sociales"><a href="#">Instagram</a><i class="fab fa-instagram-square"></i></div>
+                <div class="redes-sociales"><a href="#">Whatsapp</a><i class="fab fa-whatsapp"></i></div>
+            </div>
+        <!---------------------------------->
+        </div><!--        Fin navegación a redes sociales            -->
+    </section>
+       
+        
+  
+                 
          
            
             
