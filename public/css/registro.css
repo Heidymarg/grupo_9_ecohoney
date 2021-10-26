@@ -88,12 +88,14 @@ ul li a{
     background-color: white;
     align-self: center;
     width: 100%;
-    justify-content:space-around;
-     display: flex;
+    margin: 20px;
+    flex-direction: column;
+    justify-content:space-around;    
     padding: 10px;
     box-sizing: border-box;
     border-radius: 5px;
-    border-collapse: collapse;}
+    border-collapse: collapse;
+display: block}
 
     .fecha{
         background-color: white;
@@ -540,3 +542,4 @@ ul li a{
             height: auto;
             display: block;
     }}
+  
