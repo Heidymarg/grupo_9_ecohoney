@@ -1,0 +1,1490 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto',sans-serif;
+    box-sizing: border-box;
+}
+
+.flex-horizontal {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+}
+
+.flex-vertical {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+}
+
+/*MAIN*/
+main {
+    border: 1px solid olivedrab ;
+    background-color: rgb(122, 187, 128);
+}
+
+.banner {
+    display: none;
+}
+
+/*-----ETIQUETA OFERTAS------*/
+
+.etiqueta-oferta{
+    width: 60%;
+}
+
+.titulo-ofertas{
+    background-color: rgb(20, 20, 19);
+    font-size: 18px;
+    border-radius: 10px;
+    color:white;
+    width:60%;
+    text-align: center;
+}
+
+/*------ OFERTAS------*/
+.Ofertas{
+    background-color: ivory;
+    width: 100%;
+    padding: 10px 10px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.contenedor1{
+    width: 100%;
+    border-top: solid 1px #ebebeb; 
+    display: flex;
+    position: relative; 
+    flex-direction: column;
+ }
+    
+main section article img{
+    width: 100%;
+    height: 70%;
+    margin:auto;
+    border-radius: 15px;
+    display: block;
+}
+
+
+.fa-cart-plus {
+        color: #54e267;
+        display: block;
+        font-size: 25px;
+        padding: 5px;
+        width: 38px;
+  /*      position: absolute;
+        right: 10px; */
+}
+
+.precios{
+    font-size:20px;
+}
+
+.descuentos{
+    font-size:16px;
+    color:#39b54a
+ }
+
+
+.descripciones{
+    font-size:16px;
+    font-weight: normal;
+    margin-top:1px;
+    display: none;
+ }
+
+/*---- LO NUEVO O ESPECIAL DE ABEJAS---*/
+
+/*----ETIQUETA ESPECIAL DE ABEJAS----*/
+.Etiqueta-Especial-Abejas{
+    width: 60%;
+}
+
+.titulo-Especial-abejas{
+    background-color: rgba(243, 220, 11, 0.918);
+    font-size: 18px;
+    border-radius: 10px;
+    color:rgb(15, 15, 15);
+    width:60%;
+    text-align: center;
+}
+
+/*---ABEJAS----*/
+
+.abejas{
+background-color:rgba(230, 216, 24, 0.705);
+width: 100%;
+padding: 10px 10px;
+display:flex;
+justify-content: space-between;
+}
+
+/* *** Catálogo *** */
+
+.productos-abejas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/*Todas los demas estilos de la seccion abeja son iguales a los de seccion oferta, deje mismas etiquetas*/
+
+
+
+/*--------IMAGENES AL CATALOGO------*/
+
+
+
+.Imagenes-al-catalogo{
+    background-color: rgba(44, 144, 148, 0.959);
+    padding: 17px;
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.imagenes-al-catalogo {
+    width: 423px; 
+    height: 300px;
+}
+
+
+.example {
+    position: relative;
+    padding: 0;
+    width: 300px;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .content {
+    opacity: 0;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: black;
+    background-color: rgba(200, 200, 200, 0.5);
+    width: 300px;
+    height: 300px;
+    -webkit-transition: all 400ms ease-out;
+    -moz-transition: all 400ms ease-out;
+    -o-transition: all 400ms ease-out;
+    -ms-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+    text-align: center;
+  }
+  
+  .example .content:hover {
+    opacity: 1;
+  }
+  
+  .example .content .text {
+    height: 0;
+    opacity: 1;
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+  }
+  
+  .example .content:hover .text {
+    opacity: 1;
+    transform: translateY(250px);
+    -webkit-transform: translateY(250px);
+  }    
+
+/*FOOTER*/
+
+footer{
+    background-color: #c4a977;
+    text-align:center;
+    padding:30px 0;
+    width:100%;
+    margin: auto;
+    font-size: 20px;
+    }
+
+.flexhorizontal{
+        display: flex;
+        justify-content: space-between;
+    }
+
+.redes-sociales-caja{
+    background-color: #c4a977;
+    width: 40%;
+    justify-content: center;
+    }
+
+.redes-sociales{
+    text-align: center;
+
+}
+
+/*----ICONOS DE REDES SOCIALES----*/
+
+.fa-facebook-square{
+    color: #4036be;
+    
+}
+
+.fa-twitter-square{
+    color: #3c52ce;
+   
+}
+
+.fa-instagram-square{
+    color: #c735a7;
+    
+}
+
+.fa-whatsapp{
+    color: #198f29;
+    
+}
+
+/* *** Viene copiado de styles.css *** */
+
+.fa-minus, .fa-plus {
+    color: #fbf4f4;
+    display: block;
+    font-size: 25px;
+    width: 25px;
+}
+.pcaja0{
+    display: block;
+    width: 95%;
+    background-color:rgb(78, 187, 89);
+}
+.flex-vertical   {
+    display: block;
+}   
+.pcaja1{
+    display: block;
+   }
+.pboton0, .pboton1, .pboton3, .pboton4   {
+    width: 70%;
+    margin: auto;
+    border: 1px solid darkgoldenrod;
+    background-color: olive;
+    padding: 7px 15px 7px 15px;
+} 
+   
+.pboton2 {
+       margin: 3px;
+       padding: 7px 15px 7px 15px;
+       font-size: medium;
+       text-align: center;
+       width: 10%;
+       height: 40px;
+       border: 1px solid darkgoldenrod;
+       border-radius: 7px;
+       background-color: olive;
+}
+.producto1{
+       font-size: small;
+       display: flex;
+       flex-direction: row;
+       justify-items:flex-start;
+       justify-content: stretch;
+   }
+   
+.imgprd {
+       width: 400px;
+       padding: 0px 35px 0px 0px;
+   
+   }
+   
+.prd {
+    width: 60%;
+    padding: 10px;
+    margin-left: 20%;
+   }
+.parrafo {
+       width: 80%;
+       text-align: justify;
+       
+ }
+
+/*-------------MediaQ 5px------------*/
+
+@media (min-width:5px) {
+
+header {
+        width: 100vw;
+        /*position: fixed;
+        top: 0px;*/
+       background-color: rgba(44, 144, 148, 0.959); */
+    }
+    
+    .dentro-header {
+        width: 100%;
+        padding: 2%;
+        /*position: fixed;
+        top: 0px;
+        background-color: rgba(44, 144, 148, 0.959);*/
+        display: flex; 
+        flex-direction: column;
+        flex-wrap: nowrap;  
+        justify-self: center;
+        align-items: center;  
+    }
+    
+    .logo {
+        width: 17vw;
+        height: auto;
+    }
+    
+    /* *** Barra de Navegación, Registro y Logging *** */   
+    nav {
+        display: none;
+    } 
+    a { 
+        color: white;
+        text-decoration: none; 
+        font-size: 11px;
+    }
+    a:hover {
+        color: black;
+        background-color: goldenrod;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .login-registro {
+        width: 17vw;
+        height: auto;
+        padding-left: 3%;
+        padding-top: 11px;
+        font-size: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items:flex-start;
+        align-content: space-between;
+        justify-items: left;
+    }
+    
+    .menu-burger {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 5rem;
+        background-color:gold;
+        border-radius: 50px;
+        padding: 10px 5px 10px 5px; 
+    }
+
+    /* *** Fin Barra de Navegación, Registro y Logging *** */
+    
+    /* *** Barra de Búsqueda *** */
+    .buscador{
+        width: 100%;
+        height: 100%;
+        padding-top: 13px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+    .buscador-input {
+        width: 50%;
+        height: 100%;
+        border: 2px orchid; border-style: groove;
+    }
+    /* *** Fin Barra de Búsqueda *** */
+
+    main {
+        width: 100%;
+        height: auto;
+    }
+    
+    .banner {
+        display: none;
+    }
+
+    .titulo-Especial-abejas{
+        background-color: rgba(243, 220, 11, 0.918);
+        font-size: 18px;
+        border-radius: 10px;
+        color:rgb(15, 15, 15);
+        width:70%;
+        text-align: center;
+    }
+
+    .titulo-ofertas{
+        background-color: rgb(20, 20, 19);
+        font-size: 18px;
+        border-radius: 10px;
+        color:white;
+        width:70%;
+        text-align: center;
+    }
+
+    /*OJO no funciona en 361px SEGUIR PROBANDO..*/
+    main section article {
+        margin-bottom: 10px;
+        background-color: white;
+        position: relative;
+        width: 60%;
+    }
+
+    .Imagenes-al-catalogo{
+        background-color: rgba(44, 144, 148, 0.959);
+        width: 100%;
+        padding: 17px;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+   
+    
+    /* * * * Estylos de Producto Detallado * * * */
+    .fa-minus, .fa-plus {
+        color: #fbf4f4;
+        display: block;
+        font-size: 25px;
+        width: 25px;
+    }
+    .pcaja0{
+        display: block;
+        width: 100%;
+        background-color:rgb(78, 187, 89);
+    }
+    .flex-vertical   {
+        display: block;
+    }   
+    .pcaja1{
+        display: block;
+       }
+    .pboton0, .pboton1, .pboton3, .pboton4   {
+        width: 70%;
+        margin: auto;
+        border: 1px solid blanchedalmond;
+        background-color: springgreen;
+        padding: 7px 15px 7px 15px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        text-align: center;
+    }
+    #iconos-prod {
+        margin: auto;
+        color: white;
+    }
+    .pboton2 {
+        margin: 3px;
+        padding: 7px 15px 7px 15px;
+        font-size: medium;
+        text-align: center;
+        width: 10%;
+        height: 40px;
+        border: 1px solid darkgoldenrod;
+        border-radius: 7px;
+        background-color: olive;
+    }
+       
+    .producto1{
+        font-size: small;
+        display: flex;
+        flex-direction: row;
+        justify-items:flex-start;
+        justify-content: stretch;
+    }
+       
+    .imgprd {
+        width: 90%;
+        margin-left: 40px;
+        margin-top: 10px;
+    }
+       
+    .prd {
+        margin: 10px;
+        padding:0px 40px 0px 0px;
+        text-align: center;
+    }
+    .parrafo {
+           width: 70%;
+           text-align: justify;
+           margin: auto;
+           padding: 10px;
+           
+     }
+  
+      /* * * * Fin de Estylos Producto Detallado * * * */
+
+}
+/*-------------MediaQ 5px------------*/
+
+@media (min-width:768px) {
+    header {
+        width: 100vw;
+        /*position: fixed;
+        top: 0px;*/
+        background-color: rgba(44, 144, 148, 0.959); 
+    }
+    
+    .dentro-header {
+        width: 100%;
+        padding: 2%;
+        /*position: fixed;
+        top: 0px;
+        background-color: rgba(44, 144, 148, 0.959);*/
+        display: flex; 
+        flex-direction: row;  
+        justify-self: center;
+        align-items: center;  
+    }
+    
+    .logo {
+        width: 17vw;
+        height: auto;
+    }
+    
+    /* *** Barra de Navegación, Registro y Logging *** */
+    nav {
+        width: 100%;
+        display: block;
+    }
+    .nav-bar{
+        width: 60%;
+        height: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-items: center;
+        justify-content: space-evenly;
+    }
+    
+    a { 
+        color: white;
+        text-decoration: none; 
+        font-size: 19px;
+    }
+    a:hover {
+        color: black;
+        background-color: goldenrod;
+        font-size: 19px;
+        font-weight: bold;
+    }
+    
+    li {
+        font-size: 100%;
+        padding: 0px 1%;
+    }
+    
+    ul {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        justify-items: center;
+    }
+    
+    .login-registro {
+        width: 17vw;
+        height: auto;
+        padding-left: 3%;
+        font-size: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items:flex-start;
+        align-content: space-between;
+        justify-items: left;
+    }
+    
+    .menu-burger {
+        display: none;
+    }
+    /* *** Fin Barra de Navegación, Registro y Logging *** */
+    
+    /* *** Barra de Búsqueda *** */
+    .buscador{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+    .buscador-input {
+        width: 50%;
+        height: 100%;
+        border: 2px orchid; border-style: groove;
+    }
+    /* *** Fin Barra de Búsqueda *** */
+
+    main {
+        width: 100%;
+        height: auto;
+    }
+    
+    .banner {
+        display: none;
+    }
+    /*----Article para que aparezcan 4--- */
+    
+    main section article {
+            
+        margin-bottom: 10px;
+        background-color: white;
+        position: relative;
+        width: 20%;
+    } 
+
+    .Imagenes-al-catalogo{
+        background-color: rgba(44, 144, 148, 0.959);
+        width: 100%;
+        padding: 17px;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+
+    /* * * * Estylos de Producto Detallado * * * */
+    .fa-minus, .fa-plus {
+        color: #fbf4f4;
+        display: block;
+        font-size: 25px;
+        width: 25px;
+    }
+    .flex-vertical {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+        padding: 10px;
+    }
+    #iconos-prod {
+        color: springgreen;
+    }
+    .pcaja0{
+        display: flex;
+        flex-direction: row;
+        flex-wrap:nowrap ;
+        justify-items: stretch;
+        align-items: stretch;
+        justify-content: space-between;
+        margin: 10px;
+        padding: 0px 5px 15px 0px;
+        background-color:rgb(78, 187, 89) ;
+        width: 100%;  
+    }     
+    .pcaja1{
+        display: flex;  
+        justify-content: space-between;
+    }
+    .pboton0 {
+        margin: 3px;
+        padding: 7px 15px 7px 15px;
+        font-size: medium;
+        text-align: center;
+        border: 1px solid darkgoldenrod;
+        border-radius: 7px;
+        background-color: olive;
+       }
+       
+    .pboton1 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .pboton2 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 10%;
+           height: 15%;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+    .pboton3 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           border: 1px solid darkgoldenrod;
+           background-color: olive;
+           border-radius: 7px;
+          }
+    .pboton4 {
+           margin: 3px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .producto1{
+           font-size: small;
+           display: flex;
+           flex-direction: row;
+           justify-items:flex-start;
+           justify-content: stretch;
+       }
+       
+    .imgprd {
+        width: 100%;
+        padding: 0px 35px 0px 0px;
+        margin-top: 60px;
+    }
+       
+    .prd {
+        margin: 10px;
+        padding:0px 40px 0px 0px;
+        text-align: center;
+    }
+    .parrafo {
+           width: 70%;
+           text-align: justify;
+           margin-top: 20px;
+           
+     }
+  
+      /* * * * Fin de Estylos Producto Detallado * * * */
+
+}    
+
+@media (min-width: 1024px){
+    header {
+        width: 100vw;
+        /*position: fixed;
+        top: 0px;*/
+        background-color: rgba(44, 144, 148, 0.959); 
+    }
+    
+    .dentro-header {
+        width: 100%;
+        padding: 2%;
+        /*position: fixed;
+        top: 0px;
+        background-color: rgba(44, 144, 148, 0.959);*/
+        display: flex; 
+        flex-direction: row;  
+        justify-self: center;
+        align-items: center;  
+    }
+    
+    .logo {
+        width: 11vw;
+        height: auto;
+    }
+    
+    /* *** Barra de Navegación, Registro y Logging *** */
+    nav {
+        width: 100%;
+    }
+    .nav-bar{
+        width: 60%;
+        height: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-items: center;
+        justify-content: space-evenly;
+    }
+    
+    a { 
+        color: white;
+        text-decoration: none; 
+        font-size: 19px;
+    }
+    a:hover {
+        color: black;
+        background-color: goldenrod;
+        font-size: 19px;
+        font-weight: bold;
+    }
+    
+    li {
+        font-size: 100%;
+        padding: 0px 1%;
+    }
+    ul {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        justify-items: center;
+    }
+    
+    .login-registro {
+        width: 17vw;
+        height: auto;
+        padding-left: 3%;
+        font-size: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items:flex-start;
+        align-content: space-between;
+        justify-items: left;
+    }
+    
+    .menu-burger {
+        display: none;
+    }
+    /* *** Fin Barra de Navegación, Registro y Logging *** */
+    
+    /* *** Barra de Búsqueda *** */
+    .buscador{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+    .buscador-input {
+        width: 50%;
+        height: 100%;
+        border: 2px orchid; border-style: groove;
+    }
+    /* *** Fin Barra de Búsqueda *** */
+
+    main {
+        width: 100%;
+        height: auto;
+    }
+
+    
+    /* *** Banner *** */
+    .banner {
+        width:100vw;
+        height: auto;
+        display: block;
+    } 
+    /* *** Fin Banner *** */
+
+    .Imagenes-al-catalogo{
+        background-color: rgba(44, 144, 148, 0.959);
+        width: 100%;
+        padding: 17px;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    /* * * * Estylos de Producto Detallado * * * */
+    .fa-minus, .fa-plus {
+        color: #fbf4f4;
+        display: block;
+        font-size: 25px;
+        width: 25px;
+    }
+    .pcaja0{
+            display: flex;
+           justify-content: space-between;
+           margin: 10px;
+           padding: 0px 5px 15px 0px;
+           background-color:rgb(78, 187, 89) ;
+    
+           
+       }
+       
+    .pcaja1{
+           width: 100%;
+           display: flex;
+           flex-direction: row;
+           justify-items:flex-start;
+           justify-content: stretch;
+       }
+       
+    .pboton0 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 25%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .pboton1 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 40%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .pboton2 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 10%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+    .pboton3 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 30%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+          }
+    .pboton4 {
+           margin: 3px;
+           padding: 2px 15px 2px 15px;
+           font-size: xx-small;
+           text-align: center;
+           width: 20%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .producto1{
+           font-size: small;
+           display: flex;
+           flex-direction: row;
+           justify-items:flex-start;
+           justify-content: stretch;
+       }
+       
+    .imgprd {
+           width: 400px;
+           padding: 0px 35px 0px 0px;
+       
+       }
+       
+    .prd {
+           margin: 10px;
+           padding:0px 40px 0px 0px;
+           text-align: center;
+       }
+    .parrafo {
+           width: 70%;
+           text-align: justify;
+           
+     }
+  
+      /* * * * Fin de Estylos Producto Detallado * * * */
+}
+
+
+@media (min-width: 1440px){
+    header {
+        width: 100vw;
+        /*position: fixed;
+        top: 0px;*/
+        background-color: rgba(44, 144, 148, 0.959); 
+    }
+    
+    .dentro-header {
+        width: 100%;
+        padding: 2%;
+        /*position: fixed;
+        top: 0px;
+        background-color: rgba(44, 144, 148, 0.959);*/
+        display: flex; 
+        flex-direction: row;  
+        justify-self: center;
+        align-items: center;  
+    }
+    
+    .logo {
+        width: 11vw;
+        height: auto;
+    }
+    
+    /* *** Barra de Navegación, Registro y Logging *** */
+    nav {
+        width: 100%;
+    }
+    .nav-bar{
+        width: 60%;
+        height: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-items: center;
+        justify-content: space-evenly;
+    }
+    
+    a { 
+        color: white;
+        text-decoration: none; 
+        font-size: 29px;
+    }
+    a:hover {
+        color: black;
+        background-color: goldenrod;
+        font-size: 29px;
+        font-weight: bold;
+    }
+    
+    li {
+        font-size: 100%;
+        padding: 0px 1%;
+    }
+    ul {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        justify-items: center;
+    }
+    
+    .login-registro {
+        width: 17vw;
+        height: auto;
+        padding-left: 3%;
+        font-size: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items:flex-start;
+        align-content: space-between;
+        justify-items: left;
+    }
+    
+    /* *** Fin Barra de Navegación, Registro y Logging *** */
+    
+    /* *** Barra de Búsqueda *** */
+    .buscador{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+    .buscador-input {
+        width: 50%;
+        height: 100%;
+        border: 2px orchid; border-style: groove;
+    }
+    /* *** Fin Barra de Búsqueda *** */
+
+    main {
+        width: 100%;
+        height: auto;
+    }
+    
+    /* *** Banner *** */
+    .banner {
+        width:100vw;
+        height: auto;
+        display: block;
+    } 
+    /* *** Fin Banner *** */
+
+    .titulo-Especial-abejas{
+        background-color: rgba(243, 220, 11, 0.918);
+        font-size: 30px;
+        border-radius: 10px;
+        color:rgb(15, 15, 15);
+        width:70%;
+        text-align: center;
+    }
+
+    .titulo-ofertas{
+        background-color: rgb(20, 20, 19);
+        font-size: 30px;
+        border-radius: 10px;
+        color:white;
+        width:70%;
+        text-align: center;
+    }
+ 
+    .Imagenes-al-catalogo{
+        background-color: rgba(44, 144, 148, 0.959);
+        width: 100%;
+        padding: 17px;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+
+    
+    /* * * * Estylos de Producto Detallado * * * */
+    .fa-minus, .fa-plus {
+        color: #fbf4f4;
+        display: block;
+        font-size: 25px;
+        width: 25px;
+    }
+    .pcaja0{
+            display: flex;
+           justify-content: space-between;
+           margin: 10px;
+           padding: 0px 5px 15px 0px;
+           background-color:rgb(78, 187, 89) ;
+    
+           
+       }
+       
+    .pcaja1{
+           width: 100%;
+           display: flex;
+           flex-direction: row;
+           justify-items:flex-start;
+           justify-content: stretch;
+       }
+       
+    .pboton0 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 25%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .pboton1 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 40%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .pboton2 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 10%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+    .pboton3 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 30%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+          }
+    .pboton4 {
+           margin: 3px;
+           padding: 2px 15px 2px 15px;
+           font-size: xx-small;
+           text-align: center;
+           width: 20%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .producto1{
+           font-size: small;
+           display: flex;
+           flex-direction: row;
+           justify-items:flex-start;
+           justify-content: stretch;
+       }
+       
+    .imgprd {
+           width: 400px;
+           padding: 0px 35px 0px 0px;
+       
+       }
+       
+    .prd {
+           margin: 10px;
+           padding:0px 40px 0px 0px;
+           text-align: center;
+       }
+    .parrafo {
+           width: 70%;
+           text-align: justify;
+           
+     }
+  
+      /* * * * Fin de Estylos Producto Detallado * * * */
+} /* *** fin @media(1440) *** */
+
+/*-------------2560--------------*/
+
+@media (min-width: 2560px) {
+    header {
+        width: 100vw;
+        /*position: fixed;
+        top: 0px;*/
+        background-color: rgba(44, 144, 148, 0.959); 
+    }
+    
+    .dentro-header {
+        width: 100%;
+        padding: 2%;
+        /*position: fixed;
+        top: 0px;
+        background-color: rgba(44, 144, 148, 0.959);*/
+        display: flex; 
+        flex-direction: row;  
+        justify-self: center;
+        align-items: center;  
+    }
+    
+    .logo {
+        width: 11vw;
+        height: auto;
+    }
+    
+    /* *** Barra de Navegación, Registro y Logging *** */
+    nav {
+        width: 100%;
+    }
+    .nav-bar{
+        width: 60%;
+        height: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-items: center;
+        justify-content: space-evenly;
+    }
+    
+    a { 
+        color: white;
+        text-decoration: none; 
+        font-size: 39px;
+    }
+    a:hover {
+        color: black;
+        background-color: goldenrod;
+        font-size: 39px;
+        font-weight: bold;
+    }
+    
+    li {
+        font-size: 100%;
+        padding: 0px 1%;
+    }
+    ul {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        justify-items: center;
+    }
+    
+    .login-registro {
+        width: 17vw;
+        height: auto;
+        padding-left: 3%;
+        font-size: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items:flex-start;
+        align-content: space-between;
+        justify-items: left;
+    }
+    
+    .menu-burger {
+        display: none;
+    }
+    /* *** Fin Barra de Navegación, Registro y Logging *** */
+    
+    /* *** Barra de Búsqueda *** */
+    .buscador{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+    .buscador-input {
+        width: 50%;
+        height: 100%;
+        border: 2px orchid; border-style: groove;
+    }
+    /* *** Fin Barra de Búsqueda *** */
+
+    main {
+        width: 100vw;
+        height: auto;
+    }
+
+    /* *** Banner *** */
+     .banner {
+        width:100vw;
+        height: auto;
+        display: block;
+    }   
+    /* *** Fin Banner *** */
+
+    .Imagenes-al-catalogo{
+        background-color: rgba(44, 144, 148, 0.959);
+        width: 100%;
+        padding: 17px;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+
+    /* * * * Estylos de Producto Detallado * * * */
+    .fa-minus, .fa-plus {
+        color: #fbf4f4;
+        display: block;
+        font-size: 25px;
+        width: 25px;
+    }
+    .pcaja0{
+            display: flex;
+           justify-content: space-between;
+           margin: 10px;
+           padding: 0px 5px 15px 0px;
+           background-color:rgb(78, 187, 89) ;
+    
+           
+       }
+       
+    .pcaja1{
+           width: 100%;
+           display: flex;
+           flex-direction: row;
+           justify-items:flex-start;
+           justify-content: stretch;
+       }
+       
+    .pboton0 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 25%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .pboton1 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 40%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .pboton2 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 10%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+    .pboton3 {
+           margin: 3px;
+           padding: 7px 15px 7px 15px;
+           font-size: medium;
+           text-align: center;
+           width: 30%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+          }
+    .pboton4 {
+           margin: 3px;
+           padding: 2px 15px 2px 15px;
+           font-size: xx-small;
+           text-align: center;
+           width: 20%;
+           height: 40px;
+           border: 1px solid darkgoldenrod;
+           border-radius: 7px;
+           background-color: olive;
+       }
+       
+    .producto1{
+           font-size: small;
+           display: flex;
+           flex-direction: row;
+           justify-items:flex-start;
+           justify-content: stretch;
+       }
+       
+    .imgprd {
+           width: 400px;
+           padding: 0px 35px 0px 0px;
+       
+       }
+       
+    .prd {
+           margin: 10px;
+           padding:0px 40px 0px 0px;
+           text-align: center;
+       }
+    .parrafo {
+           width: 70%;
+           text-align: justify;
+           
+     }
+  
+      /* * * * Fin de Estylos Producto Detallado * * * */
+
+} /* ***Fin Media Query 2560px *** */

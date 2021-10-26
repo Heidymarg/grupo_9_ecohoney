@@ -1,12 +1,14 @@
-const express = require( "express" );
+const express = require("express");
 
-const path    = require( "path" );
+const path = require( "path" );
+const ProductoDetalladoRutas = require("./routes/productoDetalladoRoute.js");
+
 
 const app = express();
 
 const PORT    = 3131;
 
-app.use( express.static( path.resolve( __dirname, "./public" ) ) );
+app.use( express.static( path.join( __dirname, "public" ) ) );
 
 app.listen( PORT, () => { console.log( `Eco HONeY corriendo en el puerto ${PORT}` ) } );
 
@@ -20,5 +22,4 @@ app.get( "/views/lineaProductoDeLasAbejas.html", (req,res) => { res.sendFile( pa
 app.get( "/views/login.html", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/login.html" ) ) } );
 app.get( "/views/registro.html", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/registro.html" ) ) } );
 app.get( "/views/carrito.html", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/carrito.html" ) ) } );
-app.get( "/views/productoDetallado.html", (req,res) => { res.sendFile( path.resolve( __dirname, "./views/productoDetallado.html" ) ) } );
-
+app.use( "/views/productoDetallado.html", ProductoDetalladoRutas);

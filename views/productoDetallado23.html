@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title> Eco HONeY Marketplace </title>
+
+        <!-- Debajo, configuración de la tabla de caracteres idiona no-inglés -->
+        <meta charset="UTF-8">
+        <!-- Fin configuración de la tabla de caracteres idiona no-inglés -->
+        
+        <!-- Debajo, configuración del viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Fin configuración viewport -->
+
+        <!-- Debajo, configuración de íconos y fonts de terceros (Google, fontawesome)-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+
+        <script src="https://kit.fontawesome.com/2752ae1859.js" crossorigin="anonymous"></script>
+        <!-- Fin configuración de íconos y fonts de terceros (Google, fontawesome)-->
+
+        <!-- Debajo, linkeo de las stylesheets-->
+        <link rel="stylesheet" href="/css/styles.css">
+        <!-- Fin linkeo de las stylesheets-->
+
+
+    </head>
+
+    <body>
+        
+        <header class="flex-vertical">
+          <div class="dentro-header">
+              <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+              
+              <div class="nav-bar">
+                  <nav><!--nav> style="justify-content: space-around;"> -->
+                      <ul type="none">
+                          <li><a href="#">Nosotros</a></li>
+                          <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
+                          <li><a href="/">Home</a></li>
+                          <li><a href="#">Promociones</a></li>
+                          <li><a href="#">Ofertas</a></li>
+                          <li><a href="#">Ayuda</a></li>
+                      </ul>
+                  </nav>
+              </div>
+              
+              <div class="login-registro">
+                  <a href="/views/login.html">Logging</a>
+                  <a href="/views/registro.html">Registrate</a>
+                  <a href="/views/carrito.html">Mi Carrito<i class="fas fa-cart-plus"></i></a>
+              </div>
+  
+          </div>
+  
+          <div class="menu-burger">
+              <i class="fas fa-bars"></i>
+          </div>
+  
+          <div class="buscador">
+              <input class="buscador-input" type= "Buscar" placeholder="Que producto buscas?"></input>
+              <button type="submit" ><i class="fas fa-search"></i></button>
+          </div>
+          
+      </header>
+
+        
+
+        <!---------Banner Publicitario y algo mas--------->
+      
+      
+
+        <main class="flex-vertical">
+          <section class="banner flex-Horizontal">
+            <img style="height: auto; width: 100vw;" src="/images/banner-juntos.png" alt="Banner de prueba">
+          </section> 
+            <article >
+                <div class="pcaja0" >
+                 <div > <img class="imgprd"  src="/images/vela_miel2.jpg" alt="velas"></div>
+                    <div class="flex-vertical">
+                    <div style="width:100%;height: 50%;">
+                        <div  class="pcaja1">
+                            <div class="pboton0">Código</div>
+                            <div  class="pboton1" >Descripción</div> 
+                            <div class="pboton4"><i id="iconos-prod" class="fas fa-minus"></i></div>
+                            <div class="pboton3">Cantidad</div>
+                            <div class="pboton4"><i id="iconos-prod" class="fas fa-plus"></i></div>
+                            <div class="pboton4"><i id="iconos-prod" class="fas fa-cart-plus"></i></div> 
+                        </div>
+                        <div  class="producto1">
+                            <div class="prd">SKU 7148-0055</div>
+                            <div class="prd">Velas de Miel x6</div>
+                        </div>
+
+                        <div>
+                            <p   class="parrafo"> Velas cuadradas hechas 100% con cera pura de Abejas. Son enrrolladas a mano. Dimensiones: 2,5 cm x 11 cm. Tienen una rica fragancia a miel. Sus propiedades son saludables y no tienen aditivos químicos. Ideales para decorar, relajarse, meditar y también para rituales. Purifican el ambiente, dejandolo libre de moho, polvo, virus y bacterias
+                            </p>
+
+                        </div>
+                    </div>
+                        
+                    </div>
+                </div>
+            </article>        
+    
+        
+        </main>
+
+        <!----------FOOTER----------->
+
+        <footer>
+
+          <!----
+                    <p>Espacio para información de horarios de atención y delivery, 
+                        puntos de venta y de pick-up, link a Google Maps, etc.
+                    </p>-->
+
+        <section class="flexhorizontal">
+
+              <div>
+                  <ul class="nav-bar-footer" type="none">
+                    <li><a href="#">Puntos de Venta</a></li>
+                    <li><a href="#">Horarios de atencion</a></li>
+                    <li><a href="#">Ayuda</a></li>
+                  </ul>
+                  
+              </div>
+
+                <div class="redes-sociales-caja"><!-- Debajo va el código de navegación a redes sociales -->
+                    <h4>Seguinos en las redes!</h4>
+                    <!---------------------------------->
+                    <div>
+                        <div class="redes-sociales"><a href="#">Facebook</a><i class="fab fa-facebook-square"></i></div>
+                        <div class="redes-sociales"><a href="#">Twitter</a><i class="fab fa-twitter-square"></i></div>
+                        <div class="redes-sociales"><a href="#">Instagram</a><i class="fab fa-instagram-square"></i></div>
+                        <div class="redes-sociales"><a href="#">Whatsapp</a><i class="fab fa-whatsapp"></i></div>
+                    </div>
+                <!---------------------------------->
+                </div><!--        Fin navegación a redes sociales            -->
+
+            </section>
+        
+        </footer>
+        
+    </body>
+</html>
+
