@@ -6,18 +6,6 @@ const path = require( "path" );
 app.use( express.static( path.join( __dirname, "public" ) ) );
 
 app.set('view engine', 'ejs'); 
-const homeController = require( 'indexController.js');
-
-/* implementación de partials 
-let ejs = require('ejs');
-
-app.set('views', './head');
-app.set( 'views', './header' );
-app.set('views', './footer');
-
-
- **** Fin partials ******   */
-
 
 const PORT    = 3131;
 
