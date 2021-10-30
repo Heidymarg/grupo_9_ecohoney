@@ -32,6 +32,7 @@ const lineaProductoDeLasAbejasRutas = require('./routes/lineaProductoDeLasAbejas
 const registroRutas = require('./routes/registroRoute.js');
 const loginRutas = require('./routes/loginRoute.js');
 const carritoRutas = require('./routes/carritoRoute.js');
+const formularioCargaProductoRutas = require('./routes/formularioCargaProductoRoute.js');
 /* ----------------- FIN ------------------ */
 
 /* MVC - Ruteo por Controladores */
@@ -43,4 +44,8 @@ app.use("/views/lineaProductoDeLasAbejas.html", lineaProductoDeLasAbejasRutas);
 app.use ("/views/registro.html", registroRutas);
 app.use ("/views/login.html", loginRutas);
 app.use ("/views/carrito.html", carritoRutas);
+
+app.use('/views/formularioCargaProducto.ejs', formularioCargaProductoRutas);
 /* ----------------- FIN ------------------ */
+
+

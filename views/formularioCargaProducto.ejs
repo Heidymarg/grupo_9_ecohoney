@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+   <%-include('./partials/head.ejs');-%>
+
+<body>
+    <form action="/" method="POST">
+        <div class= "registro">
+        <input type="text" name="name" placeholder="Código del Producto">
+
+        <input type="text" name="user" placeholder="Nombre del Producto">
+
+        <input type="text" name="DescripcionDetallada" placeholder="DescripcionDetallada">
+        
+        <input type="text" name="Precio" id="Precio">
+
+        <input type="text" name="Descuento" placeholder="Descuento">
+    
+       
+        <h4>Elegí Foto de Producto</h4>
+        <input type="file" name="avatar">
+       
+        <input type="submit" value="Crear">
+        <input type="submit" value="Modificar">
+        <input type="reset" value="Borrar">
+     
+    </form>
+</body>
+</html>
