@@ -49,7 +49,7 @@ app.use("/views/lineaProductoDeLasAbejas.html", lineaProductoDeLasAbejasRutas);
 app.use('/views/formularioCargaProducto.ejs', formularioCargaProductoRutas);
 app.use('/users/registro.ejs', registroRutas);
 app.use('/users/login.ejs', loginRutas);
-app.use('/users/carrito.ejs', carritoRutas);
+app.use('/views/carrito.ejs', carritoRutas);
 /* ----------------- FIN ------------------ */
 
 
