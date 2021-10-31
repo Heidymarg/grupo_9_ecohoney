@@ -1,10 +1,14 @@
 const express = require("express");
 const app = express();
 
+/*  Leyendo listas de productos para Home y Catálogos */
+const fs = require( 'fs' );
+const baseDeProductos = fs.readFileSync( './listadoProductosAbejas.json', 'utf8' );
+const objbaseDeProductos = JSON.parse( baseDeProductos );
+
 const path = require( "path" );
 
 app.set('view engine', 'ejs'); 
-
 app.set( 'views', path.join( __dirname, '/views') );
 app.set( 'users', path.join( __dirname, '/views/users') );
 
