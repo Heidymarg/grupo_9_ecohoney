@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('./partials/head.ejs'); -%>
+
+<body>
+
+    <%- include( './partials/header.ejs' ); -%>
+    
+    <main class="flex-vertical">
+        <!--
+        <section>
+            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
+        </section>
+        -->
+        <div class="flex-Horizontal"> <!--cambie flex-vertical por horizontal, luego adaptamos-->
+            <!---------------OFERTAS------------------->
+          <div class=etiqueta-oferta>
+            <p class="titulo-ofertas">Productos de las abejas</p>
+          </div>
+
+            <section class="Ofertas">
+                <div class="productos">
+                
+                    
+
+                </div>
+            </section>
+
+        <!---------------IMAGENES AL CATALOGO------------------->
+        <!--Caja de imagenes que conectan a los enlaces de categorias hogar-cuidado personal--producto abejas-->  
+        <section class=Imagenes-al-catalogo>
+          <a title="Hogar" href="/views/lineaHogar.ejs/inicio"><img class="imagenes-al-catalogo" src="/images/hogar.jpg" alt="Productos del Hogar" /></a>
+          <a title="Cuidado Personal" href="/views/lineaCuidadoPersonal.ejs/inicio"><img style="width: 423px; height: 300px" src="/images/cuidado-personal.jpg" alt="Produtos de cuidado Personal" /></a>
+        </section>     
+        <!-- con efecto visual los links no funcionan, veo de resolver 
+        <section class=Imagenes-al-catalogo>
+            <div class="example">
+                <a title="Hogar" href="./views/lineaHogar.html/inicio"><img class="imagenes-al-catalogo" src="/images/hogar.jpg" alt="Productos del Hogar" /></a>
+                <div class="content">
+                    <div class="text">Productos del Hogar</div>
+                </div>
+            </div>    
+        
+            <div class="example">
+                <a title="Productos Abejas" href="./views/lineaProductoDeLasAbejas.html"><img style="width: 423px; height: 300px" src="/images/productos-abejas.png" alt="Productos de las abejas" /></a>
+                <div class="content">
+                    <div class="text">"Productos de las abejas"</div>
+                </div>
+            </div>
+        </section> -->
+    
+    </main>
+
+    <%- include( './partials/footer.ejs' ); -%>
+
+</body>
+</html>

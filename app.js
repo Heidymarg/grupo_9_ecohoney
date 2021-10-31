@@ -1,14 +1,23 @@
 const express = require("express");
 const app = express();
 
+/*  Leyendo listas de productos para Home y Catálogos */
+const fs = require( 'fs' );
+const baseDeProductos = fs.readFileSync( './listadoProductosAbejas.json', 'utf8' );
+const objbaseDeProductos = JSON.parse( baseDeProductos );
+
 const path = require( "path" );
 
-app.use( express.static( path.join( __dirname, "public" ) ) );
-
-
 app.set('view engine', 'ejs'); 
+<<<<<<< HEAD
 app.set('views', path.join (__dirname, 'views'));
 app.set('users', path.join(__dirname, '/views/users'));
+=======
+app.set( 'views', path.join( __dirname, '/views') );
+app.set( 'users', path.join( __dirname, '/views/users') );
+
+app.use( express.static( path.join( __dirname, "public" ) ) );
+>>>>>>> be92a32cabc56f7e475d3d71f733bb3471c1a832
 
 const PORT    = 3131;
 
@@ -48,9 +57,12 @@ app.use("/views/lineaProductoDeLasAbejas.html", lineaProductoDeLasAbejasRutas);
 /*app.use ("/views/login.html", loginRutas);*/
 /*app.use ("/views/carrito.html", carritoRutas);*/
 
+app.use( "/views/lineaCuidadoPersonal.ejs", cuidadoPersonalRutas );
+app.use( "/views/lineaProductoDeLasAbejas.ejs", lineaProductoDeLasAbejasRutas);
+app.use( "/views/lineaHogar.ejs", lineaHogarRutas );
 app.use('/views/formularioCargaProducto.ejs', formularioCargaProductoRutas);
-app.use('/users/registro.ejs', registroRutas);
-app.use('/users/login.ejs', loginRutas);
+app.use('/views/users/registro.ejs', registroRutas);
+app.use('/views/users/login.ejs', loginRutas);
 app.use('/views/carrito.ejs', carritoRutas);
 app.use('/views/productoDetallado.ejs', ProductoDetalladoRutas);
 /* ----------------- FIN ------------------ */

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('./partials/head.ejs'); -%>
+
+<body>
+
+    <%- include( './partials/header.ejs' ); -%>  
+    
+    <main class="flex-vertical">
+        <!--
+        <section>
+            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
+        </section>
+        -->
+        <div class="flex-Horizontal"> <!--cambie flex-vertical por horizontal, luego adaptamos-->
+            <!---------------OFERTAS------------------->
+          <div class=etiqueta-oferta>
+            <p class="titulo-ofertas">Nuestra Línea Hogar</p>
+          </div>
+
+            <section class="Ofertas">
+                <div class="productos">
+                
+                    
+                    <article>
+                        <a href="/views/productoDetallado.html/detalle"><img src="/images/vaso-plegable.jpg" alt=""></a>
+                        <div class="contenedor1">
+                            <i class="fas fa-cart-plus"></i></i>
+                            <p class="precios">$1.800</p>
+                            <p class="descuentos">20% Off</p>
+                            <p class="descripciones">Vaso ecologico termico y Plegable </p>
+                        </div>
+                    </article>
+                    
+                </div>
+            </section>
+
+        <!---------------IMAGENES AL CATALOGO------------------->
+        <!--Caja de imagenes que conectan a los enlaces de categorias hogar-cuidado personal--producto abejas-->  
+        <section class=Imagenes-al-catalogo>
+            <a title="Cuidado Personal" href="/views/lineaCuidadoPersonal.ejs/inicio"><img style="width: 423px; height: 300px" src="/images/cuidado-personal.jpg" alt="Produtos de cuidado Personal" /></a>
+            <a title="Productos Abejas" href="/views/lineaProductoDeLasAbejas.ejs/inicio"><img style="width: 423px; height: 300px" src="/images/productos-abejas.png" alt="Productos de las abejas" /></a>
+        </section>     
+        <!-- con efecto visual los links no funcionan, veo de resolver 
+        <section class=Imagenes-al-catalogo> 
+            <div class="example">
+                <a title="Cuidado Personal" href="./views/lineaCuidadoPersonal.html/inicio"><img style="width: 423px; height: 300px" src="/images/cuidado-personal.jpg" alt="Produtos de cuidado Personal" /></a>
+                <div class="content">
+                    <div class="text">Produtos de cuidado Personal</div>
+                </div>
+            </div>
+
+            <div class="example">
+                <a title="Productos Abejas" href="./views/lineaProductoDeLasAbejas.html"><img style="width: 423px; height: 300px" src="/images/productos-abejas.png" alt="Productos de las abejas" /></a>
+                <div class="content">
+                    <div class="text">"Productos de las abejas"</div>
+                </div>
+            </div>
+        </section> -->
+    
+    </main>
+
+    <%- include( './partials/footer.ejs' ); -%>
+
+</body>
+</html>
