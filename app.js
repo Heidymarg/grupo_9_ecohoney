@@ -3,9 +3,10 @@ const app = express();
 
 const path = require( "path" );
 
-app.set('views', __dirname + '/views');
-
 app.set('view engine', 'ejs'); 
+
+app.set( 'views', path.join( __dirname, '/views') );
+app.set( 'users', path.join( __dirname, '/views/users') );
 
 app.use( express.static( path.join( __dirname, "public" ) ) );
 
@@ -40,16 +41,19 @@ const formularioCargaProductoRutas = require('./routes/formularioCargaProductoRo
 /* MVC - Ruteo por Controladores */
 app.use( "/", indexRutas );
 app.use( "/views/productoDetallado.html", ProductoDetalladoRutas );
-app.use( "/views/lineaCuidadoPersonal.html", cuidadoPersonalRutas );
-app.use( "/views/lineaHogar.html", lineaHogarRutas );
-app.use("/views/lineaProductoDeLasAbejas.html", lineaProductoDeLasAbejasRutas);
+/*app.use( "/views/lineaCuidadoPersonal.html", cuidadoPersonalRutas ); */
+/*app.use( "/views/lineaHogar.html", lineaHogarRutas );*/
+/*app.use("/views/lineaProductoDeLasAbejas.html", lineaProductoDeLasAbejasRutas); */
 /*app.use ("/views/registro.html", registroRutas);*/
 /*app.use ("/views/login.html", loginRutas);*/
 /*app.use ("/views/carrito.html", carritoRutas);*/
 
+app.use( "/views/lineaCuidadoPersonal.ejs", cuidadoPersonalRutas );
+app.use( "/views/lineaProductoDeLasAbejas.ejs", lineaProductoDeLasAbejasRutas);
+app.use( "/views/lineaHogar.ejs", lineaHogarRutas );
 app.use('/views/formularioCargaProducto.ejs', formularioCargaProductoRutas);
-app.use('/users/registro.ejs', registroRutas);
-app.use('/users/login.ejs', loginRutas);
+app.use('/views/users/registro.ejs', registroRutas);
+app.use('/views/users/login.ejs', loginRutas);
 app.use('/views/carrito.ejs', carritoRutas);
 /* ----------------- FIN ------------------ */
 

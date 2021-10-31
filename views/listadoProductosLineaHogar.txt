@@ -1,0 +1,6 @@
+listadoDeProductosHogar = [
+    { id: 1; desc: "Vaso ecologico termico y Plegable"; precio: "$1.800"; bonif: "20%"; foto: "/images/vaso-plegable.jpg" },
+    { id: 1; desc: "Envoltorio ecologico"; precio: "$150"; bonif: "30%"; foto: "/images/envoltorio-ecologico-colmena.jpg" },
+    { id: 1; desc: "Pabilo"; precio: "200"; bonif: "15%"; foto: "/images/pabilo-organico.jpg" },
+    { id: 1; desc: "Vaso eco infantil"; precio: "$1.200"; bonif: "35%"; foto: "/images/vaso-ecologico-infantil.jpg" },
+]

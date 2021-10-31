@@ -1,7 +1,7 @@
 const path = require( 'path');
 
 const cuidadoPersonalController = {
-    inicio: (req,res) => { res.sendFile( path.resolve( __dirname, "../views/lineaCuidadoPersonal.html" ) ) },
+    inicio: (req,res) => { res.render( path.resolve( 'views', 'lineaCuidadoPersonal' ) ) } 
 };
 
 module.exports = cuidadoPersonalController;
