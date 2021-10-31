@@ -5,6 +5,7 @@ const path = require( "path" );
 
 app.use( express.static( path.join( __dirname, "public" ) ) );
 
+
 app.set('view engine', 'ejs'); 
 
 const PORT    = 3131;
@@ -41,11 +42,14 @@ app.use( "/views/productoDetallado.html", ProductoDetalladoRutas );
 app.use( "/views/lineaCuidadoPersonal.html", cuidadoPersonalRutas );
 app.use( "/views/lineaHogar.html", lineaHogarRutas );
 app.use("/views/lineaProductoDeLasAbejas.html", lineaProductoDeLasAbejasRutas);
-app.use ("/views/registro.html", registroRutas);
-app.use ("/views/login.html", loginRutas);
-app.use ("/views/carrito.html", carritoRutas);
+/*app.use ("/views/registro.html", registroRutas);*/
+/*app.use ("/views/login.html", loginRutas);*/
+/*app.use ("/views/carrito.html", carritoRutas);*/
 
 app.use('/views/formularioCargaProducto.ejs', formularioCargaProductoRutas);
+app.use('/users/registro.ejs', registroRutas);
+app.use('/users/login.ejs', loginRutas);
+app.use('/users/carrito.ejs', carritoRutas);
 /* ----------------- FIN ------------------ */
 
 
