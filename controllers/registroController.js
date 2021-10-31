@@ -7,12 +7,13 @@ registro: (req,res) => { res.sendFile( path.resolve( __dirname, "../views/regist
 */
 
 const registroController = {
-    registro:(req,res) => { res.render(( 'users', 'registro') )},
+    registro:(req,res) => { res.render(('views' ,'registro') )},
     
-    
-
-};
+   };
 
 module.exports = registroController;
+
+
+
 
 

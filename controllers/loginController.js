@@ -5,9 +5,10 @@ login: (req,res) => { res.sendFile( path.resolve( __dirname, "../views/login.htm
 };
 */
 const loginController = {
-    login:(req,res) => { res.render(( 'users', 'login' ) )},  
+    login:(req,res) => { res.render(( 'views', 'login' ) )},  
     
 
 };
 module.exports = loginController;
+
 
