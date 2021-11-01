@@ -9,15 +9,10 @@ const objbaseDeProductos = JSON.parse( baseDeProductos );
 const path = require( "path" );
 
 app.set('view engine', 'ejs'); 
-<<<<<<< HEAD
-app.set('views', path.join (__dirname, 'views'));
-app.set('users', path.join(__dirname, '/views/users'));
-=======
 app.set( 'views', path.join( __dirname, '/views') );
 app.set( 'users', path.join( __dirname, '/views/users') );
 
 app.use( express.static( path.join( __dirname, "public" ) ) );
->>>>>>> be92a32cabc56f7e475d3d71f733bb3471c1a832
 
 const PORT    = 3131;
 
