@@ -1,4 +1,5 @@
 
+const { appendFileSync } = require('fs');
 const path = require( 'path');
 /*
 const lineaProductoDeLasAbejasController = {
@@ -7,7 +8,8 @@ const lineaProductoDeLasAbejasController = {
 
 /* Implementación de MVC */
 const lineaProductoDeLasAbejasController = {
-    inicio: (req,res) => { res.render( path.resolve( "views", "lineaProductoDeLasAbejas" ) ) },
+    inicio: (req,res) => { res.render( 'lineaProductoDeLasAbejas' ) },
+
 };
 
 module.exports = lineaProductoDeLasAbejasController;

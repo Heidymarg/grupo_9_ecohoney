@@ -2,15 +2,15 @@ const express = require("express");
 const app = express();
 
 /*  Leyendo listas de productos para Home y Catálogos */
+/*
 const fs = require( 'fs' );
 const baseDeProductos = fs.readFileSync( './listadoProductosAbejas.json', 'utf8' );
-const objbaseDeProductos = JSON.parse( baseDeProductos );
+const objbaseDeProductos = JSON.parse( baseDeProductos );*/
+
 
 const path = require( "path" );
 
 app.set('view engine', 'ejs'); 
-app.set( 'views', path.join( __dirname, '/views') );
-app.set( 'users', path.join( __dirname, '/views/users') );
 
 app.use( express.static( path.join( __dirname, "public" ) ) );
 
@@ -43,15 +43,16 @@ const formularioCargaProductoRutas = require('./routes/formularioCargaProductoRo
 /* ----------------- FIN ------------------ */
 
 /* MVC - Ruteo por Controladores */
-app.use( "/", indexRutas );
-app.use( "/views/productoDetallado.html", ProductoDetalladoRutas );
-app.use( "/views/lineaCuidadoPersonal.html", cuidadoPersonalRutas );
-app.use( "/views/lineaHogar.html", lineaHogarRutas );
-app.use("/views/lineaProductoDeLasAbejas.html", lineaProductoDeLasAbejasRutas);
+
+/*app.use( "/views/productoDetallado.html", ProductoDetalladoRutas );*/
+//app.use( "/views/lineaCuidadoPersonal.html", cuidadoPersonalRutas );
+//app.use( "/views/lineaHogar.html", lineaHogarRutas );
+//app.use("/views/lineaProductoDeLasAbejas.html", lineaProductoDeLasAbejasRutas);
 /*app.use ("/views/registro.html", registroRutas);*/
 /*app.use ("/views/login.html", loginRutas);*/
 /*app.use ("/views/carrito.html", carritoRutas);*/
 
+app.use( "/", indexRutas );
 app.use( "/views/lineaCuidadoPersonal.ejs", cuidadoPersonalRutas );
 app.use( "/views/lineaProductoDeLasAbejas.ejs", lineaProductoDeLasAbejasRutas);
 app.use( "/views/lineaHogar.ejs", lineaHogarRutas );

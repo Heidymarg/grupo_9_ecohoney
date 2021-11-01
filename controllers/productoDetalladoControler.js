@@ -5,9 +5,8 @@ const controladorProductoDetallado = {
     
 }*/
 
-
 const controladorProductoDetallado = {
-    raiz:(req,res) => { res.render(path.resolve('views/products', 'productoDetallado') )},
+    raiz:(req,res) => { res.render( path.resolve( 'views/products', 'productoDetallado' ) )},
 
 };
 

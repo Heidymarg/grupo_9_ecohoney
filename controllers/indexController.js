@@ -5,8 +5,9 @@ index: (req,res) => { res.sendFile( path.resolve( __dirname, "../views/index.htm
 };
 */
 
+
 const indexController = {
     /* Con MVC + EJS */
-    index: (req,res) => { res.render( ( 'views', 'index' ) ) },
+    index: (req,res) => { res.render( 'index') },
     };
 module.exports = indexController;
