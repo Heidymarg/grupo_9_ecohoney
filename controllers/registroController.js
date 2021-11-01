@@ -9,10 +9,11 @@ registro: (req,res) => { res.sendFile( path.resolve( __dirname, "../views/regist
 const registroController = {
     registro:(req,res) => { res.render( path.resolve( 'views/users', 'registro') )},
     
-    
-
-};
+   };
 
 module.exports = registroController;
+
+
+
 
 
