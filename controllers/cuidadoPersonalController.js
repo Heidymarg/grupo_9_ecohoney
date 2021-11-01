@@ -1,7 +1,7 @@
 const path = require( 'path');
 
 const cuidadoPersonalController = {
-    inicio: (req,res) => { res.render( path.resolve( 'views', 'lineaCuidadoPersonal' ) ) } 
+    inicio: (req,res) => { res.render( 'lineaCuidadoPersonal' ) } 
 };
 
 module.exports = cuidadoPersonalController;
