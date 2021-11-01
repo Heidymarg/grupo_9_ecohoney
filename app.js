@@ -44,7 +44,7 @@ const formularioCargaProductoRutas = require('./routes/formularioCargaProductoRo
 
 /* MVC - Ruteo por Controladores */
 app.use( "/", indexRutas );
-/*app.use( "/views/productoDetallado.html", ProductoDetalladoRutas );*/
+app.use( "/views/productoDetallado.html", ProductoDetalladoRutas );
 app.use( "/views/lineaCuidadoPersonal.html", cuidadoPersonalRutas );
 app.use( "/views/lineaHogar.html", lineaHogarRutas );
 app.use("/views/lineaProductoDeLasAbejas.html", lineaProductoDeLasAbejasRutas);
@@ -59,7 +59,7 @@ app.use('/views/formularioCargaProducto.ejs', formularioCargaProductoRutas);
 app.use('/views/users/registro.ejs', registroRutas);
 app.use('/views/users/login.ejs', loginRutas);
 app.use('/views/carrito.ejs', carritoRutas);
-app.use('/views/productoDetallado.ejs', ProductoDetalladoRutas);
+app.use('/views/products/productoDetallado.ejs', ProductoDetalladoRutas);
 /* ----------------- FIN ------------------ */
 
 
