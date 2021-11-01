@@ -8,7 +8,7 @@ const lineaProductoDeLasAbejasController = {
 
 /* Implementación de MVC */
 const lineaProductoDeLasAbejasController = {
-    inicio: (req,res) => { res.render( path.resolve( "views", "lineaProductoDeLasAbejas" ) ) },
+    inicio: (req,res) => { res.render( 'lineaProductoDeLasAbejas' ) },
 
 };
 

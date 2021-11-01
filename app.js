@@ -2,9 +2,10 @@ const express = require("express");
 const app = express();
 
 /*  Leyendo listas de productos para Home y Catálogos */
+/*
 const fs = require( 'fs' );
 const baseDeProductos = fs.readFileSync( './listadoProductosAbejas.json', 'utf8' );
-const objbaseDeProductos = JSON.parse( baseDeProductos );
+const objbaseDeProductos = JSON.parse( baseDeProductos );*/
 
 
 const path = require( "path" );
