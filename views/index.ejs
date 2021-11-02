@@ -20,48 +20,21 @@
           </div>
 
             <section class="Ofertas">
-                
                 <div class="productos">
                 
-                    <article>
-                        <a href="/views/products/productoDetallado.ejs/detalle"><img src="/images/vaso-plegable.jpg" alt=""></a>
-                        <div class="contenedor1">
-                            <i class="fas fa-cart-plus"></i></i>
-                            <p class="precios">$1.800</p>
-                            <p class="descuentos">20% Off</p>
-                            <p class="descripciones">Vaso ecologico termico y Plegable </p>
-                        </div>
-                    </article>
-              
-                    <article>
-                      <a href="/views/products/productoDetallado.ejs/detalle"><img src="/images/envoltorio-ecologico-colmena.jpg" alt=""></a>
-                        <div class="contenedor1">
-                            <i class="fas fa-cart-plus"></i>
-                            <p class="precios">$150</p>
-                            <p class="descuentos">30% Off</p>
-                            <p class="descripciones">Envoltorio ecologico</p>      
-                        </div>
-                </article>
-              
-                <article>
-                  <a href="/views/products/productoDetallado.ejs/detalle"><img src="/images/pabilo-organico.jpg" alt=""></a>
-                    <div class="contenedor1">
-                        <i class="fas fa-cart-plus"></i>
-                        <p class="precios">$200</p>
-                        <p class="descuentos">15% Off</p>
-                        <p class="descripciones">Pabilo</p>
-                        </div>
-                </article>
-              
-                <article>
-                  <a href="/views/products/productoDetallado.ejs/detalle"><img src="/images/vaso-ecologico-infantil.jpg" alt=""></a>
-                    <div class="contenedor1">
-                        <i class="fas fa-cart-plus"></i>
-                        <p class="precios">$1200</p>
-                        <p class="descuentos">35% Off</p>
-                        <p class="descripciones">Vaso eco infantil</p>
-                    </div>
-                </article>
+                    <% for(let i = 0; (listadoOfertas.length - i) > 0; i++) { %>
+
+                        <article>
+                            <a href="/views/products/productoDetallado.ejs/detalle"><img src=<%= listadoOfertas[i].foto %> alt=""></a>
+                            <div class="contenedor1">
+                                <i class="fas fa-cart-plus"></i></i>
+                                <p class="precios"><%= listadoOfertas[i].precio %></p>
+                                <p class="descuentos"><%= listadoOfertas[i].bonif %></p>
+                                <p class="descripciones"><%= listadoOfertas[i].desc %></p>
+                            </div>
+                        </article>
+
+                    <% } %>
 
                 </div>
             </section>
@@ -78,47 +51,21 @@
             <!-----ABEJAS---->
 
             <section class="abejas">
-                
                 <div class="productos-abejas">
-                    <article>
-                      <a href="/views/products/productoDetallado.ejs/detalle"><img src="/images/honey-essence.jpg" alt=""></a>
-                        <div class="contenedor1">
-                            <i class="fas fa-cart-plus"></i>
-                            <p class="precios">$2.800</p>
-                            <p class="descuentos">10% Off</p>
-                            <p class="descripciones">Honey essence </p>
-                        </div>
-                    </article>
-            
-                    <article>
-                      <a href="/views/products/productoDetallado.ejs/detalle"><img src="/images/miel-organica.PNG" alt=""></a>
-                        <div class="contenedor1">
-                            <i class="fas fa-cart-plus"></i>
-                            <p class="precios">$550</p>
-                            <p class="descuentos">20% Off</p>
-                            <p class="descripciones">Miel Organica</p>
-                        </div>
-                    </article>
-            
-                    <article>
-                      <a href="/views/products/productoDetallado.ejs/detalle"><img src="/images/envoltorios-de-cera-de-abeja.jpg" alt=""></a>
-                        <div class="contenedor1">
-                            <i class="fas fa-cart-plus"></i>
-                            <p class="precios">$400</p>
-                            <p class="descuentos">15% Off</p>
-                            <p class="descripciones">Envoltorio cera de abeja</p>
-                        </div>
-                    </article>
 
-                    <article>
-                      <a href="/views/products/productoDetallado.ejs/detalle"><img src="/images/crema-nutritiva.PNG" alt=""></a>
-                        <div class="contenedor1">
-                        <i class="fas fa-cart-plus"></i>
-                        <p class="precios">$800</p>
-                        <p class="descuentos">45% Off</p>
-                        <p class="descripciones">Crema nutritiva</p>              
-                        </div>
-                    </article>
+                    <% for(let i = 0; (listadoAbejas.length - i) > 0; i++) { %>
+
+                        <article>
+                            <a href="/views/products/productoDetallado.ejs/detalle"><img src=<%= listadoAbejas[i].foto %> alt=""></a>
+                            <div class="contenedor1">
+                                <i class="fas fa-cart-plus"></i></i>
+                                <p class="precios"><%= listadoAbejas[i].precio %></p>
+                                <p class="descuentos"><%= listadoAbejas[i].bonif %></p>
+                                <p class="descripciones"><%= listadoAbejas[i].desc %></p>
+                            </div>
+                        </article>
+
+                    <% } %>
                     
                 </div>
             </section>
