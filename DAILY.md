@@ -23,3 +23,27 @@ en Trello.
 Queda sin resolver la impresión dinámica de datos de productos.
 
 -- Fin Sprint 3 --
+
+-------------------------------------------------------------------------
+                        -- Inicio Sprint 4 --
+-------------------------------------------------------------------------
+Primera Weekly: Jueves, 11/11/2021
+
+- Se leyeron los requerimientos para el Sprint,
+identificando los entregables a producir y las tareas principales
+a realizar.
+- En base a lo anterior, se cargó la planificación
+en Trello.
+- Como metodología de sprints anteriores, cada integrante se autoasigna 
+tareas en el Trello, registrando su nombre en la misma
+
+- Una vez autoasignadas las tareas (plazo Viernes 12/11 12hs), 
+arranca la codificación.
+
+                -------------------//-------------------
+
+Primera Daily: 
+
+- Cada integrante expone qué hizo, cuáles fueron los obstáculos
+que encontró, qué va a hacer.
+
