@@ -25,6 +25,7 @@
 }
 
 
+
 .flex-vertical-producto {
     width: 100%;
     display: flex;
@@ -223,7 +224,7 @@ justify-content: space-between;
 /*FOOTER*/
 
 footer{
-    background-color: #c4a977;
+    background-color: #e6e6fa;
     text-align:center;
     padding:30px 0;
     width:100%;
@@ -280,7 +281,7 @@ footer{
 .pcaja0{
     display: block;
     width: 95%;
-    background-color:rgb(78, 187, 89);
+    background-color:rgb(255, 255, 255);
 }
 .flex-vertical-producto   {
     display: block;
@@ -307,14 +308,14 @@ footer{
        border-radius: 7px;
        background-color: olive;
 }
-.producto1{
-       font-size: small;
-       display: flex;
-       flex-direction: row;
-       justify-items:flex-start;
-       justify-content: stretch;
-   }
-   
+
+   .producto1{
+    font-size: small;
+    display: flex;
+    flex-direction: row;
+    justify-items:flex-start;
+    justify-content: stretch;
+}
 .imgprd {
        width: 400px;
        padding: 0px 35px 0px 0px;
@@ -322,17 +323,17 @@ footer{
    
    }
    
-.prd {
+   .prd {
     width: 60%;
     padding: 10px;
     margin-left: 20%;
    }
-.parrafo {
-       width: 80%;
-       text-align: justify;
-       
- }
 
+ .parrafo {
+    width: 80%;
+    text-align: justify;
+    
+}
 /*-------------MediaQ 5px------------*/
 
 @media (min-width:5px) {
@@ -477,10 +478,11 @@ header {
         font-size: 25px;
         width: 25px;
     }
+    
     .pcaja0{
         display: block;
-        width: 100%;
-        background-color:rgb(78, 187, 89);
+        width: 95%;
+        background-color:rgb(255, 255, 255);
     }
     .flex-vertical-producto   {
         display: block;
@@ -514,14 +516,14 @@ header {
         background-color: olive;
     }
        
+
     .producto1{
         font-size: small;
         display: flex;
         flex-direction: row;
         justify-items:flex-start;
         justify-content: stretch;
-    }
-       
+    }   
     .imgprd {
         width: 90%;
         margin-left: 40px;
@@ -533,15 +535,55 @@ header {
         margin: 10px;
         padding:0px 40px 0px 0px;
         text-align: center;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+       
     }
-    .parrafo {
-           width: 70%;
-           text-align: justify;
-           margin: auto;
-           padding: 10px;
-           
-     }
-  
+    
+     .parrafo {
+        width: 70%;
+        text-align: justify;
+        margin: auto;
+        padding: 10px;
+        
+  }
+   /*Classes Botones y titulo*/
+   .btn-prueba1{
+    width: 10%;
+   margin-left: 50%;
+}
+.btn-prueba2{
+    width: 10%;
+   margin-left: 15%; 
+   border-color: springgreen;
+   border-radius: 10%;
+}
+.btn-prueba3{
+    width: 10%;
+    padding: auto;
+    margin-left: 12%;
+    border-color: springgreen;
+   border-radius: 10%;
+   background-color: rgb(31, 172, 43);
+    
+}
+.selector{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+
+}
+
+.title{
+    margin-top: 5%;
+    margin-left: 40%;
+    font-size: 30px;
+    color: #54e267;
+    
+        }
       /* * * * Fin de Estylos Producto Detallado * * * */
 
 }
@@ -693,6 +735,7 @@ header {
     #iconos-prod {
         color: springgreen;
     }
+   
     .pcaja0{
         display: flex;
         flex-direction: row;
@@ -702,13 +745,15 @@ header {
         justify-content: space-between;
         margin: 10px;
         padding: 0px 5px 15px 0px;
-        background-color:rgb(78, 187, 89) ;
+        background-color:rgb(255, 255, 255) ;
         width: 100%;  
     }     
+    
     .pcaja1{
         display: flex;  
         justify-content: space-between;
-    }
+        align-content: center;     
+}
     .pboton0 {
         margin: 3px;
         padding: 7px 15px 7px 15px;
@@ -756,14 +801,14 @@ header {
            background-color: olive;
        }
        
-    .producto1{
-           font-size: small;
-           display: flex;
-           flex-direction: row;
-           justify-items:flex-start;
-           justify-content: stretch;
-       }
-       
+   
+       .producto1{
+        font-size: small;
+        display: flex;
+        flex-direction: row;
+        justify-items:flex-start;
+        justify-content: stretch;
+    }
     .imgprd {
         width: 100%;
         padding: 0px 35px 0px 0px;
@@ -771,18 +816,53 @@ header {
         border-radius: 5px;
     }
        
+
     .prd {
         margin: 10px;
         padding:0px 40px 0px 0px;
         text-align: center;
     }
-    .parrafo {
-           width: 70%;
-           text-align: justify;
-           margin-top: 20px;
-           
-     }
-  
+   
+     .parrafo {
+        width: 70%;
+        text-align: justify;
+        margin-top: 20px;
+        
+  }
+   /*Classes Botones y titulo*/
+   .btn-prueba1{
+    width: 10%;
+   margin-left: 50%;
+}
+.btn-prueba2{
+    width: 10%;
+   margin-left: 15%; 
+   border-color: springgreen;
+   border-radius: 10%;
+}
+.btn-prueba3{
+    width: 10%;
+    padding: auto;
+    margin-left: 12%;
+    border-color: springgreen;
+   border-radius: 10%;
+   background-color: rgb(31, 172, 43);
+    
+}
+.selector{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+
+}
+
+.title{
+    margin-top: 5%;
+    margin-left: 40%;
+    font-size: 30px;
+    color: #54e267;
+    
+        }
       /* * * * Fin de Estylos Producto Detallado * * * */
 
 }    
@@ -916,23 +996,22 @@ header {
         font-size: 25px;
         width: 25px;
     }
-    .pcaja0{
-            display: flex;
-           justify-content: space-between;
-           margin: 10px;
-           padding: 0px 5px 15px 0px;
-           background-color:rgb(78, 187, 89) ;
     
-           
-       }
-       
-    .pcaja1{
-           width: 100%;
-           display: flex;
-           flex-direction: row;
-           justify-items:flex-start;
-           justify-content: stretch;
-       }
+       .pcaja0{
+        display: flex;
+       justify-content: space-between;
+       margin: 10px;
+       padding: 0px 5px 15px 0px;
+       background-color:rgb(255, 255, 255) ; 
+   }
+    
+       .pcaja1{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-items:flex-start;
+        justify-content: stretch;
+    }
        
     .pboton0 {
            margin: 3px;
@@ -991,14 +1070,14 @@ header {
            background-color: olive;
        }
        
-    .producto1{
-           font-size: small;
-           display: flex;
-           flex-direction: row;
-           justify-items:flex-start;
-           justify-content: stretch;
-       }
-       
+   
+       .producto1{
+        font-size: small;
+        display: flex;
+        flex-direction: row;
+        justify-items:flex-start;
+        justify-content: stretch;
+    } 
     .imgprd {
            width: 400px;
            padding: 0px 35px 0px 0px;
@@ -1006,17 +1085,52 @@ header {
        
        }
        
-    .prd {
-           margin: 10px;
-           padding:0px 40px 0px 0px;
-           text-align: center;
-       }
-    .parrafo {
-           width: 70%;
-           text-align: justify;
-           
-     }
-  
+   
+       .prd {
+        margin: 10px;
+        padding:0px 40px 0px 0px;
+        text-align: center;
+    }
+    
+     .parrafo {
+        width: 70%;
+        text-align: justify;
+        
+  }
+   /*Classes Botones y titulo*/
+   .btn-prueba1{
+    width: 10%;
+   margin-left: 50%;
+}
+.btn-prueba2{
+    width: 10%;
+   margin-left: 15%; 
+   border-color: springgreen;
+   border-radius: 10%;
+}
+.btn-prueba3{
+    width: 10%;
+    padding: auto;
+    margin-left: 12%;
+    border-color: springgreen;
+   border-radius: 10%;
+   background-color: rgb(31, 172, 43);
+    
+}
+.selector{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+
+}
+
+.title{
+    margin-top: 5%;
+    margin-left: 40%;
+    font-size: 30px;
+    color: #54e267;
+    
+        }
       /* * * * Fin de Estylos Producto Detallado * * * */
 }
 
@@ -1167,24 +1281,22 @@ header {
         font-size: 25px;
         width: 25px;
     }
-    .pcaja0{
-            display: flex;
-           justify-content: space-between;
-           margin: 10px;
-           padding: 0px 5px 15px 0px;
-           background-color:rgb(78, 187, 89) ;
     
-           
-       }
-       
-    .pcaja1{
-           width: 100%;
-           display: flex;
-           flex-direction: row;
-           justify-items:flex-start;
-           justify-content: stretch;
-       }
-       
+       .pcaja0{
+        display: flex;
+       justify-content: space-between;
+       margin: 10px;
+       padding: 0px 5px 15px 0px;
+       background-color:rgb(255, 255, 255) ;   
+   } 
+    
+       .pcaja1{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-items:flex-start;
+        justify-content: stretch;
+    }
     .pboton0 {
            margin: 3px;
            padding: 7px 15px 7px 15px;
@@ -1242,14 +1354,14 @@ header {
            background-color: olive;
        }
        
-    .producto1{
-           font-size: small;
-           display: flex;
-           flex-direction: row;
-           justify-items:flex-start;
-           justify-content: stretch;
-       }
-       
+    
+       .producto1{
+        font-size: small;
+        display: flex;
+        flex-direction: row;
+        justify-items:flex-start;
+        justify-content: stretch;
+    }
     .imgprd {
            width: 400px;
            padding: 0px 35px 0px 0px;
@@ -1257,17 +1369,51 @@ header {
        
        }
        
-    .prd {
-           margin: 10px;
-           padding:0px 40px 0px 0px;
-           text-align: center;
-       }
+    
+       .prd {
+        margin: 10px;
+        padding:0px 40px 0px 0px;
+        text-align: center;
+    }
     .parrafo {
            width: 70%;
            text-align: justify;
            
      }
-  
+   /*Classes Botones y titulo*/
+   .btn-prueba1{
+    width: 10%;
+   margin-left: 50%;
+}
+.btn-prueba2{
+    width: 10%;
+   margin-left: 15%; 
+   border-color: springgreen;
+   border-radius: 10%;
+}
+.btn-prueba3{
+    width: 10%;
+    padding: auto;
+    margin-left: 12%;
+    border-color: springgreen;
+   border-radius: 10%;
+   background-color: rgb(31, 172, 43);
+    
+}
+.selector{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+
+}
+
+.title{
+    margin-top: 5%;
+    margin-left: 40%;
+    font-size: 30px;
+    color: #54e267;
+    
+        }
       /* * * * Fin de Estylos Producto Detallado * * * */
 } /* *** fin @media(1440) *** */
 
@@ -1403,23 +1549,24 @@ header {
         font-size: 25px;
         width: 25px;
     }
-    .pcaja0{
-            display: flex;
-           justify-content: space-between;
-           margin: 10px;
-           padding: 0px 5px 15px 0px;
-           background-color:rgb(78, 187, 89) ;
     
-           
-       }
-       
+       .pcaja0{
+        display: flex;
+       justify-content: space-between;
+       margin: 10px;
+       padding: 0px 5px 15px 0px;
+       background-color:rgb(255, 255, 255) ;    
+   }
+    
+     
+   
     .pcaja1{
-           width: 100%;
-           display: flex;
-           flex-direction: row;
-           justify-items:flex-start;
-           justify-content: stretch;
-       }
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-items:flex-start;
+        justify-content: stretch;
+    } 
        
     .pboton0 {
            margin: 3px;
@@ -1478,14 +1625,14 @@ header {
            background-color: olive;
        }
        
+         
     .producto1{
-           font-size: small;
-           display: flex;
-           flex-direction: row;
-           justify-items:flex-start;
-           justify-content: stretch;
-       }
-       
+        font-size: small;
+        display: flex;
+        flex-direction: row;
+        justify-items:flex-start;
+        justify-content: stretch;
+    } 
     .imgprd {
            width: 400px;
            padding: 0px 35px 0px 0px;
@@ -1503,7 +1650,40 @@ header {
            text-align: justify;
            
      }
-  
+   /*Classes Botones y titulo*/
+   .btn-prueba1{
+    width: 10%;
+   margin-left: 50%;
+}
+.btn-prueba2{
+    width: 10%;
+   margin-left: 15%; 
+   border-color: springgreen;
+   border-radius: 10%;
+}
+.btn-prueba3{
+    width: 10%;
+    padding: auto;
+    margin-left: 12%;
+    border-color: springgreen;
+   border-radius: 10%;
+   background-color: rgb(31, 172, 43);
+    
+}
+.selector{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+
+}
+
+.title{
+    margin-top: 5%;
+    margin-left: 40%;
+    font-size: 30px;
+    color: #54e267;
+    
+        }
       /* * * * Fin de Estylos Producto Detallado * * * */
 
 } /* ***Fin Media Query 2560px *** */
