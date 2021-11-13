@@ -226,20 +226,33 @@ justify-content: space-between;
 footer{
     background-color: #e6e6fa;
     text-align:center;
-    padding:30px 0;
+    padding:1% 0;
     width:100%;
     margin: auto;
     font-size: 20px;
     }
 
-.flexhorizontal{
+.flexhorizontal-footer{
         display: flex;
-        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content:space-around;
     }
 
+.menu-horizontal-footer{
+    margin:0;
+    padding:0;
+    padding-top: 5%;
+}
+.menu-horizontal-footer li{
+    display:block;
+    float:left;
+    padding:0 10px;
+}
+
 .redes-sociales-caja{
-    background-color: #c4a977;
-    width: 40%;
+    background-color: #e6e6fa;
+    width: 30%;
     justify-content: center;
     }
 
@@ -373,14 +386,15 @@ header {
         display: none;
     } 
     a { 
-        color: white;
+        color: black;
         text-decoration: none; 
-        font-size: 11px;
+        font-size: 1rem;
+        font-weight: bold;
     }
     a:hover {
-        color: black;
-        background-color: goldenrod;
-        font-size: 11px;
+        color: white;
+        background-color:mediumpurple;
+        font-size: 1rem;
         font-weight: bold;
     }
 
@@ -630,14 +644,15 @@ header {
     }
     
     a { 
-        color: white;
+        color: black;
         text-decoration: none; 
-        font-size: 19px;
+        font-size: 1rem;
+        font-weight: bold;
     }
     a:hover {
-        color: black;
-        background-color: goldenrod;
-        font-size: 19px;
+        color: white;
+        background-color: mediumpurple;
+        font-size: 1rem;
         font-weight: bold;
     }
     
@@ -907,14 +922,15 @@ header {
     }
     
     a { 
-        color: white;
+        color: black;
         text-decoration: none; 
-        font-size: 19px;
+        font-size: 1rem;
+        font-weight: bold;
     }
     a:hover {
-        color: black;
-        background-color: goldenrod;
-        font-size: 19px;
+        color: white;
+        background-color: mediumpurple;
+        font-size: 1rem;
         font-weight: bold;
     }
     
@@ -1175,14 +1191,15 @@ header {
     }
     
     a { 
-        color: white;
+        color: black;
         text-decoration: none; 
-        font-size: 29px;
+        font-size: 1rem;
+        font-weight: bold;
     }
     a:hover {
-        color: black;
-        background-color: goldenrod;
-        font-size: 29px;
+        color: white;
+        background-color: mediumpurple;
+        font-size: 1rem;
         font-weight: bold;
     }
     
@@ -1459,14 +1476,15 @@ header {
     }
     
     a { 
-        color: white;
+        color: black;
         text-decoration: none; 
-        font-size: 39px;
+        font-size: 1rem;
+        font-weight: bold;
     }
     a:hover {
-        color: black;
-        background-color: goldenrod;
-        font-size: 39px;
+        color: white;
+        background-color: mediumpurple;
+        font-size: 1rem;
         font-weight: bold;
     }
     
