@@ -347,6 +347,8 @@ footer{
     text-align: justify;
     
 }
+
+
 /*-------------MediaQ 5px------------*/
 
 @media (min-width:5px) {
@@ -879,6 +881,30 @@ header {
     
         }
       /* * * * Fin de Estylos Producto Detallado * * * */
+
+/* ******** Estilos para Form CRUD de Productos ******** */
+span {
+    font-size: smaller;
+}
+.formCrudDeProducto {
+    width: 31vw;
+    padding: 7px;
+    font-size: smaller;
+    background-color: whitesmoke;
+}
+
+.formCrudDeProducto li {
+    padding: 7px 3px;
+}
+
+.formTableCrudDeProducto {
+    table-layout: auto;
+    width: 100%;    
+    border-spacing: 5px;
+    
+}
+
+/* ***** Fin Estilos para Form CRUD de Productos ****** */      
 
 }    
 

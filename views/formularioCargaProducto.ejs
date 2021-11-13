@@ -1,29 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 
-   <%-include('./partials/head.ejs');-%>
+    <%- include('./partials/head.ejs'); -%>
+
+
 
 <body>
-    <form action="/" method="POST">
-        <div class= "registro">
-        <input type="text" name="name" placeholder="Código del Producto">
 
-        <input type="text" name="user" placeholder="Nombre del Producto">
+    <%- include( './partials/header.ejs' ); -%>
 
-        <input type="text" name="DescripcionDetallada" placeholder="DescripcionDetallada">
+    <main style="background-color: white">
+        <center>
+            <div class=formCrudDeProducto>
+                <form action="/" method="POST">    
+                    <table class="formTableCrudDeProducto">
+
+                        <thead style="width: 100%;">
+                            <tr><th><div style=" background-color: grey; border-radius: 5px;"><h3><p>Gestión de Productos</p></h3></div></th></tr>
+                        </thead>
+
+                        <tbody style="width: 100%;">
+                            <tr><td><label><span>Código de Producto</span></label></td></tr>
+                            <tr><td><input type="text" name="codigoPrd"></td></tr>
         
-        <input type="text" name="Precio" id="Precio">
+                            <tr><td><label><span>Descripción</span></label></td></tr>
+                            <tr><td><input type="text" name="nombrePrd"></td></tr>
+        
+                            <tr><td><label><span>Descripción Detallada</span></label></td></tr>
+                            <tr><td><input type="text" name="DescDetalladaPrd"></td></tr>
 
-        <input type="text" name="Descuento" placeholder="Descuento">
+                            <tr><td><label><span>Línea</span></label></td></tr>
+                            <tr>
+                                <td>
+                                    <select id="linea" name="lineaPrd">
+                                        <option value="hogar">Hogar</option>
+                                        <option value="personal">Cuidado Personal</option>
+                                        <option value="abejas">Productos de las Abejas</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr><td><label><span>Precio</span></label></td></tr>
+                            <tr><td><input type="text" name="PrecioPrd" id="PrecioPrd"></td></tr>
+        
+                            <tr><td><label><span>Bonificación</span></label></td></tr>
+                            <tr><td><input type="text" name="bonifPrd"></td></tr>
+        
+                            <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
+                            <tr><td><input type="file" name="avatar"></td></tr>
+        
+                            <tr><td><div style=" background-color: grey; border-radius: 5px; height: 1px;"></div></td></tr>
+                        </tbody>
+
+                    </table>
+
+                    <input type="submit" value="Crear">
+                    <input type="submit" value="Modificar">
+                    <input type="reset" value="Limpiar">
+                    <input type="submit" value="Borrar">
+
+                </form>
+                <div style=" background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
+                
+                <tr><td><div style="width: 97%; background-color: grey; border-radius: 5px; height: 2px;"></div></td></tr>
+
+            </div>           
+
+        </center>      
+        
+    </main>
     
-       
-        <h4>Elegí Foto de Producto</h4>
-        <input type="file" name="avatar">
-       
-        <input type="submit" value="Crear">
-        <input type="submit" value="Modificar">
-        <input type="reset" value="Borrar">
-     
-    </form>
+    <%- include( './partials/footer.ejs' ); -%>
+
 </body>
 </html>

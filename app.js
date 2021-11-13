@@ -1,4 +1,5 @@
 const express = require("express");
+const method_override = require('method-override');
 const app = express();
 
 /*  Leyendo listas de productos para Home y Catálogos */
@@ -13,6 +14,8 @@ const path = require( "path" );
 app.set('view engine', 'ejs'); 
 
 app.use( express.static( path.join( __dirname, "public" ) ) );
+app.use( method_override('_method')); // Necesario para procesar PUTs y DELETEs
+app.use(express.urlencoded({ extended: false })); // Necesario para los Formularios !!!
 
 const PORT    = 3131;
 
