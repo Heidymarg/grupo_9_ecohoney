@@ -1,7 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 
-const productsFilepath = path.join(__dirname, '../data/productoVela.json')
+//**const productsFilepath = path.join(__dirname, '../data/productoVela.json')**//
+const productsFilepath = path.join(__dirname, '../data/listadoProductosLineaHogar.json')
 const products = JSON.parse(fs.readFileSync(productsFilepath, 'utf-8'));
 
 
@@ -34,18 +35,76 @@ const productController = {
     inicioHogar: (req,res) => { 
         res.render( 'lineaHogar', { usr: 'Oscar', listado: listaDeProductosHogar }) 
     },
-    detail:(req,res) => { 
+    detalle:(req,res) => { 
         let id= req.params.id;
         let product = products.find(product=> product.id == id)
         res.render('productoDetallado', {product})
     },
-    productAdd: (req,res) => { 
+    productoAgregar: (req,res) => { 
         res.render('formularioCargaProducto') 
     },
     carrito:(req,res) => { 
         res.render('carrito') 
     },
+
+    // Update - Form to edit
+	editar: (req, res) => {
+		let id = req.params.id
+		let productToEdit = products.find(product => product.idPrd == id)
+		res.render('product-edit-form', {productToEdit})
+	},
+
+    // Update - Method to update
+	modificar: (req, res) => {
+		let id = req.params.id;
+		let productToEdit = products.find(product => product.idPrd == id)
+		let image
+
+		if(req.files[0] != undefined){
+			image = req.files[0].filename
+		} else {
+			image = productToEdit.image
+		}
+
+		productToEdit = {
+			idPrd: productToEdit.idPrd,
+			...req.body,
+			image: image,
+		};
+		
+		let newProducts = products.map(product => {
+			if (product.idPrd == productToEdit.idPrd) {
+				return product = {...productToEdit};
+			}
+			return product;
+		})
+
+		fs.writeFileSync(productsFilePath, JSON.stringify(newProducts, null, ' '));
+		res.redirect('/');
+	},
+
+	// Delete - Delete one product from DB
+	eliminar : (req, res) => {
+		let id = req.params.id;
+		let finalProducts = products.filter(product => product.idPrd != id);
+		fs.writeFileSync(productsFilePath, JSON.stringify(finalProducts, null, ' '));
+		res.redirect('/');
+	},
+
+    // Create -  Method to store
+	grabar: (req, res) => {
+		let image
+		console.log(req.files);
+		if(req.files[0] != undefined){
+			image = req.files[0].filename
+		} else {
+			image = 'default-image.png'
+		}
+
+    }   
 };
+
+
 
 
 module.exports = productController;

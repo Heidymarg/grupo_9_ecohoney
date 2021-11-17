@@ -1,6 +1,20 @@
 [
-    { "idPrd": "99", "desc": "Vaso ecologico termico y Plegable", "DescDeta":"loren ipsum", "linea": "Personal", "precio": "$1.800", "bonif": "20%", "foto": "/images/vaso-plegable.jpg" },
-    { "idPrd": "98", "desc": "Envoltorio ecologico", "DescDeta":"loren ipsum", "linea": "Abejas", "precio": "$150", "bonif": "30%", "foto": "/images/envoltorio-ecologico-colmena.jpg" },
-    { "idPrd": "97", "desc": "Pabilo", "DescDeta":"loren ipsum", "linea": "Hogar", "precio": "200", "bonif": "15%", "foto": "/images/pabilo-organico.jpg" },
-    { "idPrd": "96", "desc": "Vaso eco infantil", "DescDeta":"loren ipsum", "linea": "Hogar", "precio": "$1.200", "bonif": "35%", "foto": "/images/vaso-ecologico-infantil.jpg" }
+    {   "idPrd": "95",
+        "nombre": "Vela Miel", 
+        "codigo" :"SKU7148-0055",
+        "descripcion": "Vela en vaso hechas 100% con cera pura de Abejas",
+        "precio":250,
+        "quantity":""           
+       },
+    { "idPrd": "99", "nombre": "Vaso ecologico termico y Plegable", "descripcion":"loren ipsum", "linea": "Personal", "precio": "$1.800", "bonif": "20%", "foto": "/images/vaso-plegable.jpg" },
+    { "idPrd": "98", "nombre": "Envoltorio ecologico", "descripcion":"loren ipsum", "linea": "Abejas", "precio": "$150", "bonif": "30%", "foto": "/images/envoltorio-ecologico-colmena.jpg" },
+    { "idPrd": "97", "nombre": "Pabilo", "descripcion":"loren ipsum", "linea": "Hogar", "precio": "200", "bonif": "15%", "foto": "/images/pabilo-organico.jpg" },
+    { "idPrd": "96", "nombre": "Vaso eco infantil", "descrpcion":"loren ipsum", "linea": "Hogar", "precio": "$1.200", "bonif": "35%", "foto": "/images/vaso-ecologico-infantil.jpg" },
+    {   "idPrd": "95",
+        "nombre": "Vela Miel", 
+        "codigo" :"SKU7148-0055",
+        "descripcion": "Vela en vaso hechas 100% con cera pura de Abejas",
+        "precio":250,
+        "quantity":""           
+       }
 ]

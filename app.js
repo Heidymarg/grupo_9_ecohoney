@@ -2,7 +2,7 @@ const express = require("express");
 const method_override = require('method-override');
 const app = express();
 const path = require( "path" );
-
+const multer = require('multer');
 app.use( express.static( path.join( __dirname, "public" ) ) );
 app.use( method_override('_method')); // Necesario para procesar PUTs y DELETEs
 app.use(express.urlencoded({ extended: false })); // Necesario para los Formularios !!!

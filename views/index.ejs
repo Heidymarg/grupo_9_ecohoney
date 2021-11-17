@@ -25,7 +25,7 @@
                     <% for(let i = 0; (listadoOfertas.length - i) > 0; i++) { %>
 
                         <article>
-                            <a href="/productos/detalle"><img src=<%= listadoOfertas[i].foto %> alt=""></a>
+                            <a href="/productos/detalle/<%= listadoOfertas[i].idPrd %>"><img src=<%= listadoOfertas[i].foto %> alt=""></a>
                             <div class="contenedor1">
                                 <i class="fas fa-cart-plus"></i></i>
                                 <p class="precios"><%= listadoOfertas[i].precio %></p>
