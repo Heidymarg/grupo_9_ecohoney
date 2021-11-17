@@ -22,11 +22,11 @@ const productController = {
         res.render( 'lineaHogar', { usr: 'Oscar', listado: listaDeProductosHogar }) 
     },
     detalle:(req,res) => { 
-        let id = req.params.id;
-
+        //let id = req.params.id;
+		let id = 1;
 		// a resolver ... if viende de Especial Abejas
-        let product = listaDeProductosAbejas.find(product=> product.id == id)
-		res.render('productoDetallado', { product: listaDeProductosAbejas })
+        let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == id });
+		res.render('productoDetallado', { product: prodSeleccionado })
 		// else if viene de Ofertas Especiales
 		// let product = listaDeProductosHogar.find(product=> product.id == id)
         //res.render('productoDetallado', { product: listaDeProductosHogar })
