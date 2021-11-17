@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <%- include('../partials/head.ejs'); -%>
+    <%- include('./partials/head.ejs') %>
     
 <body>
 
-    <%- include( '../partials/header.ejs' ); -%>  
+    <%- include( './partials/header.ejs' )%>  
     
     <main>
         
@@ -17,29 +17,22 @@
                         <div style="width:100%;height: 50%;">
                            
                             <div class="pcaja1">
-                                <h2 class="title">Vela Miel</h2> 
+                                <h2 class="title"><%= product.nombre %></h2> 
                               
                             </div>
                         <div  class="producto1">
                         
-                       <!--<div class="prd">Velas de Miel x6</div>-->
-
                     </div>
     
                     <div>
-                        <div style="padding-left:40%;width: 100%;" class="prd">SKU 7148-0055</div> 
+                        <div style="padding-left:40%;width: 100%;" class="prd"><%= product.codigo %></div> 
                         <p class="parrafo"> 
-                            Vela en vaso hechas 100% con cera pura de Abejas. 
-                            Están fabricadas de manera casera, con mucho amor. Dimensiones: 8,5 cm x 7,5 cm. 
-                            Tienen una rica fragancia a miel. Sus propiedades son saludables y no tienen aditivos químicos. 
-                            Ideales para decorar, relajarse, meditar y también para rituales. Purifican el ambiente, dejandolo libre de moho, polvo, virus y bacterias.
-                            La publicación es por una vela.
-                            100%   vegana, cruelty free y Ecofriendly.
+                            <%= product.descripcion %>
                         </p>
                         <div>
                             <div class="prd"> 
                                 <div class=" btn-prueba1">
-                                <h3>250$</h3>
+                                <h3><%= product.precio %>$</h3>
                             </div> 
                             
                             <div class="btn-prueba2">
@@ -58,6 +51,6 @@
         </article>
         
     </main>
-        <%-include('../partials/footer.ejs')%>
+        <%-include('./partials/footer.ejs')%>
 </body>
 </html>
