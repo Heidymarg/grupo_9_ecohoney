@@ -1,43 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
-    <script src="https://kit.fontawesome.com/2752ae1859.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/registro.css">
-    <title>Registro</title>
-
-</head>
+    <%- include('./partials/head.ejs') %>
 <body>
-    <header>
+    <%- include( './partials/header.ejs' ) %>  
                  
-    <header class="flex-vertical">
-        <div class="dentro-header">
-            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
-            
-            <div class="nav-bar">
-                <nav>
-                    <ul type="none">
-                        <li><a href="#">Nosotros</a></li>
-                        
-                        <li><a href="/">Home</a></li>
-                        <li><a href="#">Promociones</a></li>
-                        <li><a href="#">Ofertas</a></li>
-                        <li><a href="#">Ayuda</a></li>
-                    </ul>
-                </nav>
-            </div>
-            
-            <div class="login-registro">
-                <a href="/views/login.html/login">Logging</a>
-                <a href="/views/carrito.html/carrito"> <i class="fas fa-cart-plus"></i></a>
-            </div>
-
-        </div>
+ 
            
         <div class="top-header">
 
@@ -49,11 +16,10 @@
         
                 <div class="flex-Horizontal"></div>
                    
-            <div class="form" action="#" method="GET">
-                                 
+            <div class="form" action="#" method="GET">                                
               
                   
-         </header>
+    
          <h3> Completá tus datos</h3>
     <main class="register">
         <form action="/" method="POST">
@@ -114,26 +80,5 @@
          
         </form>
 </body>
-<footer>
-<section class="flexhorizontal">
-    <div>
-        <ul class="nav-bar-footer" type="none">
-          <li><a href="#">Puntos de Venta</a></li>
-          <li><a href="#">Horarios de atencion</a></li>
-          <li><a href="#">Ayuda</a></li>
-        </ul>
-        
-    </div>
-
-    <div class="redes-sociales-caja">
-        <h4>Seguinos en las redes!</h4>
-   
-        <div>
-            <div class="redes-sociales"><a href="#">Facebook</a><i class="fab fa-facebook-square"></i></div>
-            <div class="redes-sociales"><a href="#">Twitter</a><i class="fab fa-twitter-square"></i></div>
-            <div class="redes-sociales"><a href="#">Instagram</a><i class="fab fa-instagram-square"></i></div>
-            <div class="redes-sociales"><a href="#">Whatsapp</a><i class="fab fa-whatsapp"></i></div>
-        </div>
-    </section>
-    </footer>
+<%- include( './partials/footer.ejs' ) %>
 </html>

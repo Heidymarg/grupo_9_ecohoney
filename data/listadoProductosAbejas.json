@@ -1,6 +1,7 @@
 [
-    { "idPrd": "1", "desc": "Honey Essence", "DescDeta":"loren ipsum", "linea": "Hogar", "precio": "2800", "bonif": "10%", "foto": "/images/honey-essence.jpg" },
-    { "idPrd": "2", "desc": "Miel Organica", "DescDeta":"loren ipsum", "linea": "Personal", "precio": "550", "bonif": "20%", "foto": "/images/miel-organica.PNG"},
-    { "idPrd": "3", "desc": "Envoltorio cera de abeja", "DescDeta":"loren ipsum", "linea": "Abejas", "precio": "400", "bonif": "15%", "foto": "/images/envoltorios-de-cera-de-abeja.jpg"},
-    { "idPrd": "4", "desc": "Crema nutritiva", "DescDeta":"loren ipsum", "linea": "Abejas", "precio": 800, "bonif": "45%", "foto": "/images/crema-nutritiva.PNG"}
+    { "idPrd": "95", "nombre": "Vela Miel", "codigo" :"SKU7148-0055", "descripcion": "Vela en vaso hechas 100% con cera pura de Abejas", "linea": "Hogar", "precio":250, "bonif": "20%", "foto": "/images/velas-miel-organic.jpg", "quantity":"" },
+    { "idPrd": "1", "nombre": "Honey Essence", "codigo" :"SKU7148-0055", "descripcion":"loren ipsum", "linea": "Hogar", "precio": "2800", "bonif": "10%", "foto": "/images/honey-essence.jpg", "quantity":"" },
+    { "idPrd": "2", "nombre": "Miel Organica", "codigo" :"SKU7148-0055", "descripcion":"loren ipsum", "linea": "Personal", "precio": "550", "bonif": "20%", "foto": "/images/miel-organica.PNG", "quantity":"" },
+    { "idPrd": "3", "nombre": "Envoltorio cera de abeja", "codigo" :"SKU7148-0055", "descripcion":"loren ipsum", "linea": "Abejas", "precio": "400", "bonif": "15%", "foto": "/images/envoltorios-de-cera-de-abeja.jpg", "quantity":"" },
+    { "idPrd": "4", "nombre": "Crema nutritiva", "codigo" :"SKU7148-0055", "descripcion":"loren ipsum", "linea": "Abejas", "precio": 800, "bonif": "45%", "foto": "/images/crema-nutritiva.PNG", "quantity":"" }
 ]

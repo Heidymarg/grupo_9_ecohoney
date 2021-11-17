@@ -23,7 +23,7 @@
                 <div class="productos">
                 <% for(let i =0; (listado.length - i)>0; i++) { %>
                     <article>
-                        <a href="/views/products/productoDetallado.ejs/detalle"><img src=<%= listado[i].foto %> alt=""></a>
+                        <a href="/productos/detalle"><img src=<%= listado[i].foto %> alt=""></a>
                         <div class="contenedor1">
                             <i class="fas fa-cart-plus"></i></i>
                             <p class="precios"><%= listado[i].precio %></p>
@@ -39,8 +39,8 @@
         <!---------------IMAGENES AL CATALOGO------------------->
         <!--Caja de imagenes que conectan a los enlaces de categorias hogar-cuidado personal--producto abejas-->  
         <section class=Imagenes-al-catalogo>
-          <a title="Hogar" href="/views/lineaHogar.ejs/inicio"><img class="imagenes-al-catalogo" src="/images/hogar.jpg" alt="Productos del Hogar" /></a>
-          <a title="Productos Abejas" href="/views/lineaProductoDeLasAbejas.ejs/inicio"><img style="width: 423px; height: 300px" src="/images/productos-abejas.png" alt="Productos de las abejas" /></a>
+          <a title="Hogar" href="/productos/lineaHogar"><img class="imagenes-al-catalogo" src="/images/hogar.jpg" alt="Productos del Hogar" /></a>
+          <a title="Productos Abejas" href="/productos/lineaProductoDeLasAbejas"><img style="width: 423px; height: 300px" src="/images/productos-abejas.png" alt="Productos de las abejas" /></a>
         </section>     
         <!-- con efecto visual los links no funcionan, veo de resolver 
         <section class=Imagenes-al-catalogo>
