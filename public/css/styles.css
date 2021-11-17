@@ -942,7 +942,7 @@ span {
         height: auto;
         display: flex;
         flex-wrap: nowrap;
-        flex-direction: row;
+        flex-direction: column;
         justify-items: center;
         justify-content: space-evenly;
     }

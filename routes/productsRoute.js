@@ -13,6 +13,8 @@ var storage = multer.diskStorage({
     }
 })
 var upload = multer({storage: storage})
+
+
 router.get('/detalle', productController.detalle);
 
 router.get('/lineaCuidadoPersonal', productController.inicioCuidadoPersonal);
@@ -21,12 +23,10 @@ router.get('/lineaProductoDeLasAbejas', productController.inicioAbejas);
 
 router.get('/lineaHogar', productController.inicioHogar);
 
-router.get('/formProducts', productController.productoAgregar);
-
 router.get('/carrito', productController.carrito);
 
 /*** CREATE ONE PRODUCT ***/ 
-//**router.get('/productoAgregar', productController.productoAgregar); **/
+router.get('/productoAgregar', productController.productoMostrarFormCarga);
 router.post('/', upload.any(), productController.grabar); 
 
 
@@ -34,10 +34,16 @@ router.post('/', upload.any(), productController.grabar);
 router.get('/detalle/:id', productController.detalle); 
 
 /*** EDIT ONE PRODUCT ***/ 
-router.get('/edit/:id', productController.editar); 
+
+// leer el producto desde el archivo, pasarlo a JSON,
+// modificar el campo
+// hacer un stringify y grabar a arcchivo.
+router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 router.patch('/edit/:id', upload.any(),productController.modificar); 
 
-/* DELETE ONE PRODUCT***/ 
+/* *** Eliminar un producto *** */ 
+router.get('/productoEliminar', productController.productoMostrarFormEliminar );
 router.delete('/delete/:id', productController.eliminar);
+
 
 module.exports = router;

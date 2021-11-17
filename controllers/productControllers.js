@@ -33,9 +33,19 @@ const productController = {
 		}
 
     },
-    productoAgregar: (req,res) => { 
-        res.render('formularioCargaProducto') 
+
+    productoMostrarFormCarga: (req,res) => { 
+        res.render('formularioCargaProducto'); 
     },
+
+	productoMostrarFormModificar: (req,res) => { 
+        res.render('formularioModificarProducto '); 
+    },
+
+	productoMostrarFormEliminar: (req,res) => { 
+        res.render('formularioEliminarProducto'); 
+    },
+
     carrito:(req,res) => { 
         res.render('carrito') 
     },
