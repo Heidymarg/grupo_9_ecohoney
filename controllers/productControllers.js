@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 
-//**const productsFilepath = path.join(__dirname, '../data/productoVela.json')**//
 const productsPersonalFilepath = path.join(__dirname, '../data/listadoProductosCuidadoPersonal.json')
 const listaProductosCuidadoPersonal = JSON.parse(fs.readFileSync(productsPersonalFilepath, 'utf-8'));
 
@@ -24,7 +23,7 @@ const productController = {
     detalle:(req,res) => { 
         let id = req.params.id;
 
-		// a resolver ... if viende de Especial Abejas o de Ofertas
+		// a resolver más eficiente... if viende de Especial Abejas o de Ofertas
 		let prodOferta = listaProductosCuidadoPersonal.find( (product) => {return product.idPrd == req.params.id } );
         let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == id });
 		if ( prodOferta != undefined ) {
@@ -32,11 +31,6 @@ const productController = {
 		} else if ( prodSeleccionado != undefined ) {
 			res.render('productoDetallado', { product: prodSeleccionado })
 		}
-		// else if viene de Ofertas Especiales
-		// let product = listaDeProductosHogar.find(product=> product.id == id)
-        //res.render('productoDetallado', { product: listaDeProductosHogar })
-
-
 
     },
     productoAgregar: (req,res) => { 
