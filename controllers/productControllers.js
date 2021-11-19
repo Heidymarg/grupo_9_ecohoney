@@ -2,13 +2,13 @@ const path = require('path');
 const fs = require('fs');
 
 const productsPersonalFilepath = path.join(__dirname, '../data/listadoProductosCuidadoPersonal.json')
-const listaProductosCuidadoPersonal = JSON.parse(fs.readFileSync(productsPersonalFilepath, 'utf-8'));
+var listaProductosCuidadoPersonal = JSON.parse(fs.readFileSync(productsPersonalFilepath, 'utf8'));
 
 const productsAbejasFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
-const listaDeProductosAbejas = JSON.parse(fs.readFileSync(productsAbejasFilepath, 'utf-8'));
+var listaDeProductosAbejas = JSON.parse(fs.readFileSync(productsAbejasFilepath, 'utf8'));
 
 const productsHogarFilepath = path.join(__dirname, '../data/listadoProductosLineaHogar.json')
-const listaDeProductosHogar = JSON.parse(fs.readFileSync(productsHogarFilepath, 'utf-8'));
+var listaDeProductosHogar = JSON.parse(fs.readFileSync(productsHogarFilepath, 'utf8'));
 
 const productController = {
     inicioCuidadoPersonal: (req,res) => { 
@@ -28,10 +28,11 @@ const productController = {
         let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == id });
 		if ( prodOferta != undefined ) {
 			res.render('productoDetallado', { product: prodOferta })
-		} else if ( prodSeleccionado != undefined ) {
-			res.render('productoDetallado', { product: prodSeleccionado })
-		}
-
+		} else {
+			if ( prodSeleccionado != undefined ) {
+				res.render('productoDetallado', { product: prodSeleccionado })
+			}	
+		} 
     },
 
     productoMostrarFormCarga: (req,res) => { 
@@ -40,10 +41,6 @@ const productController = {
 
 	productoMostrarFormModificar: (req,res) => { 
         res.render('formularioModificarProducto '); 
-    },
-
-	productoMostrarFormEliminar: (req,res) => { 
-        res.render('formularioEliminarProducto'); 
     },
 
     carrito:(req,res) => { 
@@ -86,12 +83,63 @@ const productController = {
 		res.redirect('/');
 	},
 
-	// Delete - Delete one product from DB
+	// Delete
+	productoMostrarFormEliminar: (req,res) => { 
+		
+		let	prodAEliminar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
+        
+		res.render('formularioEliminarProducto', {'prodAEliminar':prodAEliminar}); 
+		
+    },
+
+	traerParaConfirmar: ( req,res ) => {
+
+		//productId = req.query.idPrd; // funciona con GET - variable global para compartir con eliminar
+		let productId = req.body.idPrd; // funciona con POST - variable local para compartir con eliminar.
+		
+		let prodOferta = listaProductosCuidadoPersonal.find( (product) => {return product.idPrd == productId } );
+        let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == productId });
+
+		
+		if ( prodOferta != undefined ) {
+			res.render('formularioEliminarProducto', {'prodAEliminar': prodOferta, mensaje: 'Hola' });
+		} else if ( prodSeleccionado != undefined ) {
+			res.render('formularioEliminarProducto', {'prodAEliminar': prodSeleccionado, mensaje: 'Hola' });
+		} else {
+			res.send( 'No existe producto con id: ' + productId );
+			res.redirect('formularioEliminarProducto');
+		}
+	},
+
 	eliminar : (req, res) => {
-		let id = req.params.id;
-		let finalProducts = products.filter(product => product.idPrd != id);
-		fs.writeFileSync(productsFilePath, JSON.stringify(finalProducts, null, ' '));
-		res.redirect('/');
+
+		//productId = req.query.idPrd; // funciona con GET - variable global para compartir con eliminar:
+		//let productId = req.body.idPrd; // no funciona con POST - variable local para compartir con eliminar.
+		let productId = req.params.idPrd; // funciona con POST - variable local para compartir con eliminar.
+
+		// 1- Filtro los productos no seleccionados para armar el nuevo array.
+		let prodsEnOferta = listaProductosCuidadoPersonal.filter((product) => { return product.idPrd != productId });
+		let prodsDeAbejas = listaDeProductosAbejas.filter((product) => { return product.idPrd != productId });
+		
+		// 2- Pasar a objeto literal el array y grabar a archivo
+		if ( prodsEnOferta != undefined ) { // si el producto existe en archivo
+			fs.writeFileSync(path.join(__dirname, '../data/listadoProductosCuidadoPersonal.json'), JSON.stringify(prodsEnOferta), 'utf8');
+			//fs.writeFileSync('listadoProductosCuidadoPersonal.json', JSON.stringify(prodsEnOferta), 'utf8');
+			res.render('formularioEliminarProducto', {'prodAEliminar':listaProductosCuidadoPersonal.find( (product) => {return product.idPrd == productId } )});
+			//res.send( 'Seleccionado: ' + ' ' + productId + ' ' + prodsEnOferta);
+		} else {
+			/*
+			if ( prodsDeAbejas != undefined ) { // si el producto existe en archivo
+				// fs.writeFileSync(path.join(__dirname, '../data/listadoProductosAbejas.json'), JSON.stringify(prodsDeAbejas), 'utf8');
+				fs.writeFileSync('listadoProductosAbejas.json', JSON.stringify(prodsDeAbejas), 'utf8');
+				res.render('formularioEliminarProducto', {'prodAEliminar':listaDeProductosAbejas.find((product) => { return product.idPrd == productId } )});
+				//res.send( 'Seleccionado: ' +  ' ' + productId + ' ' + prodsDeAbejas);	
+			} */
+			res.send( 'Seleccionado: ' +  ' ' + productId + ' ' + 'no existe. ');	
+		}
+		//res.send( 'Seleccionado: ' + productId);
+		// 3- Volver al form con mensaje de confirmación de la operación efectuada
+		//res.redirect('formularioEliminarProducto');
 	},
 
     // Create -  Method to store
