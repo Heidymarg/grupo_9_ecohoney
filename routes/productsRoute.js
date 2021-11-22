@@ -6,7 +6,7 @@ const path = require('path');
 
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
-        cb(null, 'public/images/products')
+        cb(null,'public/images')
     },
     filename: function(req,file,cb){
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
@@ -25,12 +25,12 @@ router.get('/lineaHogar', productController.inicioHogar);
 
 router.get('/carrito', productController.carrito);
 
-/*** CREATE ONE PRODUCT ***/ 
+/*** Agregar nuevo producto ***/ 
 router.get('/productoAgregar', productController.productoMostrarFormCarga);
-router.post('/', upload.any(), productController.grabar); 
+router.post('/lineaProductoDeLasAbejas', upload.single('foto'), productController.grabar); 
 
 
-/*** GET ONE PRODUCT ***/ 
+/*** Datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 
 
 /*** EDIT ONE PRODUCT ***/ 
@@ -41,9 +41,15 @@ router.get('/detalle/:id', productController.detalle);
 router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 router.patch('/edit/:id', upload.any(),productController.modificar); 
 
+
+
 /* *** Eliminar un producto *** */ 
-router.get('/productoEliminar', productController.productoMostrarFormEliminar );
-router.delete('/delete/:id', productController.eliminar);
+router.get('/productoDelete', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
+
+router.post('/productoDelete', productController.traerParaConfirmar) // ruta que invoca al método que, dado un idPrd, 
+                                                            // devuelve datos para confirmación previa a la eliminación.
+router.delete('/productoDelete/:idPrd', productController.eliminar);       // ruta que invoca al método que efectivamente elimina
+                                                            // el ítem seleccionado.
 
 
 module.exports = router;
