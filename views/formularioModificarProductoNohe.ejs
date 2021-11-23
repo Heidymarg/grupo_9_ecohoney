@@ -12,7 +12,7 @@
     <main style="background-color: white">
         <center>
             <div class=formCrudDeProducto>
-                <form action="/" method="POST">    
+                <form action="/productos/productoModificar"  method="POST" enctype="multipart/form-data">    
                     <table class="formTableCrudDeProducto">
 
                         <thead style="width: 100%;">
@@ -22,12 +22,13 @@
                         <tbody style="width: 100%;">
                             <tr><td><label><span>Código de Producto</span></label></td></tr>
                             <tr><td><input type="text" name="idPrd"></td></tr>
+                           <tr><td> <input type="submit" value="Seleccionar"></td></tr>
         
                             <tr><td><label><span>Descripción</span></label></td></tr>
-                            <tr><td><input type="text" name="nombrePrd"></td></tr>
+                            <tr><td><input value="<%= prodAModificar.nombre %>" type="text" name="nombrePrd"></td></tr>
         
                             <tr><td><label><span>Descripción Detallada</span></label></td></tr>
-                            <tr><td><input type="text" name="DescDetalladaPrd"></td></tr>
+                            <tr><td><input  value="<%= prodAModificar.descripción %>" type="text" name="DescDetalladaPrd"></td></tr>
 
                             <tr><td><label><span>Línea</span></label></td></tr>
                             <tr>
@@ -41,10 +42,10 @@
                             </tr>
 
                             <tr><td><label><span>Precio</span></label></td></tr>
-                            <tr><td><input type="text" name="PrecioPrd" id="PrecioPrd"></td></tr>
+                            <tr><td><input value="<%= prodAModificar.precio %>" type="text" name="PrecioPrd" id="PrecioPrd"></td></tr>
         
                             <tr><td><label><span>Bonificación</span></label></td></tr>
-                            <tr><td><input type="text" name="bonifPrd"></td></tr>
+                            <tr><td><input value="<%= prodAModificar.bonif %>"type="text" name="bonifPrd"></td></tr>
         
                             <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
                             <tr><td><input type="file" name="avatar"></td></tr>
