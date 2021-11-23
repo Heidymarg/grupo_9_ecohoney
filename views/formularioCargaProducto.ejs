@@ -12,7 +12,7 @@
     <main style="background-color: white">
         <center>
             <div class=formCrudDeProducto>
-                <form action="/" method="POST">    
+                <form action="/productos/lineaProductoDeLasAbejas" method="POST" enctype="multipart/form-data">    
                     <table class="formTableCrudDeProducto">
 
                         <thead style="width: 100%;">
@@ -21,18 +21,18 @@
 
                         <tbody style="width: 100%;">
                             <tr><td><label><span>Código de Producto</span></label></td></tr>
-                            <tr><td><input type="text" name="codigoPrd"></td></tr>
+                            <tr><td><input type="text" name="codigo"></td></tr>
         
                             <tr><td><label><span>Descripción</span></label></td></tr>
-                            <tr><td><input type="text" name="nombrePrd"></td></tr>
+                            <tr><td><input type="text" name="nombre"></td></tr>
         
                             <tr><td><label><span>Descripción Detallada</span></label></td></tr>
-                            <tr><td><input type="text" name="DescDetalladaPrd"></td></tr>
+                            <tr><td><input type="text" name="Descripcion"></td></tr>
 
                             <tr><td><label><span>Línea</span></label></td></tr>
                             <tr>
                                 <td>
-                                    <select id="linea" name="lineaPrd">
+                                    <select id="linea" name="linea">
                                         <option value="hogar">Hogar</option>
                                         <option value="personal">Cuidado Personal</option>
                                         <option value="abejas">Productos de las Abejas</option>
@@ -41,21 +41,19 @@
                             </tr>
 
                             <tr><td><label><span>Precio</span></label></td></tr>
-                            <tr><td><input type="text" name="PrecioPrd" id="PrecioPrd"></td></tr>
+                            <tr><td><input type="number" name="precio" id="precio"></td></tr>
         
                             <tr><td><label><span>Bonificación</span></label></td></tr>
-                            <tr><td><input type="text" name="bonifPrd"></td></tr>
+                            <tr><td><input type="text" name="bonif"></td></tr>
         
                             <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
-                            <tr><td><input type="file" name="avatar"></td></tr>
+                            <tr><td><input type="file" name="foto"></td></tr>
         
                             <tr><td><div style=" background-color: grey; border-radius: 5px; height: 1px;"></div></td></tr>
                         </tbody>
 
                     </table>
-
-                    <input type="submit" value="Agregar">
-                    <input type="reset" value="Limpiar">
+                    <button type="submit">Cargar Producto</button>
 
                 </form>
                 <div style=" background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
