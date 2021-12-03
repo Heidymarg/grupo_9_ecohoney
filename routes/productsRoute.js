@@ -39,14 +39,15 @@ router.get('/detalle/:id', productController.detalle);
 // modificar el campo
 // hacer un stringify y grabar a arcchivo.
 router.get('/productoModificar', productController.productoMostrarFormModificar ); 
-router.patch('/edit/:id', upload.any(),productController.modificar); 
+router.post('/productoModificar', productController.traerParaModificar);
+router.patch('/edit/:id', upload.single('foto'),productController.modificar); 
 
 
 
 /* *** Eliminar un producto *** */ 
 router.get('/productoDelete', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
 
-router.post('/productoDelete', productController.traerParaConfirmar) // ruta que invoca al método que, dado un idPrd, 
+router.post('/productoDelete', productController.traerParaConfirmar); // ruta que invoca al método que, dado un idPrd, 
                                                             // devuelve datos para confirmación previa a la eliminación.
 router.delete('/productoDelete/:idPrd', productController.eliminar);       // ruta que invoca al método que efectivamente elimina
                                                             // el ítem seleccionado.

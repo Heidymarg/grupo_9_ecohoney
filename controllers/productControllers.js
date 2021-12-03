@@ -34,9 +34,26 @@ const productController = {
         res.render('formularioCargaProducto'); 
     },
 
-	productoMostrarFormModificar: (req,res) => { 
-        res.render('formularioModificarProducto '); 
+	productoMostrarFormModificar: (req,res) => { 	
+		let	prodAModificar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
+        
+	res.render('formularioModificarProducto',{'prodAModificar':prodAModificar}); 
+	//res.send("Funciona" + req.body.idPrd);
+	     
     },
+	traerParaModificar: ( req,res ) => {
+
+		//productId = req.query.idPrd; // funciona con GET - variable global para compartir con eliminar
+		let productId = req.body.idPrd; // funciona con POST - variable local para compartir con eliminar.
+        let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == productId });
+		
+		if ( prodSeleccionado != undefined ) {
+			res.render('formularioModificarProducto', {'prodAModificar': prodSeleccionado, mensaje: 'Hola' });
+		} else {
+			res.send( 'No existe producto con id: ' + productId );
+			res.redirect('formularioModificarProducto');
+		}
+	},
 
     carrito:(req,res) => { 
         res.render('carrito') 
@@ -52,8 +69,11 @@ const productController = {
     // Update - Method to update
 	modificar: (req, res) => {
 		let id = req.params.id;
-		let productToEdit = products.find(product => product.idPrd == id)
-		let image
+		let productToEdit = listaDeProductosAbejas.find((product) => { return product.idPrd == id });
+		res.send('Producto a Modificar' + productToEdit)
+		
+		//let productToEdit = products.find(product => product.idPrd == id)
+		/*let image
 
 		if(req.files[0] != undefined){
 			image = req.files[0].filename
@@ -75,7 +95,7 @@ const productController = {
 		})
 
 		fs.writeFileSync(productsFilePath, JSON.stringify(newProducts, null, ' '));
-		res.redirect('/');
+		res.redirect('/');*/
 	},
 
 	// Delete
