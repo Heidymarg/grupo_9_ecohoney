@@ -13,113 +13,121 @@
             -->
             
             <center style="background-color:lightblue;">
-                    <h3> Completá tus datos</h3>
+                <h3> Completá tus datos</h3>
 
-                    <form action="/usuarios/registro" method="POST" enctype="multipart/form-data">
+                <form action="/usuarios/registro" method="POST" enctype="multipart/form-data">
+                    <div class="flex-vertical">
+                        <label>Nombre y Apellido</label>
+                        <input type="text" name="nombre">
 
-                        <div class="flex-vertical">
-                            <input type="text" name="nombre" placeholder="Nombre y apellido">
-
-                            <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.nombre.msg %></p>
-                            <% } %>
+                        <!-- Poner los valores viejos donde estén correctos, y validar los incorrectos en el controler? -->
+                        <% if ( locals && locals.resultadoValidaciones ) { %>
+                            <p class="feedback"> <%= resultadoValidaciones.nombre.msg %></p>
+                        <% } %>
  
-                            <input type="text" name="user" placeholder="Nombre de usuario">
-                            <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.user.msg %></p>
-                            <% } %>
-                            <input type="email" name="email" placeholder="E-mail">
-                            <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <p class="feedback"><%= resultadoValidaciones.email.msg %></p>
-                            <% } %>
-                        </div>
-                        
-                        <div class= "fecha">  
-                            <label for="birth_date">Fecha de Nacimiento</label>
-                            <input type="date" name="birth_date" id="birth_date">
-                            <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.birth_date.msg %></p>
-                            <% } %>
-                        </div>
+                        <label>Nombre de Usuario</label>
+                        <input type="text" name="user">
+                        <% if ( locals && locals.resultadoValidaciones ) { %>
+                            <p class="feedback"> <%= resultadoValidaciones.user.msg %></p>
+                        <% } %>
+
+                        <label>Dirección de E-mail</label>
+                        <input type="email" name="email">
+                        <% if ( locals && locals.resultadoValidaciones ) { %>
+                            <p class="feedback"><%= resultadoValidaciones.email.msg %></p>
+                        <% } %>
+                    </div>
+                      
+                    <div class= "fecha">  
+                        <label for="birth_date">Fecha de Nacimiento</label>
+                        <input type="date" name="birth_date" id="birth_date">
+                        <% if ( locals && locals.resultadoValidaciones ) { %>
+                            <p class="feedback"> <%= resultadoValidaciones.birth_date.msg %></p>
+                        <% } %>
+                    </div>
+              
+                    </div>
+                        <label>Nro. de Documento</label>
+                        <input type="documento" name="dni">
+                        <% if ( locals && locals.resultadoValidaciones ) { %>
+                            <p class="feedback"> <%= resultadoValidaciones.dni.msg %></p>
+                        <% } %>
+
+                        <label>Domicilio</label>
+                        <input type="text" name="addres">
+                        <% if ( locals && locals.resultadoValidaciones ) { %>
+                            <p class="feedback"> <%= resultadoValidaciones.addres.msg %></p>
+                        <% } %>
+                    </div>
                 
-                        </div>
-                            <input type="documento" name="dni" placeholder="N° de DNI">
+                    <div class="flex-vertical">
+                        <h4>Perfil del usuario</h4>
+                        <div class="perfil">
+                            <input type="radio" name="perfil" value="comprador" id="comprador">
+                            <label for="comprador">Comprador</label>
+                            <input type="radio" name="perfil" value="vendedor" id="vendedor">
+                            <label for="vendedor">Vendedor</label>
+                            <input type="radio" name="perfil" value="Administrador" id="Administrador">
+                            <label for="Administrador">Administrador</label>
                             <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.dni.msg %></p>
-                            <% } %>
-                            <input type="text" name="addres" placeholder="Domicilio">
-                            <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.addres.msg %></p>
+                                <p class="feedback"> <%= resultadoValidaciones.perfil.msg %></p>
                             <% } %>
                         </div>
+                    </div>
                 
-                        <div class="flex-vertical">
-                            <h4>Perfil del usuario</h4>
-                            <div class="perfil">
-                                <input type="radio" name="perfil" value="comprador" id="comprador">
-                                <label for="comprador">Comprador</label>
-                                <input type="radio" name="perfil" value="vendedor" id="vendedor">
-                                <label for="vendedor">Vendedor</label>
-                                <input type="radio" name="perfil" value="Administrador" id="Administrador">
-                                <label for="Administrador">Administrador</label>
-                                <% if ( locals && locals.resultadoValidaciones ) { %>
-                                    <p class="feedback"> <%= resultadoValidaciones.perfil.msg %></p>
-                                <% } %>
+                    <div class="flex-vertical">
+                        <h4>Intereses</h4>
+                        <div class="intereses">
+                            <div>
+                                <input type="checkbox" name="intereses" value="hogar" id="hogar">
+                                <label for="a">Productos del Hogar</label>
                             </div>
-                        </div>
-                
-                        <div class="flex-vertical">
-                            <h4>Intereses</h4>
-                            <div class="intereses">
-                                <div>
-                                    <input type="checkbox" name="intereses" value="hogar" id="a">
-                                    <label for="a">Productos del Hogar</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" name="intereses" value="personal" id="b">
-                                    <label for="b">Cuidado Personal</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" name="intereses" value="miel" id="c">
-                                    <label for="c">Derivados de la Miel</label>
-                                </div>
-                                <% if ( locals && locals.resultadoValidaciones ) { %>
-                                    <p class="feedback"> <%= resultadoValidaciones.intereses.msg %></p>
-                                <% } %>
+                            <div>
+                                <input type="checkbox" name="intereses" value="personal" id="personal">
+                                <label for="b">Cuidado Personal</label>
                             </div>
-                        </div>
-                    
-                        <div class="flex-vertical">
-                            <h4>Elegí tu foto de usuario</h4>
-                            <input type="file" name="avatar">
+                            <div>
+                                <input type="checkbox" name="intereses" value="miel" id="miel">
+                                <label for="c">Derivados de la Miel</label>
+                            </div>
                             <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.avatar.msg %> </p>
+                                <p class="feedback"> <%= resultadoValidaciones.intereses.msg %></p>
                             <% } %>
                         </div>
-                
-                        <div class="flex-vertical">              
-                            <input type="password" name="pass" placeholder="Elegí tu contraseña">
-                            <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.pass.msg %></p>
-                            <% } %>
-                            <input type="password" name="pass_confirm" placeholder="Confirmá tu contraseña">
-                            <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.pass_confirm.msg %></p>
-                            <% } %>
-                        </div>
-                        
-                        <div>
-                            <input type="checkbox" name="terms" value="términos" id="terms">
-                            <label for="terms">Acepto los Términos y Condiciones y autorizo el uso de mis datos de acuerdo a la Declaración de Privacidad.</label>
-                            <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.terms.msg %></p>
-                            <% } %>
-                        </div>
+                    </div>
                    
-                        <input type="submit" value="Enviar">
-                        <input type="reset" value="Borrar">
-                 
-                    </form>
+                    <div class="flex-vertical">
+                        <h4>Elegí tu foto de usuario</h4>
+                        <input type="file" name="avatar">
+                        <% if ( locals && locals.resultadoValidaciones ) { %>
+                            <p class="feedback"> <%= resultadoValidaciones.avatar.msg %> </p>
+                        <% } %>
+                    </div>
+                
+                    <div class="flex-vertical">       
+                        <label>Elegí una Contraseña</label>       
+                        <input type="password" name="pass">
+                        <% if ( locals && locals.resultadoValidaciones ) { %>
+                            <p class="feedback"> <%= resultadoValidaciones.pass.msg %></p>
+                        <% } %>
+                        <label>Reingresá la Contraseña</label>
+                        <input type="password" name="pass_confirm">
+                        <% if ( locals && locals.resultadoValidaciones ) { %>
+                            <p class="feedback"> <%= resultadoValidaciones.pass_confirm.msg %></p>
+                        <% } %>
+                       </div>
+                        
+                    <div>
+                        <input type="checkbox" name="terms" value="términos" id="terms">
+                        <label for="terms">Acepto los Términos y Condiciones y autorizo el uso de mis datos de acuerdo a la Declaración de Privacidad.</label>
+                        <% if ( locals && locals.resultadoValidaciones ) { %>
+                            <p class="feedback"> <%= resultadoValidaciones.terms.msg %></p>
+                        <% } %>
+                    </div>
+                  
+                    <input type="submit" value="Enviar">
+                    <input type="reset" value="Borrar">                 
+                </form>
     
             </center>
             
