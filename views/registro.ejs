@@ -1,84 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head.ejs') %>
-<body>
-    <%- include( './partials/header.ejs' ) %>  
-                 
- 
-           
-        <div class="top-header">
-
-                     <main class="flex-vertical">
-        
-                <section>
-                    <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
-                </section>
-        
-                <div class="flex-Horizontal"></div>
-                   
-            <div class="form" action="#" method="GET">                                
-              
-                  
+        <%- include('./partials/head.ejs') %>
     
-         <h3> Completá tus datos</h3>
-    <main class="register">
-        <form action="/" method="POST">
-            <div class= "registro">
-            <input type="text" name="name" placeholder="Nombre y apellido">
-
-            <input type="text" name="user" placeholder="Nombre de usuario">
-
-            <input type="email" name="email" placeholder="E-mail">
-        
-             <div class= "fecha">  
-            <input type="date" name="birth_date" id="birth_date">
-             </div>
-
-            <input type="documento" name="DNI" placeholder="N° de DNI">
-        
-            <input type="text" name="addres" placeholder="Domicilio">
-             </div>
-            <h4>Perfil del usuario</h4>
-          
-            <div class="perfil">
-                <input type="radio" name="perfil" value="comprador" id="comprador">
-                <label for="comprador">Comprador</label>
-                <input type="radio" name="perfil" value="vendedor" id="vendedor">
-                <label for="vendedor">Vendedor</label>
-            </div>
-
-            <h4>Intereses</h4>
-            <div class="intereses">
-                <div>
-                    <input type="checkbox" name="intereses" value="a" id="a">
-                    <label for="a">Productos del Hogar</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="intereses" value="b" id="b">
-                    <label for="b">Cuidado Personal</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="intereses" value="c" id="c">
-                    <label for="c">Derivados de la Miel</label>
-                </div>
-                     
-            </div>
+    <body>
+        <%- include( './partials/header.ejs' ) %>  
+                 
+        <main class="register">
+            <!--
+            <section>
+                <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
+            </section>
+            -->
             
-            <h4>Elegí tu foto de usuario</h4>
-            <input type="file" name="avatar">
-          
-            <input type="password" name="pass" placeholder="Elegí tu contraseña">
-            <input type="password" name="pass_confirm" placeholder="Confirmá tu contraseña">
+            <center style="background-color:lightblue;">
+                    <h3> Completá tus datos</h3>
 
-            <div>
-                <input type="checkbox" name="privacidad" value="c" id="c">
-                <label for="c">Acepto los Términos y Condiciones y autorizo el uso de mis datos de acuerdo a la Declaración de Privacidad.</label>
-            </div>
-           
-            <input type="submit" value="Enviar">
-            <input type="reset" value="Borrar">
-         
-        </form>
-</body>
-<%- include( './partials/footer.ejs' ) %>
+                    <form action="/usuarios/registro" method="POST" enctype="multipart/form-data">
+
+                        <div class="flex-vertical">
+                            <input type="text" name="nombre" placeholder="Nombre y apellido">
+
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.nombre.msg %></p>
+                            <% } %>
+ 
+                            <input type="text" name="user" placeholder="Nombre de usuario">
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.user.msg %></p>
+                            <% } %>
+                            <input type="email" name="email" placeholder="E-mail">
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <p class="feedback"><%= resultadoValidaciones.email.msg %></p>
+                            <% } %>
+                        </div>
+                        
+                        <div class= "fecha">  
+                            <label for="birth_date">Fecha de Nacimiento</label>
+                            <input type="date" name="birth_date" id="birth_date">
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.birth_date.msg %></p>
+                            <% } %>
+                        </div>
+                
+                        </div>
+                            <input type="documento" name="dni" placeholder="N° de DNI">
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.dni.msg %></p>
+                            <% } %>
+                            <input type="text" name="addres" placeholder="Domicilio">
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.addres.msg %></p>
+                            <% } %>
+                        </div>
+                
+                        <div class="flex-vertical">
+                            <h4>Perfil del usuario</h4>
+                            <div class="perfil">
+                                <input type="radio" name="perfil" value="comprador" id="comprador">
+                                <label for="comprador">Comprador</label>
+                                <input type="radio" name="perfil" value="vendedor" id="vendedor">
+                                <label for="vendedor">Vendedor</label>
+                                <input type="radio" name="perfil" value="Administrador" id="Administrador">
+                                <label for="Administrador">Administrador</label>
+                                <% if ( locals && locals.resultadoValidaciones ) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.perfil.msg %></p>
+                                <% } %>
+                            </div>
+                        </div>
+                
+                        <div class="flex-vertical">
+                            <h4>Intereses</h4>
+                            <div class="intereses">
+                                <div>
+                                    <input type="checkbox" name="intereses" value="hogar" id="a">
+                                    <label for="a">Productos del Hogar</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="intereses" value="personal" id="b">
+                                    <label for="b">Cuidado Personal</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="intereses" value="miel" id="c">
+                                    <label for="c">Derivados de la Miel</label>
+                                </div>
+                                <% if ( locals && locals.resultadoValidaciones ) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.intereses.msg %></p>
+                                <% } %>
+                            </div>
+                        </div>
+                    
+                        <div class="flex-vertical">
+                            <h4>Elegí tu foto de usuario</h4>
+                            <input type="file" name="avatar">
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.avatar.msg %> </p>
+                            <% } %>
+                        </div>
+                
+                        <div class="flex-vertical">              
+                            <input type="password" name="pass" placeholder="Elegí tu contraseña">
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.pass.msg %></p>
+                            <% } %>
+                            <input type="password" name="pass_confirm" placeholder="Confirmá tu contraseña">
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.pass_confirm.msg %></p>
+                            <% } %>
+                        </div>
+                        
+                        <div>
+                            <input type="checkbox" name="terms" value="términos" id="terms">
+                            <label for="terms">Acepto los Términos y Condiciones y autorizo el uso de mis datos de acuerdo a la Declaración de Privacidad.</label>
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.terms.msg %></p>
+                            <% } %>
+                        </div>
+                   
+                        <input type="submit" value="Enviar">
+                        <input type="reset" value="Borrar">
+                 
+                    </form>
+    
+            </center>
+            
+        </main>
+    </body>
+        <%- include( './partials/footer.ejs' ) %>
 </html>

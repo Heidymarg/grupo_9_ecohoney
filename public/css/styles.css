@@ -24,8 +24,6 @@
     align-content: center;
 }
 
-
-
 .flex-vertical-producto {
     width: 100%;
     display: flex;
@@ -34,6 +32,13 @@
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
+}
+
+/* ****** Estilo para express-validator ****** */
+.feedback {
+    color: red;
+    font-size: small;
+    text-emphasis: filled red;
 }
 /*MAIN*/
 main {

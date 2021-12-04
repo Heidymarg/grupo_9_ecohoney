@@ -4,12 +4,20 @@ const app = express();
 const path = require( "path" );
 const multer = require('multer');
 
+/* ***** Para Strint 5 ***** */
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+/* ***** Para Strint 5 ***** */
 
 app.use( express.static( path.join( __dirname, "public" ) ) );
 app.use( method_override('_method')); // Necesario para procesar PUTs y DELETEs
 app.use(express.urlencoded({ extended: false })); // Necesario para los Formularios !!!
 app.use(express.json());
 
+/* ***** Para Strint 5 ***** */
+//app.use(session( {secret:'ecohoney'} ));
+//app.use('cookie-parser');
+/* ***** Para Strint 5 ***** */
 
 app.set('view engine', 'ejs'); 
 var storage = multer.diskStorage({
@@ -34,7 +42,7 @@ const rutaUsuarios = require('./routes/userRoutes')
 
 app.use( "/", rutaIndex );
 app.use( "/productos", rutaProductos);
-app.use( "/usuario", rutaUsuarios);
+app.use( "/usuarios", rutaUsuarios);
 /* ----------------- FIN ------------------ */
 
 app.listen( PORT, () => { console.log( `Eco HONeY corriendo en el puerto ${PORT}` ) } );
