@@ -5,8 +5,30 @@ const fileSys = require('fs');
 const usuariosFilepath = path.join(__dirname, '../data/usuarios.json')
 
 const userController = {
-    login:(req,res) => { 
-        res.render('login') 
+
+    login: (req,res) => {
+        res.render('login');
+    },
+
+    validarUsuario:(req,res) => { 
+        /*
+        if ( error ) {
+            res.redirect( 'login' );
+        } else {
+            if ( logged ) {
+                muestro datos de usuario en el header
+                muestro menu extendido en header
+                if ( recordarme ) {
+                    activo cookie
+                }
+                redirecciono a Home
+            } else {
+                if ( fueRecordado ) {
+
+                }
+            }
+        }
+        */
     },  
     
     registro:(req,res) => {
