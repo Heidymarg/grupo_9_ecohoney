@@ -11,30 +11,49 @@ const userController = {
     },
 
     validarUsuario:(req,res) => { 
-       // res.send('datos ingresados' + req.body.email + '  '+ req.body.password + ' ' + req.body.recordarme);
-       const {validationResult} = require('express-validator');
+       
+        // res.send('datos ingresados' + req.body.email + '  '+ req.body.password + ' ' + req.body.recordarme);
+        const {validationResult} = require('express-validator');
         let error = validationResult( req ); 
 
         if (error.isEmpty()) {
-            //res.redirect( 'login' ); 
-         // res.render('login')
-         res.send('datosDelFormulario ' + req.body.email + ' ' + req.body.password + ' ' + req.body.recordarme)
+        
+            // res.redirect( 'login' ); 
+            // res.render('login')
+            //res.send('datosDelFormulario ' + req.body.email + ' ' + req.body.password + ' ' + req.body.recordarme)
+            
+            // 1_ busco el usuario en el archivo usuarios.json
+            let usuariosArray = JSON.parse(fileSys.readFileSync(usuariosFilepath, 'utf8'));
+            let esElUsuario = usuariosArray.find( u => { u.usuario == req.body.usuario } );
+
+            // 2_ Si el usuario está registrado, verifico su password
+            if ( bcrypt.compareSync( req.body.password, esElUsuario.password ) ) {
+                    
+                // 2.1_ guardo el usuario en  session
+                // completar con código
+
+                // 2.2_ muestro datos de usuario en el header
+                // completar con código
+
+                // 2.3_ muestro menu extendido en header
+                // completar con código
+
+                // 2.4_ Si tildó el recordarme
+                if ( req.body.recordarme != undefined ) {
+                    // 2.4.1_ activo cookie
+                    // completar con código
+                }
+
+                // 2.5_ redirecciono a Home
+                // completar con código
+                
+            } else {
+                // 2.6_ El usuario ingresó mal la password, redirecciona a login
+                res.render('login', {'resultadoValidaciones': error.mapped(), 'datosAnteriores': req.body});
+            }
             
         } else {
-            res.render('login', {'resultadoValidaciones': error.mapped(), 'datosAnteriores': req.body})
-            /*
-            if ( logged ) {
-                muestro datos de usuario en el header
-                muestro menu extendido en header
-                if ( recordarme ) {
-                    activo cookie
-                }
-                redirecciono a Home
-            } else {
-                if ( fueRecordado ) {
-
-                }
-            }*/
+            res.render('login', {'resultadoValidaciones': error.mapped(), 'datosAnteriores': req.body});
         }
         
     },  
