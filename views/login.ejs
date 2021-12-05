@@ -23,23 +23,28 @@
                 <form method="POST" action="/usuarios/login">
                     <label>Usuario</label>
                     <input type="email" id="email" name="email"> 
-                    <!--<% if ( locals && locals.resultadoValidaciones ) {
+                    <% if ( locals && locals.resultadoValidaciones ) {
                         if ( resultadoValidaciones.email != undefined )  { %>
                             <p class="feedback"> <%= resultadoValidaciones.email.msg %></p>
                         <% } %>
-                    <% } %> -->
+                    <% } %> 
                                                    
                     <br>
                     <label>Contraseña</label>
                     <input type="password" id="password" name="password"> 
-                    <!--<% if ( locals && locals.resultadoValidaciones ) {
+                    <% if ( locals && locals.resultadoValidaciones ) {
                         if ( resultadoValidaciones.password != undefined )  { %>
                             <p class="feedback"> <%= resultadoValidaciones.password.msg %></p>
                         <% } %>
-                    <% } %> -->
-                                                
+                    <% } %> 
+                                           
                     <br><br>
                     <input type="checkbox" name="recordarme" id="recordarme">
+                    <% if ( locals && locals.resultadoValidaciones ) {
+                        if ( resultadoValidaciones.recordarme != undefined )  { %>
+                            <p class="feedback"> <%= resultadoValidaciones.recordarme.msg %></p>
+                        <% } %>
+                    <% } %>
                     <label for="recordarme">Mantenerme Logueado</label>
 
                     <br><br>

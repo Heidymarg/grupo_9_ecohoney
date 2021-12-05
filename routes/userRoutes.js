@@ -27,6 +27,16 @@ let validacionDeRegistracion = [
 router.post('/registro', validacionDeRegistracion, userController.registro);
 
 router.get('/login', userController.login);
-router.post('/login', userController.validarUsuario);
+
+let validacionDeLogin = [ 
+    
+    check('email').notEmpty().withMessage('Completar el e-mail ').isEmail().withMessage('No es un email válido').bail(), 
+    check('password').notEmpty().withMessage('Completar la Contraseña, mínimo 8 caracteres ').bail(), 
+    check('recordarme').notEmpty().withMessage('Completar el campo Términos y Condiciones de Privacidad ').bail()
+];
+
+
+router.post('/login', validacionDeLogin, userController.validarUsuario);
+
 
 module.exports = router;

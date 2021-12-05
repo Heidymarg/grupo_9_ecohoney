@@ -11,10 +11,18 @@ const userController = {
     },
 
     validarUsuario:(req,res) => { 
-        /*
-        if ( error ) {
-            res.redirect( 'login' );
+       // res.send('datos ingresados' + req.body.email + '  '+ req.body.password + ' ' + req.body.recordarme);
+       const {validationResult} = require('express-validator');
+        let error = validationResult( req ); 
+
+        if (error.isEmpty()) {
+            //res.redirect( 'login' ); 
+         // res.render('login')
+         res.send('datosDelFormulario ' + req.body.email + ' ' + req.body.password + ' ' + req.body.recordarme)
+            
         } else {
+            res.render('login', {'resultadoValidaciones': error.mapped(), 'datosAnteriores': req.body})
+            /*
             if ( logged ) {
                 muestro datos de usuario en el header
                 muestro menu extendido en header
@@ -26,9 +34,9 @@ const userController = {
                 if ( fueRecordado ) {
 
                 }
-            }
+            }*/
         }
-        */
+        
     },  
     
     registro:(req,res) => {
