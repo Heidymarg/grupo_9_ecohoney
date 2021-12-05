@@ -27,5 +27,6 @@ let validacionDeRegistracion = [
 router.post('/registro', validacionDeRegistracion, userController.registro);
 
 router.get('/login', userController.login);
+router.post('/login', userController.login);
 
 module.exports = router;
