@@ -43,8 +43,8 @@ const productController = {
     },
 	traerParaModificar: ( req,res ) => {
 
-		//productId = req.query.idPrd; // funciona con GET - variable global para compartir con eliminar
-		let productId = req.body.idPrd; // funciona con POST - variable local para compartir con eliminar.
+		//productId = req.query.idPrd; // funciona con GET 
+		let productId = req.body.idPrd; // funciona con POST
         let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == productId });
 		
 		if ( prodSeleccionado != undefined ) {
