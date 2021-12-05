@@ -1,14 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 
-//const productsPersonalFilepath = path.join(__dirname, '../data/listadoProductosCuidadoPersonal.json')
-//var listaProductosCuidadoPersonal = JSON.parse(fs.readFileSync(productsPersonalFilepath, 'utf8'));
-
 const productsAbejasFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
 var listaDeProductosAbejas = JSON.parse(fs.readFileSync(productsAbejasFilepath, 'utf8'));
-
-//const productsHogarFilepath = path.join(__dirname, '../data/listadoProductosLineaHogar.json')
-//var listaDeProductosHogar = JSON.parse(fs.readFileSync(productsHogarFilepath, 'utf8'));
 
 const productController = {
     inicioCuidadoPersonal: (req,res) => { 
