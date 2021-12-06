@@ -2,8 +2,11 @@ const { request } = require('http');
 const path = require('path');
 const fileSys = require('fs');
 const encripta = require('bcryptjs');
+const { localsName } = require('ejs');
     
 const usuariosFilepath = path.join(__dirname, '../data/usuarios.json')
+
+var esElUsuario;
 
 const userController = {
 
@@ -21,15 +24,14 @@ const userController = {
         
             // 1_ busco el usuario en el archivo usuarios.json
             let usuariosArray = JSON.parse(fileSys.readFileSync(usuariosFilepath, 'utf8'));
-            let esElUsuario = usuariosArray.find( u => { return u.usuario == req.body.usuario } );
+            esElUsuario = usuariosArray.find( u => { return u.usuario == req.body.usuario } );
 
             // 2_ Si el usuario está registrado, verifico su password
             if ( encripta.compareSync( req.body.password, esElUsuario.password ) || (req.body.usuario != esElUsuario.usuario) ) {
                     
                 // 2.1_ guardo el usuario en  session
                 req.session.usuarioLogueado = esElUsuario;
-                req.session.userLogged;
-                req.session.cantLogueos = null;
+
                 // 2.2_ muestro datos de usuario en el header
                 // completar con código
 
@@ -39,12 +41,13 @@ const userController = {
                 // 2.4_ Si tildó el recordarme
                 if ( req.body.recordarme != undefined ) {
                     // 2.4.1_ activo cookie
-                    res.cookie('usuarioLogeado', esElUsuario);
+                    res.cookie('usuarioLogeado', esElUsuario.usuario);
                 }
 
                 // 2.5_ redirecciono a Home
+                console.log(`Usuario ${esElUsuario.usuario} logueado! `);
                 res.redirect('/');
-                // ok res.send('Datos de inicio de session: ' + req.session.usuarioLogueado.usuario);
+                //res.send('Datos de inicio de session: ' + req.session.usuarioLogueado.usuario + ' Cookie ' + req.cookie.usuarioLogeado);
 
             } else {
                 // 2.6_ El usuario ingresó mal la password o el nombre de usuario, redirecciona a login
@@ -128,7 +131,7 @@ const userController = {
     },
 
     logout: (req,res) => {
-        req.session.destroy();
+        console.log(`Finalizó sesión el Usuario: ${esElUsuario.usuario} `);
         return res.redirect('/');
     }
 

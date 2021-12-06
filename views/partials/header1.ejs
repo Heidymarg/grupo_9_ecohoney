@@ -27,8 +27,8 @@
             
             <div class="login-registro">
                 <a href="/usuarios/login">Logging</a>
-                <% if ( req != undefined ) { %>
-                    <%= req.session.usuarioLogueado.usuario %>
+                <% if ( locals && locals.req.session.userLogged != undefined ) { %>
+                    <%= locals.req.session.usuarioLogueado.usuario %>
                 <% } %>    
                 <a href="/usuarios/logout">Salir</a>   
                 <a href="/usuarios/registro">Registrate</a>
