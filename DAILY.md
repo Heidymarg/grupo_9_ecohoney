@@ -47,3 +47,9 @@ Primera Daily:
 - Cada integrante expone qué hizo, cuáles fueron los obstáculos
 que encontró, qué va a hacer.
 
+-------------------------------------------------------------------------
+                        -- Inicio Sprint 5 --
+-------------------------------------------------------------------------
+
+- Hubo constantes reuniones por chat y zoom con participación de todo el 
+equipo.
