@@ -6,7 +6,7 @@ const { localsName } = require('ejs');
     
 const usuariosFilepath = path.join(__dirname, '../data/usuarios.json')
 
-var esElUsuario;
+var esElUsuario = undefined;
 
 const userController = {
 
@@ -27,34 +27,39 @@ const userController = {
             esElUsuario = usuariosArray.find( u => { return u.usuario == req.body.usuario } );
 
             // 2_ Si el usuario está registrado, verifico su password
-            if ( encripta.compareSync( req.body.password, esElUsuario.password ) || (req.body.usuario != esElUsuario.usuario) ) {
+            if ( esElUsuario != undefined ) {
+                if ( encripta.compareSync( req.body.password, esElUsuario.password ) || (req.body.usuario != esElUsuario.usuario) ) {
                     
-                // 2.1_ guardo el usuario en  session
-                req.session.usuarioLogueado = esElUsuario;
-
-                // 2.2_ muestro datos de usuario en el header
-                // completar con código
-
-                // 2.3_ muestro menu extendido en header
-                // completar con código
-
-                // 2.4_ Si tildó el recordarme
-                if ( req.body.recordarme != undefined ) {
-                    // 2.4.1_ activo cookie
-                    res.cookie('usuarioLogeado', esElUsuario.usuario);
+                    // 2.1_ guardo el usuario en  session si NO ESTá logueado
+                    if ( req.session.usuarioLogueado == undefined ) {
+                        
+                        req.session.usuarioLogueado = esElUsuario;
+                             
+                        // 2.2_ muestro datos de usuario en el header
+                        // completar con código
+    
+                        // 2.3_ muestro menu extendido en header
+                        // completar con código
+    
+                        // 2.4_ Si tildó el recordarme
+                        if ( req.body.recordarme != undefined ) {
+                            // 2.4.1_ activo cookie
+                            res.cookie('usuarioLogeado', esElUsuario.usuario);
+                        }
+    
+                        // 2.5_ redirecciono a Home
+                        console.log(`Usuario ${esElUsuario.usuario} logueado! `);
+                        res.render('indexProtegido', {'usuarioLogueado': esElUsuario}); 
+                    } else {
+                        res.render('indexProtegido', {'usuarioLogueado': esElUsuario}); 
+                    }      
+                } else {
+                    // 2.6_ El usuario ingresó mal la password o el nombre de usuario, redirecciona a login
+                    res.render('login', {'resultadoValidaciones': [{msg:'Usuario o Contraseña inválidos '}], 'datosAnteriores': req.body});
                 }
-
-                // 2.5_ redirecciono a Home
-                console.log(`Usuario ${esElUsuario.usuario} logueado! `);
-                res.render('indexProtegido', {'usuarioLogueado': esElUsuario}); 
-                //res.redirect('/');
-                //res.send('Datos de inicio de session: ' + req.session.usuarioLogueado.usuario + ' Cookie ' + req.cookie.usuarioLogeado);
-
             } else {
-                // 2.6_ El usuario ingresó mal la password o el nombre de usuario, redirecciona a login
-                res.render('login', {'resultadoValidaciones': error.mapped(), 'datosAnteriores': req.body});
+                res.render('login', {'resultadoValidaciones': [{msg:'Usuario no registrado '}], 'datosAnteriores': req.body});    
             }
-            
         } else {
             res.render('login', {'resultadoValidaciones': error.mapped(), 'datosAnteriores': req.body});
         }
@@ -115,12 +120,7 @@ const userController = {
             fileSys.writeFileSync(path.join( __dirname, '../', '/data/usuarios.json'), JSON.stringify(usuariosArray), 'utf8');
 
             return res.redirect('registro');
-            //return res.send( 'Datos ingresados sin errores: ' + nuevoUsuario.idUsr + ' ' + nuevoUsuario.usuario );
-            //return res.send( 'Datos ingresados sin errores: ' + req.body.nombre + ' ' + req.body.user + ' ' + req.body.email 
-            //+ ' ' + req.body.birth_date + ' ' + req.body.dni + ' ' + req.body.addres + ' ' + req.body.perfil
-            //+ ' ' + req.body.intereses + ' ' + req.body.avatar + ' ' + req.body.pass + ' ' 
-            //+ req.body.pass_confirm + ' ' + req.body.privacidad + ' IdUsr ' + nuevoUsuario.idUsr + ' Contraseña encriptada: ' + passOculta );
-            // res.redirect('registro');
+
         } else { //hay errores
             // no anda rellenar los campos correctos de la carga anterior.
             return res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body});
@@ -131,12 +131,16 @@ const userController = {
         return res.render('registro', {'datosAnteriores': req.body} );
     },
 
+    profile: (req, res) => {
+
+    },
+
     logout: (req,res) => {
 
         if ( esElUsuario != undefined ) {
             console.log(`Finalizó sesión el Usuario: ${esElUsuario.usuario} `);
         }
-        
+        // pincha res.session.destroy();
         return res.redirect('/');
     }
 

@@ -7,8 +7,6 @@ const multer = require('multer');
 
 /* ***** Para Strint 5 ***** */
 const cookieSession = require('cookie-session')
-const validacionDeInvitados = require('../grupo_9_ecohoney/middlewares/validacionDeInvitados');
-const validacionDeUsuario = require('../grupo_9_ecohoney/middlewares/validacionDeUsuario');
 /* ***** Para Strint 5 ***** */
 
 app.use( express.static( path.join( __dirname, "public" ) ) );
@@ -18,9 +16,6 @@ app.use(express.json());
 
 /* ***** Para Strint 5 ***** */
 app.use(cookieSession( {name: 'session', keys: 'EcoHoney!!!', maxAge: 24 * 60 * 60 * 1000} ));
-
-//app.use(validacionDeInvitados);
-// app.use(validacionDeUsuario);
 /* ***** Para Strint 5 ***** */
 
 app.set('view engine', 'ejs'); 

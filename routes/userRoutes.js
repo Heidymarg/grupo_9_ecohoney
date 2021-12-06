@@ -1,11 +1,15 @@
 const express = require( 'express' );
 const router = express.Router();
 
-const userController = require('../controllers/userControllers');
- 
 const {check} = require('express-validator');
 
-router.get('/registro', userController.mostrar);
+const userController = require('../controllers/userControllers');
+
+const validacionDeInvitados = require('../middlewares/validacionDeInvitados');
+const validacionDeUsuario = require('../middlewares/validacionDeUsuario');
+ 
+router.get('/registro', validacionDeInvitados, userController.mostrar);
+router.get('/registro', validacionDeUsuario, userController.profile);
 
 let validacionDeRegistracion = [ 
         check('nombre').notEmpty().withMessage('Completar el Nombre y Apellido').bail(), 
