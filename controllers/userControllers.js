@@ -4,7 +4,7 @@ const fileSys = require('fs');
 const encripta = require('bcryptjs');
 const { localsName } = require('ejs');
     
-const usuariosFilepath = path.join(__dirname, '../data/usuarios.json')
+const usuariosFilepath = path.join(__dirname, '../data/usuarios.json');
 
 var esElUsuario = undefined;
 
@@ -30,7 +30,7 @@ const userController = {
             if ( esElUsuario != undefined ) {
                 if ( encripta.compareSync( req.body.password, esElUsuario.password ) || (req.body.usuario != esElUsuario.usuario) ) {
                     
-                    // 2.1_ guardo el usuario en  session si NO ESTá logueado
+                    // 2.1_ guardo el usuario en  session (o sea, lo logueo) si NO ESTá logueado
                     if ( req.session.usuarioLogueado == undefined ) {
                         
                         req.session.usuarioLogueado = esElUsuario;
@@ -44,23 +44,26 @@ const userController = {
                         // 2.4_ Si tildó el recordarme
                         if ( req.body.recordarme != undefined ) {
                             // 2.4.1_ activo cookie
-                            res.cookie('usuarioLogeado', esElUsuario.usuario);
+                            res.cookie('usuarioRecordado', esElUsuario.usuario, { maxAge: 3600 });
+                        } else {
+                            res.cookie('usuarioRecordado', '', { maxAge: 3600 });   
                         }
     
                         // 2.5_ redirecciono a Home
                         console.log(`Usuario ${esElUsuario.usuario} logueado! `);
                         res.render('indexProtegido', {'usuarioLogueado': esElUsuario}); 
-                    } else {
+
+                    } else { // el usaurio ya estaba logueado, lo redirecciono a HOME protegido
                         res.render('indexProtegido', {'usuarioLogueado': esElUsuario}); 
                     }      
                 } else {
                     // 2.6_ El usuario ingresó mal la password o el nombre de usuario, redirecciona a login
                     res.render('login', {'resultadoValidaciones': [{msg:'Usuario o Contraseña inválidos '}], 'datosAnteriores': req.body});
                 }
-            } else {
+            } else { // el usuario no está registrado.
                 res.render('login', {'resultadoValidaciones': [{msg:'Usuario no registrado '}], 'datosAnteriores': req.body});    
             }
-        } else {
+        } else { // datos inválidos en el login.
             res.render('login', {'resultadoValidaciones': error.mapped(), 'datosAnteriores': req.body});
         }
         
@@ -140,8 +143,10 @@ const userController = {
         if ( esElUsuario != undefined ) {
             console.log(`Finalizó sesión el Usuario: ${esElUsuario.usuario} `);
         }
-        // pincha res.session.destroy();
+
         return res.redirect('/');
+        res.session.destroy();
+        
     }
 
 };
