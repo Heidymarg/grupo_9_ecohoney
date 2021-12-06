@@ -1,10 +1,9 @@
 function validacionDeInvitados(req, res, next){
    if(req.session.usuarioLogueado == undefined){
-      next();
+      // no encuentra la ruta res.render('/');
    } else {
-      req.session.cantLogueos = 1;
+      next();
    }
-
  } 
 
 module.exports = validacionDeInvitados;

@@ -35,4 +35,6 @@ let validacionDeLogin = [
 
 router.post('/login', validacionDeLogin, userController.validarUsuario);
 
+router.get('/logout', userController.logout);
+
 module.exports = router;

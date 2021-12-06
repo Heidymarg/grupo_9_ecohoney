@@ -1,10 +1,9 @@
 function validacionDeUsuario(req, res, next){
    if(req.session.usuarioLogueado){
-      next();
+      // no encuentra la ruta res.render('/');
    } else {
-      //res.redirect('index');
+      next();
    }
-
  }
     
 module.exports = validacionDeUsuario;
