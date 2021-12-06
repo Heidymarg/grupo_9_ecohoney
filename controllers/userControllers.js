@@ -46,7 +46,8 @@ const userController = {
 
                 // 2.5_ redirecciono a Home
                 console.log(`Usuario ${esElUsuario.usuario} logueado! `);
-                res.redirect('/');
+                res.render('indexProtegido', {'usuarioLogueado': esElUsuario}); 
+                //res.redirect('/');
                 //res.send('Datos de inicio de session: ' + req.session.usuarioLogueado.usuario + ' Cookie ' + req.cookie.usuarioLogeado);
 
             } else {
@@ -131,7 +132,11 @@ const userController = {
     },
 
     logout: (req,res) => {
-        console.log(`Finalizó sesión el Usuario: ${esElUsuario.usuario} `);
+
+        if ( esElUsuario != undefined ) {
+            console.log(`Finalizó sesión el Usuario: ${esElUsuario.usuario} `);
+        }
+        
         return res.redirect('/');
     }
 

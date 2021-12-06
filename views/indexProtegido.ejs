@@ -1,26 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+      
+    <%- include('./partials/head.ejs'); -%>
+    
+<body>
+
     <header class="flex-vertical">
         <div class="dentro-header">
             <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
             
             <div class="nav-bar">
                 <nav><!--nav> style="justify-content: space-around;"> -->
-                    <ul type="none">
-                        <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
-                        <li><a href="/">Home</a></li>
-                        <li><a href="#">Promociones</a></li>
-                        <li><a href="#">Ofertas</a></li>
-                        <li><a href="#">Ayuda</a></li>
-                    </ul>
-                    <br><br><br>
-                    <!-- if soy admin, muestro el menú ABM de productos -->
                     <% if ( locals && locals.usuarioLogueado != undefined ) { %>
                         <% if ( usuarioLogueado.perfil != 'Administrador' ) { %>
+                            <!-- if NO SOY admin, muestro el menú de público -->
+                            <ul type="none">
+                            <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Promociones</a></li>
+                            <li><a href="#">Ofertas</a></li>
+                            <li><a href="#">Ayuda</a></li>
+                            </ul>
+                            <br><br><br>
+                        <% } else { %>
+                            <!-- else soy admin, muestro el menú protegido de ABM de productos -->
                             <ul type="none">
                                 <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
                                 <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
                                 <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
                             </ul>
-                        <% } %>
+                        <% } %>    
                     <% } %>                      
                 </nav>
             </div>
@@ -48,3 +57,14 @@
         </div>
         
     </header> 
+    
+    <main class="flex-vertical">
+        
+        <div><center><h2>Acá va la Home, pero falla porque no puedo pasarle la variable listadoOfertas que es de mainController</h2></center></div>
+
+    </main>
+    
+    <%- include( './partials/footer.ejs' ); -%>
+
+</body>
+</html>
