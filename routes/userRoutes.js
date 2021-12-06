@@ -1,15 +1,19 @@
 const express = require( 'express' );
 const router = express.Router();
 
+/* para sprint 5 */
 const {check} = require('express-validator');
+/* para sprint 5 */
 
 const userController = require('../controllers/userControllers');
 
+/* para sprint 5 */
 const validacionDeInvitados = require('../middlewares/validacionDeInvitados');
 const validacionDeUsuario = require('../middlewares/validacionDeUsuario');
- 
-router.get('/registro', validacionDeInvitados, userController.mostrar);
-router.get('/registro', validacionDeUsuario, userController.profile);
+/* para sprint 5 */
+
+router.get('/registro', userController.mostrar);
+router.get('/registro', userController.profile);
 
 let validacionDeRegistracion = [ 
         check('nombre').notEmpty().withMessage('Completar el Nombre y Apellido').bail(), 
@@ -28,13 +32,14 @@ let validacionDeRegistracion = [
 
 router.post('/registro', validacionDeRegistracion, userController.registro);
 
-router.get('/login', userController.login);
+router.get('/login', validacionDeInvitados, userController.login);
 
 let validacionDeLogin = [ 
     check('usuario').notEmpty().withMessage('Completar el usuario ').isEmail().withMessage('No es un nombre de usuario válido').bail(), 
     check('password').notEmpty().withMessage('Completar la Contraseña, mínimo 8 caracteres ').bail(), 
 ];
 
+//router.post('/login', validacionDeLogin, validacionDeUsuario,userController.validarUsuario);
 router.post('/login', validacionDeLogin, userController.validarUsuario);
 
 router.get('/logout', userController.logout);

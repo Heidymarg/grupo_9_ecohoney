@@ -9,11 +9,9 @@ function recordameLogueado(req, res, next) {
 
     if ( (res.cookies.usuarioRecordado != undefined) && (req.session.usuarioLogueado == undefined) ) {
         let usuariosArray = JSON.parse(fileSys.readFileSync(usuariosFilepath, 'utf8'));
-        usuarioConCookie = usuariosArray.find( u => { return u.usuario == res.cookies.usuarioRecordado } );
+        usuarioConCookie = usuariosArray.find( user => { return user.usuario == res.cookies.usuarioRecordado } );
         req.session.usuarioLogueado = usuarioConCookie;
-    }
-
-    
+    }  
 }
 
 module.exports = recordameLogueado;

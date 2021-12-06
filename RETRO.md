@@ -99,3 +99,27 @@ Menos de
 
 Dejar de hacer
 •	No finalizar aquello que empezamos con determinacion.
+
+
+Sprint 5
+
+Comenzar a hacer
+•   Vamos a hacer guias propias de los videos de PG;
+•   Arreglar detalles de sprint anteriores;
+
+Seguir haciendo
+•	Las reuniones daily y weekly por zoom y whatsapp;
+•   Llevar al día las clases y ejercicios del PG;
+•   Practicar más código;
+
+Más de
+•	Planificar en Trello;
+•   Documentar lo hecho;
+•   
+
+Menos de 
+•   Conformarnos con lo hecho.
+
+
+Dejar de hacer
+•	No finalizar aquello que empezamos con determinacion.

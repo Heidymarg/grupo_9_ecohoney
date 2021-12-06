@@ -1,10 +1,11 @@
 function validacionDeUsuario(req, res, next){
-   if(req.session.usuarioLogueado != undefined){
-      next();
+   if( !req.session.usuarioLogueado ){
+      res.redirect('/usuarios/login');
+      
    } else {
-      //res.send('Acceso sólo a usuarios logueados');
-      res.render('login');
+      res.render('indexProtegido', {'usuarioLogueado': esElUsuario,  'listado': listaDeIndex,'listadoOfertas': listaOfertas} );
    }
+   next();
  }
     
 module.exports = validacionDeUsuario;

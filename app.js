@@ -4,8 +4,8 @@ const app = express();
 const path = require( "path" );
 const multer = require('multer');
 
-
 /* ***** Para Strint 5 ***** */
+const encripta = require('bcryptjs');
 var cookieParser = require('cookie-parser')
 const cookieSession = require('cookie-session');
 var recordameLogueado = require('../grupo_9_ecohoney/middlewares/recordameLogueado');
@@ -19,7 +19,7 @@ app.use(express.json());
 /* ***** Para Strint 5 ***** */
 app.use(cookieParser());
 app.use(cookieSession( {secret: "EcoHoney!!!", maxAge: 60 * 60} ));
-app.use( recordameLogueado );
+//app.use( recordameLogueado );
 /* ***** Para Strint 5 ***** */
 
 app.set('view engine', 'ejs'); 

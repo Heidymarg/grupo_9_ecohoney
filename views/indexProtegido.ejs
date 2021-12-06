@@ -59,8 +59,68 @@
     
     <main class="flex-vertical">
         
-        <div><center><h2>Acá va la Home, pero falla porque no puedo pasarle la variable listadoOfertas que es de mainController</h2></center></div>
+        <div class="flex-Horizontal"> <!--cambie flex-vertical por horizontal, luego adaptamos-->
+            <!---------------OFERTAS------------------->
+            <div class=etiqueta-oferta>
+                <p class="titulo-ofertas">Ofertas especiales</p>
+                
+            </div>
 
+            <section class="Ofertas">
+                <div class="productos">
+                
+                    <% for(let i = 0; (listadoOfertas.length - i) > 0; i++) { %>
+
+                        <article>
+                            <!-- <a href="/productos/detalle/<% listadoOfertas[i].idPrd %>"><img src=<%= listadoOfertas[i].foto %> alt=""></a> -->
+                            <a href="/productos/detalle/<%= listadoOfertas[i].idPrd %>"><img src=<%= listadoOfertas[i].foto %> alt=""></a>
+                            <div class="contenedor1">
+                                <i class="fas fa-cart-plus"></i></i>
+                                <p class="precios"><%= listadoOfertas[i].precio %></p>
+                                <p class="descuentos"><%= listadoOfertas[i].bonif %></p>
+                                <p class="descripciones"><%= listadoOfertas[i].desc %></p>
+                            </div>
+                        </article>
+
+                    <% } %>
+
+                </div>
+            </section>
+            <!-------------------Fin seccion scrollable de Ofertas----------------->
+            
+            <!---------------Seccion scrollable de promociones---Esta seccion la cambie por especial de abejas.---------------->
+            
+            <!--ETIQUETA ESPECIAL DE ABEJAS-->
+            <div class=Etiqueta-Especial-Abejas>
+              <p class="titulo-Especial-abejas">Especial de Abejas</p>
+            </div>
+            
+            
+            <!-----ABEJAS---->
+
+            <section class="abejas">
+                <div class="productos-abejas">
+                   
+                    <% for(let i = 0; (listado.length - i) > 0; i++) { %>
+
+                        <article>
+                            <!-- <a href="/productos/detalle"><img src=<%= listado[i].foto %> alt=""></a> -->
+                            <a href="/productos/detalle/<%= listado[i].idPrd %>"><img src=<%= listado[i].foto %> alt=""></a>
+                            <div class="contenedor1">
+                                <i class="fas fa-cart-plus"></i></i>
+                                <p class="precios"><%= listado[i].precio %></p>
+                                <p class="descuentos"><%= listado[i].bonif %></p>
+                                <p class="descripciones"><%= listado[i].desc %></p>
+                            </div>
+                        </article>
+
+                    <% } %>    
+                    
+                </div>    
+                    
+            
+            </section>
+        </div>
     </main>
     
     <%- include( './partials/footer.ejs' ); -%>

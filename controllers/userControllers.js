@@ -4,6 +4,11 @@ const fileSys = require('fs');
 const encripta = require('bcryptjs');
 const { localsName } = require('ejs');
     
+const abejasFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
+const listaOfertas = JSON.parse(fileSys.readFileSync(abejasFilepath, 'utf-8'));
+const otrosProductosFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
+const listaDeIndex = JSON.parse(fileSys.readFileSync(otrosProductosFilepath, 'utf-8'));
+
 const usuariosFilepath = path.join(__dirname, '../data/usuarios.json');
 
 var esElUsuario = undefined;
@@ -42,26 +47,25 @@ const userController = {
                         // completar con código
     
                         // 2.4_ Si tildó el recordarme
-                        if ( req.body.recordarme != undefined ) {
+                        if ( req.body.recordarme == undefined ) {
                             // 2.4.1_ activo cookie
-                            res.cookie('usuarioRecordado', esElUsuario.usuario, { maxAge: 3600 });
-                        } else {
-                            res.cookie('usuarioRecordado', '', { maxAge: 3600 });   
-                        }
-    
+                            res.cookie('usuarioRecordado', esElUsuario.usuario, { maxAge: 24 * 60 * 60 * 1000 });
+                        } 
+                        
                         // 2.5_ redirecciono a Home
                         console.log(`Usuario ${esElUsuario.usuario} logueado! `);
-                        res.render('indexProtegido', {'usuarioLogueado': esElUsuario}); 
-
-                    } else { // el usaurio ya estaba logueado, lo redirecciono a HOME protegido
-                        res.render('indexProtegido', {'usuarioLogueado': esElUsuario}); 
+                        res.render('indexProtegido', {'usuarioLogueado': esElUsuario,  'listado': listaDeIndex,'listadoOfertas': listaOfertas}); 
+                        
+                    } else { // el usuario ya estaba logueado, lo redirecciono a HOME protegido
+                        res.render('indexProtegido', {'usuarioLogueado': esElUsuario,  'listado': listaDeIndex,'listadoOfertas': listaOfertas}); 
                     }      
                 } else {
                     // 2.6_ El usuario ingresó mal la password o el nombre de usuario, redirecciona a login
                     res.render('login', {'resultadoValidaciones': [{msg:'Usuario o Contraseña inválidos '}], 'datosAnteriores': req.body});
                 }
-            } else { // el usuario no está registrado.
-                res.render('login', {'resultadoValidaciones': [{msg:'Usuario no registrado '}], 'datosAnteriores': req.body});    
+            } else { // el usuario no está registrado, entonces es un GUEST, se redirecciona al HOME.
+                res.redirect('/');    
+
             }
         } else { // datos inválidos en el login.
             res.render('login', {'resultadoValidaciones': error.mapped(), 'datosAnteriores': req.body});
@@ -136,6 +140,8 @@ const userController = {
 
     profile: (req, res) => {
 
+        res.send('Profile de usuario ');
+
     },
 
     logout: (req,res) => {
@@ -144,7 +150,8 @@ const userController = {
             console.log(`Finalizó sesión el Usuario: ${esElUsuario.usuario} `);
         }
 
-        return res.redirect('/');
+        res.clearCookie('usuarioRecordado');
+        res.redirect('/');
         res.session.destroy();
         
     }
