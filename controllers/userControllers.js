@@ -1,6 +1,7 @@
 const { request } = require('http');
 const path = require('path');
 const fileSys = require('fs');
+const encripta = require('bcryptjs');
     
 const usuariosFilepath = path.join(__dirname, '../data/usuarios.json')
 
@@ -18,20 +19,16 @@ const userController = {
 
         if (error.isEmpty()) {
         
-            // res.redirect( 'login' ); 
-            // res.render('login')
-            //res.send('datosDelFormulario ' + req.body.email + ' ' + req.body.password + ' ' + req.body.recordarme)
-            
             // 1_ busco el usuario en el archivo usuarios.json
             let usuariosArray = JSON.parse(fileSys.readFileSync(usuariosFilepath, 'utf8'));
-            let esElUsuario = usuariosArray.find( u => { u.usuario == req.body.usuario } );
+            let esElUsuario = usuariosArray.find( u => { return u.usuario == req.body.usuario } );
 
             // 2_ Si el usuario está registrado, verifico su password
-            if ( bcrypt.compareSync( req.body.password, esElUsuario.password ) ) {
+            if ( encripta.compareSync( req.body.password, esElUsuario.password ) ) {
                     
                 // 2.1_ guardo el usuario en  session
-                // completar con código
-
+                req.session.usuarioLogueado = esElUsuario;
+                req.session.cantLogueos = null;
                 // 2.2_ muestro datos de usuario en el header
                 // completar con código
 
@@ -45,8 +42,8 @@ const userController = {
                 }
 
                 // 2.5_ redirecciono a Home
-                // completar con código
-                
+                res.redirect('index');
+
             } else {
                 // 2.6_ El usuario ingresó mal la password, redirecciona a login
                 res.render('login', {'resultadoValidaciones': error.mapped(), 'datosAnteriores': req.body});
@@ -88,8 +85,8 @@ const userController = {
             let bcrypt;
             let passOculta;
             if ( req.body.pass === req.body.pass_confirm ) {
-                bcrypt = require('bcryptjs');
-                passOculta = bcrypt.hashSync( req.body.pass_confirm, 10 );
+                //bcrypt = require('bcryptjs');
+                passOculta = encripta.hashSync( req.body.pass_confirm, 10 );
             }
 
             // 4_ Cargo los datos del form en el usuario nuevo

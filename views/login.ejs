@@ -22,10 +22,10 @@
                 <br>
                 <form method="POST" action="/usuarios/login">
                     <label>Usuario</label>
-                    <input type="email" id="email" name="email"> 
+                    <input type="email" id="email" name="usuario"> 
                     <% if ( locals && locals.resultadoValidaciones ) {
-                        if ( resultadoValidaciones.email != undefined )  { %>
-                            <p class="feedback"> <%= resultadoValidaciones.email.msg %></p>
+                        if ( resultadoValidaciones.usuario != undefined )  { %>
+                            <p class="feedback"> <%= resultadoValidaciones.usuario.msg %></p>
                         <% } %>
                     <% } %> 
                                                    

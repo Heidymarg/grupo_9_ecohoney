@@ -4,6 +4,7 @@ const app = express();
 const path = require( "path" );
 const multer = require('multer');
 
+
 /* ***** Para Strint 5 ***** */
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -15,8 +16,20 @@ app.use(express.urlencoded({ extended: false })); // Necesario para los Formular
 app.use(express.json());
 
 /* ***** Para Strint 5 ***** */
-//app.use(session( {secret:'ecohoney'} ));
-//app.use('cookie-parser');
+app.use(session( {
+    secret: 'EcoHoney!!!',
+    resave: false,
+    saveUninitialized: true
+  } ));
+
+
+const validacionDeInvitados = require('../grupo_9_ecohoney/middlewares/validacionDeInvitados');
+const validacionDeUsuario = require('../grupo_9_ecohoney/middlewares/validacionDeUsuario');
+
+app.use(validacionDeInvitados);
+app.use(validacionDeUsuario);
+
+app.use(cookieParser);
 /* ***** Para Strint 5 ***** */
 
 app.set('view engine', 'ejs'); 

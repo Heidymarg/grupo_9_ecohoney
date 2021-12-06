@@ -12,19 +12,26 @@
                         <li><a href="#">Ayuda</a></li>
                     </ul>
                     <br><br><br>
-                    <!-- if soy adim-->
-                    <ul type="none">
-                        <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
-                        <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
-                        <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
-                    </ul>
+                    <!-- if soy admin, muestro el menú ABM de productos -->
+                    <% if ( req.session.usuarioLogueado.perfil != 'Administrador' ) { %>
+                        <ul type="none">
+                            <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
+                            <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
+                            <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
+                        </ul>
+                    <% } %>
+                    
                 </nav>
             </div>
             
             <div class="login-registro">
                 <a href="/usuarios/login">Logging</a>
+                <% if ( req.session.usuarioLogueado.perfil != 'Administrador' ) { %>
+                    <%= req.session.usuarioLogueado.usuario %>
+                <% } %>    
                 <a href="/usuarios/registro">Registrate</a>
                 <a href="/productos/carrito">Mi Carrito<i class="fas fa-cart-plus"></i></a>
+
             </div>
 
         </div>
