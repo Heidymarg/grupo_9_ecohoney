@@ -24,11 +24,43 @@
                             <br><br><br>
                         <% } else { %>
                             <!-- else soy admin, muestro el menú protegido de ABM de productos -->
-                            <ul type="none">
-                                <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
-                                <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
-                                <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
-                            </ul>
+                            <nav>
+                                <nav  class="navbar_horflex nav-estilo-usuarios">
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/listar"><li>Listar usuarios</li></a></li>
+                                        <li><a href="/usuarios/registro"><li>Registrar Usuarios</li></a></li>
+                                        <li><a href="/usuarios/modificar"><li>Modificar Usuarios</li></a></li>
+                                        <li><a href="/usuarios/eliminar"><li>Eliminar Usuarios</li></a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/perfil/listar"><li>Listar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/agregar"><li>Agregar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/modificar"><li>Modificar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/eliminar"><li>Eliminar Perfiles</li></a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/intereses/listar"><li>Listar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/agregar"><li>Agregar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/modificar"><li>Modificar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/eliminar"><li>Eliminar Intereses</li></a></li>
+                                    </ul>
+                                </nav>
+                                <br>
+                                <nav class="navbar_horflex nav-estilo-productos">
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/productos/listar"><li>Listar Productos</li></a></li>
+                                        <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
+                                        <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
+                                        <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/productos/linea/listar"><li>Listar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/agregar"><li>Agregar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/modificar"><li>Modificar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/eliminar"><li>Eliminar Líneas</li></a></li>
+                                    </ul>
+                                </nav>
+                            </nav>
                         <% } %>    
                     <% } %>                      
                 </nav>

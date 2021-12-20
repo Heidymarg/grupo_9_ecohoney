@@ -14,6 +14,11 @@ const productController = {
     inicioHogar: (req,res) => { 
         res.render( 'lineaHogar', { usr: 'Oscar', listado: listaDeProductosAbejas }) 
     },
+
+	listar: (req, res) => {
+		res.send("Listar todos los productos - Página en construcción!!!");
+	},
+
     detalle:(req,res) => { 
         let id = req.params.id;
 
@@ -152,6 +157,32 @@ const productController = {
 		fs.writeFileSync(productsAbejasFilepath, JSON.stringify(listaDeProductosAbejas, null,' '))
 		res.redirect('/productos/lineaProductoDeLasAbejas')
 		},
+
+	/* *** Métodos para atender la gestión de Líneas de productos *** */
+	listarLinea: function(req,res) {
+		res.send("Líneas de Productos Listar - Página en construcción!!!");
+	},	
+	agregarLinea: function(req,res) {
+		res.send("Agregar Línea de Productos - Página en construcción!!!");
+	},
+	agregarGrabarLinea: function(req,res) {
+		res.send("Agregar Grabar Línea de Productos - Página en construcción!!!");
+	},
+	
+	modificarLinea: function(req,res) {
+		res.send("Modificar Línea de Productos - Página en construcción!!!");
+	},
+	modificarGrabarLinea: function(req,res) {
+		res.send("Modificar GRabar Línea de Productos - Página en construcción!!!");
+	},
+
+	eliminarLinea: function(req,res) {
+		res.send("Eliminar Línea de Productos - Página en construcción!!!");
+	},
+	eliminarGrabarLinea: function(req,res) {
+		res.send("Eliminar Grabar Línea de Productos - Página en construcción!!!");
+	}
+
 };
 
 

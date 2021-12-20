@@ -5,6 +5,50 @@
     box-sizing: border-box;
 }
 
+header, head, footer {
+    background-color: rgb(221, 200, 12);
+}
+  
+#header_main_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+  
+#footer_main_info {
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+}
+  
+#footer_deco {
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+  
+.navbar_horflex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.nav-estilo-usuarios {
+    background-color: honeydew;
+    border: 2px solid rebeccapurple;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+.nav-estilo-productos {
+    background-color: honeydew;
+    border: 2px solid rebeccapurple;
+    border-radius: 5px;
+    padding: 7px;
+}
+
 .flex-horizontal {
     width: 100%;
     display: flex;
@@ -42,8 +86,7 @@
 }
 /*MAIN*/
 main {
-    border: 1px solid olivedrab ;
-    background-color: rgb(122, 187, 128);
+    background-color: rgb(172, 221, 188)
 }
 
 .banner {
@@ -71,11 +114,14 @@ main {
     width: 100%;
     padding: 10px 10px;
     display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
 .productos {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
 }
@@ -84,8 +130,9 @@ main {
     width: 100%;
     border-top: solid 1px #ebebeb; 
     display: flex;
-    position: relative; 
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /*flex-direction: column;*/
  }
     
 main section article img{
@@ -354,9 +401,9 @@ footer{
 }
 
 
-/*-------------MediaQ 5px------------*/
+/*-------------MediaQ 480px------------*/
 
-@media (min-width:5px) {
+@media (max-width: 480px){
 
 header {
         width: 100vw;
@@ -608,9 +655,9 @@ header {
       /* * * * Fin de Estylos Producto Detallado * * * */
 
 }
-/*-------------MediaQ 5px------------*/
+/*-------------MediaQ 480px------------*/
 
-@media (min-width:768px) {
+@media (min-width: 481px) and (max-width: 768px){
     header {
         width: 100vw;
         /*position: fixed;
@@ -676,6 +723,8 @@ header {
         flex-direction: row;
         justify-content: center;
         justify-items: center;
+        list-style-type: none;
+        padding-right: 7px;
     }
     
     .login-registro {
@@ -913,7 +962,7 @@ span {
 
 }    
 
-@media (min-width: 1024px){
+@media (min-width: 769px) and (max-width: 1279px){
     header {
         width: 100vw;
         /*position: fixed;
@@ -977,6 +1026,8 @@ span {
         flex-direction: row;
         justify-content: center;
         justify-items: center;
+        list-style-type: none;
+        padding-right: 7px;
     }
     
     .login-registro {
@@ -1182,7 +1233,7 @@ span {
 }
 
 
-@media (min-width: 1440px){
+@media (min-width: 1279px) and (max-width: 2559px) {
     header {
         width: 100vw;
         /*position: fixed;
@@ -1246,6 +1297,8 @@ span {
         flex-direction: row;
         justify-content: center;
         justify-items: center;
+        list-style-type: none;
+        padding-right: 7px;
     }
     
     .login-registro {
@@ -1531,6 +1584,8 @@ span {
         flex-direction: row;
         justify-content: center;
         justify-items: center;
+        list-style-type: none;
+        padding-right: 7px;
     }
     
     .login-registro {

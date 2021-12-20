@@ -25,24 +25,23 @@ router.get('/lineaHogar', productController.inicioHogar);
 
 router.get('/carrito', productController.carrito);
 
+/* *** Listar todos los productos *** */
+router.get('/listar', productController.listar);
+
 /*** Agregar nuevo producto ***/ 
 router.get('/productoAgregar', productController.productoMostrarFormCarga);
 router.post('/lineaProductoDeLasAbejas', upload.single('foto'), productController.grabar); 
 
-
-/*** Datos de un producto ***/ 
+/*** Mostrar datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 
 
 /*** EDIT ONE PRODUCT ***/ 
-
-// leer el producto desde el archivo, pasarlo a JSON,
+// falta leer el producto desde el archivo, pasarlo a JSON,
 // modificar el campo
 // hacer un stringify y grabar a arcchivo.
 router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 router.post('/productoModificar', productController.traerParaModificar);
 router.patch('/edit/:id', upload.single('foto'),productController.modificar); 
-
-
 
 /* *** Eliminar un producto *** */ 
 router.get('/productoDelete', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
@@ -52,5 +51,13 @@ router.post('/productoDelete', productController.traerParaConfirmar); // ruta qu
 router.delete('/productoDelete/:idPrd', productController.eliminar);       // ruta que invoca al método que efectivamente elimina
                                                             // el ítem seleccionado.
 
+/* *** Rutas para atender la gestión de Líneas de productos *** */
+router.get('/linea/listar', productController.listarLinea);
+router.get('/linea/agregar', productController.agregarLinea);
+router.post('/linea/agregar', productController.agregarGrabarLinea);
+router.get('/linea/modificar', productController.modificarLinea);
+router.post('/linea/modificar', productController.modificarGrabarLinea);
+router.get('/linea/eliminar', productController.eliminarLinea);
+router.post('/linea/eliminar', productController.eliminarGrabarLinea);
 
 module.exports = router;
