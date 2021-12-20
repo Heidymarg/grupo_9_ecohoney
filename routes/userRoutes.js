@@ -30,10 +30,10 @@ let validacionDeRegistracion = [
 router.get('/registro', userController.registroMostrar);    
 router.post('/registro', validacionDeRegistracion, userController.registroGrabar);
 
-//router.get('/modificar', userController.registroModificarMostrar);
+router.get('/modificar', validacionDeRegistracion, userController.registroModificarMostrar);
 router.post('/modificar',userController.registroModificarGrabar);
 
-//router.get('/eliminar', userController.registroEliminarMostrar);
+router.get('/eliminar', validacionDeRegistracion, userController.registroEliminarMostrar);
 router.post('/eliminar', userController.registroEliminarGrabar);
 
 router.get('/listar', userController.listar);

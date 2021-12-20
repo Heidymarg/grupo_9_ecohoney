@@ -133,11 +133,16 @@ const userController = {
             return res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body});
         } 
     },
-    registroMostrar:(req,res) => { 
+    registroMostrar: (req,res) => { 
         //return res.render('registro');
         res.render('registro', {'datosAnteriores': req.body} );
     },
 
+    registroModificarMostrar: (req,res) => { 
+        const {validationResult} = require('express-validator');
+        let errores = validationResult( req );
+        res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body} );
+    },
     registroModificarGrabar:(req,res) => { 
         //return res.render('registro', {'datosAnteriores': req.body} );
         res.send("Usuarios modificar grabar  - en construcción ")
@@ -146,6 +151,11 @@ const userController = {
     registroEliminarGrabar:(req,res) => { 
         //return res.render('registro');
         res.send("Usuarios eliminar grabar - en construcción ")
+    },
+    registroEliminarMostrar: (req,res) => { 
+        const {validationResult} = require('express-validator');
+        let errores = validationResult( req );
+        res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body} );
     },
 
     listar: (req,res) => { res.send("Usuarios Listar - en construcción ") },
