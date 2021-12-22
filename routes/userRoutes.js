@@ -12,9 +12,6 @@ const validacionDeInvitados = require('../middlewares/validacionDeInvitados');
 const validacionDeUsuario = require('../middlewares/validacionDeUsuario');
 /* para sprint 5 */
 
-router.get('/registro', userController.mostrar);
-router.get('/registro', userController.profile);
-
 let validacionDeRegistracion = [ 
         check('nombre').notEmpty().withMessage('Completar el Nombre y Apellido').bail(), 
         check('user').notEmpty().withMessage('Completar el Nombre de Usuario').bail(), 
@@ -30,7 +27,16 @@ let validacionDeRegistracion = [
         check('privacidad').notEmpty().withMessage('Completar el campo Términos y Condiciones de Privacidad ').bail()
     ];
 
-router.post('/registro', validacionDeRegistracion, userController.registro);
+router.get('/registro', userController.registroMostrar);    
+router.post('/registro', validacionDeRegistracion, userController.registroGrabar);
+
+router.get('/modificar', validacionDeRegistracion, userController.registroModificarMostrar);
+router.post('/modificar',userController.registroModificarGrabar);
+
+router.get('/eliminar', validacionDeRegistracion, userController.registroEliminarMostrar);
+router.post('/eliminar', userController.registroEliminarGrabar);
+
+router.get('/listar', userController.listar);
 
 router.get('/login', validacionDeInvitados, userController.login);
 
@@ -43,5 +49,24 @@ let validacionDeLogin = [
 router.post('/login', validacionDeLogin, userController.validarUsuario);
 
 router.get('/logout', userController.logout);
+
+/* *** Rutas para gestionar los Perfiles de Usuario *** */
+router.get('/perfil/listar', userController.listarPerfiles);
+router.get('/perfil/agregar', userController.agregarPerfil);
+router.post('/perfil/agregar', userController.agregarGrabarPerfil);
+router.get('/perfil/modificar', userController.modificarPerfil);
+router.post('/perfil/modificar', userController.modificarGrabarPerfil);
+router.get('/perfil/eliminar', userController.eliminarPerfil);
+router.post('/perfil/eliminar', userController.eliminarGrabarPerfil);
+
+/* *** Rutas para gestionar los Integeses de Usuario *** */
+router.get('/intereses/listar', userController.listarInteres);
+router.get('/intereses/agregar', userController.agregarInteres);
+router.post('/intereses/agregar', userController.agregarGrabarInteres);
+router.get('/intereses/modificar', userController.modificarInteres);
+router.post('/intereses/modificar', userController.modificarGrabarInteres);
+router.get('/intereses/eliminar', userController.eliminarInteres);
+router.post('/intereses/eliminar', userController.eliminarGrabarInteres);
+
 
 module.exports = router;

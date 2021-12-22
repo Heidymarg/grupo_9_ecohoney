@@ -73,7 +73,7 @@ const userController = {
         
     },  
     
-    registro:(req,res) => {
+    registroGrabar:(req,res) => {
         
         const {validationResult} = require('express-validator');
         let errores = validationResult( req );
@@ -133,16 +133,32 @@ const userController = {
             return res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body});
         } 
     },
-
-    mostrar:(req,res) => { 
-        return res.render('registro', {'datosAnteriores': req.body} );
+    registroMostrar: (req,res) => { 
+        //return res.render('registro');
+        res.render('registro', {'datosAnteriores': req.body} );
     },
 
-    profile: (req, res) => {
-
-        res.send('Profile de usuario ');
-
+    registroModificarMostrar: (req,res) => { 
+        const {validationResult} = require('express-validator');
+        let errores = validationResult( req );
+        res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body} );
     },
+    registroModificarGrabar:(req,res) => { 
+        //return res.render('registro', {'datosAnteriores': req.body} );
+        res.send("Usuarios modificar grabar  - en construcción ")
+    },
+
+    registroEliminarGrabar:(req,res) => { 
+        //return res.render('registro');
+        res.send("Usuarios eliminar grabar - en construcción ")
+    },
+    registroEliminarMostrar: (req,res) => { 
+        const {validationResult} = require('express-validator');
+        let errores = validationResult( req );
+        res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body} );
+    },
+
+    listar: (req,res) => { res.send("Usuarios Listar - en construcción ") },
 
     logout: (req,res) => {
 
@@ -154,7 +170,23 @@ const userController = {
         res.redirect('/');
         res.session.destroy();
         
-    }
+    },
 
+    /* *** Métodos para atender la gestin de perfiles e intereses de usuarios *** */
+    listarPerfiles: (req,res) => {res.send("Perfiles Listar - Página en construcción!!!")},
+    agregarPerfil: (req,res) => {res.send("Perfiles Agregar - Página en construcción!!!")},
+    agregarGrabarPerfil: (req,res) => {res.send("Perfiles Agregar Grabar - Página en construcción!!!")},
+    modificarPerfil: (req,res) => {res.send("PERFILES Modificar - Página en construcción!!!")},
+    modificarGrabarPerfil: (req,res) => {res.send("Perfiles Modificar Grabar - Página en construcción!!!")},
+    eliminarPerfil: (req,res) => {res.send("Perfiles Eliminar - Página en construcción!!!")},
+    eliminarGrabarPerfil: (req,res) => {res.send("PErfiles Eliminar Grabar - Página en construcción!!!")},
+
+    listarInteres: (req,res) => {res.send("Intereses Listar - Página en construcción!!!")},
+    agregarInteres: (req,res) => {res.send("Intereses Agregar - Página en construcción!!!")},
+    agregarGrabarInteres: (req,res) => {res.send("Intereses Agregar Grabar- Página en construcción!!!")},
+    modificarInteres: (req,res) => {res.send("Intereses Modificar - Página en construcción!!!")},
+    modificarGrabarInteres: (req,res) => {res.send("Intereses Modificar Grabar - Página en construcción!!!");},
+    eliminarInteres: (req,res) => {res.send("Intereses Eliminar - Página en construcción!!!")},
+    eliminarGrabarInteres: (req,res) => {res.send("Intereses Eliminar Grabar - Página en construcción!!!")}
 };
 module.exports = userController;

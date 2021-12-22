@@ -15,11 +15,43 @@
                     <!-- if soy admin, muestro el menú ABM de productos -->
                     <% if ( locals && locals.usuarioLogueado != undefined ) { %>
                         <% if ( usuarioLogueado.perfil != 'Administrador' ) { %>
-                            <ul type="none">
-                                <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
-                                <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
-                                <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
-                            </ul>
+                            <nav class="usuariosAdmins">
+                                <nav  class="navbar_horflex">
+                                    <ul>
+                                        <li><a href="/users/listar"><li>Listar Usuarios</li></a></li>
+                                        <li><a href="/users/registar"><li>Registrar Usuarios</li></a></li>
+                                        <li><a href="/users/modificar"><li>Modificar Usuarios</li></a></li>
+                                        <li><a href="/users/eliminar"><li>Eliminar Usuarios</li></a></li>
+                                    </ul>
+                                    <ul>
+                                        <li><a href="/users/perfil/listar"><li>Listar Perfiles</li></a></li>
+                                        <li><a href="/users/perfil/agregarr"><li>Agregar Perfiles</li></a></li>
+                                        <li><a href="/users/perfil/modificar"><li>Modificar Perfiles</li></a></li>
+                                        <li><a href="/users/perfil/eliminar"><li>Eliminar Perfiles</li></a></li>
+                                    </ul>
+                                    <ul>
+                                        <li><a href="/users/intereses/listar"><li>Listar Intereses</li></a></li>
+                                        <li><a href="/users/intereses/agregarr"><li>Agregar Intereses</li></a></li>
+                                        <li><a href="/users/intereses/modificar"><li>Modificar Intereses</li></a></li>
+                                        <li><a href="/users/intereses/eliminar"><li>Eliminar Intereses</li></a></li>
+                                    </ul>
+                                </nav>
+                        
+                                <nav class="navbar_horflex">
+                                    <ul>
+                                        <li><a href="/productos/listar"><li>Listar Productos</li></a></li>
+                                        <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
+                                        <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
+                                        <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
+                                    </ul>
+                                    <ul>
+                                        <li><a href="/productos/linea/listar"><li>Listar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/agregarr"><li>Agregar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/modificar"><li>Modificar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/eliminar"><li>Eliminar Líneas</li></a></li>
+                                    </ul>
+                                </nav>
+                            </nav>
                         <% } %>
                     <% } %>                      
                 </nav>
