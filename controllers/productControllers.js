@@ -4,6 +4,8 @@ const fs = require('fs');
 const productsAbejasFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
 var listaDeProductosAbejas = JSON.parse(fs.readFileSync(productsAbejasFilepath, 'utf8'));
 
+const {validationResult} = require('express-validator');
+
 const productController = {
     inicioCuidadoPersonal: (req,res) => { 
         res.render( 'lineaCuidadoPersonal', {usr: 'NoheliaK', listado:listaDeProductosAbejas}) 
@@ -163,10 +165,23 @@ const productController = {
 		res.send("Líneas de Productos Listar - Página en construcción!!!");
 	},	
 	agregarLinea: function(req,res) {
-		res.send("Agregar Línea de Productos - Página en construcción!!!");
+
+		let errores = validationResult(req);
+		if(!errores.isEmpty()){
+			res.render("lineasAgregar", {'resultadoValidaciones': errores.mapped()})
+		} /*else {
+			res.redirect('lineasAgregar')
+		}*/
+		
 	},
 	agregarGrabarLinea: function(req,res) {
-		res.send("Agregar Grabar Línea de Productos - Página en construcción!!!");
+		let errores = validationResult(req);
+		if(errores.isEmpty()){
+		/*res.send( req.body.linea + ' ' + errores)
+		acá va la lógica para agregar la base de datos*/
+		/*res.render('lineasAgregar', )*/
+		res.send(req.body.linea)
+		} 
 	},
 	
 	modificarLinea: function(req,res) {

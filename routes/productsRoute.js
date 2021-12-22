@@ -3,6 +3,9 @@ const productController = require('../controllers/productControllers');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const {check} = require('express-validator');
+
+
 
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
@@ -53,8 +56,12 @@ router.delete('/productoDelete/:idPrd', productController.eliminar);       // ru
 
 /* *** Rutas para atender la gestión de Líneas de productos *** */
 router.get('/linea/listar', productController.listarLinea);
-router.get('/linea/agregar', productController.agregarLinea);
-router.post('/linea/agregar', productController.agregarGrabarLinea);
+
+let validacionLineaNueva = [ 
+    check('linea').notEmpty().withMessage('Completar el campo ').bail()   
+];
+router.get('/linea/agregar',validacionLineaNueva, productController.agregarLinea);
+router.post('/linea/agregar',validacionLineaNueva, productController.agregarGrabarLinea);
 router.get('/linea/modificar', productController.modificarLinea);
 router.post('/linea/modificar', productController.modificarGrabarLinea);
 router.get('/linea/eliminar', productController.eliminarLinea);
