@@ -20,7 +20,7 @@
             <a href="/usuarios/logout">Salir</a>   
             <a href="/usuarios/registro">Registrate</a>
             <a href="/productos/carrito">Mi Carrito<i class="fas fa-cart-plus"></i></a>
-
+            <% if( !logueado == undefined ) { %> <p><%= logueado %></p> <% } %>
         </div>
 
     </div>

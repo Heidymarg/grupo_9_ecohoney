@@ -35,12 +35,16 @@ const productController = {
         res.render('formularioCargaProducto'); 
     },
 
+    carrito:(req,res) => { 
+        res.render('carrito') 
+    },
+
+    // Update - Method to update
 	productoMostrarFormModificar: (req,res) => { 	
+		
 		let	prodAModificar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
-        
-	res.render('formularioModificarProducto',{'prodAModificar':prodAModificar}); 
-	//res.send("Funciona" + req.body.idPrd);
-	     
+		res.render('formularioModificarProducto',{'prodAModificar':prodAModificar}); 	     
+
     },
 	traerParaModificar: ( req,res ) => {
 
@@ -55,48 +59,15 @@ const productController = {
 			res.redirect('formularioModificarProducto');
 		}
 	},
-
-    carrito:(req,res) => { 
-        res.render('carrito') 
-    },
-
-    // Update - Form to edit
-	editar: (req, res) => {
-		let id = req.params.id
-		let productToEdit = products.find(product => product.idPrd == id)
-		res.render('product-edit-form', {productToEdit})
-	},
-
-    // Update - Method to update
 	modificar: (req, res) => {
-		let id = req.params.id;
-		let productToEdit = listaDeProductosAbejas.find((product) => { return product.idPrd == id });
-		res.send('Producto a Modificar' + productToEdit)
-		
-		//let productToEdit = products.find(product => product.idPrd == id)
-		/*let image
 
-		if(req.files[0] != undefined){
-			image = req.files[0].filename
-		} else {
-			image = productToEdit.image
-		}
-
-		productToEdit = {
-			idPrd: productToEdit.idPrd,
-			...req.body,
-			image: image,
-		};
-		
-		let newProducts = products.map(product => {
-			if (product.idPrd == productToEdit.idPrd) {
-				return product = {...productToEdit};
-			}
-			return product;
-		})
-
-		fs.writeFileSync(productsFilePath, JSON.stringify(newProducts, null, ' '));
-		res.redirect('/');*/
+		let productToEdit = listaDeProductosAbejas.find((product) => { return product.idPrd == req.params.id });
+		res.send('Producto a Modificar ' + productToEdit.idPrd + ' ' + productToEdit.nombre );
+		/*
+		22/12/2021 el form trae el producto a modificar.
+		Falta la lógica para modificar en base de datos
+		de sprint 6.
+		*/
 	},
 
 	// Delete
@@ -149,15 +120,12 @@ const productController = {
 
     // Create -  Method to store
 	grabar: (req, res) => {
-		let productCarga={
-		idPrd: (parseInt(listaDeProductosAbejas[listaDeProductosAbejas.length-1].idPrd) +1).toString(),
-
-		 ...req.body,
-		  foto:'/images/' + req.file.filename}
-		 
-		listaDeProductosAbejas.push(productCarga)
-		fs.writeFileSync(productsAbejasFilepath, JSON.stringify(listaDeProductosAbejas, null,' '))
-		res.redirect('/productos/lineaProductoDeLasAbejas')
+		/* 22/12/2021
+		anda el form de carga. Faltan las validaciones
+		y la lógica para grabar a base de datos.
+		*/
+		res.send( "El form de carga trae: " + req.body.codigo + ' ' + req.body.nombre + ' ' + req.body.Descripcion 
+		+ ' ' + req.body.linea + ' ' + req.body.precio + ' ' + req.body.bonif + ' ' + req.body.foto);
 		},
 
 	/* *** Métodos para atender la gestión de Líneas de productos *** */

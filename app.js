@@ -48,4 +48,5 @@ app.use( "/productos", rutaProductos);
 app.use( "/usuarios", rutaUsuarios);
 /* ----------------- FIN ------------------ */
 
+
 app.listen( PORT, () => { console.log( `Eco HONeY corriendo en el puerto ${PORT}` ) } );
