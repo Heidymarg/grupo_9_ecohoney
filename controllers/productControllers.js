@@ -153,17 +153,19 @@ const productController = {
 	},
 	
 	modificarLinea: function(req,res) {
-		res.send("Modificar Línea de Productos - Página en construcción!!!");
+		res.render( "lineasModificar");
 	},
 	modificarGrabarLinea: function(req,res) {
-		res.send("Modificar GRabar Línea de Productos - Página en construcción!!!");
+		//res.render("lineasModificar");*//
+		res.send("dato a grabar " + req.body.linea)
+		
 	},
 
 	eliminarLinea: function(req,res) {
-		res.send("Eliminar Línea de Productos - Página en construcción!!!");
+		res.render("lineasEliminar");
 	},
 	eliminarGrabarLinea: function(req,res) {
-		res.send("Eliminar Grabar Línea de Productos - Página en construcción!!!");
+		res.render("lineasEliminar ", {"id": req.body.idLinea});
 	}
 
 };
