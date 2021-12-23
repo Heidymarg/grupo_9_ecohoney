@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title> Linea Eliminar</title>
+
+    <%- include('./partials/head.ejs') %>
+
+<body>
+
+    <%- include( './partials/header.ejs' ) %>  
+  
+    <main>
+        <!--
+        <section>
+            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
+        </section>
+        -->
+        <center>
+            <div style='width: 33%'>
+                <br>
+                <h3> Linea Eliminar</h3><br>
+                <hr>
+                <br>
+                <form method="POST" action="/productos/linea/eliminar">
+                    <label> id de Línea </label>
+                    <input type="text" id=" " name="idLinea"> 
+                    <% if ( locals && locals.resultadoValidaciones ) {
+                        if ( resultadoValidaciones.linea != undefined )  { %>
+                            <p class="feedback"> <%= resultadoValidaciones.linea.msg %></p>
+                        <% } %>
+                    <% } %> 
+                                                   
+                   
+                    
+
+                    <br><br>
+                    <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="Ingresar">Ingresar</button>        
+                    <br><br>
+                    <hr>
+                    <br>
+                </form>
+            </div>
+           
+        </center>
+
+    </main>
+
+</body>
+    <%- include( './partials/footer.ejs' )%>
+</html>

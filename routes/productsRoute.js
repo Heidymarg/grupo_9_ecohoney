@@ -62,9 +62,19 @@ let validacionLineaNueva = [
 ];
 router.get('/linea/agregar',validacionLineaNueva, productController.agregarLinea);
 router.post('/linea/agregar',validacionLineaNueva, productController.agregarGrabarLinea);
+
+let validacionModificarLinea = [ 
+    check('linea').notEmpty().withMessage('Completar el campo ').bail()   
+];
 router.get('/linea/modificar', productController.modificarLinea);
-router.post('/linea/modificar', productController.modificarGrabarLinea);
-router.get('/linea/eliminar', productController.eliminarLinea);
-router.post('/linea/eliminar', productController.eliminarGrabarLinea);
+router.post('/linea/modificar',validacionModificarLinea ,  productController.modificarGrabarLinea);
+
+let validacionEliminarLinea = [ 
+    check('linea').notEmpty().withMessage('Completar el campo ').bail()   
+];
+
+router.get('/linea/eliminar', validacionEliminarLinea, productController.eliminarLinea);
+
+router.post('/linea/eliminar/:id', validacionEliminarLinea, productController.eliminarGrabarLinea);
 
 module.exports = router;
