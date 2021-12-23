@@ -3,6 +3,7 @@ const path = require('path');
 const fileSys = require('fs');
 const encripta = require('bcryptjs');
 const { localsName } = require('ejs');
+const { append } = require('express/lib/response');
     
 const abejasFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
 const listaOfertas = JSON.parse(fileSys.readFileSync(abejasFilepath, 'utf-8'));
@@ -42,7 +43,7 @@ const userController = {
                              
                         // 2.2_ muestro datos de usuario en el header
                         // completar con código
-    
+                        
                         // 2.3_ muestro menu extendido en header
                         // completar con código
     

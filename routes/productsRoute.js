@@ -32,16 +32,26 @@ router.get('/carrito', productController.carrito);
 router.get('/listar', productController.listar);
 
 /*** Agregar nuevo producto ***/ 
-router.get('/productoAgregar', productController.productoMostrarFormCarga);
-router.post('/lineaProductoDeLasAbejas', upload.single('foto'), productController.grabar); 
+let validacionModificacion = [
+    check('codigo').isEmpty().withMessage('Completar el campo').bail(),
+    check('nombre').isEmpty().withMessage('Completar el campo').bail(),
+    check('Descripcion').isEmpty().withMessage('Completar el campo').bail(),
+    check('linea').isEmpty().withMessage('Falta cargar la Línea de Producto').bail(),
+    check('precio').isEmpty().withMessage('Falta cargar el Precio').bail(),
+    check('bonif').isEmpty().withMessage('Falta cargar la Bonificación').bail(),
+    check('foto').isEmpty().withMessage('Falta subir una foto').bail()
+];
+router.get('/productoAgregar', validacionModificacion, productController.productoMostrarFormCarga);
+router.post('/lineaProductoDeLasAbejas', validacionModificacion, upload.single('foto'), productController.grabar); 
 
 /*** Mostrar datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 
 
 /*** EDIT ONE PRODUCT ***/ 
-// falta leer el producto desde el archivo, pasarlo a JSON,
-// modificar el campo
-// hacer un stringify y grabar a arcchivo.
+/*
+22/12/2021 Falta la validación de campos del sprint 5
+y la logica para grabar a DB del sprint 6
+*/
 router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 router.post('/productoModificar', productController.traerParaModificar);
 router.patch('/edit/:id', upload.single('foto'),productController.modificar); 
