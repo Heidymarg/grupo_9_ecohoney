@@ -34,10 +34,6 @@ module.exports = function(sequelize, dataTypes) {
             foreignKey: "id_perfil",
         });
     }
-   
-    let config = { tableName: "usuarios", timestapms: false };
-			
-    let usuario = sequelize.define(alias, cols, config );
 
     usuario.associate = function(models) {
         usuario.hasMany(models.intereses, {

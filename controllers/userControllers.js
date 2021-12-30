@@ -13,7 +13,6 @@ const listaDeIndex = JSON.parse(fileSys.readFileSync(otrosProductosFilepath, 'ut
 const usuariosFilepath = path.join(__dirname, '../data/usuarios.json');
 const db = require('../database/models');
 
-const db = require('../database/models');
 var esElUsuario = undefined;
 
 const userController = {
