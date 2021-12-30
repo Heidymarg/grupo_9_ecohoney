@@ -4,6 +4,10 @@ const fs = require('fs');
 const productsAbejasFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
 var listaDeProductosAbejas = JSON.parse(fs.readFileSync(productsAbejasFilepath, 'utf8'));
 
+const db = require('../database/models');
+const sequelize = db.sequelize;
+const op = db.Sequelize.Op;
+
 const {validationResult} = require('express-validator');
 
 const productController = {
@@ -121,35 +125,42 @@ const productController = {
     // Create -  Method to store
 	grabar: (req, res) => {
 		/* 22/12/2021
-		anda el form de carga. Faltan las validaciones
-		y la lógica para grabar a base de datos.
+		anda el form de carga. Falta, validación, multer y la lógica para grabar a base de datos.
 		*/
+		if ( req.file ) {
+			res.send("Hay Foto " + req.file)
+			
+		} else {
+			res.send("No hay Foto " + req.body)
+		}
+		/*
 		res.send( "El form de carga trae: " + req.body.codigo + ' ' + req.body.nombre + ' ' + req.body.Descripcion 
-		+ ' ' + req.body.linea + ' ' + req.body.precio + ' ' + req.body.bonif + ' ' + req.body.foto);
-		},
-
-	/* *** Métodos para atender la gestión de Líneas de productos *** */
-	listarLinea: function(req,res) {
-		res.send("Líneas de Productos Listar - Página en construcción!!!");
-	},	
-	agregarLinea: function(req,res) {
-
-		let errores = validationResult(req);
-		if(!errores.isEmpty()){
-			res.render("lineasAgregar", {'resultadoValidaciones': errores.mapped()})
-		} /*else {
-			res.redirect('lineasAgregar')
-		}*/
+		+ ' ' + req.body.linea + ' ' + req.body.precio + ' ' + req.body.bonif + ' ' + req.file );
+		*/
+	},
 		
+
+	/* * Métodos para atender la gestión de Líneas de productos * */
+	listarLinea: function(req,res) {
+		db.lineas.findAll()
+		.then( resultado => { res.send( resultado ) } )
+		//res.send("Líneas de Productos Listar - Página en construcción!!!");
+	},	
+
+	agregarLinea: function(req,res) {
+			res.render("lineasAgregar");
 	},
 	agregarGrabarLinea: function(req,res) {
+		let {validationResult} = require('express-validator');
 		let errores = validationResult(req);
 		if(errores.isEmpty()){
-		/*res.send( req.body.linea + ' ' + errores)
-		acá va la lógica para agregar la base de datos*/
-		/*res.render('lineasAgregar', )*/
-		res.send(req.body.linea)
-		} 
+			/* la lógica para grabar a BD */
+			db.lineas.create( { nombre: req.body.linea } );	
+			//res.send(req.body.linea)
+		} else {
+			res.render('lineasAgregar', {'resultadoValidaciones': errores.mapped()});
+			
+		}
 	},
 	
 	modificarLinea: function(req,res) {

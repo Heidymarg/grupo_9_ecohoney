@@ -53,7 +53,8 @@ router.get('/logout', userController.logout);
 /* *** Rutas para gestionar los Perfiles de Usuario *** */
 router.get('/perfil/listar', userController.listarPerfiles);
 router.get('/perfil/agregar', userController.agregarPerfil);
-router.post('/perfil/agregar', userController.agregarGrabarPerfil);
+let validacionDePerfil = [check('perfil').notEmpty().withMessage('Completar el campo nombre')];
+router.post('/perfil/agregar', validacionDePerfil, userController.agregarGrabarPerfil);
 router.get('/perfil/modificar', userController.modificarPerfil);
 router.post('/perfil/modificar', userController.modificarGrabarPerfil);
 router.get('/perfil/eliminar', userController.eliminarPerfil);

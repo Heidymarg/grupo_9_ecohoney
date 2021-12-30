@@ -63,18 +63,17 @@ router.post('/productoDelete', productController.traerParaConfirmar); // ruta qu
                                                             // devuelve datos para confirmación previa a la eliminación.
 router.delete('/productoDelete/:idPrd', productController.eliminar);       // ruta que invoca al método que efectivamente elimina
                                                             // el ítem seleccionado.
-
-/* *** Rutas para atender la gestión de Líneas de productos *** */
+/* * Rutas para atender la gestión de Líneas de productos * */
 router.get('/linea/listar', productController.listarLinea);
 
+router.get('/linea/agregar', productController.agregarLinea);
 let validacionLineaNueva = [ 
-    check('linea').notEmpty().withMessage('Completar el campo ').bail()   
+    check('linea').notEmpty().withMessage('Completar el campo Descripción').bail()   
 ];
-router.get('/linea/agregar',validacionLineaNueva, productController.agregarLinea);
 router.post('/linea/agregar',validacionLineaNueva, productController.agregarGrabarLinea);
 
 let validacionModificarLinea = [ 
-    check('linea').notEmpty().withMessage('Completar el campo ').bail()   
+    check('linea').notEmpty().withMessage('Completar el campo Descripción').bail()   
 ];
 router.get('/linea/modificar', productController.modificarLinea);
 router.post('/linea/modificar',validacionModificarLinea ,  productController.modificarGrabarLinea);
