@@ -12,6 +12,8 @@ const listaDeIndex = JSON.parse(fileSys.readFileSync(otrosProductosFilepath, 'ut
 
 const usuariosFilepath = path.join(__dirname, '../data/usuarios.json');
 
+const db = require('../database/models');
+
 var esElUsuario = undefined;
 
 const userController = {
@@ -125,9 +127,9 @@ const userController = {
             usuariosArray.push( nuevoUsuario );
 
             // 6_ grabo el array a archivo usuario.json
-            fileSys.writeFileSync(path.join( __dirname, '../', '/data/usuarios.json'), JSON.stringify(usuariosArray), 'utf8');
-
-            return res.redirect('registro');
+            //fileSys.writeFileSync(path.join( __dirname, '../', '/data/usuarios.json'), JSON.stringify(usuariosArray), 'utf8');
+            res.send(nuevoUsuario);
+            //return res.redirect('registro');
 
         } else { //hay errores
             // no anda rellenar los campos correctos de la carga anterior.
@@ -149,14 +151,42 @@ const userController = {
         res.send("Usuarios modificar grabar  - en construcción ")
     },
 
+    registroEliminarMostrar: (req,res) => { 
+        //const {validationResult} = require('express-validator');
+        //let errores = validationResult( req );
+        userAEliminar = {
+            "idUsr":5,
+            "nombre":"H---- D---",
+            "usuario":"h----g@ecohoney.dh",
+            "email":"h----@ecohoney.dh",
+            "fechaNac":"1978-04-22",
+            "dni":"********",
+            "domicilio":"Boedo",
+            "perfil":"Administrador",
+            "intereses":"personal",
+            "foto":"22.jpeg",
+            "password":"********",
+            "privacidad":"on"
+        };
+        res.render('registroEliminar', {userAEliminar} );
+    },
     registroEliminarGrabar:(req,res) => { 
         //return res.render('registro');
-        res.send("Usuarios eliminar grabar - en construcción ")
-    },
-    registroEliminarMostrar: (req,res) => { 
-        const {validationResult} = require('express-validator');
-        let errores = validationResult( req );
-        res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body} );
+        userAEliminar = {
+            "idUsr":5,
+            "nombre":"H---- D---",
+            "usuario":"h----g@ecohoney.dh",
+            "email":"h----@ecohoney.dh",
+            "fechaNac":"1978-04-22",
+            "dni":"********",
+            "domicilio":"Boedo",
+            "perfil":"Administrador",
+            "intereses":"personal",
+            "foto":"22.jpeg",
+            "password":"********",
+            "privacidad":"on"
+        }; // viene de la DB
+        res.render('registroEliminar', {userAEliminar});
     },
 
     listar: (req,res) => { res.send("Usuarios Listar - en construcción ") },
@@ -173,18 +203,41 @@ const userController = {
         
     },
 
-    /* *** Métodos para atender la gestin de perfiles e intereses de usuarios *** */
+    /* *** Métodos para atender la gestión de perfiles e intereses de usuarios *** */
     listarPerfiles: (req,res) => {res.send("Perfiles Listar - Página en construcción!!!")},
-    agregarPerfil: (req,res) => {res.send("Perfiles Agregar - Página en construcción!!!")},
-    agregarGrabarPerfil: (req,res) => {res.send("Perfiles Agregar Grabar - Página en construcción!!!")},
+
+    agregarPerfil: (req,res) => {
+        res.render('perfilAgregar');
+    },
+    agregarGrabarPerfil: (req,res) => {
+        let {validationResult} = require('express-validator');
+        let errores = validationResult( req );
+        res.render('perfilAgregar', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body} );
+        
+        /* agregar el modelo para grabar a DB */
+
+
+    },
     modificarPerfil: (req,res) => {res.send("PERFILES Modificar - Página en construcción!!!")},
     modificarGrabarPerfil: (req,res) => {res.send("Perfiles Modificar Grabar - Página en construcción!!!")},
     eliminarPerfil: (req,res) => {res.send("Perfiles Eliminar - Página en construcción!!!")},
     eliminarGrabarPerfil: (req,res) => {res.send("PErfiles Eliminar Grabar - Página en construcción!!!")},
 
     listarInteres: (req,res) => {res.send("Intereses Listar - Página en construcción!!!")},
-    agregarInteres: (req,res) => {res.send("Intereses Agregar - Página en construcción!!!")},
-    agregarGrabarInteres: (req,res) => {res.send("Intereses Agregar Grabar- Página en construcción!!!")},
+
+    agregarInteres: (req,res) => {
+        res.render('interesesAgregar')
+    },
+    agregarGrabarInteres: (req,res) => {
+        let {validationResult} = require('express-validator');
+        let errores = validationResult( req );
+        res.render('interesesAgregar', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body} );
+
+        /* agregar el modelo para grabar a DB */
+
+
+    },
+
     modificarInteres: (req,res) => {res.send("Intereses Modificar - Página en construcción!!!")},
     modificarGrabarInteres: (req,res) => {res.send("Intereses Modificar Grabar - Página en construcción!!!");},
     eliminarInteres: (req,res) => {res.send("Intereses Eliminar - Página en construcción!!!")},

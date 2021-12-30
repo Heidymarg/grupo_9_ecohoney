@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('./partials/head.ejs'); -%>
+
+
+
+<body>
+
+    <%- include( './partials/header.ejs' ); -%>
+
+    <main style="background-color: white">
+        <center>
+            <div class=formCrudDeProducto>
+
+                <table class="formTableCrudDeProducto">
+                    <thead style="width: 100%;">
+                        <tr><th><div style=" background-color: grey; border-radius: 5px;"><h3><p>Gestión de Usuarios - Eliminar</p></h3></div></th></tr>
+                    </thead>
+
+                    <tbody>
+                        <tr><td>
+                            <form action="/usuarios/registroEliminarGrabar" method="POST">    <!-- atendido por router.post('/eliminarGrabar', userController.registroEliminarGrabar); -->
+                    
+                                <table class="formTableCrudDeProducto">
+                                    <tbody style="width: 100%;">
+                                        <tr><td><label><span>Id de Usuario</span></label></td></tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="idUsr" value="<%= userAEliminar.idPrd %>" required>
+                                                <input type="submit" value="Seleccionar">
+                                                <input type="reset" value="Limpiar">
+                                            </td>
+                                        </tr>  
+                                        
+                                    </tbody>
+        
+                                    <table class="formTableCrudDeProducto">
+                                        <tbody style="width: 100%;">
+                                            <!--  <tr><tr><td><div style="background-color: grey; border-radius: 5px; height: 2px;"></div></td></tr></tr> -->
+                                            <tr><td><label><span>Id de Usuario: <%= userAEliminar.idUsr %></span></label></td></tr>
+                                            <tr><td><label><span>Nombre: <%= userAEliminar.nombre %></span></label></td></tr>  
+                                            
+                                        </tbody>
+                                    </table>
+                                </table>
+
+                            </form>
+                        </td></tr>
+
+                    </tbody>
+                </table>
+
+                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
+                <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
+                <form action="/usuarios/registroEliminarGrabar/<%= userAEliminar.idUsr %>?_method=DELETE" method="POST">   <!-- ?_method=DELETE atendido por   -->                    
+                    <input type="submit" value="Eliminar">
+                </form>
+
+                <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
+                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
+
+            </div>           
+        </center>      
+        
+    </main>
+    
+    <%- include( './partials/footer.ejs' ); -%>
+
+</body>
+</html>

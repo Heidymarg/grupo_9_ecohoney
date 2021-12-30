@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Login</title>
+
+    <%- include('./partials/head.ejs') %>
+
+<body>
+
     <header class="flex-vertical">
         <div class="dentro-header">
             <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
@@ -80,4 +88,44 @@
             <button type="submit" ><i class="fas fa-search"></i></button>
         </div>
         
-    </header>
+    </header>  
+  
+    <main>
+        <!--
+        <section>
+            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
+        </section>
+        -->
+        <center>
+            <div style='width: 33%'>
+                <br>
+                <h3>Gestión de Usuarios - Agregar Intereses</h3><br>
+                <hr>
+                <br>
+                <form method="POST" action="/usuarios/intereses/agregar">
+                    <label>Descripcion</label>
+                    <input type="text" id=" " name="nombre"> 
+                    <% if ( locals && locals.resultadoValidaciones ) {
+                        if ( resultadoValidaciones.nombre != undefined )  { %>
+                            <p class="feedback"> <%= resultadoValidaciones.nombre.msg %></p>
+                        <% } %>
+                    <% } %> 
+                                                   
+                   
+                    
+
+                    <br><br>
+                    <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="agregar">Agregar</button>        
+                    <br><br>
+                    <hr>
+                    <br>
+                </form>
+            </div>
+           
+        </center>
+
+    </main>
+
+</body>
+    <%- include( './partials/footer.ejs' )%>
+</html>

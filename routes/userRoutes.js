@@ -1,5 +1,19 @@
 const express = require( 'express' );
 const router = express.Router();
+const multer = require('multer');
+
+
+var storage = multer.diskStorage({
+    destination:function(req,file,cb){
+        cb(null, 'public/images')
+    },
+    filename: function(req,file,cb){
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+})
+var upload = multer({storage: storage})
+
+
 
 /* para sprint 5 */
 const {check} = require('express-validator');
@@ -28,13 +42,13 @@ let validacionDeRegistracion = [
     ];
 
 router.get('/registro', userController.registroMostrar);    
-router.post('/registro', validacionDeRegistracion, userController.registroGrabar);
+router.post('/registroGrabar', validacionDeRegistracion, upload.single('avatar'), userController.registroGrabar);
 
 router.get('/modificar', validacionDeRegistracion, userController.registroModificarMostrar);
-router.post('/modificar',userController.registroModificarGrabar);
+router.post('/modificarGrabar', upload.single('avatar'), userController.registroModificarGrabar);
 
 router.get('/eliminar', validacionDeRegistracion, userController.registroEliminarMostrar);
-router.post('/eliminar', userController.registroEliminarGrabar);
+router.post('/eliminarGrabar', userController.registroEliminarGrabar);
 
 router.get('/listar', userController.listar);
 
@@ -53,7 +67,9 @@ router.get('/logout', userController.logout);
 /* *** Rutas para gestionar los Perfiles de Usuario *** */
 router.get('/perfil/listar', userController.listarPerfiles);
 router.get('/perfil/agregar', userController.agregarPerfil);
-router.post('/perfil/agregar', userController.agregarGrabarPerfil);
+
+let validarPerfil = [check('nombre').notEmpty().withMessage('Completar el Nombre de Perfil').bail()];
+router.post('/perfil/agregar', validarPerfil, userController.agregarGrabarPerfil);
 router.get('/perfil/modificar', userController.modificarPerfil);
 router.post('/perfil/modificar', userController.modificarGrabarPerfil);
 router.get('/perfil/eliminar', userController.eliminarPerfil);
@@ -62,7 +78,9 @@ router.post('/perfil/eliminar', userController.eliminarGrabarPerfil);
 /* *** Rutas para gestionar los Integeses de Usuario *** */
 router.get('/intereses/listar', userController.listarInteres);
 router.get('/intereses/agregar', userController.agregarInteres);
-router.post('/intereses/agregar', userController.agregarGrabarInteres);
+
+let validarInteres = [check('nombre').notEmpty().withMessage('Completar el Nombre del Interés').bail()];
+router.post('/intereses/agregar', validarInteres, userController.agregarGrabarInteres);
 router.get('/intereses/modificar', userController.modificarInteres);
 router.post('/intereses/modificar', userController.modificarGrabarInteres);
 router.get('/intereses/eliminar', userController.eliminarInteres);

@@ -2,7 +2,7 @@ const express = require("express");
 const method_override = require('method-override');
 const app = express();
 const path = require( "path" );
-const multer = require('multer');
+//const multer = require('multer');
 
 /* ***** Para Strint 5 ***** */
 const encripta = require('bcryptjs');
@@ -22,7 +22,10 @@ app.use(cookieSession( {secret: "EcoHoney!!!", maxAge: 60 * 60} ));
 //app.use( recordameLogueado );
 /* ***** Para Strint 5 ***** */
 
+
 app.set('view engine', 'ejs'); 
+
+/*
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null, 'public/images')
@@ -32,6 +35,7 @@ var storage = multer.diskStorage({
     }
 })
 var upload = multer({storage: storage})
+*/
 
 const PORT    = 3131;
 
