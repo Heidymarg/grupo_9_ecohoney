@@ -67,10 +67,13 @@ router.delete('/productoDelete/:idPrd', productController.eliminar);       // ru
 /* *** Rutas para atender la gestión de Líneas de productos *** */
 router.get('/linea/listar', productController.listarLinea);
 
-let validacionLineaNueva = [ 
-    check('linea').notEmpty().withMessage('Completar el campo ').bail()   
-];
-router.get('/linea/agregar',validacionLineaNueva, productController.agregarLinea);
+//*let validacionLineaNueva = [ 
+    //check('linea').notEmpty().withMessage('Completar el campo ').bail()   
+//];//
+router.get('/linea/agregar', productController.agregarLinea);
+let validacionLineaNueva = [
+    check('linea').notEmpty() .withMessage('Completar el campo Descripción') .bail()
+]
 router.post('/linea/agregar',validacionLineaNueva, productController.agregarGrabarLinea);
 
 let validacionModificarLinea = [ 

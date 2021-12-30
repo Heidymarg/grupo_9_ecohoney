@@ -1,9 +1,9 @@
 module.exports = function( sequelize, dataTypes )
 		{
-			let alias = "lineas";
+			let alias = "intereses";
 			
 			let cols = {
-				id_lineas: { 
+				id_intereses: { 
                     type: dataTypes.INTEGER, 
                     primaryKey: true, 
                     autoincrement:true
@@ -14,18 +14,18 @@ module.exports = function( sequelize, dataTypes )
                 }    
             }  
 
-			let config = { tableName: "lineas", timestamps: false };
+			let config = { tableName: "intereses", timestamps: false };
 			
-			let linea = sequelize.define(alias, cols, config );
+			let interes = sequelize.define(alias, cols, config );
 
-            linea.associate = function(models) {
-                linea.hasMany(models.productos, {
+            interes.associate = function(models) {
+                interes.hasMany(models.productos, {
                     // pueden haber varias relaciones seteadas
-                    as: "producto",
-                    foreignKey: "idPrd",
+                    as: "usuario",
+                    foreignKey: "idUsr",
                     });    
             }
 
-			return linea;		
+			return interes;		
 		}
     
