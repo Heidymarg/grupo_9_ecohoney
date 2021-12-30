@@ -63,7 +63,10 @@ router.post('/perfil/eliminar', userController.eliminarGrabarPerfil);
 /* *** Rutas para gestionar los Integeses de Usuario *** */
 router.get('/intereses/listar', userController.listarInteres);
 router.get('/intereses/agregar', userController.agregarInteres);
-router.post('/intereses/agregar', userController.agregarGrabarInteres);
+let validacionDeIntereses = [check("interes").notEmpty().withMessage('Seleccionar el Interés o Intereses ').bail(),];
+
+
+router.post('/intereses/agregar',validacionDeIntereses, userController.agregarGrabarInteres);
 router.get('/intereses/modificar', userController.modificarInteres);
 router.post('/intereses/modificar', userController.modificarGrabarInteres);
 router.get('/intereses/eliminar', userController.eliminarInteres);

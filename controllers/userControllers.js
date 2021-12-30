@@ -11,6 +11,7 @@ const otrosProductosFilepath = path.join(__dirname, '../data/listadoProductosAbe
 const listaDeIndex = JSON.parse(fileSys.readFileSync(otrosProductosFilepath, 'utf-8'));
 
 const usuariosFilepath = path.join(__dirname, '../data/usuarios.json');
+const db = require('../database/models');
 
 const db = require('../database/models');
 var esElUsuario = undefined;
@@ -201,11 +202,30 @@ const userController = {
     eliminarGrabarPerfil: (req,res) => {res.send("PErfiles Eliminar Grabar - Página en construcción!!!")},
 
     listarInteres: (req,res) => {res.send("Intereses Listar - Página en construcción!!!")},
-    agregarInteres: (req,res) => {res.send("Intereses Agregar - Página en construcción!!!")},
-    agregarGrabarInteres: (req,res) => {res.send("Intereses Agregar Grabar- Página en construcción!!!")},
+    agregarInteres: (req,res) =>{res.render("interesesAgregar");},
+        
+        //*res.send("Intereses Agregar - Página en construcción!!!"),*//  
+agregarGrabarInteres: (req, res) => {                              
+
+    {
+        let {validationResult} = require('express-validator');
+        let errores = validationResult(req);
+        if(errores.isEmpty()){
+            /* la lógica para grabar a BD */
+            db.intereses.create( { nombre: req.body.interes } );	
+            //res.send(req.body.linea)
+        } else {
+            res.render('interesesAgregar', {'resultadoValidaciones': errores.mapped()});
+            
+        }}
+
+
+
+
+},//res.send("Intereses Agregar Grabar- Página en construcción!!!")*//},
     modificarInteres: (req,res) => {res.send("Intereses Modificar - Página en construcción!!!")},
     modificarGrabarInteres: (req,res) => {res.send("Intereses Modificar Grabar - Página en construcción!!!");},
     eliminarInteres: (req,res) => {res.send("Intereses Eliminar - Página en construcción!!!")},
-    eliminarGrabarInteres: (req,res) => {res.send("Intereses Eliminar Grabar - Página en construcción!!!")}
-};
+    eliminarGrabarInteres: (req,res) => {res.send("Intereses Eliminar Grabar - Página en construcción!!!")}}
+
 module.exports = userController;

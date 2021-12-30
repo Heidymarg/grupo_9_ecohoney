@@ -35,9 +35,19 @@ module.exports = function(sequelize, dataTypes) {
         });
     }
    
-   
+    let config = { tableName: "usuarios", timestapms: false };
+			
+    let usuario = sequelize.define(alias, cols, config );
+
+    usuario.associate = function(models) {
+        usuario.hasMany(models.intereses, {
+            // pueden haber varias relaciones seteadas
+            as: "interes",
+            foreignKey: "id_intereses",
+            });    
+    }
+
   
     return usuario;  
 } 
-
 
