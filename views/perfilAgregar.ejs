@@ -12,8 +12,7 @@
             
             <div class="nav-bar">
                 <nav><!--nav> style="justify-content: space-around;"> -->
-                    <% if ( locals && locals.usuarioLogueado != undefined ) { %>
-                        <% if ( usuarioLogueado.perfil != 'Administrador' ) { %>
+               
                             <!-- if NO SOY admin, muestro el menú de público -->
                             <ul type="none">
                             <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
@@ -23,7 +22,7 @@
                             <li><a href="#">Ayuda</a></li>
                             </ul>
                             <br><br><br>
-                        <% } else { %>
+               
                             <!-- else soy admin, muestro el menú protegido de ABM de productos -->
                             <nav>
                                 <nav  class="navbar_horflex nav-estilo-usuarios">
@@ -62,8 +61,7 @@
                                     </ul>
                                 </nav>
                             </nav>
-                        <% } %>    
-                    <% } %>                      
+                                         
                 </nav>
             </div>
             
@@ -72,9 +70,9 @@
                 <a href="/usuarios/logout">Salir</a>   
                 <a href="/usuarios/registro">Registrate</a>
                 <a href="/productos/carrito">Mi Carrito<i class="fas fa-cart-plus"></i></a>
-                <% if ( locals && locals.usuarioLogueado != undefined ) { %>
-                    <strong><%= locals.usuarioLogueado.usuario %></strong>
-                <% } %>
+                
+                    
+                
             </div>
 
         </div>
@@ -99,24 +97,23 @@
         <center>
             <div style='width: 33%'>
                 <br>
-                <h3>Gestión de Usuarios - Agregar Perfil</h3><br>
+                <h3>Agregar Perfiles</h3><br>
                 <hr>
                 <br>
                 <form method="POST" action="/usuarios/perfil/agregar">
-                    <label>Descripción</label>
-                    <input type="text" id=" " name="nombre"> 
+                    <label>nombre</label>
+                    <input type="text" id=" " name="perfil"> 
                     <% if ( locals && locals.resultadoValidaciones ) {
-                        if ( resultadoValidaciones.nombre != undefined )  { %>
-                            <p class="feedback"> <%= resultadoValidaciones.nombre.msg %></p>
+                        if ( resultadoValidaciones.perfil != undefined )  { %>
+                            <p class="feedback"> <%= resultadoValidaciones.perfil.msg %></p>
                         <% } %>
                     <% } %> 
-                                                   
                                                    
                    
                     
 
                     <br><br>
-                    <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="agregar">Agregar</button>        
+                    <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="Agregar">Agregar</button>        
                     <br><br>
                     <hr>
                     <br>

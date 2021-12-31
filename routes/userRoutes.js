@@ -67,9 +67,8 @@ router.get('/logout', userController.logout);
 /* *** Rutas para gestionar los Perfiles de Usuario *** */
 router.get('/perfil/listar', userController.listarPerfiles);
 router.get('/perfil/agregar', userController.agregarPerfil);
-
-let validarPerfil = [check('nombre').notEmpty().withMessage('Completar el Nombre de Perfil').bail()];
-router.post('/perfil/agregar', validarPerfil, userController.agregarGrabarPerfil);
+let validacionDePerfil = [check('perfil').notEmpty().withMessage('Completar el campo nombre')];
+router.post('/perfil/agregar', validacionDePerfil, userController.agregarGrabarPerfil);
 router.get('/perfil/modificar', userController.modificarPerfil);
 router.post('/perfil/modificar', userController.modificarGrabarPerfil);
 router.get('/perfil/eliminar', userController.eliminarPerfil);
@@ -78,9 +77,10 @@ router.post('/perfil/eliminar', userController.eliminarGrabarPerfil);
 /* *** Rutas para gestionar los Integeses de Usuario *** */
 router.get('/intereses/listar', userController.listarInteres);
 router.get('/intereses/agregar', userController.agregarInteres);
+let validacionDeIntereses = [check("interes").notEmpty().withMessage('Seleccionar el Interés o Intereses ').bail(),];
 
-let validarInteres = [check('nombre').notEmpty().withMessage('Completar el Nombre del Interés').bail()];
-router.post('/intereses/agregar', validarInteres, userController.agregarGrabarInteres);
+
+router.post('/intereses/agregar',validacionDeIntereses, userController.agregarGrabarInteres);
 router.get('/intereses/modificar', userController.modificarInteres);
 router.post('/intereses/modificar', userController.modificarGrabarInteres);
 router.get('/intereses/eliminar', userController.eliminarInteres);

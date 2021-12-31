@@ -11,8 +11,8 @@ const otrosProductosFilepath = path.join(__dirname, '../data/listadoProductosAbe
 const listaDeIndex = JSON.parse(fileSys.readFileSync(otrosProductosFilepath, 'utf-8'));
 
 const usuariosFilepath = path.join(__dirname, '../data/usuarios.json');
-
 const db = require('../database/models');
+
 
 var esElUsuario = undefined;
 
@@ -30,7 +30,7 @@ const userController = {
 
         if (error.isEmpty()) {
         
-            // 1_ busco el usuario en el archivo usuarios.json
+            // 1_ busco el usuario en el archivo usuarios.json AHORA en la DB
             let usuariosArray = JSON.parse(fileSys.readFileSync(usuariosFilepath, 'utf8'));
             esElUsuario = usuariosArray.find( u => { return u.usuario == req.body.usuario } );
 
@@ -205,18 +205,24 @@ const userController = {
 
     /* *** Métodos para atender la gestión de perfiles e intereses de usuarios *** */
     listarPerfiles: (req,res) => {res.send("Perfiles Listar - Página en construcción!!!")},
+    agregarPerfil: (req,res) =>{ 
 
-    agregarPerfil: (req,res) => {
-        res.render('perfilAgregar');
-    },
+        res.render("perfilAgregar")
+    //res.send("Perfiles Agregar - Página en construcción!!!")// 
+},
     agregarGrabarPerfil: (req,res) => {
-        let {validationResult} = require('express-validator');
-        let errores = validationResult( req );
-        res.render('perfilAgregar', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body} );
         
-        /* agregar el modelo para grabar a DB */
-
-
+        let {validationResult} = require('express-validator');
+		let errores = validationResult(req);
+		if(errores.isEmpty()){
+			/* la lógica para grabar a BD */
+			db.perfiles.create( { nombre: req.body.perfil } );	
+			//res.send(req.body.linea)
+		} else {
+			res.render('perfilAgregar', {'resultadoValidaciones': errores.mapped()});
+			
+		}
+        //res.send("Perfiles Agregar Grabar - Página en construcción!!!") 
     },
     modificarPerfil: (req,res) => {res.send("PERFILES Modificar - Página en construcción!!!")},
     modificarGrabarPerfil: (req,res) => {res.send("Perfiles Modificar Grabar - Página en construcción!!!")},
@@ -224,23 +230,30 @@ const userController = {
     eliminarGrabarPerfil: (req,res) => {res.send("PErfiles Eliminar Grabar - Página en construcción!!!")},
 
     listarInteres: (req,res) => {res.send("Intereses Listar - Página en construcción!!!")},
+    agregarInteres: (req,res) =>{res.render("interesesAgregar");},
+        
+        //*res.send("Intereses Agregar - Página en construcción!!!"),*//  
+agregarGrabarInteres: (req, res) => {                              
 
-    agregarInteres: (req,res) => {
-        res.render('interesesAgregar')
-    },
-    agregarGrabarInteres: (req,res) => {
+    {
         let {validationResult} = require('express-validator');
-        let errores = validationResult( req );
-        res.render('interesesAgregar', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body} );
+        let errores = validationResult(req);
+        if(errores.isEmpty()){
+            /* la lógica para grabar a BD */
+            db.intereses.create( { nombre: req.body.interes } );	
+            //res.send(req.body.linea)
+        } else {
+            res.render('interesesAgregar', {'resultadoValidaciones': errores.mapped()});
+            
+        }}
 
-        /* agregar el modelo para grabar a DB */
 
 
-    },
 
+},//res.send("Intereses Agregar Grabar- Página en construcción!!!")*//},
     modificarInteres: (req,res) => {res.send("Intereses Modificar - Página en construcción!!!")},
     modificarGrabarInteres: (req,res) => {res.send("Intereses Modificar Grabar - Página en construcción!!!");},
     eliminarInteres: (req,res) => {res.send("Intereses Eliminar - Página en construcción!!!")},
-    eliminarGrabarInteres: (req,res) => {res.send("Intereses Eliminar Grabar - Página en construcción!!!")}
-};
+    eliminarGrabarInteres: (req,res) => {res.send("Intereses Eliminar Grabar - Página en construcción!!!")}}
+
 module.exports = userController;

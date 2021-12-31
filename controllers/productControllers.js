@@ -127,11 +127,11 @@ const productController = {
 		/* 22/12/2021
 		anda el form de carga. Falta, validación, multer y la lógica para grabar a base de datos.
 		*/
-		if ( req.file ) {
-			res.send("Hay Foto " + req.file)
+		if ( req.body ) {
+			res.send("Hay Foto " + req.body.foto)
 			
 		} else {
-			res.send("No hay Foto " + req.body)
+			res.send("No hay Foto " + req.body.foto)
 		}
 		/*
 		res.send( "El form de carga trae: " + req.body.codigo + ' ' + req.body.nombre + ' ' + req.body.Descripcion 
@@ -140,7 +140,7 @@ const productController = {
 	},
 		
 
-	/* *** Métodos para atender la gestión de Líneas de productos *** */
+	/* * Métodos para atender la gestión de Líneas de productos * */
 	listarLinea: function(req,res) {
 		db.lineas.findAll()
 		.then( resultado => { res.send( resultado ) } )

@@ -6,13 +6,11 @@ module.exports = function( sequelize, dataTypes )
 				idPrd: { 
                     type: dataTypes.INTEGER, 
                     primaryKey: true, 
-                    autoincrement:true,
-                    notNull: true
+                    autoincrement:true
                 },
 
                 nombre: { 
-                        type: dataTypes.STRING,
-                        notNull: true
+                        type: dataTypes.STRING
                 },
                 codigo: {type: dataTypes.STRING},
                 descripcion: {type: dataTypes.STRING(250)},
