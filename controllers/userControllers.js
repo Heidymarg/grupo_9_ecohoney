@@ -175,11 +175,29 @@ const userController = {
     },
 
     /* *** Métodos para atender la gestin de perfiles e intereses de usuarios *** */
-    listarPerfiles: (req,res) => {res.send("Perfiles Listar - Página en construcción!!!")},
+    listarPerfiles: (req,res) => {     
+            db.perfiles.findAll()
+            .then( resultado => { 
+            res.render('listarPerfiles', {'perfiles': resultado})
+           // res.send("Líneas de Productos Listar - Página en construcción!!!");
+            })
+    },	
+
+        //'list': (req, res) => {
+            //db.perfiles.findAll()
+               // .then(perfiles => {
+                   //res.render('listarPerfiles.ejs', {perfiles})
+                //})
+       // },
+    
+        
+        //res.send("Perfiles Listar - Página en construcción!!!")
+    
+
     agregarPerfil: (req,res) =>{ 
 
         res.render("perfilAgregar")
-    //res.send("Perfiles Agregar - Página en construcción!!!")// 
+    res.send("Perfiles Agregar - Página en construcción!!!")// 
 },
     agregarGrabarPerfil: (req,res) => {
         
