@@ -220,7 +220,7 @@ const userController = {
 
     listarInteres: function(req,res) {
 		db.intereses.findAll()
-		.then( resultado => { res.send( resultado ) } )
+		.then( resultado => { res.render( "interesesListar", {intereses: resultado} ) } )
 		//res.send("Líneas de Productos Listar - Página en construcción!!!");
 	},	
      //(req,res) => {res.send("Intereses Listar - Página en construcción!!!")},
