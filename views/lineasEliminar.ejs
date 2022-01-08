@@ -100,24 +100,23 @@
                 <h3> Gestión de Productos - Eliminar Línea</h3><br>
                 <hr>
                 <br>
-                <form method="POST" action="/productos/linea/eliminar">
-                    <label> id de Línea </label>
-                    <input type="text" id=" " name="idLinea"> 
-                    <% if ( locals && locals.resultadoValidaciones ) {
-                        if ( resultadoValidaciones.linea != undefined )  { %>
-                            <p class="feedback"> <%= resultadoValidaciones.linea.msg %></p>
-                        <% } %>
-                    <% } %> 
-                                                   
-                   
-                    
-
-                    <br><br>
-                    <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="eliminar">Eliminar</button>        
-                    <br><br>
-                    <hr>
-                    <br>
-                </form>
+                
+                    <form method="POST" action="/productos/linea/eliminar">
+                        <label> id de Línea </label>
+                        <input type="text" id=" " name="idLinea"> 
+                        <% if ( locals && locals.resultadoValidaciones ) {
+                            if ( resultadoValidaciones.linea != undefined )  { %>
+                                <p class="feedback"> <%= resultadoValidaciones.linea.msg %></p>
+                            <% } %>
+                        <% } %> 
+                           
+                        <br><br>
+                        <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="eliminar">Eliminar</button>        
+                        <br><br>
+                        <hr>
+                        <br>
+                    </form>
+                
             </div>
            
         </center>

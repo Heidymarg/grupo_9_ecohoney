@@ -177,7 +177,11 @@ const productController = {
 		res.render("lineasEliminar");
 	},
 	eliminarGrabarLinea: function(req,res) {
-		res.render("lineasEliminar ", {"id": req.body.idLinea});
+
+		db.lineas.findByPk( req.body.idLinea)
+		.then( destroy( {where: { id_lineas :  req.body.idLinea}} ) )
+		res.redirect('lineasEliminar');
+		
 	}
 
 };

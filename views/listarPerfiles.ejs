@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+      
+    <%- include('./partials/head.ejs'); -%>   <body> 
+    
+    <main class="flex-vertical">
+        <div class="flex-vertical">
+            <% for( let i = 0; (perfiles.length - i) > 0; i++) { %>
+                <table>
+                    <tr>
+                        <td><p><strong><%= perfiles[i].id_perfil %>)_ </p></strong></td>
+                        <td><p><strong><%= perfiles[i].nombre %></p></strong></td>
+                    </tr>
+                </table>
+            <% } %>
+        </div>
+    </main>
+    
+    <%- include( './partials/footer.ejs' ); -%>
+
+</body>
+</html>
