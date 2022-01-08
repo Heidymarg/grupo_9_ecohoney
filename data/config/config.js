@@ -1,7 +1,7 @@
-module.exports =
-{
+module.exports={
+
   "development": {
-  "port" : "3330",
+    "port":"3330",
     "username": "root",
     "password": "123456",
     "database": "ecohoney",

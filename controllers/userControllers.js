@@ -175,9 +175,44 @@ const userController = {
     },
 
     /* *** Métodos para atender la gestin de perfiles e intereses de usuarios *** */
-    listarPerfiles: (req,res) => {res.send("Perfiles Listar - Página en construcción!!!")},
-    agregarPerfil: (req,res) => {res.send("Perfiles Agregar - Página en construcción!!!")},
-    agregarGrabarPerfil: (req,res) => {res.send("Perfiles Agregar Grabar - Página en construcción!!!")},
+    listarPerfiles: (req,res) => {     
+            db.perfiles.findAll()
+            .then( resultado => { 
+            res.render('listarPerfiles', {'perfiles': resultado})
+           // res.send("Líneas de Productos Listar - Página en construcción!!!");
+            })
+    },	
+
+        //'list': (req, res) => {
+            //db.perfiles.findAll()
+               // .then(perfiles => {
+                   //res.render('listarPerfiles.ejs', {perfiles})
+                //})
+       // },
+    
+        
+        //res.send("Perfiles Listar - Página en construcción!!!")
+    
+
+    agregarPerfil: (req,res) =>{ 
+
+        res.render("perfilAgregar")
+    res.send("Perfiles Agregar - Página en construcción!!!")// 
+},
+    agregarGrabarPerfil: (req,res) => {
+        
+        let {validationResult} = require('express-validator');
+		let errores = validationResult(req);
+		if(errores.isEmpty()){
+			/* la lógica para grabar a BD */
+			db.perfiles.create( { nombre: req.body.perfil } );	
+			//res.send(req.body.linea)
+		} else {
+			res.render('perfilAgregar', {'resultadoValidaciones': errores.mapped()});
+			
+		}
+        //res.send("Perfiles Agregar Grabar - Página en construcción!!!") 
+    },
     modificarPerfil: (req,res) => {res.send("PERFILES Modificar - Página en construcción!!!")},
     modificarGrabarPerfil: (req,res) => {res.send("Perfiles Modificar Grabar - Página en construcción!!!")},
     eliminarPerfil: (req,res) => {res.send("Perfiles Eliminar - Página en construcción!!!")},
