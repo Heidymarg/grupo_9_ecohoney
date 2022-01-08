@@ -8,7 +8,7 @@ const path = require( "path" );
 const encripta = require('bcryptjs');
 var cookieParser = require('cookie-parser')
 const cookieSession = require('cookie-session');
-var recordameLogueado = require('../grupo_9_ecohoney/middlewares/recordameLogueado');
+const session = require('express-session');
 /* ***** Para Strint 5 ***** */
 
 app.use( express.static( path.join( __dirname, "public" ) ) );
@@ -18,8 +18,7 @@ app.use(express.json());
 
 /* ***** Para Strint 5 ***** */
 app.use(cookieParser());
-app.use(cookieSession( {secret: "EcoHoney!!!", maxAge: 60 * 60} ));
-//app.use( recordameLogueado );
+app.use(session( {secret: "EcoHoney!!!", maxAge: 60 * 60 * 24, resave: true, saveUninitialized: true } ));
 /* ***** Para Strint 5 ***** */
 
 

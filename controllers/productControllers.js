@@ -143,8 +143,9 @@ const productController = {
 	/* * Métodos para atender la gestión de Líneas de productos * */
 	listarLinea: function(req,res) {
 		db.lineas.findAll()
-		.then( resultado => { res.send( resultado ) } )
-		//res.send("Líneas de Productos Listar - Página en construcción!!!");
+		.then( resultado => {
+			res.render('listadoLineas', {'lineas': resultado})
+		})
 	},	
 
 	agregarLinea: function(req,res) {

@@ -199,12 +199,17 @@ const userController = {
 
         res.clearCookie('usuarioRecordado');
         res.redirect('/');
-        res.session.destroy();
+        req.session.destroy();
         
     },
 
     /* *** Métodos para atender la gestión de perfiles e intereses de usuarios *** */
-    listarPerfiles: (req,res) => {res.send("Perfiles Listar - Página en construcción!!!")},
+    listarPerfiles: (req,res) => {
+        res.send("Perfiles Listar - Página en construcción!!!")
+    
+    },
+
+
     agregarPerfil: (req,res) =>{ 
 
         res.render("perfilAgregar")
