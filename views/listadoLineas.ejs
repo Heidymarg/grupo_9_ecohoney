@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+      
+    <%- include('./partials/head.ejs'); -%>
+    
     <header class="flex-vertical">
         <div class="dentro-header">
             <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
@@ -81,3 +86,23 @@
         </div>
         
     </header>
+
+<body> 
+    
+    <main class="flex-vertical">
+        <div class="flex-vertical">
+            <% for( let i = 0; (lineas.length - i) > 0; i++) { %>
+                <table>
+                    <tr>
+                        <td><p><strong><%= lineas[i].id_lineas %>)_ </p></strong></td>
+                        <td><p><strong><%= lineas[i].nombre %></p></strong></td>
+                    </tr>
+                </table>
+            <% } %>
+        </div>
+    </main>
+    
+    <%- include( './partials/footer.ejs' ); -%>
+
+</body>
+</html>

@@ -13,6 +13,7 @@ const listaDeIndex = JSON.parse(fileSys.readFileSync(otrosProductosFilepath, 'ut
 const usuariosFilepath = path.join(__dirname, '../data/usuarios.json');
 const db = require('../database/models');
 
+
 var esElUsuario = undefined;
 
 const userController = {
@@ -29,7 +30,7 @@ const userController = {
 
         if (error.isEmpty()) {
         
-            // 1_ busco el usuario en el archivo usuarios.json
+            // 1_ busco el usuario en el archivo usuarios.json AHORA en la DB
             let usuariosArray = JSON.parse(fileSys.readFileSync(usuariosFilepath, 'utf8'));
             esElUsuario = usuariosArray.find( u => { return u.usuario == req.body.usuario } );
 
@@ -126,9 +127,9 @@ const userController = {
             usuariosArray.push( nuevoUsuario );
 
             // 6_ grabo el array a archivo usuario.json
-            fileSys.writeFileSync(path.join( __dirname, '../', '/data/usuarios.json'), JSON.stringify(usuariosArray), 'utf8');
-
-            return res.redirect('registro');
+            //fileSys.writeFileSync(path.join( __dirname, '../', '/data/usuarios.json'), JSON.stringify(usuariosArray), 'utf8');
+            res.send(nuevoUsuario);
+            //return res.redirect('registro');
 
         } else { //hay errores
             // no anda rellenar los campos correctos de la carga anterior.
@@ -150,14 +151,42 @@ const userController = {
         res.send("Usuarios modificar grabar  - en construcción ")
     },
 
+    registroEliminarMostrar: (req,res) => { 
+        //const {validationResult} = require('express-validator');
+        //let errores = validationResult( req );
+        userAEliminar = {
+            "idUsr":5,
+            "nombre":"H---- D---",
+            "usuario":"h----g@ecohoney.dh",
+            "email":"h----@ecohoney.dh",
+            "fechaNac":"1978-04-22",
+            "dni":"********",
+            "domicilio":"Boedo",
+            "perfil":"Administrador",
+            "intereses":"personal",
+            "foto":"22.jpeg",
+            "password":"********",
+            "privacidad":"on"
+        };
+        res.render('registroEliminar', {userAEliminar} );
+    },
     registroEliminarGrabar:(req,res) => { 
         //return res.render('registro');
-        res.send("Usuarios eliminar grabar - en construcción ")
-    },
-    registroEliminarMostrar: (req,res) => { 
-        const {validationResult} = require('express-validator');
-        let errores = validationResult( req );
-        res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body} );
+        userAEliminar = {
+            "idUsr":5,
+            "nombre":"H---- D---",
+            "usuario":"h----g@ecohoney.dh",
+            "email":"h----@ecohoney.dh",
+            "fechaNac":"1978-04-22",
+            "dni":"********",
+            "domicilio":"Boedo",
+            "perfil":"Administrador",
+            "intereses":"personal",
+            "foto":"22.jpeg",
+            "password":"********",
+            "privacidad":"on"
+        }; // viene de la DB
+        res.render('registroEliminar', {userAEliminar});
     },
 
     listar: (req,res) => { res.send("Usuarios Listar - en construcción ") },
@@ -170,7 +199,7 @@ const userController = {
 
         res.clearCookie('usuarioRecordado');
         res.redirect('/');
-        res.session.destroy();
+        req.session.destroy();
         
     },
 
@@ -218,7 +247,12 @@ const userController = {
     eliminarPerfil: (req,res) => {res.send("Perfiles Eliminar - Página en construcción!!!")},
     eliminarGrabarPerfil: (req,res) => {res.send("PErfiles Eliminar Grabar - Página en construcción!!!")},
 
-    listarInteres: (req,res) => {res.send("Intereses Listar - Página en construcción!!!")},
+    listarInteres: function(req,res) {
+		db.intereses.findAll()
+		.then( resultado => { res.render( "interesesListar", {intereses: resultado} ) } )
+		//res.send("Líneas de Productos Listar - Página en construcción!!!");
+	},	
+     //(req,res) => {res.send("Intereses Listar - Página en construcción!!!")},
     agregarInteres: (req,res) =>{res.render("interesesAgregar");},
         
         //*res.send("Intereses Agregar - Página en construcción!!!"),*//  

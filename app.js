@@ -2,13 +2,13 @@ const express = require("express");
 const method_override = require('method-override');
 const app = express();
 const path = require( "path" );
-const multer = require('multer');
+//const multer = require('multer');
 
 /* ***** Para Strint 5 ***** */
 const encripta = require('bcryptjs');
 var cookieParser = require('cookie-parser')
 const cookieSession = require('cookie-session');
-var recordameLogueado = require('../grupo_9_ecohoney/middlewares/recordameLogueado');
+const session = require('express-session');
 /* ***** Para Strint 5 ***** */
 
 app.use( express.static( path.join( __dirname, "public" ) ) );
@@ -18,11 +18,13 @@ app.use(express.json());
 
 /* ***** Para Strint 5 ***** */
 app.use(cookieParser());
-app.use(cookieSession( {secret: "EcoHoney!!!", maxAge: 60 * 60} ));
-//app.use( recordameLogueado );
+app.use(session( {secret: "EcoHoney!!!", maxAge: 60 * 60 * 24, resave: true, saveUninitialized: true } ));
 /* ***** Para Strint 5 ***** */
 
+
 app.set('view engine', 'ejs'); 
+
+/*
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null, 'public/images')
@@ -32,6 +34,7 @@ var storage = multer.diskStorage({
     }
 })
 var upload = multer({storage: storage})
+*/
 
 const PORT    = 3131;
 

@@ -1,5 +1,19 @@
 const express = require( 'express' );
 const router = express.Router();
+const multer = require('multer');
+
+
+var storage = multer.diskStorage({
+    destination:function(req,file,cb){
+        cb(null, 'public/images')
+    },
+    filename: function(req,file,cb){
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+})
+var upload = multer({storage: storage})
+
+
 
 /* para sprint 5 */
 const {check} = require('express-validator');
@@ -28,13 +42,13 @@ let validacionDeRegistracion = [
     ];
 
 router.get('/registro', userController.registroMostrar);    
-router.post('/registro', validacionDeRegistracion, userController.registroGrabar);
+router.post('/registroGrabar', validacionDeRegistracion, upload.single('avatar'), userController.registroGrabar);
 
 router.get('/modificar', validacionDeRegistracion, userController.registroModificarMostrar);
-router.post('/modificar',userController.registroModificarGrabar);
+router.post('/modificarGrabar', upload.single('avatar'), userController.registroModificarGrabar);
 
 router.get('/eliminar', validacionDeRegistracion, userController.registroEliminarMostrar);
-router.post('/eliminar', userController.registroEliminarGrabar);
+router.post('/eliminarGrabar', userController.registroEliminarGrabar);
 
 router.get('/listar', userController.listar);
 

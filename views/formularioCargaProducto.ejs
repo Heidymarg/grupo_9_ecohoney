@@ -3,16 +3,94 @@
 
     <%- include('./partials/head.ejs'); -%>
 
+    <header class="flex-vertical">
+        <div class="dentro-header">
+            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+            
+            <div class="nav-bar">
+                <nav><!--nav> style="justify-content: space-around;"> -->
+               
+                            <!-- if NO SOY admin, muestro el menú de público -->
+                            <ul type="none">
+                            <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Promociones</a></li>
+                            <li><a href="#">Ofertas</a></li>
+                            <li><a href="#">Ayuda</a></li>
+                            </ul>
+                            <br><br><br>
+               
+                            <!-- else soy admin, muestro el menú protegido de ABM de productos -->
+                            <nav>
+                                <nav  class="navbar_horflex nav-estilo-usuarios">
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/listar"><li>Listar usuarios</li></a></li>
+                                        <li><a href="/usuarios/registro"><li>Registrar Usuarios</li></a></li>
+                                        <li><a href="/usuarios/modificar"><li>Modificar Usuarios</li></a></li>
+                                        <li><a href="/usuarios/eliminar"><li>Eliminar Usuarios</li></a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/perfil/listar"><li>Listar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/agregar"><li>Agregar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/modificar"><li>Modificar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/eliminar"><li>Eliminar Perfiles</li></a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/intereses/listar"><li>Listar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/agregar"><li>Agregar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/modificar"><li>Modificar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/eliminar"><li>Eliminar Intereses</li></a></li>
+                                    </ul>
+                                </nav>
+                                <br>
+                                <nav class="navbar_horflex nav-estilo-productos">
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/productos/listar"><li>Listar Productos</li></a></li>
+                                        <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
+                                        <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
+                                        <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/productos/linea/listar"><li>Listar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/agregar"><li>Agregar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/modificar"><li>Modificar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/eliminar"><li>Eliminar Líneas</li></a></li>
+                                    </ul>
+                                </nav>
+                            </nav>
+                                         
+                </nav>
+            </div>
+            
+            <div class="login-registro">
+                <a href="/usuarios/login">Logging</a>    
+                <a href="/usuarios/logout">Salir</a>   
+                <a href="/usuarios/registro">Registrate</a>
+                <a href="/productos/carrito">Mi Carrito<i class="fas fa-cart-plus"></i></a>
+                <% if ( locals && locals.usuarioLogueado != undefined ) { %>
+                    <strong><%= locals.usuarioLogueado.usuario %></strong>
+                <% } %>                 
+            </div>
 
+        </div>
+
+        <div class="menu-burger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="buscador">
+            <input class="buscador-input" type= "Buscar" placeholder="Que producto buscas?"></input>
+            <button type="submit" ><i class="fas fa-search"></i></button>
+        </div>
+        
+    </header>
 
 <body>
-
-    <%- include( './partials/header1.ejs' ); -%>
 
     <main style="background-color: white">
         <center>
             <div class=formCrudDeProducto>
-                <form action="/productos/lineaProductoDeLasAbejas" method="POST" enctype="multipart/form-data">    
+                <form action="/productos/agregarProducto" method="POST" enctype="multipart/form-data">    
                     <table class="formTableCrudDeProducto">
 
                         <thead style="width: 100%;">
@@ -48,7 +126,12 @@
         
                             <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
                             <tr><td><input type="file" name="foto"></td></tr>
-        
+                            <% if ( locals && locals.resultadoValidaciones ) { 
+                                if ( resultadoValidaciones.foto != undefined ) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.foto.msg %> </p>
+                                <% } %>
+                            <% } %>
+
                             <tr><td><div style=" background-color: grey; border-radius: 5px; height: 1px;"></div></td></tr>
                         </tbody>
 

@@ -127,11 +127,11 @@ const productController = {
 		/* 22/12/2021
 		anda el form de carga. Falta, validación, multer y la lógica para grabar a base de datos.
 		*/
-		if ( req.file ) {
-			res.send("Hay Foto " + req.file)
+		if ( req.body ) {
+			res.send("Hay Foto " + req.body.foto)
 			
 		} else {
-			res.send("No hay Foto " + req.body)
+			res.send("No hay Foto " + req.body.foto)
 		}
 		/*
 		res.send( "El form de carga trae: " + req.body.codigo + ' ' + req.body.nombre + ' ' + req.body.Descripcion 
@@ -143,8 +143,9 @@ const productController = {
 	/* * Métodos para atender la gestión de Líneas de productos * */
 	listarLinea: function(req,res) {
 		db.lineas.findAll()
-		.then( resultado => { res.send( resultado ) } )
-		//res.send("Líneas de Productos Listar - Página en construcción!!!");
+		.then( resultado => {
+			res.render('listadoLineas', {'lineas': resultado})
+		})
 	},	
 
 	agregarLinea: function(req,res) {
@@ -176,7 +177,11 @@ const productController = {
 		res.render("lineasEliminar");
 	},
 	eliminarGrabarLinea: function(req,res) {
-		res.render("lineasEliminar ", {"id": req.body.idLinea});
+
+		db.lineas.findByPk( req.body.idLinea)
+		.then( destroy( {where: { id_lineas :  req.body.idLinea}} ) )
+		res.redirect('lineasEliminar');
+		
 	}
 
 };
