@@ -183,7 +183,12 @@ const userController = {
     eliminarPerfil: (req,res) => {res.send("Perfiles Eliminar - Página en construcción!!!")},
     eliminarGrabarPerfil: (req,res) => {res.send("PErfiles Eliminar Grabar - Página en construcción!!!")},
 
-    listarInteres: (req,res) => {res.send("Intereses Listar - Página en construcción!!!")},
+    listarInteres: function(req,res) {
+		db.intereses.findAll()
+		.then( resultado => { res.send( resultado ) } )
+		//res.send("Líneas de Productos Listar - Página en construcción!!!");
+	},	
+     //(req,res) => {res.send("Intereses Listar - Página en construcción!!!")},
     agregarInteres: (req,res) =>{res.render("interesesAgregar");},
         
         //*res.send("Intereses Agregar - Página en construcción!!!"),*//  
