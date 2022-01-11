@@ -26,8 +26,6 @@ router.get('/lineaProductoDeLasAbejas', productController.inicioAbejas);
 
 router.get('/lineaHogar', productController.inicioHogar);
 
-router.get('/carrito', productController.carrito);
-
 /* *** Listar todos los productos *** */
 router.get('/listar', productController.listar);
 
@@ -76,14 +74,14 @@ let validacionModificarLinea = [
     check('linea').notEmpty().withMessage('Completar el campo Descripción').bail()   
 ];
 router.get('/linea/modificar', productController.modificarLinea);
-router.post('/linea/modificar',validacionModificarLinea ,  productController.modificarGrabarLinea);
+router.post('/linea/modificar', validacionModificarLinea, productController.confirmarModificarLinea);
+router.post('/linea/modificar/:id', validacionModificarLinea, productController.modificarGrabarLinea);
 
+router.get('/linea/eliminar', productController.mostrarEliminarLinea);
 let validacionEliminarLinea = [ 
     check('linea').notEmpty().withMessage('Completar el campo ').bail()   
 ];
-
-router.get('/linea/eliminar', validacionEliminarLinea, productController.eliminarLinea);
-
+router.post('/linea/eliminar', validacionEliminarLinea, productController.confirmarEliminarLinea)
 router.post('/linea/eliminar/:id', validacionEliminarLinea, productController.eliminarGrabarLinea);
 
 module.exports = router;

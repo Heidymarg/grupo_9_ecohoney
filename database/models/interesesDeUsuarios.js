@@ -15,7 +15,9 @@ module.exports = function(sequelize, dataTypes) {
         tableName:"interesesdeusuarios",
         timestamps:false
     }
+
     let interesesDeUsuarios = sequelize.define(alias, cols, config);
-    
+
     return interesesDeUsuarios;  
-}
+} 
+

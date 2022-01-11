@@ -10,7 +10,14 @@ const op = db.Sequelize.Op;
 
 const {validationResult} = require('express-validator');
 
+var idLineaParaEliminar = null;
+var idLineaParaModificar = null;
+
 const productController = {
+
+	/* ******************************************************************************** */
+	/* ************** Métodos para direccionar a Líneas de Productos ****************** */
+	/* ******************************************************************************** */	
     inicioCuidadoPersonal: (req,res) => { 
         res.render( 'lineaCuidadoPersonal', {usr: 'NoheliaK', listado:listaDeProductosAbejas}) 
     },
@@ -21,6 +28,9 @@ const productController = {
         res.render( 'lineaHogar', { usr: 'Oscar', listado: listaDeProductosAbejas }) 
     },
 
+	/* ******************************************************************************** */
+	/* *************** Métodos para atender la gestión de Productos ******************* */
+	/* ******************************************************************************** */
 	listar: (req, res) => {
 		res.send("Listar todos los productos - Página en construcción!!!");
 	},
@@ -28,7 +38,7 @@ const productController = {
     detalle:(req,res) => { 
         let id = req.params.id;
 
-		// a resolver más eficiente... if viende de Especial Abejas o de Ofertas
+		// a resolver con Base de Datos... if viende de Especial Abejas o de Ofertas
         let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == id });
 		     res.render('productoDetallado', { product: prodSeleccionado })
 			
@@ -39,11 +49,6 @@ const productController = {
         res.render('formularioCargaProducto'); 
     },
 
-    carrito:(req,res) => { 
-        res.render('carrito') 
-    },
-
-    // Update - Method to update
 	productoMostrarFormModificar: (req,res) => { 	
 		
 		let	prodAModificar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
@@ -73,8 +78,6 @@ const productController = {
 		de sprint 6.
 		*/
 	},
-
-	// Delete
 	productoMostrarFormEliminar: (req,res) => { 
 		
 		let	prodAEliminar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
@@ -82,7 +85,6 @@ const productController = {
 		res.render('formularioEliminarProducto', {'prodAEliminar':prodAEliminar}); 
 		
     },
-
 	traerParaConfirmar: ( req,res ) => {
 
 		//productId = req.query.idPrd; // funciona con GET - variable global para compartir con eliminar
@@ -96,7 +98,6 @@ const productController = {
 			res.redirect('formularioEliminarProducto');
 		}
 	},
-
 	eliminar : (req, res) => {
 
 		//productId = req.query.idPrd; // funciona con GET - variable global para compartir con eliminar:
@@ -121,8 +122,6 @@ const productController = {
 		// 3- Volver al form con mensaje de confirmación de la operación efectuada
 		//res.redirect('formularioEliminarProducto');
 	},
-
-    // Create -  Method to store
 	grabar: (req, res) => {
 		/* 22/12/2021
 		anda el form de carga. Falta, validación, multer y la lógica para grabar a base de datos.
@@ -139,15 +138,17 @@ const productController = {
 		*/
 	},
 		
-
-	/* * Métodos para atender la gestión de Líneas de productos * */
+	/* ******************************************************************************** */
+	/* ********** Métodos para atender la gestión de Líneas de productos ************** */
+	/* ******************************************************************************** */
 	listarLinea: function(req,res) {
 		db.lineas.findAll()
 		.then( resultado => {
 			res.render('listadoLineas', {'lineas': resultado})
 		})
-	},	
-
+	},
+	
+	/* ******************************************************************************** */
 	agregarLinea: function(req,res) {
 			res.render("lineasAgregar");
 	},
@@ -155,37 +156,69 @@ const productController = {
 		let {validationResult} = require('express-validator');
 		let errores = validationResult(req);
 		if(errores.isEmpty()){
-			/* la lógica para grabar a BD */
 			db.lineas.create( { nombre: req.body.linea } );	
-			//res.send(req.body.linea)
+			res.render('lineasAgregar');
 		} else {
 			res.render('lineasAgregar', {'resultadoValidaciones': errores.mapped()});
-			
 		}
 	},
 	
+	/* ******************************************************************************** */
 	modificarLinea: function(req,res) {
-		res.render( "lineasModificar");
+		let	lineaAModificar = { "id_lineas": null, "nombre": null };
+		res.render( "lineasModificar", {'lineaAModificar':lineaAModificar});
+	},
+	confirmarModificarLinea: function(req,res) {
+		let	lineaAModificar = { "id_linea": null, "nombre": null }; 
+		db.lineas.findByPk( req.body.linea )
+		.then( resultado => { 
+			if ( resultado != undefined ) {
+				res.render("lineasModificar", {'lineaAModificar': resultado} ) 	
+			} else {
+				res.render("lineasModificar", {'lineaAModificar': { id_linea: "-1", nombre: " no existe!!! " }} ) 
+			}
+		} );
+		
+		return idLineaParaModificar = req.body.linea;
 	},
 	modificarGrabarLinea: function(req,res) {
-		//res.render("lineasModificar");*//
-		res.send("dato a grabar " + req.body.linea)
 		
+		//res.send("dato a Modificar Grabar" + idLineaParaModificar);
+		
+		let {validationResult} = require('express-validator');
+		let errores = validationResult(req);
+		//// viaja ok .then( resultado => {res.send('Linea a modificar' + resultado.id_lineas + '  ' + resultado.nombre + 'Nuevo Nombre: ' + req.body.nombre);} )
+		db.lineas.findByPk( idLineaParaModificar )
+		.then( resultado => {
+			db.lineas.update( {nombre: req.body.nombre}, {where: {id_lineas : resultado.id_lineas}} ); 
+			let	lineaAModificar = { "id_linea": null, "nombre": null }; 
+			res.render('lineasModificar', {'lineaAModificar':lineaAModificar}) } )	
 	},
 
-	eliminarLinea: function(req,res) {
-		res.render("lineasEliminar");
+	/* ******************************************************************************** */
+	mostrarEliminarLinea: function(req,res) {
+		let	lineaAEliminar = { "id_linea": null, "nombre": null }; 
+		res.render("lineasEliminar", {'lineaAEliminar': lineaAEliminar});
+	},
+	confirmarEliminarLinea: function(req,res) {
+		let	lineaAEliminar = { "id_linea": null, "nombre": null }; 
+		db.lineas.findByPk( req.body.linea )
+		.then( resultado => { 
+			if ( resultado != undefined ) {
+				res.render("lineasEliminar", {'lineaAEliminar': resultado} ) 	
+			} else {
+				res.render("lineasEliminar", {'lineaAEliminar': { id_linea: "-1", nombre: " no existe!!! " }} ) 
+			}
+		} );
+		return idLineaParaEliminar = req.body.linea;
 	},
 	eliminarGrabarLinea: function(req,res) {
-
-		db.lineas.findByPk( req.body.idLinea)
-		.then( destroy( {where: { id_lineas :  req.body.idLinea}} ) )
-		res.redirect('lineasEliminar');
-		
+		db.lineas.findByPk( idLineaParaEliminar )
+		.then( resultado => { db.lineas.destroy( {where: { id_lineas : resultado.id_lineas}} );
+		let	lineaAEliminar = { "id_linea": null, "nombre": null }; 
+		res.render('lineasEliminar', {'lineaAEliminar': lineaAEliminar});
+		} );
 	}
 
 };
-
-
-
 module.exports = productController;

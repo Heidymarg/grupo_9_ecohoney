@@ -26,20 +26,21 @@ module.exports = function(sequelize, dataTypes) {
         tableName:"usuarios",
         timestamps:false
     }
-    let usuario= sequelize.define(alias, cols, config);
+    let usuario = sequelize.define(alias, cols, config);
     usuario.associate = function(models) {
         usuario.belongsTo(models.perfiles, {
-            //pueden haber varias relaciones seteadas
             as:"perfil",
             foreignKey: "id_perfil",
         });
     }
 
     usuario.associate = function(models) {
-        usuario.hasMany(models.intereses, {
-            // pueden haber varias relaciones seteadas
-            as: "interes",
+        usuario.belongsTo(models.intereses, {
+            as: 'intereses',
+            through: "interesesDeUsuarios",
             foreignKey: "id_intereses",
+            otherKey: 'id_Usr',
+            timestamps: false
             });    
     }
     usuario.associate = function(models) {
@@ -49,7 +50,6 @@ module.exports = function(sequelize, dataTypes) {
             });    
     }
 
-  
     return usuario;  
 } 
 
