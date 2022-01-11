@@ -99,7 +99,7 @@
         <center>
             <div style='width: 33%'>
                 <br>
-                <h3>Gestión de Productos - Agregar Nueva Linea</h3><br>
+                <div style=" background-color: gold; border-radius: 5px; padding: 3px;"><h3><p>Gestión de Productos - Agregar Líneas</p></h3></div><br>
                 <hr>
                 <br>
                 <form method="POST" action="/productos/linea/agregar">
@@ -110,9 +110,6 @@
                             <p class="feedback"> <%= resultadoValidaciones.linea.msg %></p>
                         <% } %>
                     <% } %> 
-                                                   
-                   
-                    
 
                     <br><br>
                     <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="agregar">Agregar</button>        

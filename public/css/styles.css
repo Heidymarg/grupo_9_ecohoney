@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    border: 0;
     font-family: 'Roboto',sans-serif;
     box-sizing: border-box;
 }
@@ -956,6 +957,12 @@ span {
     width: 100%;    
     border-spacing: 5px;
     
+}
+.formCrudDeLineas {
+    width: 31vw;
+    padding: 7px;
+    font-size: smaller;
+    background-color:rgb(172, 221, 188);
 }
 
 /* ***** Fin Estilos para Form CRUD de Productos ****** */      

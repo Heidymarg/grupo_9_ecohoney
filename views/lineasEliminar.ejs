@@ -95,28 +95,54 @@
         </section>
         -->
         <center>
-            <div style='width: 33%'>
-                <br>
-                <h3> Gestión de Productos - Eliminar Línea</h3><br>
-                <hr>
-                <br>
-                
-                    <form method="POST" action="/productos/linea/eliminar">
-                        <label> id de Línea </label>
-                        <input type="text" id=" " name="idLinea"> 
-                        <% if ( locals && locals.resultadoValidaciones ) {
-                            if ( resultadoValidaciones.linea != undefined )  { %>
-                                <p class="feedback"> <%= resultadoValidaciones.linea.msg %></p>
-                            <% } %>
-                        <% } %> 
-                           
-                        <br><br>
-                        <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="eliminar">Eliminar</button>        
-                        <br><br>
-                        <hr>
-                        <br>
-                    </form>
-                
+            <div class=formCrudDeLineas>
+
+                <table class="formTableCrudDeProducto">
+                    <thead style="width: 100%;">
+                        <tr><th><div style=" background-color: gold; border-radius: 5px; padding: 3px;"><h3><p>Gestión de Productos - Eliminar Líneas</p></h3></div></th></tr>
+                    </thead>
+
+                    <tbody>
+                        <tr><td>
+                            <form action="/productos/linea/eliminar" method="POST">    <!-- atendido por router.post('/delete', productController.traerParaConfirmar) -->
+                    
+                                <table class="formTableCrudDeProducto">
+                                    <tbody style="width: 100%;">
+                                        <tr><td><label><span>Código de Líneas</span></label></td></tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="linea" value="<%= lineaAEliminar.id_lineas %>" required>
+                                                <input type="submit" value="Seleccionar">
+                                                <input type="reset" value="Limpiar">
+                                            </td>
+                                        </tr>  
+                                    </tbody>
+        
+                                    <table class="formTableCrudDeProducto">
+                                        <tbody style="width: 100%;">
+                                            <!--  <tr><tr><td><div style="background-color: grey; border-radius: 5px; height: 2px;"></div></td></tr></tr> -->
+                                            <tr><td><label><span>Código de Línea: <%= lineaAEliminar.id_lineas %></span></label></td></tr>
+                                            <tr><td><label><span>Nombre: <%= lineaAEliminar.nombre %></span></label></td></tr>  
+                                            
+                                        </tbody>
+                                    </table>
+                                </table>
+
+                            </form>
+                        </td></tr>
+
+                    </tbody>
+                </table>
+
+                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
+                <div style="background-color: rgb(172, 221, 188);; padding-top: 4px; height: 3px; "></div>
+                <form action="/productos/linea/eliminar/<%= lineaAEliminar.id_lineas %>" method="POST">   <!-- ?_method=DELETE atendido por router.delete('/delete', productController.eliminar);  -->                    
+                    <input type="submit" value="Eliminar">
+                </form>
+
+                <div style="background-color: rgb(172, 221, 188);; padding-top: 4px; height: 3px; "></div>
+                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
+
             </div>
            
         </center>

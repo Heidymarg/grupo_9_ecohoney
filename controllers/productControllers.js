@@ -10,6 +10,8 @@ const op = db.Sequelize.Op;
 
 const {validationResult} = require('express-validator');
 
+var idLineaParaEliminar = null;
+
 const productController = {
     inicioCuidadoPersonal: (req,res) => { 
         res.render( 'lineaCuidadoPersonal', {usr: 'NoheliaK', listado:listaDeProductosAbejas}) 
@@ -28,22 +30,23 @@ const productController = {
     detalle:(req,res) => { 
         let id = req.params.id;
 
-		// a resolver más eficiente... if viende de Especial Abejas o de Ofertas
+		// a resolver con Base de Datos... if viende de Especial Abejas o de Ofertas
         let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == id });
 		     res.render('productoDetallado', { product: prodSeleccionado })
 			
 		 
     },
 
-    productoMostrarFormCarga: (req,res) => { 
-        res.render('formularioCargaProducto'); 
-    },
-
+	
     carrito:(req,res) => { 
         res.render('carrito') 
     },
 
-    // Update - Method to update
+
+    productoMostrarFormCarga: (req,res) => { 
+        res.render('formularioCargaProducto'); 
+    },
+
 	productoMostrarFormModificar: (req,res) => { 	
 		
 		let	prodAModificar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
@@ -155,12 +158,10 @@ const productController = {
 		let {validationResult} = require('express-validator');
 		let errores = validationResult(req);
 		if(errores.isEmpty()){
-			/* la lógica para grabar a BD */
 			db.lineas.create( { nombre: req.body.linea } );	
-			//res.send(req.body.linea)
+			res.render('lineasAgregar');
 		} else {
 			res.render('lineasAgregar', {'resultadoValidaciones': errores.mapped()});
-			
 		}
 	},
 	
@@ -173,15 +174,29 @@ const productController = {
 		
 	},
 
-	eliminarLinea: function(req,res) {
-		res.render("lineasEliminar");
+	mostrarEliminarLinea: function(req,res) {
+		let	lineaAEliminar = { "id_linea": null, "nombre": null }; 
+		res.render("lineasEliminar", {'lineaAEliminar': lineaAEliminar});
+	},
+	confirmarEliminarLinea: function(req,res) {
+		let	lineaAEliminar = { "id_linea": null, "nombre": null }; 
+		db.lineas.findByPk( req.body.linea )
+		.then( resultado => { 
+			if ( resultado != undefined ) {
+				res.render("lineasEliminar", {'lineaAEliminar': resultado} ) 	
+			} else {
+				res.render("lineasEliminar", {'lineaAEliminar': { id_linea: "-1", nombre: " no existe!!! " }} ) 
+			}
+		} );
+		return idLineaParaEliminar = req.body.linea;
+
 	},
 	eliminarGrabarLinea: function(req,res) {
-
-		db.lineas.findByPk( req.body.idLinea)
-		.then( destroy( {where: { id_lineas :  req.body.idLinea}} ) )
-		res.redirect('lineasEliminar');
-		
+		db.lineas.findByPk( idLineaParaEliminar )
+		.then( resultado => { db.lineas.destroy( {where: { id_lineas : resultado.id_lineas}} );
+		let	lineaAEliminar = { "id_linea": null, "nombre": null }; 
+		res.render('lineasEliminar', {'lineaAEliminar': lineaAEliminar});
+		} );
 	}
 
 };
