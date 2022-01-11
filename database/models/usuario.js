@@ -42,6 +42,12 @@ module.exports = function(sequelize, dataTypes) {
             foreignKey: "id_intereses",
             });    
     }
+    usuario.associate = function(models) {
+        usuario.belongsTo(models.intereses, {
+            foreignKey: "id_intereses",
+            through: "interesesDeUsuarios",
+            });    
+    }
 
   
     return usuario;  

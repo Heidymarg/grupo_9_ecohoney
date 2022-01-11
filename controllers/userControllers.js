@@ -127,9 +127,22 @@ const userController = {
             usuariosArray.push( nuevoUsuario );
 
             // 6_ grabo el array a archivo usuario.json
+            //db.usuarios.create({.idUsr
+                        //usuarios[i].email 
+                         //usuarios[i].id_perfil 
+                         //usuarios[i].id_intereses
+                        
+                         
             //fileSys.writeFileSync(path.join( __dirname, '../', '/data/usuarios.json'), JSON.stringify(usuariosArray), 'utf8');
-            res.send(nuevoUsuario);
-            //return res.redirect('registro');
+            db.usuarios.create({ usuario: req.body.user,
+                email: req.body.email,
+                id_perfil : req.body.perfil,
+               id_intereses : req.body.intereses,
+               password : req.body.pass,
+               id_carrito :10000,
+                })
+            //res.send(nuevoUsuario);
+            return res.redirect('registro');
 
         } else { //hay errores
             // no anda rellenar los campos correctos de la carga anterior.
@@ -189,7 +202,17 @@ const userController = {
         res.render('registroEliminar', {userAEliminar});
     },
 
-    listar: (req,res) => { res.send("Usuarios Listar - en construcción ") },
+    //listar: (req,res) => { res.send("Usuarios Listar - en construcción ") },
+    listar: (req,res) => {     
+        db.usuarios.findAll()
+        .then( resultado => {
+         //.catch(error=>res.send(error));
+        res.render('listarUsuarios', {'usuarios': resultado})
+       // res.send("Líneas de Productos Listar - Página en construcción!!!");
+        })
+    
+    
+},
 
     logout: (req,res) => {
 
@@ -242,10 +265,28 @@ const userController = {
 		}
         //res.send("Perfiles Agregar Grabar - Página en construcción!!!") 
     },
-    modificarPerfil: (req,res) => {res.send("PERFILES Modificar - Página en construcción!!!")},
-    modificarGrabarPerfil: (req,res) => {res.send("Perfiles Modificar Grabar - Página en construcción!!!")},
+    modificarPerfil: function(req,res) 
+     {
+		res.render( "ModificarPerfil");
+	},
+    //modificarGrabarPerfil: (req,res) => {res.send("Perfiles Modificar Grabar - Página en construcción!!!")},
+    modificarGrabarPerfil: function(req,res) {
+		//res.render("lineasModificar");*//
+		res.send("dato a grabar " + req.body.perfil)
+		
+	},
     eliminarPerfil: (req,res) => {res.send("Perfiles Eliminar - Página en construcción!!!")},
-    eliminarGrabarPerfil: (req,res) => {res.send("PErfiles Eliminar Grabar - Página en construcción!!!")},
+    //eliminarperfil: function(req,res) {
+		//res.render("EliminarPerfiles");
+	//},
+    //eliminarGrabarPerfil: (req,res) => {res.send("PErfiles Eliminar Grabar - Página en construcción!!!")},
+    eliminarGrabarPerfil: function(req,res) {
+
+		db.perfil.findByPk( req.body.idLinea)
+		.then( destroy( {where: { id_perfil :  req.body.idPerfil}} ) )
+		res.redirect('perfilesEliminar');
+		
+	},
 
     listarInteres: function(req,res) {
 		db.intereses.findAll()

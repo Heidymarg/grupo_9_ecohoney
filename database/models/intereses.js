@@ -25,6 +25,12 @@ module.exports = function( sequelize, dataTypes )
                     foreignKey: "idUsr",
                     });    
             }
+            interes.associate = function(models) {
+                interes.belongsTo(models.usuarios, {
+                    foreignKey: "id_Usr",
+                    through: "interesesDeUsuarios"
+                });    
+            }
 
 			return interes;		
 		}
