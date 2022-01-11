@@ -16,6 +16,8 @@ const db = require('../database/models');
 
 var esElUsuario = undefined;
 
+var idPerfilParaEliminar= undefined; 
+
 const userController = {
 
     login: (req,res) => {
@@ -244,14 +246,37 @@ const userController = {
     },
     modificarPerfil: (req,res) => {res.send("PERFILES Modificar - Página en construcción!!!")},
     modificarGrabarPerfil: (req,res) => {res.send("Perfiles Modificar Grabar - Página en construcción!!!")},
-    eliminarPerfil: (req,res) => {res.send("Perfiles Eliminar - Página en construcción!!!")},
-    eliminarGrabarPerfil: (req,res) => {res.send("PErfiles Eliminar Grabar - Página en construcción!!!")},
+
+   
+    eliminarPerfil: function(req,res) {
+        db.perfiles.destroy({where: { id_perfil:idPerfilParaEliminar}})
+		let	perfilesEliminar = { "id_perfil": null, "nombre": null }; 
+		res.render("perfilesEliminar", {'perfilAEliminar': perfilesEliminar});
+	},
+  
+    confirmarEliminarPerfil: function(req,res) {
+		let	perfilesEliminar = { "id_perfil": null, "nombre": null }; 
+		db.perfiles.findByPk( req.body.perfil )
+		.then( resultado => { 
+			if ( resultado != undefined ) { 
+              
+				res.render("perfilesEliminar", {'perfilAEliminar': resultado} ) 
+         
+			} else {
+				res.render("perfilesEliminar", {'perfilAEliminar': { id_perfil: "-1", nombre: " no existe!!! " }} ) 
+			}
+		} );
+		return idPerfilParaEliminar = req.body.perfil},
+
+
+
+
 
     listarInteres: function(req,res) {
 		db.intereses.findAll()
 		.then( resultado => { res.render( "interesesListar", {intereses: resultado} ) } )
 		//res.send("Líneas de Productos Listar - Página en construcción!!!");
-	},	
+	},
      //(req,res) => {res.send("Intereses Listar - Página en construcción!!!")},
     agregarInteres: (req,res) =>{res.render("interesesAgregar");},
         
@@ -276,7 +301,30 @@ agregarGrabarInteres: (req, res) => {
 },//res.send("Intereses Agregar Grabar- Página en construcción!!!")*//},
     modificarInteres: (req,res) => {res.send("Intereses Modificar - Página en construcción!!!")},
     modificarGrabarInteres: (req,res) => {res.send("Intereses Modificar Grabar - Página en construcción!!!");},
-    eliminarInteres: (req,res) => {res.send("Intereses Eliminar - Página en construcción!!!")},
-    eliminarGrabarInteres: (req,res) => {res.send("Intereses Eliminar Grabar - Página en construcción!!!")}}
+
+
+
+    eliminarInteres: function(req,res) {
+		let	interesesEliminar = { "id_perfil": null, "nombre": null }; 
+		res.render("interesesEliminar", {'interesesAEliminar': interesesEliminar});
+	},
+  
+    confirmarEliminarInteres: function(req,res) {
+		let	interesesEliminar = { "id_intereses": null, "nombre": null }; 
+		db.intereses.findByPk( req.body.intereses )
+		.then( resultado => { 
+			if ( resultado != undefined ) {
+				res.render("interesesEliminar", {'interesAEliminar': resultado} ) 	
+			} else {
+				res.render("interesesEliminar", {'interesesAEliminar': { id_intereses: "-1", nombre: " no existe!!! " }} ) 
+			}
+		} );
+		return idInteresParaEliminar = req.body.intereses},
+
+
+
+
+
+}
 
 module.exports = userController;

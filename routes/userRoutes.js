@@ -71,8 +71,13 @@ let validacionDePerfil = [check('perfil').notEmpty().withMessage('Completar el c
 router.post('/perfil/agregar', validacionDePerfil, userController.agregarGrabarPerfil);
 router.get('/perfil/modificar', userController.modificarPerfil);
 router.post('/perfil/modificar', userController.modificarGrabarPerfil);
+
 router.get('/perfil/eliminar', userController.eliminarPerfil);
-router.post('/perfil/eliminar', userController.eliminarGrabarPerfil);
+let validacionEliminarPerfil = [ 
+    check('perfil').notEmpty().withMessage('Completar el campo ').bail()   
+];
+router.post('/perfil/eliminar', validacionEliminarPerfil, userController.confirmarEliminarPerfil)
+router.post('/perfil/eliminar/:id', validacionEliminarPerfil, userController.eliminarPerfil);
 
 /* *** Rutas para gestionar los Integeses de Usuario *** */
 router.get('/intereses/listar', userController.listarInteres);
@@ -83,8 +88,16 @@ let validacionDeIntereses = [check("interes").notEmpty().withMessage('Selecciona
 router.post('/intereses/agregar',validacionDeIntereses, userController.agregarGrabarInteres);
 router.get('/intereses/modificar', userController.modificarInteres);
 router.post('/intereses/modificar', userController.modificarGrabarInteres);
+
+
+
+
 router.get('/intereses/eliminar', userController.eliminarInteres);
-router.post('/intereses/eliminar', userController.eliminarGrabarInteres);
+let validacionEliminarInteres = [ 
+    check('interes').notEmpty().withMessage('Completar el campo ').bail()   
+];
+router.post('/intereses/eliminar', validacionEliminarInteres, userController.confirmarEliminarInteres)
+router.post('/intereses/eliminar/:id', validacionEliminarInteres, userController.eliminarInteres);
 
 
 module.exports = router;
