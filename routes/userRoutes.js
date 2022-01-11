@@ -86,5 +86,6 @@ router.post('/intereses/modificar', userController.modificarGrabarInteres);
 router.get('/intereses/eliminar', userController.eliminarInteres);
 router.post('/intereses/eliminar', userController.eliminarGrabarInteres);
 
+router.get('/carrito', userController.carrito);
 
 module.exports = router;

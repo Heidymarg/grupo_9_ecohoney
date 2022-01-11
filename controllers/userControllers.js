@@ -211,23 +211,11 @@ const userController = {
            // res.send("Líneas de Productos Listar - Página en construcción!!!");
             })
     },	
-
-        //'list': (req, res) => {
-            //db.perfiles.findAll()
-               // .then(perfiles => {
-                   //res.render('listarPerfiles.ejs', {perfiles})
-                //})
-       // },
-    
-        
-        //res.send("Perfiles Listar - Página en construcción!!!")
-    
-
     agregarPerfil: (req,res) =>{ 
 
         res.render("perfilAgregar")
-    res.send("Perfiles Agregar - Página en construcción!!!")// 
-},
+        res.send("Perfiles Agregar - Página en construcción!!!")// 
+    },
     agregarGrabarPerfil: (req,res) => {
         
         let {validationResult} = require('express-validator');
@@ -256,9 +244,8 @@ const userController = {
     agregarInteres: (req,res) =>{res.render("interesesAgregar");},
         
         //*res.send("Intereses Agregar - Página en construcción!!!"),*//  
-agregarGrabarInteres: (req, res) => {                              
+    agregarGrabarInteres: (req, res) => {                              
 
-    {
         let {validationResult} = require('express-validator');
         let errores = validationResult(req);
         if(errores.isEmpty()){
@@ -268,15 +255,20 @@ agregarGrabarInteres: (req, res) => {
         } else {
             res.render('interesesAgregar', {'resultadoValidaciones': errores.mapped()});
             
-        }}
+        }
 
+    },
 
-
-
-},//res.send("Intereses Agregar Grabar- Página en construcción!!!")*//},
     modificarInteres: (req,res) => {res.send("Intereses Modificar - Página en construcción!!!")},
     modificarGrabarInteres: (req,res) => {res.send("Intereses Modificar Grabar - Página en construcción!!!");},
     eliminarInteres: (req,res) => {res.send("Intereses Eliminar - Página en construcción!!!")},
-    eliminarGrabarInteres: (req,res) => {res.send("Intereses Eliminar Grabar - Página en construcción!!!")}}
+    eliminarGrabarInteres: (req,res) => {res.send("Intereses Eliminar Grabar - Página en construcción!!!")},
+    
+
+    carrito: function(req,res) {
+        
+        return null;
+    }
+};
 
 module.exports = userController;
