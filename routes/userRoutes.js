@@ -88,6 +88,12 @@ let validacionDeIntereses = [check("interes").notEmpty().withMessage('Selecciona
 router.post('/intereses/agregar',validacionDeIntereses, userController.agregarGrabarInteres);
 router.get('/intereses/modificar', userController.modificarInteres);
 router.post('/intereses/modificar', userController.modificarGrabarInteres);
+let validacionModificarInteres = [ 
+    check('interes').notEmpty().withMessage('Completar el campo Descripción').bail()   
+];
+router.get('/intereses/modificar', userController.modificarInteres);
+router.post('/intereses/modificar', validacionModificarInteres, userController.confirmarModificarInteres);
+router.post('/intereses/modificar/:id', validacionModificarInteres, userController.modificarGrabarInteres);
 
 
 router.get('/intereses/eliminar', userController.eliminarInteres);

@@ -18,6 +18,9 @@ var esElUsuario = undefined;
 
 var idPerfilParaEliminar= undefined; 
 
+var idInteresesParaEliminar= undefined;
+var idInteresParaModificar = undefined;
+
 const userController = {
 
     login: (req,res) => {
@@ -130,13 +133,33 @@ const userController = {
             usuariosArray.push( nuevoUsuario );
 
             // 6_ grabo el array a archivo usuario.json
+            //db.usuarios.create({.idUsr
+                        //usuarios[i].email 
+                         //usuarios[i].id_perfil 
+                         //usuarios[i].id_intereses
+                        
+                         
             //fileSys.writeFileSync(path.join( __dirname, '../', '/data/usuarios.json'), JSON.stringify(usuariosArray), 'utf8');
+<<<<<<< HEAD
             res.send(nuevoUsuario);
 
             // Carga de nuevo usuario en DB.
 
             // Fin - Carga de nuevo usuario en DB.
             //return res.redirect('registro');
+=======
+            //db.carrito.create({id_prod_en_carrito:null});
+            db.usuarios.create({ usuario: req.body.user,
+                email: req.body.email,
+                id_perfil : req.body.perfil,
+               id_intereses : req.body.intereses,
+               password : req.body.pass,
+               id_carrito:10000
+              // id_carrito :db.carrito.create({id_prod_en_carrito:null})
+                })
+            //res.send(nuevoUsuario);
+            return res.redirect('registro');
+>>>>>>> 3a1c5a999db27526892f2b2117ea9492537cc166
 
         } else { //hay errores
             // no anda rellenar los campos correctos de la carga anterior.
@@ -196,6 +219,7 @@ const userController = {
         res.render('registroEliminar', {userAEliminar});
     },
 
+<<<<<<< HEAD
     listar: (req,res) => { 
 
         db.usuarios.findAll()
@@ -204,6 +228,17 @@ const userController = {
             //res.render('listadoUsuarios', {'listaDeUsuarios': {idUsr: null, usuario: null, email: null}});
         } );
     },
+=======
+    //listar: (req,res) => { res.send("Usuarios Listar - en construcción ") },
+    listar: (req,res) => {     
+        db.usuarios.findAll()
+        .then( resultado => {
+        res.render('listarUsuarios', {'usuarios': resultado})
+        })
+    
+    
+},
+>>>>>>> 3a1c5a999db27526892f2b2117ea9492537cc166
 
     logout: (req,res) => {
 
@@ -295,12 +330,47 @@ const userController = {
 
     },
 
+<<<<<<< HEAD
     modificarInteres: (req,res) => {res.send("Intereses Modificar - Página en construcción!!!")},
     modificarGrabarInteres: (req,res) => {res.send("Intereses Modificar Grabar - Página en construcción!!!");},
+=======
+    modificarInteres: function(req,res) {
+		let	interesAModificar = { "id_intereses": null, "nombre": null };
+		res.render( "interesesModificar", {'interesAModificar':interesAModificar});
+	},
+    confirmarModificarInteres: function(req,res) {
+		let	interesAModificar = { "id_intereses": null, "nombre": null }; 
+		db.intereses.findByPk( req.body.intereses )
+		.then( resultado => { 
+			if ( resultado != undefined ) {
+				res.render("interesesModificar", {'interesAModificar': resultado} ) 	
+			} else {
+				res.render("interesesModificar", {'interesAModificar': { id_intereses: "-1", nombre: " no existe!!! " }} ) 
+			}
+		} );
+        return idInteresParaModificar = req.body.intereses;
+	},
+   
+    modificarGrabarInteres: function(req,res) {
+		
+		//res.send("dato a Modificar Grabar" + idLineaParaModificar);
+		
+		let {validationResult} = require('express-validator');
+		let errores = validationResult(req);
+		//// viaja ok .then( resultado => {res.send('Linea a modificar' + resultado.id_lineas + '  ' + resultado.nombre + 'Nuevo Nombre: ' + req.body.nombre);} )
+		db.intereses.findByPk( idInteresParaModificar )
+		.then( resultado => {
+			db.intereses.update( {nombre: req.body.nombre}, {where: {id_intereses : resultado.id_intereses}} ); 
+			let	interesAModificar = { "id_intereses": null, "nombre": null }; 
+			res.render('interesesModificar', {'interesAModificar':interesAModificar}) } )	
+	},
+
+>>>>>>> 3a1c5a999db27526892f2b2117ea9492537cc166
 
     eliminarInteres: function(req,res) {
-		let	interesesEliminar = { "id_perfil": null, "nombre": null }; 
-		res.render("interesesEliminar", {'interesesAEliminar': interesesEliminar});
+        db.intereses.destroy({where: { id_intereses:idInteresesParaEliminar}})
+		let	interesesEliminar = { "id_intereses": null, "nombre": null }; 
+		res.render("interesesEliminar", {'interesAEliminar': interesesEliminar});
 	},
   
     confirmarEliminarInteres: function(req,res) {
@@ -310,11 +380,18 @@ const userController = {
 			if ( resultado != undefined ) {
 				res.render("interesesEliminar", {'interesAEliminar': resultado} ) 	
 			} else {
-				res.render("interesesEliminar", {'interesesAEliminar': { id_intereses: "-1", nombre: " no existe!!! " }} ) 
+				res.render("interesesEliminar", {'interesAEliminar': { id_intereses: "-1", nombre: " no existe!!! " }} ) 
 			}
 		} );
+<<<<<<< HEAD
 		return idInteresParaEliminar = req.body.intereses
     },
+=======
+		return idInteresesParaEliminar = req.body.intereses},
+
+
+        carrito:function(req, res){res.send('carrito en construccion!!')}
+>>>>>>> 3a1c5a999db27526892f2b2117ea9492537cc166
 
     carrito: function( req, res) {
         res.send("Carrito en construcción");

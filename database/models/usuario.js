@@ -55,7 +55,20 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false            
         }) 
     }
+    usuario.associate = function(models) {
+        usuario.belongsTo(models.intereses, {
+            foreignKey: "id_intereses",
+            through: "interesesDeUsuarios",
+            timestamps: false
+            });    
+    }
 
+   /* usuario.associate = function(models) {
+        usuario.hasOne(models.carrito, {
+            foreignKey: "id_carrito",
+            timestamps: false
+            });    
+    }*/
     return usuario;  
 } 
 
