@@ -20,7 +20,6 @@ module.exports = function( sequelize, dataTypes )
 
             perfil.associate = function(models) {
                 perfil.hasMany(models.usuarios, {
-                    // pueden haber varias relaciones seteadas
                     as: "usuarios",
                     foreignKey: "idUsr",
                     });    

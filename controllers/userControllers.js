@@ -23,7 +23,6 @@ const userController = {
     login: (req,res) => {
         res.render('login');
     },
-
     validarUsuario:(req,res) => { 
        
         // res.send('datos ingresados' + req.body.email + '  '+ req.body.password + ' ' + req.body.recordarme);
@@ -89,6 +88,7 @@ const userController = {
             let usuariosArray = JSON.parse(fileSys.readFileSync(usuariosFilepath, 'utf8'));
             
             // 2_ genero id a partir del length del archivo usuarios.json
+            // desaparece esto cuando esté listo el db.usuario.create()
             let nuevoUsuario = {idUsr: null,
                                 nombre: null,
                                 usuario: null,
@@ -120,17 +120,22 @@ const userController = {
             nuevoUsuario.dni = req.body.dni;
             nuevoUsuario.domicilio = req.body.addres;
             nuevoUsuario.perfil = req.body.perfil;
-            nuevoUsuario.intereses = req.body.intereses;
+            // se graba en tabla intermedia nuevoUsuario.intereses = req.body.intereses;
             nuevoUsuario.foto = req.body.avatar;
             nuevoUsuario.password = passOculta;
             nuevoUsuario.privacidad = req.body.privacidad;
             
             // 5_ agrego el usuario nuevo al array de usuarios
+            // desaparece cuando cargue usuarios a DB.
             usuariosArray.push( nuevoUsuario );
 
             // 6_ grabo el array a archivo usuario.json
             //fileSys.writeFileSync(path.join( __dirname, '../', '/data/usuarios.json'), JSON.stringify(usuariosArray), 'utf8');
             res.send(nuevoUsuario);
+
+            // Carga de nuevo usuario en DB.
+
+            // Fin - Carga de nuevo usuario en DB.
             //return res.redirect('registro');
 
         } else { //hay errores
@@ -138,11 +143,11 @@ const userController = {
             return res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body});
         } 
     },
+
     registroMostrar: (req,res) => { 
         //return res.render('registro');
         res.render('registro', {'datosAnteriores': req.body} );
     },
-
     registroModificarMostrar: (req,res) => { 
         const {validationResult} = require('express-validator');
         let errores = validationResult( req );
@@ -191,7 +196,14 @@ const userController = {
         res.render('registroEliminar', {userAEliminar});
     },
 
-    listar: (req,res) => { res.send("Usuarios Listar - en construcción ") },
+    listar: (req,res) => { 
+
+        db.usuarios.findAll()
+        .then( resultado => { 
+            res.render('listadoUsuarios', {'listaDeUsuarios': resultado});
+            //res.render('listadoUsuarios', {'listaDeUsuarios': {idUsr: null, usuario: null, email: null}});
+        } );
+    },
 
     logout: (req,res) => {
 
@@ -210,7 +222,6 @@ const userController = {
             db.perfiles.findAll()
             .then( resultado => { 
             res.render('listarPerfiles', {'perfiles': resultado})
-           // res.send("Líneas de Productos Listar - Página en construcción!!!");
             })
     },	
     agregarPerfil: (req,res) =>{ 
@@ -286,19 +297,6 @@ const userController = {
 
     modificarInteres: (req,res) => {res.send("Intereses Modificar - Página en construcción!!!")},
     modificarGrabarInteres: (req,res) => {res.send("Intereses Modificar Grabar - Página en construcción!!!");},
-<<<<<<< HEAD
-    eliminarInteres: (req,res) => {res.send("Intereses Eliminar - Página en construcción!!!")},
-    eliminarGrabarInteres: (req,res) => {res.send("Intereses Eliminar Grabar - Página en construcción!!!")},
-    
-
-    carrito: function(req,res) {
-        
-        return null;
-    }
-};
-=======
-
-
 
     eliminarInteres: function(req,res) {
 		let	interesesEliminar = { "id_perfil": null, "nombre": null }; 
@@ -315,13 +313,13 @@ const userController = {
 				res.render("interesesEliminar", {'interesesAEliminar': { id_intereses: "-1", nombre: " no existe!!! " }} ) 
 			}
 		} );
-		return idInteresParaEliminar = req.body.intereses},
+		return idInteresParaEliminar = req.body.intereses
+    },
 
-
-
-
+    carrito: function( req, res) {
+        res.send("Carrito en construcción");
+    }
 
 }
->>>>>>> f6848a2163b203b1599acbd04b51282bec4e5120
 
 module.exports = userController;

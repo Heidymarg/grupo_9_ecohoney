@@ -90,8 +90,6 @@ router.get('/intereses/modificar', userController.modificarInteres);
 router.post('/intereses/modificar', userController.modificarGrabarInteres);
 
 
-
-
 router.get('/intereses/eliminar', userController.eliminarInteres);
 let validacionEliminarInteres = [ 
     check('interes').notEmpty().withMessage('Completar el campo ').bail()   
