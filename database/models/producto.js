@@ -30,8 +30,15 @@ module.exports = function( sequelize, dataTypes )
                     // pueden haber varias relaciones seteadas
                     as: "linea",
                     foreignKey: "id_lineas",
-                    });    
+                    });   
             }
+           /* producto.associate = function(models) {
+                producto.hasMany(models.carrito, {
+                    // pueden haber varias relaciones seteadas
+                    as: "carritos",
+                    foreignKey: "id_carrito",
+                    });    
+            }*/
 
 			return producto;		
 		}

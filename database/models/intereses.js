@@ -26,7 +26,6 @@ module.exports = function( sequelize, dataTypes ) {
             timestamps: false
         });    
     }
-
 	return interes;		
 }
     

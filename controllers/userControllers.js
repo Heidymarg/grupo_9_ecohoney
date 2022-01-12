@@ -18,6 +18,9 @@ var esElUsuario = undefined;
 
 var idPerfilParaEliminar= undefined; 
 
+var idInteresesParaEliminar= undefined;
+var idInteresParaModificar = undefined;
+
 const userController = {
 
     login: (req,res) => {
@@ -136,12 +139,14 @@ const userController = {
                         
                          
             //fileSys.writeFileSync(path.join( __dirname, '../', '/data/usuarios.json'), JSON.stringify(usuariosArray), 'utf8');
+            //db.carrito.create({id_prod_en_carrito:null});
             db.usuarios.create({ usuario: req.body.user,
                 email: req.body.email,
                 id_perfil : req.body.perfil,
                id_intereses : req.body.intereses,
                password : req.body.pass,
-               id_carrito :10000,
+               id_carrito:10000
+              // id_carrito :db.carrito.create({id_prod_en_carrito:null})
                 })
             //res.send(nuevoUsuario);
             return res.redirect('registro');
@@ -208,9 +213,7 @@ const userController = {
     listar: (req,res) => {     
         db.usuarios.findAll()
         .then( resultado => {
-         //.catch(error=>res.send(error));
         res.render('listarUsuarios', {'usuarios': resultado})
-       // res.send("Líneas de Productos Listar - Página en construcción!!!");
         })
     
     
@@ -307,14 +310,42 @@ const userController = {
 
     },
 
-    modificarInteres: (req,res) => {res.send("Intereses Modificar - Página en construcción!!!")},
-    modificarGrabarInteres: (req,res) => {res.send("Intereses Modificar Grabar - Página en construcción!!!");},
-
+    modificarInteres: function(req,res) {
+		let	interesAModificar = { "id_intereses": null, "nombre": null };
+		res.render( "interesesModificar", {'interesAModificar':interesAModificar});
+	},
+    confirmarModificarInteres: function(req,res) {
+		let	interesAModificar = { "id_intereses": null, "nombre": null }; 
+		db.intereses.findByPk( req.body.intereses )
+		.then( resultado => { 
+			if ( resultado != undefined ) {
+				res.render("interesesModificar", {'interesAModificar': resultado} ) 	
+			} else {
+				res.render("interesesModificar", {'interesAModificar': { id_intereses: "-1", nombre: " no existe!!! " }} ) 
+			}
+		} );
+        return idInteresParaModificar = req.body.intereses;
+	},
+   
+    modificarGrabarInteres: function(req,res) {
+		
+		//res.send("dato a Modificar Grabar" + idLineaParaModificar);
+		
+		let {validationResult} = require('express-validator');
+		let errores = validationResult(req);
+		//// viaja ok .then( resultado => {res.send('Linea a modificar' + resultado.id_lineas + '  ' + resultado.nombre + 'Nuevo Nombre: ' + req.body.nombre);} )
+		db.intereses.findByPk( idInteresParaModificar )
+		.then( resultado => {
+			db.intereses.update( {nombre: req.body.nombre}, {where: {id_intereses : resultado.id_intereses}} ); 
+			let	interesAModificar = { "id_intereses": null, "nombre": null }; 
+			res.render('interesesModificar', {'interesAModificar':interesAModificar}) } )	
+	},
 
 
     eliminarInteres: function(req,res) {
-		let	interesesEliminar = { "id_perfil": null, "nombre": null }; 
-		res.render("interesesEliminar", {'interesesAEliminar': interesesEliminar});
+        db.intereses.destroy({where: { id_intereses:idInteresesParaEliminar}})
+		let	interesesEliminar = { "id_intereses": null, "nombre": null }; 
+		res.render("interesesEliminar", {'interesAEliminar': interesesEliminar});
 	},
   
     confirmarEliminarInteres: function(req,res) {
@@ -324,13 +355,13 @@ const userController = {
 			if ( resultado != undefined ) {
 				res.render("interesesEliminar", {'interesAEliminar': resultado} ) 	
 			} else {
-				res.render("interesesEliminar", {'interesesAEliminar': { id_intereses: "-1", nombre: " no existe!!! " }} ) 
+				res.render("interesesEliminar", {'interesAEliminar': { id_intereses: "-1", nombre: " no existe!!! " }} ) 
 			}
 		} );
-		return idInteresParaEliminar = req.body.intereses},
+		return idInteresesParaEliminar = req.body.intereses},
 
 
-
+        carrito:function(req, res){res.send('carrito en construccion!!')}
 
 
 }
