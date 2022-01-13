@@ -69,9 +69,12 @@ router.get('/perfil/listar', userController.listarPerfiles);
 router.get('/perfil/agregar', userController.agregarPerfil);
 let validacionDePerfil = [check('perfil').notEmpty().withMessage('Completar el campo nombre')];
 router.post('/perfil/agregar', validacionDePerfil, userController.agregarGrabarPerfil);
+let validacionModificarPerfil = [ 
+    check('perfil').notEmpty().withMessage('Completar el campo Descripción').bail()   
+];
 router.get('/perfil/modificar', userController.modificarPerfil);
-router.post('/perfil/modificar', userController.modificarGrabarPerfil);
-
+router.post('/perfil/modificar', validacionModificarPerfil, userController.confirmarModificarPerfil);
+router.post('/perfil/modificar/:id', validacionModificarPerfil, userController.modificarGrabarPerfil);
 router.get('/perfil/eliminar', userController.eliminarPerfil);
 let validacionEliminarPerfil = [ 
     check('perfil').notEmpty().withMessage('Completar el campo ').bail()   
@@ -87,11 +90,9 @@ let validacionDeIntereses = [check("interes").notEmpty().withMessage('Selecciona
 
 router.post('/intereses/agregar',validacionDeIntereses, userController.agregarGrabarInteres);
 router.get('/intereses/modificar', userController.modificarInteres);
-router.post('/intereses/modificar', userController.modificarGrabarInteres);
 let validacionModificarInteres = [ 
     check('interes').notEmpty().withMessage('Completar el campo Descripción').bail()   
 ];
-router.get('/intereses/modificar', userController.modificarInteres);
 router.post('/intereses/modificar', validacionModificarInteres, userController.confirmarModificarInteres);
 router.post('/intereses/modificar/:id', validacionModificarInteres, userController.modificarGrabarInteres);
 

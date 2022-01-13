@@ -17,9 +17,10 @@ const db = require('../database/models');
 var esElUsuario = undefined;
 
 var idPerfilParaEliminar= undefined; 
-
+var idPerfilParaModificar = null;
 var idInteresesParaEliminar= undefined;
 var idInteresParaModificar = undefined;
+
 
 const userController = {
 
@@ -258,9 +259,39 @@ const userController = {
 		}
         //res.send("Perfiles Agregar Grabar - Página en construcción!!!") 
     },
-    modificarPerfil: (req,res) => {res.send("PERFILES Modificar - Página en construcción!!!")},
-    modificarGrabarPerfil: (req,res) => {res.send("Perfiles Modificar Grabar - Página en construcción!!!")},
-
+    /*Método para Modificar Perfil*/
+    //modificarPerfil: (req,res) => {res.send("PERFILES Modificar - Página en construcción!!!")},
+    modificarPerfil: function(req,res) {
+		let	perfilAModificar = { "id_perfil": null, "nombre": null };
+		res.render( "perfilesModificar", {'perfilAModificar':perfilAModificar});
+	},
+    //modificarGrabarPerfil: (req,res) => {res.send("Perfiles Modificar Grabar - Página en construcción!!!")},
+    confirmarModificarPerfil: function(req,res) {
+		let	perfilAModificar = { "id_perfil": null, "nombre": null }; 
+		db.perfiles.findByPk( req.body.perfil )
+		.then( resultado => { 
+			if ( resultado != undefined ) {
+				res.render("perfilesModificar", {'perfilAModificar': resultado} ) 	
+			} else {
+				res.render("perfilesModificar", {'perfilAModificar': { id_perfil: "-1", nombre: " no existe!!! " }} ) 
+			}
+		} );
+		
+		return idPerfilParaModificar = req.body.perfil;
+	},
+    modificarGrabarPerfil: function(req,res) {
+		
+		//res.send("dato a Modificar Grabar" + idLineaParaModificar);
+		
+		let {validationResult} = require('express-validator');
+		let errores = validationResult(req);
+		//// viaja ok .then( resultado => {res.send('Linea a modificar' + resultado.id_lineas + '  ' + resultado.nombre + 'Nuevo Nombre: ' + req.body.nombre);} )
+		db.perfiles.findByPk( idPerfilParaModificar )
+		.then( resultado => {
+			db.perfiles.update( {nombre: req.body.nombre}, {where: {id_perfil : resultado.id_perfil}} ); 
+			let	perfilAModificar = { "id_perfil": null, "nombre": null }; 
+			res.render('perfilesModificar', {'perfilAModificar':perfilAModificar}) } )	
+	},
    
     eliminarPerfil: function(req,res) {
         db.perfiles.destroy({where: { id_perfil:idPerfilParaEliminar}})
@@ -336,9 +367,13 @@ const userController = {
 		//// viaja ok .then( resultado => {res.send('Linea a modificar' + resultado.id_lineas + '  ' + resultado.nombre + 'Nuevo Nombre: ' + req.body.nombre);} )
 		db.intereses.findByPk( idInteresParaModificar )
 		.then( resultado => {
+        //.catch(error=>console.log(error))
+            //console.log(resultado)
+            //.catch(error=>console.log(error))
 			db.intereses.update( {nombre: req.body.nombre}, {where: {id_intereses : resultado.id_intereses}} ); 
 			let	interesAModificar = { "id_intereses": null, "nombre": null }; 
 			res.render('interesesModificar', {'interesAModificar':interesAModificar}) } )	
+            
 	},
 
 
