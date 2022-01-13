@@ -44,11 +44,11 @@ let validacionDeRegistracion = [
 router.get('/registro', userController.registroMostrar);    
 router.post('/registroGrabar', validacionDeRegistracion, upload.single('avatar'), userController.registroGrabar);
 
-router.get('/modificar', validacionDeRegistracion, userController.registroModificarMostrar);
-router.post('/modificarGrabar', upload.single('avatar'), userController.registroModificarGrabar);
+router.get('/modificar', userController.registroModificarMostrar);
+router.post('/modificarGrabar', validacionDeRegistracion, upload.single('avatar'), userController.registroModificarGrabar);
 
-router.get('/eliminar', validacionDeRegistracion, userController.registroEliminarMostrar);
-router.post('/eliminarGrabar', userController.registroEliminarGrabar);
+router.get('/eliminar', userController.registroEliminarMostrar);
+router.post('/eliminarGrabar', validacionDeRegistracion, userController.registroEliminarGrabar);
 
 router.get('/listar', userController.listar);
 
@@ -69,13 +69,12 @@ router.get('/perfil/listar', userController.listarPerfiles);
 router.get('/perfil/agregar', userController.agregarPerfil);
 let validacionDePerfil = [check('perfil').notEmpty().withMessage('Completar el campo nombre')];
 router.post('/perfil/agregar', validacionDePerfil, userController.agregarGrabarPerfil);
+
 router.get('/perfil/modificar', userController.modificarPerfil);
 router.post('/perfil/modificar', userController.modificarGrabarPerfil);
 
 router.get('/perfil/eliminar', userController.eliminarPerfil);
-let validacionEliminarPerfil = [ 
-    check('perfil').notEmpty().withMessage('Completar el campo ').bail()   
-];
+let validacionEliminarPerfil = [check('perfil').notEmpty().withMessage('Completar el campo ').bail()];
 router.post('/perfil/eliminar', validacionEliminarPerfil, userController.confirmarEliminarPerfil)
 router.post('/perfil/eliminar/:id', validacionEliminarPerfil, userController.eliminarPerfil);
 
@@ -83,23 +82,14 @@ router.post('/perfil/eliminar/:id', validacionEliminarPerfil, userController.eli
 router.get('/intereses/listar', userController.listarInteres);
 router.get('/intereses/agregar', userController.agregarInteres);
 let validacionDeIntereses = [check("interes").notEmpty().withMessage('Seleccionar el Interés o Intereses ').bail(),];
-
-
 router.post('/intereses/agregar',validacionDeIntereses, userController.agregarGrabarInteres);
+
 router.get('/intereses/modificar', userController.modificarInteres);
 router.post('/intereses/modificar', userController.modificarGrabarInteres);
-let validacionModificarInteres = [ 
-    check('interes').notEmpty().withMessage('Completar el campo Descripción').bail()   
-];
-router.get('/intereses/modificar', userController.modificarInteres);
-router.post('/intereses/modificar', validacionModificarInteres, userController.confirmarModificarInteres);
-router.post('/intereses/modificar/:id', validacionModificarInteres, userController.modificarGrabarInteres);
 
 
 router.get('/intereses/eliminar', userController.eliminarInteres);
-let validacionEliminarInteres = [ 
-    check('interes').notEmpty().withMessage('Completar el campo ').bail()   
-];
+let validacionEliminarInteres = [check('interes').notEmpty().withMessage('Completar el campo ').bail()];
 router.post('/intereses/eliminar', validacionEliminarInteres, userController.confirmarEliminarInteres)
 router.post('/intereses/eliminar/:id', validacionEliminarInteres, userController.eliminarInteres);
 

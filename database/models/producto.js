@@ -32,23 +32,6 @@ module.exports = function( sequelize, dataTypes ) {
         });    
     }
 
-<<<<<<< HEAD
 	return producto;		
-=======
-            producto.associate = function(models) {
-                producto.belongsTo(models.lineas, {
-                    // pueden haber varias relaciones seteadas
-                    as: "linea",
-                    foreignKey: "id_lineas",
-                    });   
-            }
-           /* producto.associate = function(models) {
-                producto.hasMany(models.carrito, {
-                    // pueden haber varias relaciones seteadas
-                    as: "carritos",
-                    foreignKey: "id_carrito",
-                    });    
-            }*/
->>>>>>> 3a1c5a999db27526892f2b2117ea9492537cc166
 
 }

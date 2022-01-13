@@ -48,7 +48,7 @@ const productController = {
     productoMostrarFormCarga: (req,res) => { 
         res.render('formularioCargaProducto'); 
     },
-
+	
 	productoMostrarFormModificar: (req,res) => { 	
 		
 		let	prodAModificar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
