@@ -25,13 +25,17 @@
                     <article>
                         <a href="/productos/detalle/<%= listado[i].idPrd %>"><img src=<%= listado[i].foto %> alt=""></a>
                         <div class="contenedor1">
-                            <i class="fas fa-cart-plus"></i></i>
-                            <p class="precios"><%= listado[i].precio %></p>
-                            <p class="descuentos"><%= listado[i].bonif %></p>
-                            <p class="descripciones"><%= listado[i].desc %></p>
+                            <table>
+                                <tr><td><p class="nombre"><%= listado[i].nombre %></p></td></tr>
+                                <tr>
+                                    <td><p class="precios"><%= listado[i].precio %></p></td>
+                                    <td><p class="descuentos"><%= listado[i].bonif %></p></td>
+                                </tr>
+                                <tr><td><i class="fas fa-cart-plus"></i></td></tr>
+                            </table>
                         </div>
                     </article>
-                    <%} %>
+                <%} %>
 
                 </div>
             </section>

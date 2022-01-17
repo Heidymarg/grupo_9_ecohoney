@@ -1,5 +1,6 @@
 module.exports = function(sequelize, dataTypes) {
     let alias = "usuarios";
+    
     let cols = {
         idUsr:{ 
             type: dataTypes.INTEGER,
@@ -10,53 +11,55 @@ module.exports = function(sequelize, dataTypes) {
         usuario:{
             type: dataTypes.STRING(30),
             notNull:true
-
         },
         email:{
-            type: dataTypes.STRING(30)
+            type: dataTypes.STRING(30),
         },
         id_perfil: {type:dataTypes.INTEGER,
-        notNull:true},
-         id_interes: {type:dataTypes.INTEGER,
-        notNull:true},
-        password:{type: dataTypes.STRING(10)}
-
+            notNull:true
+        },
+        id_intereses: {type:dataTypes.INTEGER,
+            notNull:true
+        },
+        password:{type: dataTypes.STRING(512),
+        },
+        id_carrito: {type:dataTypes.INTEGER
+        }
     }
+
+
     let config  = {
         tableName:"usuarios",
         timestamps:false
     }
+
     let usuario = sequelize.define(alias, cols, config);
+
     usuario.associate = function(models) {
         usuario.belongsTo(models.perfiles, {
-            as:"perfil",
+            as:"perfiles",
             foreignKey: "id_perfil",
+            allowNull: false
         });
     }
 
     usuario.associate = function(models) {
-        usuario.belongsTo(models.intereses, {
-            as: 'intereses',
+        usuario.belongsToMany(models.intereses, {
             through: "interesesDeUsuarios",
             foreignKey: "id_intereses",
             otherKey: 'id_Usr',
             timestamps: false
-            });    
-    }
-    usuario.associate = function(models) {
-        usuario.belongsTo(models.intereses, {
-            foreignKey: "id_intereses",
-            through: "interesesDeUsuarios",
-            timestamps: false
-            });    
+        });    
     }
 
-   /* usuario.associate = function(models) {
-        usuario.hasOne(models.carrito, {
+    usuario.associate = function(models) {
+        usuario.belongsTo(models.carrito, {
+            as: "carrito",
             foreignKey: "id_carrito",
-            timestamps: false
-            });    
-    }*/
+            allowNull: false            
+        }) 
+    }
+
     return usuario;  
 } 
 

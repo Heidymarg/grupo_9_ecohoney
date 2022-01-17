@@ -26,13 +26,16 @@
                     <% for(let i = 0; (listadoOfertas.length - i) > 0; i++) { %>
 
                         <article>
-                            <!-- <a href="/productos/detalle/<% listadoOfertas[i].idPrd %>"><img src=<%= listadoOfertas[i].foto %> alt=""></a> -->
                             <a href="/productos/detalle/<%= listadoOfertas[i].idPrd %>"><img src=<%= listadoOfertas[i].foto %> alt=""></a>
                             <div class="contenedor1">
-                                <i class="fas fa-cart-plus"></i></i>
-                                <p class="precios"><%= listadoOfertas[i].precio %></p>
-                                <p class="descuentos"><%= listadoOfertas[i].bonif %></p>
-                                <p class="descripciones"><%= listadoOfertas[i].desc %></p>
+                                <table>
+                                    <tr><td><p class="nombre"><%= listadoOfertas[i].nombre %></p></td></tr>
+                                    <tr>
+                                        <td><p class="precios"><%= listadoOfertas[i].precio %></p></td>
+                                        <td><p class="descuentos"><%= listadoOfertas[i].bonif %></p></td>
+                                    </tr>
+                                    <tr><td><i class="fas fa-cart-plus"></i></td></tr>
+                                </table>
                             </div>
                         </article>
 
@@ -61,10 +64,14 @@
                             <!-- <a href="/productos/detalle"><img src=<%= listado[i].foto %> alt=""></a> -->
                             <a href="/productos/detalle/<%= listado[i].idPrd %>"><img src=<%= listado[i].foto %> alt=""></a>
                             <div class="contenedor1">
-                                <i class="fas fa-cart-plus"></i></i>
-                                <p class="precios"><%= listado[i].precio %></p>
-                                <p class="descuentos"><%= listado[i].bonif %></p>
-                                <p class="descripciones"><%= listado[i].desc %></p>
+                                <table>
+                                    <tr><td><p class="nombre"><%= listado[i].nombre %></p></td></tr>
+                                    <tr>
+                                        <td><p class="precios"><%= listado[i].precio %></p></td>
+                                        <td><p class="descuentos"><%= listado[i].bonif %></p></td>
+                                    </tr>
+                                    <tr><td><i class="fas fa-cart-plus"></i></td></tr>
+                                </table>
                             </div>
                         </article>
 

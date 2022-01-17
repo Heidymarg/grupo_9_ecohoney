@@ -123,3 +123,31 @@ Menos de
 
 Dejar de hacer
 •	No finalizar aquello que empezamos con determinacion.
+
+Sprint 6
+Comenzar a hacer
+Actualización del modelo esteético de la página
+Actualización y mejora constante del proyecto.
+
+Seguir haciendo
+•  Trabajo en equipo
+•	Comunicándonos por Whatsapp (las daylies),Hangout
+•	Reuniéndonos por Zoom (supporting)
+•	Pedir ayuda y ayudarnos
+•   Seguir practicando Consultar las dudas  que tenga
+•   Seguir aportando ideas para beneficio de todos
+•   Explorar codigos y funciones por fuera de lo visto que haga nuestra pagina visualmente mas atractiva.
+•   Mas compromiso con el logro de las tareas individuales.
+
+Más de
+•  Estudiar los contenidos vistos y ejercitarlos para poder rendir mejor en cada sprint.
+•	A medida que avanza el proyecto, planificar y documentar más detalladamente en Trello
+•	Seguir coordinando esfuerzos
+  
+
+Menos de 
+•   Conformarnos con lo hecho.
+
+
+Dejar de hacer
+•	No finalizar aquello que empezamos con determinacion.

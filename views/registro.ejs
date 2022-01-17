@@ -60,7 +60,9 @@
                                 <p class="feedback"> <%= resultadoValidaciones.dni.msg %></p>
                             <% } %>
                         <% } %>
+                    </div>
 
+                    <div>
                         <label>Domicilio</label>
                         <input type="text" name="addres" value="<% locals.datosAnteriores.addres %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
@@ -73,16 +75,14 @@
                     <div class="flex-vertical">
                         <h4>Perfil del usuario</h4>
                         <div class="perfil">
-                            <input type="radio" name="perfil" value="comprador" id="comprador">
-                            <label for="comprador">Comprador</label>
-                            <input type="radio" name="perfil" value="vendedor" id="vendedor">
-                            <label for="vendedor">Vendedor</label>
-                            <input type="radio" name="perfil" value="Administrador" id="Administrador">
-                            <label for="Administrador">Administrador</label>
-                            <% if ( locals && locals.resultadoValidaciones ) { 
-                                if ( resultadoValidaciones.perfil != undefined ) { %>
+                            <% for( let i = 0; (perfiles.length - i) > 0; i++ ) { %>
+                                <input type="radio" name="perfil" value="<%= perfiles[i].id_perfil %>" id="<%= perfiles[i].id_perfil %>">
+                                <label for="<%= perfiles[i].nombre %>"><%= perfiles[i].nombre %></label>
+                            <% } %>
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <% if ( resultadoValidaciones.perfil != undefined ) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.perfil.msg %></p>
-                                <% } %>
+                                <% } %>    
                             <% } %>
                         </div>
                     </div>
@@ -91,19 +91,13 @@
                         <h4>Intereses</h4>
                         <div class="intereses">
                             <div>
-                                <input type="checkbox" name="intereses" value="hogar" id="hogar">
-                                <label for="hogar">Productos del Hogar</label>
+                                <% for( let i = 0; (intereses.length - i) > 0; i++ ) { %>
+                                    <input type="checkbox" name="intereses" value="<%= intereses[i].id_intereses %>" id="<%= intereses[i].id_intereses %>">
+                                    <label for="hogar"><%= intereses[i].nombre %></label>
+                                <% } %>
                             </div>
-                            <div>
-                                <input type="checkbox" name="intereses" value="personal" id="personal">
-                                <label for="personal">Cuidado Personal</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" name="intereses" value="miel" id="miel">
-                                <label for="miel">Derivados de la Miel</label>
-                            </div>
-                            <% if ( locals && locals.resultadoValidaciones ) { 
-                                if ( resultadoValidaciones.intereses != undefined ) { %>
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <% if ( resultadoValidaciones.intereses != undefined ) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.intereses.msg %></p>
                                 <% } %>
                             <% } %>

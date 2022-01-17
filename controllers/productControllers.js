@@ -31,9 +31,27 @@ const productController = {
 	/* ******************************************************************************** */
 	/* *************** Métodos para atender la gestión de Productos ******************* */
 	/* ******************************************************************************** */
-	listar: (req, res) => {
+/*Método para crear o agregar producto*/ 
+
+
+//*crearProducto: (req,res) =>{ 
+	listar: (req,res) => {     
+		db.productos.findAll()
+		.then( resultado => { 
+		res.render('listarProductos', {'producto': resultado})
+           
+		})
+},
+
+
+
+
+
+/* ******************************************************************************* */
+	
+	/*listar: (req, res) => {
 		res.send("Listar todos los productos - Página en construcción!!!");
-	},
+	},*/
 
     detalle:(req,res) => { 
         let id = req.params.id;
@@ -121,7 +139,10 @@ const productController = {
 		
 		// 3- Volver al form con mensaje de confirmación de la operación efectuada
 		//res.redirect('formularioEliminarProducto');
+
 	},
+
+
 	grabar: (req, res) => {
 		/* 22/12/2021
 		anda el form de carga. Falta, validación, multer y la lógica para grabar a base de datos.
