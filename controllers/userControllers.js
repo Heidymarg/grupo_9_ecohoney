@@ -5,10 +5,6 @@ const encripta = require('bcryptjs');
 const { localsName } = require('ejs');
 const { append } = require('express/lib/response');
     
-const abejasFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
-const listaOfertas = JSON.parse(fileSys.readFileSync(abejasFilepath, 'utf-8'));
-const otrosProductosFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
-const listaDeIndex = JSON.parse(fileSys.readFileSync(otrosProductosFilepath, 'utf-8'));
 
 const db = require('../database/models');
 
@@ -27,6 +23,9 @@ var idPerfilParaEliminar= undefined;
 var perfiles = db.perfiles.findAll();
 var intereses = db.intereses.findAll();
 var todosLosUsuarios = db.usuarios.findAll();
+
+var listaDeIndex = db.productos.findAll();
+var listaOfertas = db.productos.findAll();
 
 const userController = {
 
@@ -74,10 +73,12 @@ const userController = {
                             
                             if ( suPerfil == 'Administrador') {   
                                 // 2.2.1_ es usuario Administrador, va a indexProtegido
-                                res.render('indexProtegido', {'usuarioLogueado': esElUsuario.usuario, 'usuarioPerfil': suPerfil, 'listado': listaDeIndex, 'listadoOfertas': listaOfertas}); 
+                                db.productos.findAll()
+                                .then( listaDeIndex => {res.render('indexProtegido', {'usuarioLogueado': esElUsuario.usuario, 'usuarioPerfil': suPerfil, 'listado': listaDeIndex, 'listadoOfertas': listaDeIndex}); } )                                
                             } else { 
                                 // 2.2.2_ no es Administrador, va a index de compradores y vendedores
-                                res.render('index', {'usuarioLogueado': esElUsuario.usuario,  'listado': listaDeIndex,'listadoOfertas': listaOfertas});   
+                                db.productos.findAll()
+                                .then( listaDeIndex => {res.render('index', {'usuarioLogueado': esElUsuario.usuario,  'listado': listaDeIndex,'listadoOfertas': listaDeIndex});} )
                             } 
                             
                             return suPerfil;
@@ -245,9 +246,8 @@ const userController = {
 
         db.usuarios.findAll()
         .then( resultado => { 
-            //res.send( { resultado});
-            //res.render('listarUsuarios', {'usuarios': resultado});
-            res.render('listarUsuarios', { usuarios:resultado});
+            res.render('listadoUsuarios', {'listaDeUsuarios': resultado});
+            //res.render('listadoUsuarios', {'listaDeUsuarios': {idUsr: null, usuario: null, email: null}});
         } );
     },
 
@@ -332,28 +332,26 @@ const userController = {
 		} );
 		return idPerfilParaEliminar = req.body.perfil
     },
-    
+
     listarInteres: function(req,res) {
 		db.intereses.findAll()
 		.then( resultado => { res.render( "interesesListar", {intereses: resultado} ) } )
 	},
     agregarInteres: (req,res) =>{res.render("interesesAgregar")},
         
-        //*res.send("Intereses Agregar - Página en construcción!!!"),*//  
     agregarGrabarInteres: (req, res) => {                              
 
         let {validationResult} = require('express-validator');
         let errores = validationResult(req);
         if(errores.isEmpty()){
-            /* la lógica para grabar a BD */
             db.intereses.create( { nombre: req.body.interes } );	
-            //res.send(req.body.linea)
         } else {
             res.render('interesesAgregar', {'resultadoValidaciones': errores.mapped()});
             
         }
 
     },
+
     modificarInteres: function(req,res) {
 		let	interesAModificar = { "id_intereses": null, "nombre": null };
 		res.render( "interesesModificar", {'interesAModificar':interesAModificar});
@@ -373,17 +371,15 @@ const userController = {
     modificarGrabarInteres: function(req,res) {
 		let {validationResult} = require('express-validator');
 		let errores = validationResult(req);
-		//// viaja ok .then( resultado => {res.send('Linea a modificar' + resultado.id_lineas + '  ' + resultado.nombre + 'Nuevo Nombre: ' + req.body.nombre);} )
+		
 		db.intereses.findByPk( idInteresParaModificar )
 		.then( resultado => {
-        //.catch(error=>console.log(error))
-            //console.log(resultado)
-            //.catch(error=>console.log(error))
 			db.intereses.update( {nombre: req.body.nombre}, {where: {id_intereses : resultado.id_intereses}} ); 
 			let	interesAModificar = { "id_intereses": null, "nombre": null }; 
 			res.render('interesesModificar', {'interesAModificar':interesAModificar}) } )	
             
 	},
+    
     eliminarInteres: function(req,res) {
 		let	interesesEliminar = { "id_intereses": null, "nombre": null }; 
 		res.render("interesesEliminar", {'interesesAEliminar': interesesEliminar});

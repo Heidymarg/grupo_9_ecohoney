@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title>Login</title>
+    <title> Perfil Eliminar</title>
 
     <%- include('./partials/head.ejs') %>
 
@@ -82,13 +82,11 @@
         </div>
 
         <div class="buscador">
-            <form method="POST" action="/productos/buscar">
-                <input class="buscador-input" type="text" name="buscado" placeholder="Que producto buscas?"></input>
-                <button type="submit" ><i class="fas fa-search"></i></button>
-            </form>
+            <input class="buscador-input" type= "Buscar" placeholder="Que producto buscas?"></input>
+            <button type="submit" ><i class="fas fa-search"></i></button>
         </div>
         
-    </header>  
+    </header>
   
     <main>
         <!--
@@ -97,29 +95,54 @@
         </section>
         -->
         <center>
-            <div style='width: 33%'>
-                <br>
-                <h3>Agregar Intereses</h3><br>
-                <hr>
-                <br>
-                <form method="POST" action="/usuarios/intereses/agregar">
-                    <label>Descripcion</label>
-                    <input type="text" id=" " name="interes"> 
-                    <% if ( locals && locals.resultadoValidaciones ) {
-                        if ( resultadoValidaciones.interes != undefined )  { %>
-                            <p class="feedback"> <%= resultadoValidaciones.interes.msg %></p>
-                        <% } %>
-                    <% } %> 
-                                                   
-                   
-                    
+            <div class=formCrudDeLineas>
 
-                    <br><br>
-                    <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="Ingresar">Ingresar</button>        
-                    <br><br>
-                    <hr>
-                    <br>
+                <table class="formTableCrudDeProducto">
+                    <thead style="width: 100%;">
+                        <tr><th><div style=" background-color: gold; border-radius: 5px; padding: 3px;"><h3><p>Gestión de Usuario - Eliminar Interes</p></h3></div></th></tr>
+                    </thead>
+
+                    <tbody>
+                        <tr><td>
+                            <form action="/usuarios/intereses/eliminar" method="POST">    <!-- atendido por router.post('/delete', productController.traerParaConfirmar) -->
+                    
+                                <table class="formTableCrudDeProducto">
+                                    <tbody style="width: 100%;">
+                                        <tr><td><label><span>Código de Interés</span></label></td></tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="intereses" value="<%= interesesAEliminar.id_intereses %>" required>
+                                                <input type="submit" value="Seleccionar">
+                                                <input type="reset" value="Limpiar">
+                                            </td>
+                                        </tr>  
+                                    </tbody>
+        
+                                    <table class="formTableCrudDeProducto">
+                                        <tbody style="width: 100%;">
+                                            <!--  <tr><tr><td><div style="background-color: grey; border-radius: 5px; height: 2px;"></div></td></tr></tr> -->
+                                            <tr><td><label><span>Código de Línea: <%= interesesAEliminar.id_intereses %></span></label></td></tr>
+                                            <tr><td><label><span>Nombre: <%= interesesAEliminar.nombre %></span></label></td></tr>  
+                                            
+                                        </tbody>
+                                    </table>
+                                </table>
+
+                            </form>
+                        </td></tr>
+
+                    </tbody>
+                </table>
+
+                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
+                <div style="background-color: rgb(172, 221, 188);; padding-top: 4px; height: 3px; "></div>
+                <form action="/usuarios/intereses/eliminar/<%= interesesAEliminar.id_intereses %>" method="POST">   <!-- ?_method=DELETE atendido por router.delete('/delete', productController.eliminar);  -->                    
+                    <input type="submit" value="Eliminar">
                 </form>
+
+                <div style="background-color: rgb(172, 221, 188);; padding-top: 4px; height: 3px; "></div>
+                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
+
             </div>
            
         </center>

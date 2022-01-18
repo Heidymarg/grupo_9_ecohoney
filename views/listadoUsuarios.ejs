@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title>Login</title>
-
-    <%- include('./partials/head.ejs') %>
-
-<body>
-
+      
+    <%- include('./partials/head.ejs'); -%>
+    
     <header class="flex-vertical">
         <div class="dentro-header">
             <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
             
             <div class="nav-bar">
                 <nav><!--nav> style="justify-content: space-around;"> -->
-               
+
                             <!-- if NO SOY admin, muestro el menú de público -->
                             <ul type="none">
                             <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
@@ -22,7 +19,7 @@
                             <li><a href="#">Ayuda</a></li>
                             </ul>
                             <br><br><br>
-               
+
                             <!-- else soy admin, muestro el menú protegido de ABM de productos -->
                             <nav>
                                 <nav  class="navbar_horflex nav-estilo-usuarios">
@@ -61,7 +58,7 @@
                                     </ul>
                                 </nav>
                             </nav>
-                                         
+                   
                 </nav>
             </div>
             
@@ -70,9 +67,9 @@
                 <a href="/usuarios/logout">Salir</a>   
                 <a href="/usuarios/registro">Registrate</a>
                 <a href="/productos/carrito">Mi Carrito<i class="fas fa-cart-plus"></i></a>
-                
-                    
-                
+                <% if ( locals && locals.usuarioLogueado != undefined ) { %>
+                    <strong><%= locals.usuarioLogueado.usuario %></strong>
+                <% } %>
             </div>
 
         </div>
@@ -88,44 +85,26 @@
             </form>
         </div>
         
-    </header>  
-  
-    <main>
-        <!--
-        <section>
-            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
-        </section>
-        -->
-        <center>
-            <div style='width: 33%'>
-                <br>
-                <h3>Agregar Intereses</h3><br>
-                <hr>
-                <br>
-                <form method="POST" action="/usuarios/intereses/agregar">
-                    <label>Descripcion</label>
-                    <input type="text" id=" " name="interes"> 
-                    <% if ( locals && locals.resultadoValidaciones ) {
-                        if ( resultadoValidaciones.interes != undefined )  { %>
-                            <p class="feedback"> <%= resultadoValidaciones.interes.msg %></p>
-                        <% } %>
-                    <% } %> 
-                                                   
-                   
-                    
+    </header>
 
-                    <br><br>
-                    <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="Ingresar">Ingresar</button>        
-                    <br><br>
-                    <hr>
-                    <br>
-                </form>
-            </div>
-           
-        </center>
-
+<body> 
+    
+    <main class="flex-vertical">
+        <div class="flex-vertical">
+            <div style=" background-color: gold; border-radius: 5px; padding: 3px;"><h3><p>Gestión de Usuarios - Listado de Usuarios</p></h3></div>
+            <% for( let i = 0; (listaDeUsuarios.length - i) > 0; i++) { %>
+                <table>
+                    <tr>
+                        <td><p><strong><%= listaDeUsuarios[i].idUsr %> </p></strong></td>
+                        <td><p><strong><%= listaDeUsuarios[i].usuario %> </p></strong></td>
+                        <td><p><strong><%= listaDeUsuarios[i].email %> </p></strong></td>
+                    </tr>
+                </table>
+            <% } %>
+        </div>
     </main>
+    
+    <%- include( './partials/footer.ejs' ); -%>
 
 </body>
-    <%- include( './partials/footer.ejs' )%>
 </html>

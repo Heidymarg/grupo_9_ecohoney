@@ -2,7 +2,7 @@
   "name": "grupo_9_ecohoney",
   "version": "1.0.0",
   "description": "URL del repositorio: https://github.com/Heidymarg/grupo_9_ecohoney.git",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
