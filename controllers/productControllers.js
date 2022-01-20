@@ -167,14 +167,14 @@ const productController = {
                 id_lineas : req.body.linea,
                 precio : req.body.precio,
                 bonif: req.body.bonif,
-				foto: path.join( __dirname, "public/images/" ) + req.file,
+				foto:  "/images/"  + req.file.filename,
                 cantidad: req.body.cantidad,         
             })
 			.then(
 			Promise.all([lineas])
             .then( ([lineas]) => {
                 res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
-            }))
+			}))
 
         } else {
             Promise.all([lineas])
