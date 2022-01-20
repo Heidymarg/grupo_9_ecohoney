@@ -58,6 +58,7 @@ const userController = {
                         .then( resultado => {
                             
                             suPerfil = resultado[0].dataValues.nombre;
+                           
                             console.log(`Usuario ${esElUsuario.usuario} logueado!!! su perfil es ${suPerfil}`);
 
                             // 2.2_ guardo el usuario en  session (o sea, lo logueo) si NO ESTá logueado
@@ -398,10 +399,19 @@ const userController = {
 		return idInteresParaEliminar = req.body.intereses
     },
     
-    carrito: function( req, res) {
-        res.send("Carrito en construcción");
+    /*
+    carrito = function() {
+        
+        db.usuarios.findAll( {
+                where: { id_usuario : esElUsuario.idUsr}
+        } )
+        .then( resultado => { 
+            localStorage.setItem('carritoUsuarioLogueado', resultado.idUsr);
+            return `Carrito creado para el usuarios ${resultado.nombre}`; 
+        } )
+        
     }
-
+    */
 } 
 
 module.exports = userController;

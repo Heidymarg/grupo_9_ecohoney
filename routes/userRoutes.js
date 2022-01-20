@@ -112,7 +112,7 @@ let validacionEliminarInteres = [check('interes').notEmpty().withMessage('Comple
 router.post('/intereses/eliminar', validacionEliminarInteres, userController.confirmarEliminarInteres)
 router.post('/intereses/eliminar/:id', validacionEliminarInteres, userController.eliminarInteres);
 
-router.get('/carrito', userController.carrito);
+//router.get('/carrito', userController.carrito);
 
 
 module.exports = router;
