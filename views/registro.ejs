@@ -60,7 +60,9 @@
                                 <p class="feedback"> <%= resultadoValidaciones.dni.msg %></p>
                             <% } %>
                         <% } %>
+                    </div>
 
+                    <div>
                         <label>Domicilio</label>
                         <input type="text" name="addres" value="<% locals.datosAnteriores.addres %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
@@ -74,7 +76,7 @@
                         <h4>Perfil del usuario</h4>
                         <div class="perfil">
                             <% for( let i = 0; (perfiles.length - i) > 0; i++ ) { %>
-                                <input type="radio" name="perfil" value="<%= perfiles[i].nombre %>" id="<%= perfiles[i].nombre %>">
+                                <input type="radio" name="perfil" value="<%= perfiles[i].id_perfil %>" id="<%= perfiles[i].id_perfil %>">
                                 <label for="<%= perfiles[i].nombre %>"><%= perfiles[i].nombre %></label>
                             <% } %>
                             <% if ( locals && locals.resultadoValidaciones ) { %>
@@ -89,8 +91,8 @@
                         <h4>Intereses</h4>
                         <div class="intereses">
                             <div>
-                                <% for( let i = 0; (perfiles.length - i) > 0; i++ ) { %>
-                                    <input type="checkbox" name="intereses" value="<%= intereses[i].nombre %>" id="<%= intereses[i].nombre %>">
+                                <% for( let i = 0; (intereses.length - i) > 0; i++ ) { %>
+                                    <input type="checkbox" name="intereses" value="<%= intereses[i].id_intereses %>" id="<%= intereses[i].id_intereses %>">
                                     <label for="hogar"><%= intereses[i].nombre %></label>
                                 <% } %>
                             </div>

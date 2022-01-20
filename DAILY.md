@@ -53,3 +53,10 @@ que encontró, qué va a hacer.
 
 - Hubo constantes reuniones por chat y zoom con participación de todo el 
 equipo.
+
+-------------------------------------------------------------------------
+                        -- Inicio Sprint 6 --
+-------------------------------------------------------------------------
+
+- Se intensificaron las reuniones por chat y zoom con participación de todo el 
+equipo, dada la complejidad que demanda el sprint.

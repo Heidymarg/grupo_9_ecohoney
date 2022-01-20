@@ -79,8 +79,10 @@
         </div>
 
         <div class="buscador">
-            <input class="buscador-input" type= "Buscar" placeholder="Que producto buscas?"></input>
-            <button type="submit" ><i class="fas fa-search"></i></button>
+            <form method="POST" action="/productos/buscar">
+                <input class="buscador-input" type="text" name="buscado" placeholder="Que producto buscas?"></input>
+                <button type="submit" ><i class="fas fa-search"></i></button>
+            </form>
         </div>
         
     </header>
@@ -105,24 +107,26 @@
                             <tr><td><input type="text" name="nombre"></td></tr>
         
                             <tr><td><label><span>Descripción Detallada</span></label></td></tr>
-                            <tr><td><input type="text" name="Descripcion"></td></tr>
+                            <tr><td><input type="text" name="descripcion"></td></tr>
 
                             <tr><td><label><span>Línea</span></label></td></tr>
                             <tr>
                                 <td>
                                     <select id="linea" name="linea">
-                                        <option value="hogar">Hogar</option>
-                                        <option value="personal">Cuidado Personal</option>
-                                        <option value="abejas">Productos de las Abejas</option>
-                                    </select>
+                                        <% for( let i = 0; (lineas.length - i) > 0; i++ ) { %>
+                                            <option value="<%= lineas[i].id_lineas%>"> <%= lineas[i].nombre%></option>
+                                        <% } %>
                                 </td>
                             </tr>
 
                             <tr><td><label><span>Precio</span></label></td></tr>
-                            <tr><td><input type="number" name="precio" id="precio"></td></tr>
+                            <tr><td><input type="text" name="precio" id="precio"></td></tr>
         
                             <tr><td><label><span>Bonificación</span></label></td></tr>
                             <tr><td><input type="text" name="bonif"></td></tr>
+
+                            <tr><td><label><span>Cantidad</span></label></td></tr>
+                            <tr><td><input type="text" name="cantidad"></td></tr>
         
                             <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
                             <tr><td><input type="file" name="foto"></td></tr>

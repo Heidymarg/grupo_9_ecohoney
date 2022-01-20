@@ -79,8 +79,10 @@
         </div>
 
         <div class="buscador">
-            <input class="buscador-input" type= "Buscar" placeholder="Que producto buscas?"></input>
-            <button type="submit" ><i class="fas fa-search"></i></button>
+            <form method="POST" action="/productos/buscar">
+                <input class="buscador-input" type="text" name="buscado" placeholder="Que producto buscas?"></input>
+                <button type="submit" ><i class="fas fa-search"></i></button>
+            </form>
         </div>
         
     </header>
@@ -93,9 +95,9 @@
             <% for( let i = 0; (listaDeUsuarios.length - i) > 0; i++) { %>
                 <table>
                     <tr>
-                        <td><p><strong><%= listaDeUsuarios[i].idUsr %>)_ </p></strong></td>
-                        <td><p><strong><%= listaDeUsuarios[i].usuario %></p></strong></td>
-                        <td><p><strong><%= listaDeUsuarios[i].email %></p></strong></td>
+                        <td><p><strong><%= listaDeUsuarios[i].idUsr %> </p></strong></td>
+                        <td><p><strong><%= listaDeUsuarios[i].usuario %> </p></strong></td>
+                        <td><p><strong><%= listaDeUsuarios[i].email %> </p></strong></td>
                     </tr>
                 </table>
             <% } %>

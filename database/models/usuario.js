@@ -11,18 +11,22 @@ module.exports = function(sequelize, dataTypes) {
         usuario:{
             type: dataTypes.STRING(30),
             notNull:true
-
         },
         email:{
-            type: dataTypes.STRING(30)
+            type: dataTypes.STRING(30),
         },
         id_perfil: {type:dataTypes.INTEGER,
             notNull:true
         },
-        id_carrito: {type:dataTypes.INTEGER,
+        id_intereses: {type:dataTypes.INTEGER,
             notNull:true
+        },
+        password:{type: dataTypes.STRING(512),
+        },
+        id_carrito: {type:dataTypes.INTEGER
         }
     }
+
 
     let config  = {
         tableName:"usuarios",

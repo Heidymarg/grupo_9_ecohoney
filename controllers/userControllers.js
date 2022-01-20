@@ -5,154 +5,141 @@ const encripta = require('bcryptjs');
 const { localsName } = require('ejs');
 const { append } = require('express/lib/response');
     
-const abejasFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
-const listaOfertas = JSON.parse(fileSys.readFileSync(abejasFilepath, 'utf-8'));
-const otrosProductosFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
-const listaDeIndex = JSON.parse(fileSys.readFileSync(otrosProductosFilepath, 'utf-8'));
 
-const usuariosFilepath = path.join(__dirname, '../data/usuarios.json');
 const db = require('../database/models');
 
+const { Op } = require('sequelize');
 
 var esElUsuario = undefined;
+
+/* Para modificar usuario */
+var usuarioAModificar = undefined;
+var usuarioSeleccionado = undefined;
+/* Fin Para modificar usuario */
+
 
 var idPerfilParaEliminar= undefined; 
 
 var perfiles = db.perfiles.findAll();
 var intereses = db.intereses.findAll();
+var todosLosUsuarios = db.usuarios.findAll();
+
+var listaDeIndex = db.productos.findAll();
+var listaOfertas = db.productos.findAll();
 
 const userController = {
 
     login: (req,res) => {
+        //ok no tocar.
         res.render('login');
     },
     validarUsuario:(req,res) => { 
-       
-        // res.send('datos ingresados' + req.body.email + '  '+ req.body.password + ' ' + req.body.recordarme);
+        //ok no tocar.
         const {validationResult} = require('express-validator');
         let error = validationResult( req ); 
 
         if (error.isEmpty()) {
         
-            // 1_ busco el usuario en el archivo usuarios.json AHORA en la DB
-            let usuariosArray = JSON.parse(fileSys.readFileSync(usuariosFilepath, 'utf8'));
-            esElUsuario = usuariosArray.find( u => { return u.usuario == req.body.usuario } );
+            // 1_ Busco el usuario en  la DB //
+            db.usuarios.findAll({where:{usuario: req.body.usuario}})
+            .then(resultado => { 
+                
+                esElUsuario = resultado[0].dataValues; 
+                
+                // 2_ Si el usuario está registrado
+                if ( esElUsuario != undefined ) {
 
-            // 2_ Si el usuario está registrado, verifico su password
-            if ( esElUsuario != undefined ) {
-                if ( encripta.compareSync( req.body.password, esElUsuario.password ) || (req.body.usuario != esElUsuario.usuario) ) {
+                    //2.1_ Verifico su password
+                    if ( encripta.compareSync( req.body.password, esElUsuario.password )||
+                        (req.body.usuario != esElUsuario.usuario) ) {
                     
-                    // 2.1_ guardo el usuario en  session (o sea, lo logueo) si NO ESTá logueado
-                    if ( req.session.usuarioLogueado == undefined ) {
-                        
-                        req.session.usuarioLogueado = esElUsuario;
-                             
-                        // 2.2_ muestro datos de usuario en el header
-                        // completar con código
-                        
-                        // 2.3_ muestro menu extendido en header
-                        // completar con código
-    
-                        // 2.4_ Si tildó el recordarme
-                        if ( req.body.recordarme == undefined ) {
-                            // 2.4.1_ activo cookie
-                            res.cookie('usuarioRecordado', esElUsuario.usuario, { maxAge: 24 * 60 * 60 * 1000 });
-                        } 
-                        
-                        // 2.5_ redirecciono a Home
-                        console.log(`Usuario ${esElUsuario.usuario} logueado! `);
-                        res.render('indexProtegido', {'usuarioLogueado': esElUsuario,  'listado': listaDeIndex,'listadoOfertas': listaOfertas}); 
-                        
-                    } else { // el usuario ya estaba logueado, lo redirecciono a HOME protegido
-                        res.render('indexProtegido', {'usuarioLogueado': esElUsuario,  'listado': listaDeIndex,'listadoOfertas': listaOfertas}); 
-                    }      
-                } else {
-                    // 2.6_ El usuario ingresó mal la password o el nombre de usuario, redirecciona a login
-                    res.render('login', {'resultadoValidaciones': [{msg:'Usuario o Contraseña inválidos '}], 'datosAnteriores': req.body});
-                }
-            } else { // el usuario no está registrado, entonces es un GUEST, se redirecciona al HOME.
-                res.redirect('/');    
+                        var suPerfil = undefined;
+                        db.perfiles.findAll( { where:{ id_perfil: esElUsuario.id_perfil } } )
+                        .then( resultado => {
+                            
+                            suPerfil = resultado[0].dataValues.nombre;
+                            console.log(`Usuario ${esElUsuario.usuario} logueado!!! su perfil es ${suPerfil}`);
 
-            }
-        } else { // datos inválidos en el login.
+                            // 2.2_ guardo el usuario en  session (o sea, lo logueo) si NO ESTá logueado
+                            if ( req.session.usuarioLogueado == undefined ) {
+                                // 2.2.1_ Si tildó el recordarme
+                                req.session.usuarioLogueado = esElUsuario.usuario;
+                                if ( req.body.recordarme == undefined ) { // activo cookie
+                                    res.cookie('usuarioRecordado', esElUsuario.usuario, { maxAge: 24 * 60 * 60 * 1000 });
+                                } 
+                            }
+                       
+                            // ok hasta acá res.send( "Datos de Usuario correctamente ingresados : " + esElUsuario.usuario + " Su perfil es: " + suPerfil );
+                            
+                            if ( suPerfil == 'Administrador') {   
+                                // 2.2.1_ es usuario Administrador, va a indexProtegido
+                                db.productos.findAll()
+                                .then( listaDeIndex => {res.render('indexProtegido', {'usuarioLogueado': esElUsuario.usuario, 'usuarioPerfil': suPerfil, 'listado': listaDeIndex, 'listadoOfertas': listaDeIndex}); } )                                
+                            } else { 
+                                // 2.2.2_ no es Administrador, va a index de compradores y vendedores
+                                db.productos.findAll()
+                                .then( listaDeIndex => {res.render('index', {'usuarioLogueado': esElUsuario.usuario,  'listado': listaDeIndex,'listadoOfertas': listaDeIndex});} )
+                            } 
+                            
+                            return suPerfil;
+                        
+                        }); // fin de db.perfiles.findAll( { where:{ id_perfil: esElUsuario.id_perfil } } )
+      
+                    } else { // 2.4_ El usuario ingresó mal la password o el nombre de usuario, redirecciona a login
+                        res.render('login', {'resultadoValidaciones': [{msg:'Usuario o Contraseña inválidos '}], 'datosAnteriores': req.body});
+                        console.log('Entro por distinto/incorrecto usuario o pasword');
+                    }
+                } else { // 2.5_ el usuario no está registrado o es indefined, se redirecciona al HOME.
+                    res.redirect('/');    
+                }
+            
+            }); // fin de db.usuarios.findAll({where:{usuario: req.body.usuario}})
+
+        } else { // datos inválidos o incompletos en el login.
             res.render('login', {'resultadoValidaciones': error.mapped(), 'datosAnteriores': req.body});
         }
         
     },  
-    
+
     registroGrabar:(req,res) => {
-        
+        //ok no tocar.
         const {validationResult} = require('express-validator');
         let errores = validationResult( req );
 
         if ( errores.isEmpty() ) { // no hay errores
-            // logica de alta de usuario ==> 
-            // 1_ leo el archivo de usuarios y lo paso a array
-            let usuariosArray = JSON.parse(fileSys.readFileSync(usuariosFilepath, 'utf8'));
-            
-            // 2_ genero id a partir del length del archivo usuarios.json
-            // desaparece esto cuando esté listo el db.usuario.create()
-            let nuevoUsuario = {idUsr: null,
-                                nombre: null,
-                                usuario: null,
-                                email: null,
-                                fechaNac: null,
-                                dni: null,
-                                domicilio: null,
-                                perfil: null,
-                                intereses: null,
-                                foto: null,
-                                password: null,
-                                privacidad: null};
 
-            nuevoUsuario.idUsr = usuariosArray.length + 1;
-            
-            // 3_ verifico igualdad de passwords y las encripto
+            // 1_ verifico igualdad de passwords y las encripto
             let bcrypt;
             let passOculta;
             if ( req.body.pass === req.body.pass_confirm ) {
-                //bcrypt = require('bcryptjs');
                 passOculta = encripta.hashSync( req.body.pass_confirm, 10 );
             }
 
-            // 4_ Cargo los datos del form en el usuario nuevo
-            nuevoUsuario.nombre = req.body.nombre;
-            nuevoUsuario.usuario = req.body.user;
-            nuevoUsuario.email = req.body.email;
-            nuevoUsuario.fechaNac = req.body.birth_date;
-            nuevoUsuario.dni = req.body.dni;
-            nuevoUsuario.domicilio = req.body.addres;
-            nuevoUsuario.perfil = req.body.perfil;
-            nuevoUsuario.intereses = req.body.intereses; // se graba en tabla intermedia!!!
-            nuevoUsuario.foto = req.body.avatar;
-            nuevoUsuario.password = passOculta;
-            nuevoUsuario.privacidad = req.body.privacidad;
-            
-            // 5_ agrego el usuario nuevo al array de usuarios
-            // desaparece cuando cargue usuarios a DB.
-            usuariosArray.push( nuevoUsuario );
+            // 4_ grabo el usuario a tabla
+            db.usuarios.create( {
+                usuario : req.body.user,
+                email : req.body.email,
+                id_perfil : req.body.perfil,
+                id_intereses : req.body.intereses,
+                password : passOculta
+            } );
 
-            // 6_ grabo el array a archivo usuario.json
-            //fileSys.writeFileSync(path.join( __dirname, '../', '/data/usuarios.json'), JSON.stringify(usuariosArray), 'utf8');
-            /*
-            * **************************************
-            * **************************************
-            * ACá va el código para grabar a DB
-            * **************************************
-            * **************************************
-            */
-            res.send(nuevoUsuario);
-            //return res.redirect('registro'{'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses});
+            Promise.all([perfiles,intereses])
+            .then( ([perfiles,intereses]) => {
+                res.render('registro', {'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses});          
+            } )
 
         } else { //hay errores
-            // no anda rellenar los campos correctos de la carga anterior.
             Promise.all([perfiles,intereses])
             .then( ([perfiles,intereses]) => {
                 res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'perfiles': perfiles, 'intereses': intereses});
             } )
         } 
     },
+
+    /* Para modificar usuario */
     registroMostrar: (req,res) => { 
+        //ok no tocar.
         Promise.all([perfiles,intereses])
         .then( ([perfiles,intereses]) => {
             res.render('registro', {'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses});          
@@ -160,16 +147,62 @@ const userController = {
     },
 
     registroModificarMostrar: (req,res) => { 
+        // ok no tocar
         const {validationResult} = require('express-validator');
         let errores = validationResult( req );
-        Promise.all([perfiles,intereses])
-        .then( ([perfiles,intereses]) => {
-            res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses} );
-        } )     
+
+        Promise.all([perfiles, intereses, todosLosUsuarios])
+        .then( ([perfiles, intereses, todosLosUsuarios]) => {
+            res.render('registroModificar', {'perfiles':perfiles, 'intereses':intereses, 'datosAnteriores': req.body, 'todosLosUsuarios': todosLosUsuarios, 'usuarioSeleccionado': undefined} );
+        } )    
+       
     },
-    registroModificarGrabar:(req,res) => { 
-        res.render('registro', {'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses} );
+    registroModificarSeleccionar:( req,res) => {
+        // ok no tocar        
+        const {validationResult} = require('express-validator');
+        let errores = validationResult( req );
+
+        db.usuarios.findAll( { where: { usuario: {[Op.eq] : req.body.todosLosUsuarios} } } )
+        .then(resultado => {
+            usuarioSeleccionado = resultado[0].idUsr;
+            console.log( 'Id usr selecionado para modificar: ' + usuarioSeleccionado );
+            if ( resultado.length == 0 ) {
+                res.send("Seleccioná un usuario de la lista!!! ")
+            } else {
+                Promise.all([perfiles, intereses, todosLosUsuarios])
+                .then( ([perfiles, intereses, todosLosUsuarios]) => {
+                    res.render('registroModificar', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses, 'todosLosUsuarios': todosLosUsuarios[0], 'usuarioSeleccionado': resultado[0]} );
+                })              
+            }
+        })           
     },
+    registroModificarGrabar:(req,res) => {
+        // ok no tocar
+        let passOculta;
+            if ( req.body.pass === req.body.pass_confirm ) {
+                passOculta = encripta.hashSync( req.body.pass_confirm, 10 );
+            }
+
+        db.usuarios.update({
+            usuario: req.body.user,
+            email: req.body.email,
+            id_perfil: req.body.perfil,
+            id_interses: req.body.intereses,
+            password: passOculta
+        }, {
+            where : { idUsr : usuarioSeleccionado }
+        }).then( resultado => {
+            const {validationResult} = require('express-validator');
+            let errores = validationResult( req );
+
+            Promise.all([perfiles, intereses, todosLosUsuarios])
+            .then( ([perfiles, intereses, todosLosUsuarios]) => {
+                res.render('registroModificar', {'perfiles':perfiles, 'intereses':intereses, 'datosAnteriores': req.body, 'todosLosUsuarios': todosLosUsuarios, 'usuarioSeleccionado': undefined} );
+            } )
+        })
+        
+    },
+    /* Fin Para modificar usuario */
 
     registroEliminarMostrar: (req,res) => { 
         //const {validationResult} = require('express-validator');
@@ -252,8 +285,34 @@ const userController = {
 		}
     },
 
-    modificarPerfil: (req,res) => {res.send("PERFILES Modificar - Página en construcción!!!")},
-    modificarGrabarPerfil: (req,res) => {res.send("Perfiles Modificar Grabar - Página en construcción!!!")},
+    modificarPerfil: (req,res) => {
+        let	perfilAModificar = { "id_perfil": null, "nombre": null };
+		res.render( "perfilesModificar", {'perfilAModificar':perfilAModificar});
+    },
+    confirmarModificarPerfil: function(req,res) {
+		let	perfilAModificar = { "id_perfil": null, "nombre": null }; 
+		
+        db.perfiles.findByPk( req.body.perfil )
+		.then( resultado => { 
+			if ( resultado != undefined ) {
+				res.render("perfilesModificar", {'perfilAModificar': resultado} ) 	
+			} else {
+				res.render("perfilesModificar", {'perfilAModificar': { id_perfil: "-1", nombre: " no existe!!! " }} ) 
+			}
+		} );
+		
+		return idPerfilParaModificar = req.body.perfil;
+	},
+    modificarGrabarPerfil: function(req,res) {
+		let {validationResult} = require('express-validator');
+		let errores = validationResult(req);
+		
+		db.perfiles.findByPk( idPerfilParaModificar )
+		.then( resultado => {
+			db.perfiles.update( {nombre: req.body.nombre}, {where: {id_perfil : resultado.id_perfil}} ); 
+			let	perfilAModificar = { "id_perfil": null, "nombre": null }; 
+			res.render('perfilesModificar', {'perfilAModificar':perfilAModificar}) } )	
+	},
 
     eliminarPerfil: function(req,res) {
 		let	perfilesEliminar = { "id_perfil": null, "nombre": null }; 
@@ -280,15 +339,12 @@ const userController = {
 	},
     agregarInteres: (req,res) =>{res.render("interesesAgregar")},
         
-        //*res.send("Intereses Agregar - Página en construcción!!!"),*//  
     agregarGrabarInteres: (req, res) => {                              
 
         let {validationResult} = require('express-validator');
         let errores = validationResult(req);
         if(errores.isEmpty()){
-            /* la lógica para grabar a BD */
             db.intereses.create( { nombre: req.body.interes } );	
-            //res.send(req.body.linea)
         } else {
             res.render('interesesAgregar', {'resultadoValidaciones': errores.mapped()});
             
@@ -296,9 +352,34 @@ const userController = {
 
     },
 
-    modificarInteres: (req,res) => {res.send("Intereses Modificar - Página en construcción!!!")},
-    modificarGrabarInteres: (req,res) => {res.send("Intereses Modificar Grabar - Página en construcción!!!");},
-
+    modificarInteres: function(req,res) {
+		let	interesAModificar = { "id_intereses": null, "nombre": null };
+		res.render( "interesesModificar", {'interesAModificar':interesAModificar});
+	},
+    confirmarModificarInteres: function(req,res) {
+		let	interesAModificar = { "id_intereses": null, "nombre": null }; 
+		db.intereses.findByPk( req.body.intereses )
+		.then( resultado => { 
+			if ( resultado != undefined ) {
+				res.render("interesesModificar", {'interesAModificar': resultado} ) 	
+			} else {
+				res.render("interesesModificar", {'interesAModificar': { id_intereses: "-1", nombre: " no existe!!! " }} ) 
+			}
+		} );
+        return idInteresParaModificar = req.body.intereses;
+	},
+    modificarGrabarInteres: function(req,res) {
+		let {validationResult} = require('express-validator');
+		let errores = validationResult(req);
+		
+		db.intereses.findByPk( idInteresParaModificar )
+		.then( resultado => {
+			db.intereses.update( {nombre: req.body.nombre}, {where: {id_intereses : resultado.id_intereses}} ); 
+			let	interesAModificar = { "id_intereses": null, "nombre": null }; 
+			res.render('interesesModificar', {'interesAModificar':interesAModificar}) } )	
+            
+	},
+    
     eliminarInteres: function(req,res) {
 		let	interesesEliminar = { "id_intereses": null, "nombre": null }; 
 		res.render("interesesEliminar", {'interesesAEliminar': interesesEliminar});
@@ -321,6 +402,6 @@ const userController = {
         res.send("Carrito en construcción");
     }
 
-}
+} 
 
 module.exports = userController;

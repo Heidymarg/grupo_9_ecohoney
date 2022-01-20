@@ -45,11 +45,6 @@ router.post('/agregarProducto', validacionModificacion, upload.single('foto'), p
 /*** Mostrar datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 
 
-/*** EDIT ONE PRODUCT ***/ 
-/*
-22/12/2021 Falta la validación de campos del sprint 5
-y la logica para grabar a DB del sprint 6
-*/
 router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 router.post('/productoModificar', productController.traerParaModificar);
 router.patch('/edit/:id', upload.single('foto'), productController.modificar); 
@@ -83,5 +78,8 @@ let validacionEliminarLinea = [
 ];
 router.post('/linea/eliminar', validacionEliminarLinea, productController.confirmarEliminarLinea)
 router.post('/linea/eliminar/:id', validacionEliminarLinea, productController.eliminarGrabarLinea);
+
+router.get('/buscar', productController.buscar );
+router.post('/buscar', productController.buscar);
 
 module.exports = router;

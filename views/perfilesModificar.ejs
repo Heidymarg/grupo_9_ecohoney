@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title>Login</title>
+    <title>Modificar perfil</title>
 
     <%- include('./partials/head.ejs') %>
 
@@ -91,37 +91,55 @@
     </header>  
   
     <main>
-        <!--
-        <section>
-            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
-        </section>
-        -->
         <center>
-            <div style='width: 33%'>
-                <br>
-                <h3>Agregar Intereses</h3><br>
-                <hr>
-                <br>
-                <form method="POST" action="/usuarios/intereses/agregar">
-                    <label>Descripcion</label>
-                    <input type="text" id=" " name="interes"> 
-                    <% if ( locals && locals.resultadoValidaciones ) {
-                        if ( resultadoValidaciones.interes != undefined )  { %>
-                            <p class="feedback"> <%= resultadoValidaciones.interes.msg %></p>
-                        <% } %>
-                    <% } %> 
-                                                   
-                   
-                    
+            <div class=formCrudDeLineas>
 
-                    <br><br>
-                    <button type="submit" class="btn btn-personalizado btn-lg btn-block" id="submit" name="submit" title="Ingresar">Ingresar</button>        
-                    <br><br>
-                    <hr>
-                    <br>
+                <table class="formTableCrudDeProducto">
+                    <thead style="width: 100%;">
+                        <tr><th><div style=" background-color: gold; border-radius: 5px; padding: 3px;"><h3><p>Gestión de Usuarios - Modificar Perfil</p></h3></div></th></tr>
+                    </thead>
+
+                    <tbody>
+                        <tr><td>
+                            <form action="/usuarios/perfil/modificar" method="POST"> 
+                    
+                                <table class="formTableCrudDeProducto">
+                                    <tbody style="width: 100%;">
+                                        <tr><td><label><span>Código de Perfil</span></label></td></tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="perfil" value="<%= perfilAModificar.id_perfil %>" required>
+                                                <input type="submit" value="Seleccionar">
+                                                <input type="reset" value="Limpiar">
+                                            </td>
+                                        </tr>  
+                                    </tbody>
+        
+                                    <table class="formTableCrudDeProducto">
+                                        <tbody style="width: 100%;">
+                                            <tr><td><label><span>Código de Perfil: <%= perfilAModificar.id_perfil %></span></label></td></tr>
+                                            <tr><td><label><span>Nombre: <%= perfilAModificar.nombre %></span></label></td></tr>  
+                                        </tbody>
+                                    </table>
+                                </table>
+
+                            </form>
+                        </td></tr>
+
+                    </tbody>
+                </table>
+
+                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
+                <div style="background-color: rgb(172, 221, 188);; padding-top: 4px; height: 3px; "></div>
+                <form action="/usuarios/perfil/modificar/<%= perfilAModificar.id_perfil %>" method="POST">  
+                    <table><tr><td><label><span>Nuevo Nombre: </span></label></td><td><input type="text" name="nombre" required></td></tr></table>
+                    <input type="submit" value="Modificar">
                 </form>
+
+                <div style="background-color: rgb(172, 221, 188);; padding-top: 4px; height: 3px; "></div>
+                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
+
             </div>
-           
         </center>
 
     </main>

@@ -45,14 +45,24 @@ router.get('/registro', userController.registroMostrar);
 router.post('/registroGrabar', validacionDeRegistracion, upload.single('avatar'), userController.registroGrabar);
 
 router.get('/modificar', userController.registroModificarMostrar);
-router.post('/modificarGrabar', validacionDeRegistracion, upload.single('avatar'), userController.registroModificarGrabar);
+let validacionDeModificacionUsuario = [  
+    check('user').notEmpty().withMessage('Completar el Nombre de Usuario').bail(), 
+    check('email').notEmpty().withMessage('Completar el e-mail ').isEmail().withMessage('No es un email válido').bail(), 
+    check('perfil').notEmpty().withMessage('Seleccionar alguna opción ').bail(),
+    check('intereses').notEmpty().withMessage('Seleccionar una o más opciones ').bail(),
+    check('pass').notEmpty().withMessage('Completar la Contraseña, mínimo 8 caracteres ').bail(), 
+    check('pass_confirm').notEmpty().withMessage('Reingresar la Contraseña, mínimo 8 caracteres ').bail(),
+    check('privacidad').notEmpty().withMessage('Completar el campo Términos y Condiciones de Privacidad ').bail()
+];
+router.post('/modificarSeleccionar', validacionDeModificacionUsuario, userController.registroModificarSeleccionar );
+router.post('/modificarGrabar', validacionDeModificacionUsuario, userController.registroModificarGrabar);
 
 router.get('/eliminar', userController.registroEliminarMostrar);
-router.post('/eliminarGrabar', validacionDeRegistracion, userController.registroEliminarGrabar);
+router.post('/eliminarGrabar', userController.registroEliminarGrabar);
 
 router.get('/listar', userController.listar);
 
-router.get('/login', validacionDeInvitados, userController.login);
+router.get('/login', userController.login);
 
 let validacionDeLogin = [ 
     check('usuario').notEmpty().withMessage('Completar el usuario ').isEmail().withMessage('No es un nombre de usuario válido').bail(), 
@@ -71,7 +81,11 @@ let validacionDePerfil = [check('perfil').notEmpty().withMessage('Completar el c
 router.post('/perfil/agregar', validacionDePerfil, userController.agregarGrabarPerfil);
 
 router.get('/perfil/modificar', userController.modificarPerfil);
-router.post('/perfil/modificar', userController.modificarGrabarPerfil);
+let validacionModificarPerfil = [ 
+    check('perfil').notEmpty().withMessage('Completar el campo Descripción').bail()   
+];
+router.post('/perfil/modificar', validacionModificarPerfil, userController.confirmarModificarPerfil);
+router.post('/perfil/modificar/:id', userController.modificarGrabarPerfil);
 
 router.get('/perfil/eliminar', userController.eliminarPerfil);
 let validacionEliminarPerfil = [check('perfil').notEmpty().withMessage('Completar el campo ').bail()];
@@ -80,13 +94,18 @@ router.post('/perfil/eliminar/:id', validacionEliminarPerfil, userController.eli
 
 /* *** Rutas para gestionar los Integeses de Usuario *** */
 router.get('/intereses/listar', userController.listarInteres);
+
 router.get('/intereses/agregar', userController.agregarInteres);
 let validacionDeIntereses = [check("interes").notEmpty().withMessage('Seleccionar el Interés o Intereses ').bail(),];
 router.post('/intereses/agregar',validacionDeIntereses, userController.agregarGrabarInteres);
+router.post('/intereses/agregar',validacionDeIntereses, userController.agregarGrabarInteres);
 
 router.get('/intereses/modificar', userController.modificarInteres);
-router.post('/intereses/modificar', userController.modificarGrabarInteres);
-
+let validacionModificarInteres = [ 
+    check('interes').notEmpty().withMessage('Completar el campo Descripción').bail()   
+];
+router.post('/intereses/modificar', validacionModificarInteres, userController.confirmarModificarInteres);
+router.post('/intereses/modificar/:id', validacionModificarInteres, userController.modificarGrabarInteres);
 
 router.get('/intereses/eliminar', userController.eliminarInteres);
 let validacionEliminarInteres = [check('interes').notEmpty().withMessage('Completar el campo ').bail()];
@@ -94,5 +113,6 @@ router.post('/intereses/eliminar', validacionEliminarInteres, userController.con
 router.post('/intereses/eliminar/:id', validacionEliminarInteres, userController.eliminarInteres);
 
 router.get('/carrito', userController.carrito);
+
 
 module.exports = router;

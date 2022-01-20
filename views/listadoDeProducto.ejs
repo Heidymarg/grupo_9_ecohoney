@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+      
+    <%- include('./partials/head.ejs'); -%>
+    
+    <header class="flex-vertical">
+        <div class="dentro-header">
+            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+            
+            <div class="nav-bar">
+                <nav><!--nav> style="justify-content: space-around;"> -->
+
+                            <!-- if NO SOY admin, muestro el menú de público -->
+                            <ul type="none">
+                            <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Promociones</a></li>
+                            <li><a href="#">Ofertas</a></li>
+                            <li><a href="#">Ayuda</a></li>
+                            </ul>
+                            <br><br><br>
+                   
+                </nav>
+            </div>
+            
+            <div class="login-registro">
+                <a href="/usuarios/login">Logging</a>    
+                <a href="/usuarios/logout">Salir</a>   
+                <a href="/usuarios/registro">Registrate</a>
+                <a href="/productos/carrito">Mi Carrito<i class="fas fa-cart-plus"></i></a>
+                <% if ( locals && locals.usuarioLogueado != undefined ) { %>
+                    <strong><%= locals.usuarioLogueado.usuario %></strong>
+                <% } %>
+            </div>
+
+        </div>
+
+        <div class="menu-burger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="buscador">
+            <form method="POST" action="/productos/buscar">
+                <input class="buscador-input" type="text" name="buscado" placeholder="Que producto buscas?"></input>
+                <button type="submit" ><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        
+    </header>
+
+<body> 
+    
+    <main class="flex-vertical">
+        <div class="flex-vertical">
+                <table  style="border: 2px solid violet; padding: 3px;">
+                    <thead  style="border: 2px solid violet; text-align: center; padding: 5px;">
+                        <tr>
+                            <div style=" background-color: rgb(236, 214, 241); border-radius: 5px; padding: 3px;"><h3><p>Listado de Productos</p></h3></div>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Nombre</td>
+                            <td>Descripción</td>
+                        </tr>
+                    </thead>
+                    <tbody style="border: 2px solid violet; padding: 3px;">
+                        <% for( let i = 0; (productosEncontrados.length - i) > 0; i++) { %>
+                            <tr>
+                                <td style="text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].idPrd %>)_  </p></strong></td>
+                                <td style="text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].nombre %> </p></strong></td>
+                                <td style="text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].descripcion %></p></strong></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            
+        </div>
+    </main>
+    
+    <%- include( './partials/footer.ejs' ); -%>
+
+</body>
+</html>

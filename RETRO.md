@@ -30,9 +30,9 @@ Menos de
 Dejar de hacer
 •	No finalizar aquello que empezamos con determinacion.
 
-
+------------------------------------------------------------------
 Sprint 3
-
+------------------------------------------------------------------
 Comenzar a hacer
 Revisión constante de lo que ya hemos realizado.
 Actualización y mejora constante del proyecto.
@@ -64,8 +64,9 @@ Menos de
 Dejar de hacer
 •	No finalizar aquello que empezamos con determinacion.
 
+------------------------------------------------------------------
 Sprint 4
-
+------------------------------------------------------------------
 Comenzar a hacer
 Investigar otros contenidos ademas de los del palyground
 
@@ -100,9 +101,9 @@ Menos de
 Dejar de hacer
 •	No finalizar aquello que empezamos con determinacion.
 
-
+------------------------------------------------------------------
 Sprint 5
-
+------------------------------------------------------------------
 Comenzar a hacer
 •   Vamos a hacer guias propias de los videos de PG;
 •   Arreglar detalles de sprint anteriores;
@@ -123,3 +124,30 @@ Menos de
 
 Dejar de hacer
 •	No finalizar aquello que empezamos con determinacion.
+
+------------------------------------------------------------------
+Sprint 6
+------------------------------------------------------------------
+Comenzar a hacer
+•   Más esfuerzo por ejecutar mejor la codificación.
+•   Reducir los errores en la programación.
+
+Seguir haciendo
+•	Las reuniones daily y weekly por zoom y whatsapp;
+•   Llevar al día las clases y ejercicios del PG;
+•   Practicar más código;
+
+Más de
+•	Planificar en Trello;
+•   Documentar lo hecho;
+•   Profundizar en lo aprendido y practicar más para
+    poder resolver con mejor solidez los desafíos de
+    los sprints que restan.
+
+Menos de 
+•   Conformarnos con lo hecho.
+
+Dejar de hacer
+•	No finalizar aquello que empezamos con determinacion.
+
+------------------------------------------------------------------

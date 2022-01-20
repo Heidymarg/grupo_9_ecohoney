@@ -21,13 +21,13 @@ module.exports = function( sequelize, dataTypes ) {
         cantidad: {type: dataTypes.INTEGER}   
     }  
 
-	let config = { tableName: "productos", timestapms: false };
+	let config = { tableName: "productos", timestamps: false };
 			
 	let producto = sequelize.define(alias, cols, config );
 
     producto.associate = function(models) {
         producto.belongsTo(models.lineas, {
-            as: "linea",
+            as: "lineas",
             foreignKey: "id_lineas",
         });    
     }

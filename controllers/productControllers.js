@@ -1,17 +1,19 @@
 const path = require('path');
 const fs = require('fs');
 
-const productsAbejasFilepath = path.join(__dirname, '../data/listadoProductosAbejas.json')
-var listaDeProductosAbejas = JSON.parse(fs.readFileSync(productsAbejasFilepath, 'utf8'));
-
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const op = db.Sequelize.Op;
+
+
+var listaDeProductosAbejas = db.productos.findAll();
 
 const {validationResult} = require('express-validator');
 
 var idLineaParaEliminar = null;
 var idLineaParaModificar = null;
+
+var lineas = db.lineas.findAll();
 
 const productController = {
 
@@ -19,34 +21,64 @@ const productController = {
 	/* ************** Métodos para direccionar a Líneas de Productos ****************** */
 	/* ******************************************************************************** */	
     inicioCuidadoPersonal: (req,res) => { 
-        res.render( 'lineaCuidadoPersonal', {usr: 'NoheliaK', listado:listaDeProductosAbejas}) 
+        res.render( 'lineaCuidadoPersonal', {usr: 'NoheliaK', 'listado':listaDeProductosAbejas}) 
     },
     inicioAbejas: (req,res) => { 
-        res.render( 'lineaProductoDeLasAbejas', { usr: 'Yariela', listado: listaDeProductosAbejas }) 
+        res.render( 'lineaProductoDeLasAbejas', { usr: 'Heidy', 'listado': listaDeProductosAbejas }) 
     },
     inicioHogar: (req,res) => { 
-        res.render( 'lineaHogar', { usr: 'Oscar', listado: listaDeProductosAbejas }) 
+        res.render( 'lineaHogar', { usr: 'Oscar', 'listado': listaDeProductosAbejas }) 
     },
 
 	/* ******************************************************************************** */
 	/* *************** Métodos para atender la gestión de Productos ******************* */
 	/* ******************************************************************************** */
+	
+	buscar: ( req,res ) => {
+
+		db.productos.findAll( {
+			where: {
+						[op.or]: [
+					  	{
+							nombre: {
+						  	[op.substring]: req.body.buscado
+							}
+					  	},
+					  	{
+							descripcion: {
+						  	[op.substring]: req.body.buscado
+							}
+					  	}
+						]
+					}
+		})
+		.then( resultado => { res.render( 'resultadoBuscarProducto', {'productosEncontrados': resultado} )});
+	},
+	
 	listar: (req, res) => {
-		res.send("Listar todos los productos - Página en construcción!!!");
+
+		db.productos.findAll()
+        .then( (resultado) => {
+            res.render( 'listadoDeProducto', { 'productosEncontrados': resultado }) 
+        
+        })            
 	},
 
-    detalle:(req,res) => { 
+	detalle:(req,res) => {	 
         let id = req.params.id;
 
 		// a resolver con Base de Datos... if viende de Especial Abejas o de Ofertas
-        let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == id });
-		     res.render('productoDetallado', { product: prodSeleccionado })
+        //let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == id });
+		     db.productos.findByPk(id)
+			 .then(product => {
+				res.render('productoDetallado', { 'product': product})
+			 })
 			
-		 
-    },
+	},	 
 
     productoMostrarFormCarga: (req,res) => { 
-        res.render('formularioCargaProducto'); 
+        db.lineas.findAll()
+		.then(resultado => { res.render('formularioCargaProducto', {'lineas': resultado}) }); 
     },
 	
 	productoMostrarFormModificar: (req,res) => { 	
@@ -123,20 +155,35 @@ const productController = {
 		//res.redirect('formularioEliminarProducto');
 	},
 	grabar: (req, res) => {
-		/* 22/12/2021
-		anda el form de carga. Falta, validación, multer y la lógica para grabar a base de datos.
-		*/
-		if ( req.body ) {
-			res.send("Hay Foto " + req.body.foto)
-			
-		} else {
-			res.send("No hay Foto " + req.body.foto)
-		}
-		/*
-		res.send( "El form de carga trae: " + req.body.codigo + ' ' + req.body.nombre + ' ' + req.body.Descripcion 
-		+ ' ' + req.body.linea + ' ' + req.body.precio + ' ' + req.body.bonif + ' ' + req.file );
-		*/
-	},
+        
+        let {validationResult} = require('express-validator');
+        let errores = validationResult(req);
+        if(errores.isEmpty()){
+            
+            db.productos.create({ 
+                nombre: req.body.nombre,
+                codigo: req.body.codigo,
+                descripcion : req.body.descripcion,
+                id_lineas : req.body.linea,
+                precio : req.body.precio,
+                bonif: req.body.bonif,
+				foto: "/images/" + req.file.filename,
+                cantidad: req.body.cantidad,         
+            })
+			.then(
+			Promise.all([lineas])
+            .then( ([lineas]) => {
+                res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
+            }))
+
+        } else {
+            Promise.all([lineas])
+            .then( ([lineas]) => {
+                res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
+            } )
+        }
+        
+    },
 		
 	/* ******************************************************************************** */
 	/* ********** Métodos para atender la gestión de Líneas de productos ************** */
@@ -218,7 +265,7 @@ const productController = {
 		let	lineaAEliminar = { "id_linea": null, "nombre": null }; 
 		res.render('lineasEliminar', {'lineaAEliminar': lineaAEliminar});
 		} );
-	}
+	},
 
 };
 module.exports = productController;

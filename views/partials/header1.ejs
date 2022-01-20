@@ -5,7 +5,7 @@
             <div class="nav-bar">
                 <nav><!--nav> style="justify-content: space-around;"> -->
                     <% if ( locals && locals.usuarioLogueado != undefined ) { %>
-                        <% if ( usuarioLogueado.perfil != 'Administrador' ) { %>
+                        <% if ( usuarioPerfil != 'Administrador' ) { %>
                             <!-- if NO SOY admin, muestro el menú de público -->
                             <ul type="none">
                             <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
@@ -76,8 +76,10 @@
         </div>
 
         <div class="buscador">
-            <input class="buscador-input" type= "Buscar" placeholder="Que producto buscas?"></input>
-            <button type="submit" ><i class="fas fa-search"></i></button>
+            <form method="POST" action="/productos/buscar">
+                <input class="buscador-input" type="text" name="buscado" placeholder="Que producto buscas?"></input>
+                <button type="submit" ><i class="fas fa-search"></i></button>
+            </form>
         </div>
         
     </header>
