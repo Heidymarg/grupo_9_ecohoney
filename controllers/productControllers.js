@@ -21,13 +21,16 @@ const productController = {
 	/* ************** Métodos para direccionar a Líneas de Productos ****************** */
 	/* ******************************************************************************** */	
     inicioCuidadoPersonal: (req,res) => { 
-        res.render( 'lineaCuidadoPersonal', {usr: 'NoheliaK', 'listado':listaDeProductosAbejas}) 
+		db.productos.findAll()
+		.then( listado => {res.render( 'lineaCuidadoPersonal', {usr: 'NoheliaK', 'listado': listado}) } )
     },
     inicioAbejas: (req,res) => { 
-        res.render( 'lineaProductoDeLasAbejas', { usr: 'Heidy', 'listado': listaDeProductosAbejas }) 
+		db.productos.findAll()
+		.then( listado => res.render( 'lineaProductoDeLasAbejas', { usr: 'Heidy', 'listado': listado }) )
     },
     inicioHogar: (req,res) => { 
-        res.render( 'lineaHogar', { usr: 'Oscar', 'listado': listaDeProductosAbejas }) 
+		db.productos.findAll()
+		.then( listado => res.render( 'lineaHogar', { usr: 'Oscar', 'listado': listado }) )
     },
 
 	/* ******************************************************************************** */

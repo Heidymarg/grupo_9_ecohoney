@@ -21,28 +21,27 @@
             </div>
 
             <section class="Ofertas">
-                <div class="productos">
-                
-                    <% for(let i = 0; (listadoOfertas.length - i) > 0; i++) { %>
+                                
+                <% for(let i = 0; (listadoOfertas.length - i) > 0; i++) { %>
 
-                        <article>
-                            <a href="/productos/detalle/<%= listadoOfertas[i].idPrd %>"><img src=<%= listadoOfertas[i].foto %> alt=""></a>
-                            <div class="contenedor1">
-                                <table>
-                                    <tr><td><p class="nombre"><%= listadoOfertas[i].nombre %></p></td></tr>
-                                    <tr>
-                                        <td><p class="precios"><%= listadoOfertas[i].precio %></p></td>
-                                        <td><p class="descuentos"><%= listadoOfertas[i].bonif %></p></td>
-                                    </tr>
-                                    <tr><td><i class="fas fa-cart-plus"></i></td></tr>
-                                </table>
-                            </div>
-                        </article>
+                    <article>
+                        <div class="contenedor1">
+                            <a href="/productos/detalle/<%= listadoOfertas[i].idPrd %>"><img style="width: 7em; height: 9em;" src=<%= listadoOfertas[i].foto %> alt=""></a>
+                            <table>
+                                <tr><td><p class="nombre"><%= listadoOfertas[i].nombre %></p></td></tr>
+                                <tr>
+                                    <td><p class="precios"><%= listadoOfertas[i].precio %></p></td>
+                                    <td><p class="descuentos"><%= listadoOfertas[i].bonif %></p></td>
+                                </tr>
+                                <tr><td><i class="fas fa-cart-plus"></i></td></tr>
+                            </table>
+                        </div>
+                    </article>
 
-                    <% } %>
+                <% } %>
 
-                </div>
             </section>
+            
             <!-------------------Fin seccion scrollable de Ofertas----------------->
             
             <!---------------Seccion scrollable de promociones---Esta seccion la cambie por especial de abejas.---------------->
@@ -56,29 +55,24 @@
             <!-----ABEJAS---->
 
             <section class="abejas">
-                <div class="productos-abejas">
                    
-                    <% for(let i = 0; (listado.length - i) > 0; i++) { %>
+                <% for(let i = 0; (listado.length - i) > 0; i++) { %>
 
-                        <article>
-                            <!-- <a href="/productos/detalle"><img src=<%= listado[i].foto %> alt=""></a> -->
-                            <a href="/productos/detalle/<%= listado[i].idPrd %>"><img src=<%= listado[i].foto %> alt=""></a>
-                            <div class="contenedor1">
-                                <table>
-                                    <tr><td><p class="nombre"><%= listado[i].nombre %></p></td></tr>
-                                    <tr>
-                                        <td><p class="precios"><%= listado[i].precio %></p></td>
-                                        <td><p class="descuentos"><%= listado[i].bonif %></p></td>
-                                    </tr>
-                                    <tr><td><i class="fas fa-cart-plus"></i></td></tr>
-                                </table>
-                            </div>
-                        </article>
+                    <article>
+                        <div class="contenedor1">
+                            <a href="/productos/detalle/<%= listado[i].idPrd %>"><img style="width: 7em; height: 9em;" src=<%= listado[i].foto %> alt=""></a>
+                            <table>
+                                <tr><td><p class="nombre"><%= listado[i].nombre %></p></td></tr>
+                                <tr>
+                                    <td><p class="precios"><%= listado[i].precio %></p></td>
+                                    <td><p class="descuentos"><%= listado[i].bonif %></p></td>
+                                </tr>
+                                <tr><td><i class="fas fa-cart-plus"></i></td></tr>
+                            </table>
+                        </div>
+                    </article>
 
-                    <% } %>    
-                    
-                </div>    
-                    
+                <% } %>        
             
             </section>
         </div>

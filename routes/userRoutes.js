@@ -58,6 +58,7 @@ router.post('/modificarSeleccionar', validacionDeModificacionUsuario, userContro
 router.post('/modificarGrabar', validacionDeModificacionUsuario, userController.registroModificarGrabar);
 
 router.get('/eliminar', userController.registroEliminarMostrar);
+router.post('/registoEliminarConfirmar', userController.registoEliminarConfirmar);
 router.post('/eliminarGrabar', userController.registroEliminarGrabar);
 
 router.get('/listar', userController.listar);

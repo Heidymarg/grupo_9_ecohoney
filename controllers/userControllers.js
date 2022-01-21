@@ -8,7 +8,7 @@ const { append } = require('express/lib/response');
 
 const db = require('../database/models');
 
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 
 var esElUsuario = undefined;
 
@@ -205,42 +205,64 @@ const userController = {
     },
     /* Fin Para modificar usuario */
 
+    /* Eliminar Usuario */
     registroEliminarMostrar: (req,res) => { 
         //const {validationResult} = require('express-validator');
         //let errores = validationResult( req );
-        userAEliminar = {
-            "idUsr":5,
-            "nombre":"H---- D---",
-            "usuario":"h----g@ecohoney.dh",
-            "email":"h----@ecohoney.dh",
-            "fechaNac":"1978-04-22",
-            "dni":"********",
-            "domicilio":"Boedo",
-            "perfil":"Administrador",
-            "intereses":"personal",
-            "foto":"22.jpeg",
-            "password":"********",
-            "privacidad":"on"
+        let userAEliminar = {
+            "idUsr": null,
+            "nombre": null,
+            "usuario": null,
+            "email": null,
+            "fechaNac": null,
+            "dni": null,
+            "domicilio": null,
+            "perfil": null,
+            "intereses": null,
+            "foto": null,
+            "password": null,
+            "privacidad": null
         };
-        res.render('registroEliminar', {userAEliminar} );
+        res.render('registroEliminar', {'userAEliminar': userAEliminar} );
     },
-    registroEliminarGrabar:(req,res) => { 
-        //return res.render('registro');
-        userAEliminar = {
-            "idUsr":5,
-            "nombre":"H---- D---",
-            "usuario":"h----g@ecohoney.dh",
-            "email":"h----@ecohoney.dh",
-            "fechaNac":"1978-04-22",
-            "dni":"********",
-            "domicilio":"Boedo",
-            "perfil":"Administrador",
-            "intereses":"personal",
-            "foto":"22.jpeg",
-            "password":"********",
-            "privacidad":"on"
-        }; // viene de la DB
-        res.render('registroEliminar', {userAEliminar});
+    registoEliminarConfirmar: (req, res) => {
+
+        let userAEliminar = {
+            "idUsr": "No existe",
+            "nombre": "No existe",
+            "usuario": "No existe",
+            "email": null,
+            "fechaNac": null,
+            "dni": null,
+            "domicilio": null,
+            "perfil": null,
+            "intereses": null,
+            "foto": null,
+            "password": null,
+            "privacidad": null
+        };
+
+        db.usuarios.findByPk( req.body.idUsr )
+        .then( resultado => {
+            if ( resultado != undefined ) {
+                usuarioSeleccionado = resultado;
+                res.render('registroEliminar', {'userAEliminar': usuarioSeleccionado});
+            } else {
+                res.render('registroEliminar', {'userAEliminar': userAEliminar});
+            }
+        } )
+        return usuarioSeleccionado;
+    },
+    registroEliminarGrabar: function(req, res) { 
+
+        console.log( 'Usuario a eliminar '  + usuarioSeleccionado )
+        
+        db.usuarios.findByPk( usuarioSeleccionado.idUsr )
+        .then( resultado => {   
+                                db.usuarios.destroy( {where: { idUsr : resultado.idUsr}} );
+		                        res.redirect('registroEliminar');
+		                    } );    
+                
     },
 
     listar: (req,res) => { 

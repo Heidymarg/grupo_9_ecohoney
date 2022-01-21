@@ -19,30 +19,27 @@
             <p class="titulo-ofertas">Productos de las abejas</p>
           </div>
 
-            <section class="Ofertas">
-                <div class="productos">
-                    <% for(let i = 0; (listado.length - i) > 0; i++) { %>
+          <section class="Ofertas">
+                                
+            <% for(let i = 0; (listado.length - i) > 0; i++) { %>
 
-                        <article>
-                            <a href="/productos/detalle/<%= listado[i].idPrd %>"><img src=<%= listado[i].foto %> alt=""></a>
-                            <div class="contenedor1">
-                                <table>
-                                    <tr><td><p class="nombre"><%= listado[i].nombre %></p></td></tr>
-                                    <tr>
-                                        <td><p class="precios"><%= listado[i].precio %></p></td>
-                                        <td><p class="descuentos"><%= listado[i].bonif %></p></td>
-                                    </tr>
-                                    <tr><td><i class="fas fa-cart-plus"></i></td></tr>
-                                </table>
-                            </div>
-                        </article>
+                <article>
+                    <div class="contenedor1">
+                        <a href="/productos/detalle/<%= listado[i].idPrd %>"><img style="width: 7em; height: 9em;" src=<%= listado[i].foto %> alt=""></a>
+                        <table>
+                            <tr><td><p class="nombre"><%= listado[i].nombre %></p></td></tr>
+                            <tr>
+                                <td><p class="precios"><%= listado[i].precio %></p></td>
+                                <td><p class="descuentos"><%= listado[i].bonif %></p></td>
+                            </tr>
+                            <tr><td><i class="fas fa-cart-plus"></i></td></tr>
+                        </table>
+                    </div>
+                </article>
 
-                    <% } %>
-                    
-                    
+            <% } %>
 
-                </div>
-            </section>
+        </section>
 
         <!---------------IMAGENES AL CATALOGO------------------->
         <!--Caja de imagenes que conectan a los enlaces de categorias hogar-cuidado personal--producto abejas-->  

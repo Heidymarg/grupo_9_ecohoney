@@ -100,7 +100,7 @@
 
                     <tbody>
                         <tr><td>
-                            <form action="/usuarios/registroEliminarGrabar" method="POST">    <!-- atendido por router.post('/eliminarGrabar', userController.registroEliminarGrabar); -->
+                            <form action="/usuarios/registoEliminarConfirmar" method="POST">  
                     
                                 <table class="formTableCrudDeProducto">
                                     <tbody style="width: 100%;">
@@ -117,9 +117,8 @@
         
                                     <table class="formTableCrudDeProducto">
                                         <tbody style="width: 100%;">
-                                            <!--  <tr><tr><td><div style="background-color: grey; border-radius: 5px; height: 2px;"></div></td></tr></tr> -->
                                             <tr><td><label><span>Id de Usuario: <%= userAEliminar.idUsr %></span></label></td></tr>
-                                            <tr><td><label><span>Nombre: <%= userAEliminar.nombre %></span></label></td></tr>  
+                                            <tr><td><label><span>Nombre: <%= userAEliminar.usuario %></span></label></td></tr>  
                                             
                                         </tbody>
                                     </table>
@@ -133,7 +132,7 @@
 
                 <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
                 <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
-                <form action="/usuarios/registroEliminarGrabar/<%= userAEliminar.idUsr %>?_method=DELETE" method="POST">   <!-- ?_method=DELETE atendido por   -->                    
+                <form action="/usuarios/eliminarGrabar/<%= userAEliminar.idUsr %>" method="POST">  
                     <input type="submit" value="Eliminar">
                 </form>
 

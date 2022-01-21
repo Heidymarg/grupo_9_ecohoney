@@ -66,8 +66,8 @@
                     <tbody style="border: 2px solid violet; padding: 3px;">
                         <% for( let i = 0; (productosEncontrados.length - i) > 0; i++) { %>
                             <tr>
-                                <td style="text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].idPrd %>)_  </p></strong></td>
-                                <td style="text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].nombre %> </p></strong></td>
+                                <td style="text-align: left; padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].idPrd %>)_</strong></a></td>
+                                <td style="text-align: left; padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].nombre %> </p></strong></a></td>
                                 <td style="text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].descripcion %></p></strong></td>
                             </tr>
                         <% } %>
