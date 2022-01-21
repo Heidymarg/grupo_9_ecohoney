@@ -255,14 +255,30 @@ const userController = {
     },
     registroEliminarGrabar: function(req, res) { 
 
-        console.log( 'Usuario a eliminar '  + usuarioSeleccionado )
-        
+        let userAEliminar = {
+            "idUsr": "No existe",
+            "nombre": "No existe",
+            "usuario": "No existe",
+            "email": null,
+            "fechaNac": null,
+            "dni": null,
+            "domicilio": null,
+            "perfil": null,
+            "intereses": null,
+            "foto": null,
+            "password": null,
+            "privacidad": null
+        };
+
+        console.log( 'Usuario a eliminar ' + usuarioSeleccionado.idUsr);
         db.usuarios.findByPk( usuarioSeleccionado.idUsr )
         .then( resultado => {   
+                            if ( resultado != undefined ) { 
                                 db.usuarios.destroy( {where: { idUsr : resultado.idUsr}} );
-		                        res.redirect('registroEliminar');
+                            } 
+                            res.render('registroEliminar', {'userAEliminar': userAEliminar});
 		                    } );    
-                
+        
     },
 
     listar: (req,res) => { 

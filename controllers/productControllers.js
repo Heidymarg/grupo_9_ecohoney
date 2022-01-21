@@ -92,16 +92,18 @@ const productController = {
     },
 	traerParaModificar: ( req,res ) => {
 
-		//productId = req.query.idPrd; // funciona con GET 
-		let productId = req.body.idPrd; // funciona con POST
-        let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == productId });
-		
-		if ( prodSeleccionado != undefined ) {
-			res.render('formularioModificarProducto', {'prodAModificar': prodSeleccionado, mensaje: 'Hola' });
-		} else {
-			res.send( 'No existe producto con id: ' + productId );
-			res.redirect('formularioModificarProducto');
-		}
+		//req.query.idPrd; // funciona con GET 
+		req.body.idPrd; // funciona con POST
+        // reemplazar por datos de DB.let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == productId });
+		db.productos.findByPk( req.body.idPrd )
+		.then( resultado => {
+			if ( resultado != undefined ) {
+				res.render('formularioModificarProducto', {'prodAModificar': resultado });
+			} else {
+				res.send( 'No existe producto con id: ' + productId );
+				res.redirect('formularioModificarProducto');
+			}
+		} )
 	},
 	modificar: (req, res) => {
 
