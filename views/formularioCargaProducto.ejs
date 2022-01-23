@@ -92,7 +92,7 @@
     <main style="background-color: white">
         <center>
             <div class=formCrudDeProducto>
-                <form action="/productos/agregarProducto" method="POST" enctype="multipart/form-data">    
+                <form class="cargaProducto" action="/productos/agregarProducto" method="POST" enctype="multipart/form-data">    
                     <table class="formTableCrudDeProducto">
 
                         <thead style="width: 100%;">
@@ -101,18 +101,37 @@
 
                         <tbody style="width: 100%;">
                             <tr><td><label><span>Código de Producto</span></label></td></tr>
-                            <tr><td><input type="text" name="codigo"></td></tr>
+                            <tr><td><input type="text" name="codigo" class="codigo" required></td></tr>
+                            <% if ( locals && locals.resultadoValidaciones ) { 
+                                if ( resultadoValidaciones.codigo != undefined) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.codigo.msg %></p>
+                                <% } %>
+                            <% } %>
+                            <div class="text-danger" id="codigoError"></div>
         
                             <tr><td><label><span>Descripción</span></label></td></tr>
-                            <tr><td><input type="text" name="nombre"></td></tr>
-        
-                            <tr><td><label><span>Descripción Detallada</span></label></td></tr>
-                            <tr><td><input type="text" name="descripcion"></td></tr>
+                            <tr><td><input type="text" name="nombre" class="nombre" required></td></tr>
+                            <% if ( locals && locals.resultadoValidaciones ) { 
+                                if ( resultadoValidaciones.nombre != undefined) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.nombre.msg %></p>
+                                <% } %>
+                            <% } %>
+                            <div class="text-danger" id="nonmbreError"></div>
 
+                            <tr><td><label><span>Descripción Detallada</span></label></td></tr>
+                            <tr><td><input type="text" name="descripcion" class="descripcion" required></td></tr>
+                            <% if ( locals && locals.resultadoValidaciones ) { 
+                                if ( resultadoValidaciones.descripcion!= undefined) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.descripcion.msg %></p>
+                                <% } %>
+                            <% } %>
+                            <div class="text-danger" id="desripcionError"></div>
+                            
                             <tr><td><label><span>Línea</span></label></td></tr>
                             <tr>
                                 <td>
-                                    <select id="linea" name="linea">
+                                    <select id="linea" name="linea" class="linea" required>
+                                        <option>Seleccioná una Línea de Producto</option>
                                         <% for( let i = 0; (lineas.length - i) > 0; i++ ) { %>
                                             <option value="<%= lineas[i].id_lineas%>"> <%= lineas[i].nombre%></option>
                                         <% } %>
@@ -120,27 +139,45 @@
                             </tr>
 
                             <tr><td><label><span>Precio</span></label></td></tr>
-                            <tr><td><input type="text" name="precio" id="precio"></td></tr>
-        
-                            <tr><td><label><span>Bonificación</span></label></td></tr>
-                            <tr><td><input type="text" name="bonif"></td></tr>
-
-                            <tr><td><label><span>Cantidad</span></label></td></tr>
-                            <tr><td><input type="text" name="cantidad"></td></tr>
-        
-                            <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
-                            <tr><td><input type="file" name="foto"></td></tr>
+                            <tr><td><input type="text" name="precio" class="precio" required></td></tr>
                             <% if ( locals && locals.resultadoValidaciones ) { 
-                                if ( resultadoValidaciones.foto != undefined ) { %>
-                                    <p class="feedback"> <%= resultadoValidaciones.foto.msg %> </p>
+                                if ( resultadoValidaciones.precio != undefined) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.precio.msg %></p>
                                 <% } %>
                             <% } %>
+                            <div class="text-danger" id="precioError"></div>
+        
+                            <tr><td><label><span>Bonificación</span></label></td></tr>
+                            <tr><td><input type="text" name="bonif" class="bonif" required></td></tr>
+                            <% if ( locals && locals.resultadoValidaciones ) { 
+                                if ( resultadoValidaciones.bonif != undefined) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.bonif.msg %></p>
+                                <% } %>
+                            <% } %>
+                            <div class="text-danger" id="bonifError"></div>
 
+                            <tr><td><label><span>Cantidad</span></label></td></tr>
+                            <tr><td><input type="text" name="cantidad" class="cantidad" required></td></tr>
+                            <% if ( locals && locals.resultadoValidaciones ) { 
+                                if ( resultadoValidaciones.cantidad != undefined) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.cantidad.msg %></p>
+                                <% } %>
+                            <% } %>
+                            <div class="text-danger" id="cantidadError"></div>
+        
+                            <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
+                            <tr><td><input type="file" name="foto" class="foto" required></td></tr>
+                            <% if ( locals && locals.resultadoValidaciones ) { 
+                                if ( resultadoValidaciones.foto != undefined) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.foto.msg %></p>
+                                <% } %>
+                            <% } %>
+                            <div class="text-danger" id="fotoError"></div>
                             <tr><td><div style=" background-color: grey; border-radius: 5px; height: 1px;"></div></td></tr>
                         </tbody>
 
                     </table>
-                    <button type="submit">Cargar Producto</button>
+                    <button type="submit" class="submit">Cargar Producto</button>
 
                 </form>
                 <div style=" background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>

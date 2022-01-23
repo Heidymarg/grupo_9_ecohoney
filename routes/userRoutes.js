@@ -5,7 +5,7 @@ const multer = require('multer');
 
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
-        cb(null, 'public/images')
+        cb(null, 'public/images/usuarios')
     },
     filename: function(req,file,cb){
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
@@ -58,9 +58,12 @@ router.post('/modificarSeleccionar', validacionDeModificacionUsuario, userContro
 router.post('/modificarGrabar', validacionDeModificacionUsuario, userController.registroModificarGrabar);
 
 router.get('/eliminar', userController.registroEliminarMostrar);
-router.post('/registoEliminarConfirmar', userController.registoEliminarConfirmar);
-router.post('/eliminarGrabar/:id', userController.registroEliminarGrabar);
-// asi no elimina router.post('/eliminarGrabar', userController.registroEliminarGrabar);
+let validacionesEliminarUsuario = [
+    check('idUsr').notEmpty().withMessage('Ingresar el Id de usuario a eliminar. Consultá Listar Usuarios').bail()
+]
+router.post('/registoEliminarConfirmar', validacionesEliminarUsuario, userController.registoEliminarConfirmar);
+router.post('/eliminarGrabar/:id', validacionesEliminarUsuario, userController.registroEliminarGrabar);
+
 
 router.get('/listar', userController.listar);
 
@@ -70,8 +73,6 @@ let validacionDeLogin = [
     check('usuario').notEmpty().withMessage('Completar el usuario ').isEmail().withMessage('No es un nombre de usuario válido').bail(), 
     check('password').notEmpty().withMessage('Completar la Contraseña, mínimo 8 caracteres ').bail(), 
 ];
-
-//router.post('/login', validacionDeLogin, validacionDeUsuario,userController.validarUsuario);
 router.post('/login', validacionDeLogin, userController.validarUsuario);
 
 router.get('/logout', userController.logout);

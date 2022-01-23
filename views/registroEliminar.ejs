@@ -107,9 +107,14 @@
                                         <tr><td><label><span>Id de Usuario</span></label></td></tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="idUsr" value="<%= userAEliminar.idPrd %>" required>
+                                                <input type="text" name="idUsr" value="<%= userAEliminar.idUsr %>">
                                                 <input type="submit" value="Seleccionar">
                                                 <input type="reset" value="Limpiar">
+                                                <% if ( locals && locals.validacionesEliminarUsuario ) { %>
+                                                    <% if ( validacionesEliminarUsuario.idUsr != undefined ) { %>
+                                                        <p class="feedback"> <%= validacionesEliminarUsuario.idUsr.msg %></p>
+                                                    <% } %>
+                                                <% } %>
                                             </td>
                                         </tr>  
                                         
@@ -132,8 +137,13 @@
 
                 <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
                 <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
-                <form action="/usuarios/eliminarGrabar/<%= userAEliminar.idUsr %>" method="POST">  
+                <form action="/usuarios/eliminarGrabar/<%= userAEliminar.idUsr %>" method="POST"> 
                     <input type="submit" value="Eliminar">
+                    <% if ( locals && locals.validacionesEliminarUsuario ) { %>
+                        <% if ( validacionesEliminarUsuario.idUsr != undefined ) { %>
+                            <p class="feedback"> <%= validacionesEliminarUsuario.idUsr.msg %></p>
+                        <% } %>
+                    <% } %> 
                 </form>
 
                 <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>

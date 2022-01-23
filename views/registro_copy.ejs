@@ -18,7 +18,7 @@
                 <form action="/usuarios/registroGrabar" method="POST">
                     <div class="flex-vertical">
                         <label>Nombre y Apellido</label>
-                        <input type="text" name="nombre" class='nombre' value="<% locals.datosAnteriores && datosAnteriores.nombre ? datosAnteriores.nombre : '' %>">
+                        <input type="text" name="nombre" value="<% locals.datosAnteriores && datosAnteriores.nombre ? datosAnteriores.nombre : '' %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.nombre != undefined) { %>
                                 <p class="feedback"> <%= resultadoValidaciones.nombre.msg %></p>
@@ -26,7 +26,7 @@
                         <% } %>
  
                         <label>Nombre de Usuario</label>
-                        <input type="text" name="user" class="user" value="<% locals.datosAnteriores.user %>">
+                        <input type="text" name="user" value="<% locals.datosAnteriores.user %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.user != undefined ) { %>
                                 <p class="feedback"> <%= resultadoValidaciones.user.msg %></p>
@@ -34,7 +34,7 @@
                         <% } %>
 
                         <label>Dirección de E-mail</label>
-                        <input type="email" name="email" class="email" value="<% locals.datosAnteriores.email %>">
+                        <input type="email" name="email" value="<% locals.datosAnteriores.email %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.email != undefined ) { %>
                                 <p class="feedback"><%= resultadoValidaciones.email.msg %></p>
@@ -44,7 +44,7 @@
                       
                     <div class= "fecha">  
                         <label for="birth_date">Fecha de Nacimiento</label>
-                        <input type="date" name="birth_date" class="birth_date" value="<% locals.datosAnteriores.birth_date %>">
+                        <input type="date" name="birth_date" value="<% locals.datosAnteriores.birth_date %>">
                         <% if ( locals && locals.resultadoValidaciones ) {
                             if ( resultadoValidaciones.birth_date != undefined )  { %>
                                 <p class="feedback"> <%= resultadoValidaciones.birth_date.msg %></p>
@@ -54,17 +54,15 @@
               
                     </div>
                         <label>Nro. de Documento</label>
-                        <input type="text" name="dni" class="dni" value="<% locals.datosAnteriores.documento %>">
+                        <input type="text" name="dni" value="<% locals.datosAnteriores.documento %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.dni != undefined ) { %>
                                 <p class="feedback"> <%= resultadoValidaciones.dni.msg %></p>
                             <% } %>
                         <% } %>
-                    </div>
 
-                    <div>
                         <label>Domicilio</label>
-                        <input type="text" name="addres" class="addres" value="<% locals.datosAnteriores.addres %>">
+                        <input type="text" name="addres" value="<% locals.datosAnteriores.addres %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.addres != undefined ) { %>
                                 <p class="feedback"> <%= resultadoValidaciones.addres.msg %></p>
@@ -75,14 +73,16 @@
                     <div class="flex-vertical">
                         <h4>Perfil del usuario</h4>
                         <div class="perfil">
-                            <% for( let i = 0; (perfiles.length - i) > 0; i++ ) { %>
-                                <input type="radio" name="perfil" class="uperfil" value="<%= perfiles[i].id_perfil %>" id="<%= perfiles[i].id_perfil %>">
-                                <label for="<%= perfiles[i].nombre %>"><%= perfiles[i].nombre %></label>
-                            <% } %>
-                            <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <% if ( resultadoValidaciones.perfil != undefined ) { %>
+                            <input type="radio" name="perfil" value="comprador" id="comprador">
+                            <label for="comprador">Comprador</label>
+                            <input type="radio" name="perfil" value="vendedor" id="vendedor">
+                            <label for="vendedor">Vendedor</label>
+                            <input type="radio" name="perfil" value="Administrador" id="Administrador">
+                            <label for="Administrador">Administrador</label>
+                            <% if ( locals && locals.resultadoValidaciones ) { 
+                                if ( resultadoValidaciones.perfil != undefined ) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.perfil.msg %></p>
-                                <% } %>    
+                                <% } %>
                             <% } %>
                         </div>
                     </div>
@@ -91,13 +91,19 @@
                         <h4>Intereses</h4>
                         <div class="intereses">
                             <div>
-                                <% for( let i = 0; (intereses.length - i) > 0; i++ ) { %>
-                                    <input type="checkbox" name="intereses" class="uinteres" value="<%= intereses[i].id_intereses %>" id="<%= intereses[i].id_intereses %>">
-                                    <label for="hogar"><%= intereses[i].nombre %></label>
-                                <% } %>
+                                <input type="checkbox" name="intereses" value="hogar" id="hogar">
+                                <label for="hogar">Productos del Hogar</label>
                             </div>
-                            <% if ( locals && locals.resultadoValidaciones ) { %>
-                                <% if ( resultadoValidaciones.intereses != undefined ) { %>
+                            <div>
+                                <input type="checkbox" name="intereses" value="personal" id="personal">
+                                <label for="personal">Cuidado Personal</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="intereses" value="miel" id="miel">
+                                <label for="miel">Derivados de la Miel</label>
+                            </div>
+                            <% if ( locals && locals.resultadoValidaciones ) { 
+                                if ( resultadoValidaciones.intereses != undefined ) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.intereses.msg %></p>
                                 <% } %>
                             <% } %>
@@ -106,7 +112,7 @@
                    
                     <div class="flex-vertical">
                         <h4>Elegí tu foto de usuario</h4>
-                        <input type="file" name="avatar" class="avatar" value="<% locals.datosAnteriores.avatar %>">
+                        <input type="file" name="avatar" value="<% locals.datosAnteriores.avatar %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.avatar != undefined ) { %>
                                 <p class="feedback"> <%= resultadoValidaciones.avatar.msg %> </p>
@@ -116,14 +122,14 @@
                 
                     <div class="flex-vertical">
                         <label>Elegí una Contraseña</label>       
-                        <input type="password" name="pass" class="pass" value="<% locals.datosAnteriores.pass %>">
+                        <input type="password" name="pass" value="<% locals.datosAnteriores.pass %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.pass != undefined ) { %>
                                 <p class="feedback"> <%= resultadoValidaciones.pass.msg %></p>
                             <% } %>
                         <% } %>
                         <label>Reingresá la Contraseña</label>
-                        <input type="password" name="pass_confirm" class="pass_confirm" value="<% locals.datosAnteriores.pass_confirm %>">
+                        <input type="password" name="pass_confirm" value="<% locals.datosAnteriores.pass_confirm %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.pass_confirm != undefined) { %>
                                 <p class="feedback"> <%= resultadoValidaciones.pass_confirm.msg %></p>
@@ -132,7 +138,7 @@
                     </div>       
                         
                     <div>
-                        <input type="checkbox" name="privacidad" class="privacidad">
+                        <input type="checkbox" name="privacidad" id="privacidad">
                         <label for="privacidad">Acepto los Términos y Condiciones y autorizo el uso de mis datos de acuerdo a la Declaración de Privacidad.</label>
                         <% if ( locals && locals.resultadoValidaciones ) {
                             if ( resultadoValidaciones.privacidad != undefined )  { %>

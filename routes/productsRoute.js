@@ -4,6 +4,8 @@ const router = express.Router();
 
 const multer = require('multer');
 const path = require('path');
+
+
 const {check} = require('express-validator');
 
 
@@ -30,17 +32,9 @@ router.get('/lineaHogar', productController.inicioHogar);
 router.get('/listar', productController.listar);
 
 /*** Agregar nuevo producto ***/ 
-let validacionModificacion = [
-    check('codigo').isEmpty().withMessage('Completar el campo').bail(),
-    check('nombre').isEmpty().withMessage('Completar el campo').bail(),
-    check('Descripcion').isEmpty().withMessage('Completar el campo').bail(),
-    check('linea').isEmpty().withMessage('Falta cargar la Línea de Producto').bail(),
-    check('precio').isEmpty().withMessage('Falta cargar el Precio').bail(),
-    check('bonif').isEmpty().withMessage('Falta cargar la Bonificación').bail(),
-    check('foto').isEmpty().withMessage('Falta subir una foto').bail()
-];
-router.get('/productoAgregar', validacionModificacion, productController.productoMostrarFormCarga);
-router.post('/agregarProducto', validacionModificacion, upload.single('foto'), productController.grabar); 
+let validacionDeProductos = require('../middlewares/validacionDeProductos');
+router.get('/productoAgregar', productController.productoMostrarFormCarga);
+router.post('/agregarProducto', validacionDeProductos, upload.single('foto'), productController.grabar); 
 
 /*** Mostrar datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 

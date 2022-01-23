@@ -24,6 +24,9 @@ module.exports = function(sequelize, dataTypes) {
         password:{type: dataTypes.STRING(512),
         },
         id_carrito: {type:dataTypes.INTEGER
+        },
+        foto:{
+            type: dataTypes.STRING(255)
         }
     }
 

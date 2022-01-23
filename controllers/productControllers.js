@@ -70,20 +70,50 @@ const productController = {
 	detalle:(req,res) => {	 
         let id = req.params.id;
 
-		// a resolver con Base de Datos... if viende de Especial Abejas o de Ofertas
-        //let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == id });
 		     db.productos.findByPk(id)
 			 .then(product => {
 				res.render('productoDetallado', { 'product': product})
 			 })
 			
 	},	 
-
+	/* *************************** Cargar Producto ****************************** */
     productoMostrarFormCarga: (req,res) => { 
-        db.lineas.findAll()
+        
+		db.lineas.findAll()
 		.then(resultado => { res.render('formularioCargaProducto', {'lineas': resultado}) }); 
     },
-	
+	grabar: (req, res) => {
+        //Acá validaciones con Middleware
+        const  { validationResult } = require('express-validator');
+        let errores = validationResult(req);
+
+        if( errores.isEmpty() ) {
+            
+            db.productos.create({ 
+                nombre: req.body.nombre,
+                codigo: req.body.codigo,
+                descripcion : req.body.descripcion,
+                id_lineas : req.body.linea,
+                precio : req.body.precio,
+                bonif: req.body.bonif,
+				foto:  "/images/"  + req.file.filename,
+                cantidad: req.body.cantidad,         
+            })
+			.then(
+			Promise.all([lineas])
+            .then( ([lineas]) => {
+                res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
+			}))
+
+        } else {
+            Promise.all([lineas])
+            .then( ([lineas]) => {
+                res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
+            } )
+        }
+        
+    },
+	/* *************************** Modificar Producto ****************************** */
 	productoMostrarFormModificar: (req,res) => { 	
 		
 		let	prodAModificar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
@@ -115,6 +145,7 @@ const productController = {
 		de sprint 6.
 		*/
 	},
+	/* *************************** Eliminar Producto ****************************** */
 	productoMostrarFormEliminar: (req,res) => { 
 		
 		let	prodAEliminar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
@@ -154,41 +185,8 @@ const productController = {
 			
 			res.send( 'Seleccionado: ' +  ' ' + productId + ' ' + 'no existe. ');	
 		}
-
-		
-		// 3- Volver al form con mensaje de confirmación de la operación efectuada
-		//res.redirect('formularioEliminarProducto');
 	},
-	grabar: (req, res) => {
-        
-        let {validationResult} = require('express-validator');
-        let errores = validationResult(req);
-        if(errores.isEmpty()){
-            
-            db.productos.create({ 
-                nombre: req.body.nombre,
-                codigo: req.body.codigo,
-                descripcion : req.body.descripcion,
-                id_lineas : req.body.linea,
-                precio : req.body.precio,
-                bonif: req.body.bonif,
-				foto:  "/images/"  + req.file.filename,
-                cantidad: req.body.cantidad,         
-            })
-			.then(
-			Promise.all([lineas])
-            .then( ([lineas]) => {
-                res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
-			}))
 
-        } else {
-            Promise.all([lineas])
-            .then( ([lineas]) => {
-                res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
-            } )
-        }
-        
-    },
 		
 	/* ******************************************************************************** */
 	/* ********** Métodos para atender la gestión de Líneas de productos ************** */
