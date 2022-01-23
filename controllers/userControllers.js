@@ -124,7 +124,7 @@ const userController = {
                 id_intereses : req.body.intereses,
                 password : passOculta,
                 id_carrito: null,
-                foto: '/images/usuarios/' + req.body.avatar
+                foto: '/images/usuarios/' + req.body.foto
             } );
 
             Promise.all([perfiles,intereses])

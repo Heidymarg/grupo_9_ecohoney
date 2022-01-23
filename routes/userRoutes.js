@@ -35,14 +35,14 @@ let validacionDeRegistracion = [
         check('addres').notEmpty().withMessage('Completar el Domicilio ').bail(),
         check('perfil').notEmpty().withMessage('Seleccionar alguna opción ').bail(),
         check('intereses').notEmpty().withMessage('Seleccionar una o más opciones ').bail(),
-        check('avatar').notEmpty().withMessage('Subir foto de perfil ').bail(), 
+        check('foto').notEmpty().withMessage('Subir foto de perfil ').bail(), 
         check('pass').notEmpty().withMessage('Completar la Contraseña, mínimo 8 caracteres ').bail(), 
         check('pass_confirm').notEmpty().withMessage('Reingresar la Contraseña, mínimo 8 caracteres ').bail(),
         check('privacidad').notEmpty().withMessage('Completar el campo Términos y Condiciones de Privacidad ').bail()
     ];
 
 router.get('/registro', userController.registroMostrar);    
-router.post('/registroGrabar', validacionDeRegistracion, upload.single('avatar'), userController.registroGrabar);
+router.post('/registroGrabar', validacionDeRegistracion, upload.single('foto'), userController.registroGrabar);
 
 router.get('/modificar', userController.registroModificarMostrar);
 let validacionDeModificacionUsuario = [  

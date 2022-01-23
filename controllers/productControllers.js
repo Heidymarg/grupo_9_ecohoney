@@ -13,6 +13,8 @@ const {validationResult} = require('express-validator');
 var idLineaParaEliminar = null;
 var idLineaParaModificar = null;
 
+var prodParaModif = null;
+
 var lineas = db.lineas.findAll();
 
 const productController = {
@@ -128,22 +130,35 @@ const productController = {
 		db.productos.findByPk( req.body.idPrd )
 		.then( resultado => {
 			if ( resultado != undefined ) {
+				prodParaModif = req.body.idPrd;
 				res.render('formularioModificarProducto', {'prodAModificar': resultado });
 			} else {
-				res.send( 'No existe producto con id: ' + productId );
 				res.redirect('formularioModificarProducto');
 			}
 		} )
+		return prodParaModif;
 	},
 	modificar: (req, res) => {
 
-		let productToEdit = listaDeProductosAbejas.find((product) => { return product.idPrd == req.params.id });
-		res.send('Producto a Modificar ' + productToEdit.idPrd + ' ' + productToEdit.nombre );
-		/*
-		22/12/2021 el form trae el producto a modificar.
-		Falta la lógica para modificar en base de datos
-		de sprint 6.
-		*/
+		db.productos.findByPk( prodParaModif )
+		.then( resultado => {
+			if ( resultado != undefined ) {
+				db.productos.update( {
+					nombre: req.body.nombre,
+					codigo: req.body.codigo,
+					descripcion : req.body.descripcion,
+					id_lineas : req.body.linea,
+					precio : req.body.precio,
+					bonif: req.body.bonif,
+					foto:  "/images/"  + req.file.filename,
+					cantidad: req.body.cantidad,    
+				})
+				.then( () => {
+					let	prodAModificar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
+					res.render('formularioModificarProducto',{'prodAModificar':prodAModificar}); 	 
+				})
+			}
+		})
 	},
 	/* *************************** Eliminar Producto ****************************** */
 	productoMostrarFormEliminar: (req,res) => { 
