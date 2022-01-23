@@ -122,7 +122,8 @@ const userController = {
                 email : req.body.email,
                 id_perfil : req.body.perfil,
                 id_intereses : req.body.intereses,
-                password : passOculta
+                password : passOculta,
+                foto:'/images/users/' + req.body.foto
             } );
 
             Promise.all([perfiles,intereses])
@@ -188,8 +189,9 @@ const userController = {
             usuario: req.body.user,
             email: req.body.email,
             id_perfil: req.body.perfil,
-            id_interses: req.body.intereses,
-            password: passOculta
+            id_intereses: req.body.intereses,
+            password: passOculta,
+
         }, {
             where : { idUsr : usuarioSeleccionado }
         }).then( resultado => {

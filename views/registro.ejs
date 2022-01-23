@@ -106,10 +106,10 @@
                    
                     <div class="flex-vertical">
                         <h4>Elegí tu foto de usuario</h4>
-                        <input type="file" name="avatar" value="<% locals.datosAnteriores.avatar %>">
+                        <input type="file" name="foto" value="<% locals.datosAnteriores.foto %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
-                            if ( resultadoValidaciones.avatar != undefined ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.avatar.msg %> </p>
+                            if ( resultadoValidaciones.foto != undefined ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.foto.msg %> </p>
                             <% } %>
                         <% } %>
                     </div>
