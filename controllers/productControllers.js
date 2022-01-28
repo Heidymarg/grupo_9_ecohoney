@@ -13,7 +13,7 @@ const {validationResult} = require('express-validator');
 var idLineaParaEliminar = null;
 var idLineaParaModificar = null;
 
-var prodParaModif = null;
+var productoSeleccionado = null;
 
 var lineas = db.lineas.findAll();
 
@@ -40,7 +40,7 @@ const productController = {
 	/* ******************************************************************************** */
 	
 	buscar: ( req,res ) => {
-
+		// ok no tocar
 		db.productos.findAll( {
 			where: {
 						[op.or]: [
@@ -61,7 +61,7 @@ const productController = {
 	},
 	
 	listar: (req, res) => {
-
+		// ok no tocar
 		db.productos.findAll()
         .then( (resultado) => {
             res.render( 'listadoDeProducto', { 'productosEncontrados': resultado }) 
@@ -69,7 +69,8 @@ const productController = {
         })            
 	},
 
-	detalle:(req,res) => {	 
+	detalle:(req,res) => {
+		// ok no tocar	 
         let id = req.params.id;
 
 		     db.productos.findByPk(id)
@@ -80,16 +81,15 @@ const productController = {
 	},	 
 	/* *************************** Cargar Producto ****************************** */
     productoMostrarFormCarga: (req,res) => { 
-        
-		db.lineas.findAll()
+		// ok - falta validaciones back end
+        db.lineas.findAll()
 		.then(resultado => { res.render('formularioCargaProducto', {'lineas': resultado}) }); 
     },
 	grabar: (req, res) => {
-        //Acá validaciones con Middleware
-        const  { validationResult } = require('express-validator');
+        // ok - falta validaciones back end
+        let {validationResult} = require('express-validator');
         let errores = validationResult(req);
-
-        if( errores.isEmpty() ) {
+        if(errores.isEmpty()){
             
             db.productos.create({ 
                 nombre: req.body.nombre,
@@ -118,31 +118,24 @@ const productController = {
 	/* *************************** Modificar Producto ****************************** */
 	productoMostrarFormModificar: (req,res) => { 	
 		
-		let	prodAModificar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
-		res.render('formularioModificarProducto',{'prodAModificar':prodAModificar}); 	     
+		productoSeleccionado = db.productos.findByPk( req.params.id );
+		Promise.all((promesas = [lineas, productoSeleccionado]))
+		.then( promesas => {
+			res.render('formularioModificarProducto',{'prodAModificar':promesas[1], 'lineas': promesas[0]}); 	     
+			return productoSeleccionado = promesas[1];
+		})
+		
 
     },
-	traerParaModificar: ( req,res ) => {
-
-		//req.query.idPrd; // funciona con GET 
-		req.body.idPrd; // funciona con POST
-        // reemplazar por datos de DB.let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == productId });
-		db.productos.findByPk( req.body.idPrd )
-		.then( resultado => {
-			if ( resultado != undefined ) {
-				prodParaModif = req.body.idPrd;
-				res.render('formularioModificarProducto', {'prodAModificar': resultado });
-			} else {
-				res.redirect('formularioModificarProducto');
-			}
-		} )
-		return prodParaModif;
-	},
 	modificar: (req, res) => {
-
-		db.productos.findByPk( prodParaModif )
+		
+		
+		db.productos.findByPk( productoSeleccionado.idPrd )
 		.then( resultado => {
 			if ( resultado != undefined ) {
+			
+				console.log(req.body.foto + '!!!'  + req.file.filename)
+
 				db.productos.update( {
 					nombre: req.body.nombre,
 					codigo: req.body.codigo,
@@ -150,56 +143,46 @@ const productController = {
 					id_lineas : req.body.linea,
 					precio : req.body.precio,
 					bonif: req.body.bonif,
-					foto:  "/images/"  + req.file.filename,
+					foto:  '/images/'  + req.file.filename,
 					cantidad: req.body.cantidad,    
+				},{
+					where : { idPrd : resultado.idPrd }
 				})
-				.then( () => {
-					let	prodAModificar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
-					res.render('formularioModificarProducto',{'prodAModificar':prodAModificar}); 	 
-				})
+				
 			}
 		})
+		.then(
+			db.productos.findAll()
+        	.then( (resultado) => {
+            	res.render( 'listadoDeProducto', { 'productosEncontrados': resultado }) 
+        	})
+		)
+		
 	},
+
 	/* *************************** Eliminar Producto ****************************** */
 	productoMostrarFormEliminar: (req,res) => { 
-		
-		let	prodAEliminar = { "idPrd": null, "nombre": null, "codigo" :"", "descripcion":"", "linea": "", "precio": "", "bonif": "", "foto": "", "quantity":"" }; // está forzado porque no retorna nada 	prod.idPrd = req.body.id y da undefined
-        
-		res.render('formularioEliminarProducto', {'prodAEliminar':prodAEliminar}); 
+		// ok no tocar
+		db.productos.findByPk( req.params.id )
+        .then( resultado => {
+			res.render('formularioEliminarProducto', {'prodAEliminar': resultado });
+                return productoSeleccionado = resultado;
+        } );
 		
     },
-	traerParaConfirmar: ( req,res ) => {
-
-		//productId = req.query.idPrd; // funciona con GET - variable global para compartir con eliminar
-		let productId = req.body.idPrd; // funciona con POST - variable local para compartir con eliminar.
-        let prodSeleccionado = listaDeProductosAbejas.find((product) => { return product.idPrd == productId });
-		
-		if ( prodSeleccionado != undefined ) {
-			res.render('formularioEliminarProducto', {'prodAEliminar': prodSeleccionado, mensaje: 'Hola' });
-		} else {
-			res.send( 'No existe producto con id: ' + productId );
-			res.redirect('formularioEliminarProducto');
-		}
-	},
 	eliminar : (req, res) => {
 
-		//productId = req.query.idPrd; // funciona con GET - variable global para compartir con eliminar:
-		//let productId = req.body.idPrd; // no funciona con POST - variable local para compartir con eliminar.
-		let productId = req.params.idPrd; // funciona con POST - variable local para compartir con eliminar.
-
-		// 1- Filtro los productos no seleccionados para armar el nuevo array.
-		//let prodsEnOferta = listaProductosCuidadoPersonal.filter((product) => { return product.idPrd != productId });
-		let prodsDeAbejas = listaDeProductosAbejas.filter((product) => { return product.idPrd != productId });
-		
-		// 2- Pasar a objeto literal el array y grabar a archivo
-		if ( prodsDeAbejas != undefined ) { // si el producto existe en archivo
-			fs.writeFileSync(path.join(__dirname, '../data/listadoProductosAbejas.json'), JSON.stringify(prodsDeAbejas), 'utf8');	
-			res.render('formularioEliminarProducto', {'prodAEliminar':listaDeProductosAbejas.find( (product) => {return product.idPrd == productId } )});
-			
-		} else {
-			
-			res.send( 'Seleccionado: ' +  ' ' + productId + ' ' + 'no existe. ');	
-		}
+		//res.send( 'Producto a eliminar ' + req.params.id )
+		db.productos.findByPk( req.params.id )
+		.then( resultado => {
+			db.productos.destroy( {where: {idPrd : req.params.id}} )
+		})
+		.then(
+			db.productos.findAll()
+        	.then( (resultado) => {
+            	res.render( 'listadoDeProducto', { 'productosEncontrados': resultado }) 
+        	})
+		)
 	},
 
 		

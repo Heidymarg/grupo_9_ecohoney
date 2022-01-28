@@ -26,8 +26,6 @@
                                     <ul style="border: 1px solid purple; padding: 3px;">
                                         <li><a href="/usuarios/listar"><li>Listar usuarios</li></a></li>
                                         <li><a href="/usuarios/registro"><li>Registrar Usuarios</li></a></li>
-                                        <li><a href="/usuarios/modificar"><li>Modificar Usuarios</li></a></li>
-                                        <li><a href="/usuarios/eliminar"><li>Eliminar Usuarios</li></a></li>
                                     </ul>
                                     <ul style="border: 1px solid purple; padding: 3px;">
                                         <li><a href="/usuarios/perfil/listar"><li>Listar Perfiles</li></a></li>
@@ -46,9 +44,7 @@
                                 <nav class="navbar_horflex nav-estilo-productos">
                                     <ul style="border: 1px solid purple; padding: 3px;">
                                         <li><a href="/productos/listar"><li>Listar Productos</li></a></li>
-                                        <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
-                                        <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
-                                        <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
+                                        <li><a href="/productos/productoAgregar">Productos - Agregar</a></li> 
                                     </ul>
                                     <ul style="border: 1px solid purple; padding: 3px;">
                                         <li><a href="/productos/linea/listar"><li>Listar Líneas</li></a></li>
@@ -100,49 +96,56 @@
 
                     <tbody>
                         <tr><td>
-                            <form action="/productos/productoModificar" method="POST">    <!-- atendido por router.post('/delete', productController.traerParaConfirmar) -->
+                            <form action="/productos/edit/<%= prodAModificar.idPrd %>" method="POST"  enctype="multipart/form-data">
                     
                                 <table class="formTableCrudDeProducto">
-                                    <tbody style="width: 100%;">
-                                        <tr><td><label><span>Código de Producto</span></label></td></tr>
-                                        <tr>
-                                            <td>
-                                                <input type="text" name="idPrd" value="<%= prodAModificar.idPrd %>" required>
-                                                <input type="submit" value="Seleccionar">
-                                            </td>
-                                        </tr>  
-                                        
-                                    </tbody>
-        
+                                    
+                                    <tr><td><label><span>Código de Producto</span></label></td></tr>
+                                    <tr><td><input value="<%= prodAModificar.codigo %>" type="text" name="codigo" class="codigo"></td></tr>
+
                                     <tr><td><label><span>Descripción</span></label></td></tr>
-                                    <tr><td><input value="<%= prodAModificar.nombre %>" type="text" name="nombrePrd"></td></tr>
+                                    <tr><td><input value="<%= prodAModificar.nombre %>" type="text" name="nombre" class="nombre"></td></tr>
                 
                                     <tr><td><label><span>Descripción Detallada</span></label></td></tr>
-                                    <tr><td><input  value="<%= prodAModificar.descripcion %>" type="text" name="DescDetalladaPrd"></td></tr>
+                                    <tr><td><input  value="<%= prodAModificar.descripcion %>" type="text" name="descripcion"></td></tr>
         
                                     <tr><td><label><span>Línea</span></label></td></tr>
                                     <tr>
                                         <td>
-                                            <select id="linea" name="lineaPrd">
-                                                <option value="hogar">Hogar</option>
-                                                <option value="personal">Cuidado Personal</option>
-                                                <option value="abejas">Productos de las Abejas</option>
-                                            </select>
+                                            <select id="linea" name="linea">
+                                                <% for( let i = 0; (lineas.length - i) > 0; i++ ) { %>
+                                                    <option value="<%= lineas[i].id_lineas%>"> <%= lineas[i].nombre%></option>
+                                                <% } %>
                                         </td>
                                     </tr>
         
                                     <tr><td><label><span>Precio</span></label></td></tr>
-                                    <tr><td><input value="<%= prodAModificar.precio %>" type="text" name="PrecioPrd" id="PrecioPrd"></td></tr>
-                
+                                    <tr><td><input value="<%= prodAModificar.precio %>" type="text" name="precio" class="precio"></td></tr>
+                                    
+
                                     <tr><td><label><span>Bonificación</span></label></td></tr>
-                                    <tr><td><input value="<%= prodAModificar.bonif %>"type="text" name="bonifPrd"></td></tr>
-                
+                                    <tr><td><input value="<%= prodAModificar.bonif %>" type="text" name="bonif" class="bonif"></td></tr>
+
+
+                                    <tr><td><label><span>Cantidad</span></label></td></tr>
+                                    <tr><td><input value="<%= prodAModificar.cantidad %>" type="text" name="cantidad" class="cantidad"></td></tr>
+                                    <% if ( locals && locals.resultadoValidaciones ) { 
+                                        if ( resultadoValidaciones.cantidad != undefined ) { %>
+                                            <p class="feedback"> <%= resultadoValidaciones.cantidad.msg %> </p>
+                                        <% } %>
+                                    <% } %>
+
                                     <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
-                                    <tr><td><input type="file" name="avatar"></td></tr>
+                                    <tr><td><input value="<%= prodAModificar.foto %>" type="file" name="foto" class="foto"></td></tr>
+                                    <% if ( locals && locals.resultadoValidaciones ) { 
+                                        if ( resultadoValidaciones.foto != undefined ) { %>
+                                            <p class="feedback"> <%= resultadoValidaciones.foto.msg %> </p>
+                                        <% } %>
+                                    <% } %>
                 
                                 </table>
 
-                            </form>
+                            
                         </td></tr>
 
                     </tbody>
@@ -150,8 +153,7 @@
 
                 <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
                 <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
-                <form action="/productos/edit/<%= prodAModificar.idPrd %>?_method=PATCH" method="POST">   
-                    
+                
                     <input type="submit" value="Modificar">
                     <input type="reset" value="Limpiar">
                 </form>

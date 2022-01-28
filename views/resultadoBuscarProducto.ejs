@@ -52,23 +52,24 @@
     
     <main class="flex-vertical">
         <div class="flex-vertical">
-                <table  style="border: 2px solid violet; padding: 3px;">
-                    <thead  style="border: 2px solid violet; text-align: center; padding: 5px;">
-                        <tr>
+                <table  style="border: 1px solid violet; border-collapse: collapse; padding: 3px;">
+                    <thead  style="border: 1px solid violet; border-collapse: collapse; text-align: center; padding: 5px;">
+                        <tr style="border: 1px solid violet; text-align: left; padding: 5px;">
                             <div style=" background-color: rgb(236, 214, 241); border-radius: 5px; padding: 3px;"><h3><p>Resultados de tu Búsqueda</p></h3></div>
                         </tr>
-                        <tr>
-                            <td>Id</td>
-                            <td>Nombre</td>
-                            <td>Descripción</td>
+                        <tr  style="border: 1px solid violet;  border-collapse: collapse; text-align: left; padding: 5px;">
+                            <td  style="border: 1px solid violet;  border-collapse: collapse; text-align: left; padding: 5px;">Id</td>
+                            <td  style="border: 1px solid violet;  border-collapse: collapse; text-align: left; padding: 5px;">Nombre</td>
+                            <td  style="border: 1px solid violet;  border-collapse: collapse; text-align: left; padding: 5px;">Descripción</td>
                         </tr>
                     </thead>
-                    <tbody style="border: 2px solid violet; padding: 3px;">
+                    <tbody style="border: 1px solid violet; border-collapse: collapse; padding: 3px;">
                         <% for( let i = 0; (productosEncontrados.length - i) > 0; i++) { %>
-                            <tr>
-                                <td style="text-align: left; padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].idPrd %>)_</strong></a></td>
-                                <td style="text-align: left; padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].nombre %> </p></strong></a></td>
-                                <td style="text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].descripcion %></p></strong></td>
+                            <tr style="border: 1px solid violet; text-align: left; padding: 5px;">
+                                <td style="border: 1px solid violet; text-align: left; padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].idPrd %>)_</strong></a></td>
+                                <td style="border: 1px solid violet; text-align: left; padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].nombre %> </p></strong></a></td>
+                                <td style="border: 1px solid violet; text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].descripcion %></p></strong></td>
+                                <td style="border: 1px solid violet; text-align: left;padding: 5px;"><img style="width: 39px;" src="<%= productosEncontrados[i].foto %>" alt="Foto de Producto"></td>
                             </tr>
                         <% } %>
                     </tbody>

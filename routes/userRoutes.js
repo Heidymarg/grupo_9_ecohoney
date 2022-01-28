@@ -1,11 +1,12 @@
 const express = require( 'express' );
 const router = express.Router();
 const multer = require('multer');
+const path = require('path');
 
 
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
-        cb(null, 'public/images/usuarios')
+        cb(null, 'public/destination/images/usuarios')
     },
     filename: function(req,file,cb){
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
@@ -44,24 +45,23 @@ let validacionDeRegistracion = [
 router.get('/registro', userController.registroMostrar);    
 router.post('/registroGrabar', validacionDeRegistracion, upload.single('foto'), userController.registroGrabar);
 
-router.get('/modificar', userController.registroModificarMostrar);
+router.get('/modificar/:id', userController.registroModificarMostrar);
 let validacionDeModificacionUsuario = [  
     check('user').notEmpty().withMessage('Completar el Nombre de Usuario').bail(), 
     check('email').notEmpty().withMessage('Completar el e-mail ').isEmail().withMessage('No es un email válido').bail(), 
     check('perfil').notEmpty().withMessage('Seleccionar alguna opción ').bail(),
     check('intereses').notEmpty().withMessage('Seleccionar una o más opciones ').bail(),
+    check('foto').notEmpty().withMessage('Subí una foto').bail(),
     check('pass').notEmpty().withMessage('Completar la Contraseña, mínimo 8 caracteres ').bail(), 
     check('pass_confirm').notEmpty().withMessage('Reingresar la Contraseña, mínimo 8 caracteres ').bail(),
     check('privacidad').notEmpty().withMessage('Completar el campo Términos y Condiciones de Privacidad ').bail()
 ];
-router.post('/modificarSeleccionar', validacionDeModificacionUsuario, userController.registroModificarSeleccionar );
-router.post('/modificarGrabar', validacionDeModificacionUsuario, userController.registroModificarGrabar);
+router.post('/modificarGrabar/:id', validacionDeModificacionUsuario, upload.single('foto'), userController.registroModificarGrabar);
 
-router.get('/eliminar', userController.registroEliminarMostrar);
+router.get('/eliminar/:id', userController.registoEliminarConfirmar);
 let validacionesEliminarUsuario = [
     check('idUsr').notEmpty().withMessage('Ingresar el Id de usuario a eliminar. Consultá Listar Usuarios').bail()
 ]
-router.post('/registoEliminarConfirmar', validacionesEliminarUsuario, userController.registoEliminarConfirmar);
 router.post('/eliminarGrabar/:id', validacionesEliminarUsuario, userController.registroEliminarGrabar);
 
 

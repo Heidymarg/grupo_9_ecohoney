@@ -19,16 +19,20 @@ var storage = multer.diskStorage({
 })
 var upload = multer({storage: storage})
 
+/* ***** Buscar Producto ***** */
+router.get('/buscar', productController.buscar );
+router.post('/buscar', productController.buscar);
 
-router.get('/detalle', productController.detalle);
-
+/* ******* Rutas a Categorías/Líneas de Productos ********* */
 router.get('/lineaCuidadoPersonal', productController.inicioCuidadoPersonal);
 
 router.get('/lineaProductoDeLasAbejas', productController.inicioAbejas);
 
 router.get('/lineaHogar', productController.inicioHogar);
 
-/* *** Listar todos los productos *** */
+/* ******************************************* */
+/* ****** Gestión de productos productos ***** */
+/* ******************************************* */
 router.get('/listar', productController.listar);
 
 /*** Agregar nuevo producto ***/ 
@@ -38,19 +42,26 @@ router.post('/agregarProducto', validacionDeProductos, upload.single('foto'), pr
 
 /*** Mostrar datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 
+router.get('/detalle', productController.detalle);
 
-router.get('/productoModificar', productController.productoMostrarFormModificar ); 
-router.post('/productoModificar', productController.traerParaModificar);
-router.patch('/edit/:id', upload.single('foto'), productController.modificar); 
+/* *** Modificar producto *** */ 
+router.get('/productoModificar/:id', productController.productoMostrarFormModificar ); 
+// antes. se va si anda todo bien router.get('/productoModificar', productController.productoMostrarFormModificar ); 
+// se va si anda todo bien con dos rutas router.post('/productoModificar', productController.traerParaModificar);
+router.post('/edit/:id', upload.single('foto'), productController.modificar); 
 
 /* *** Eliminar un producto *** */ 
-router.get('/productoDelete', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
+router.get('/productoDelete/:id', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
+// como antes. se va si anda todo bien con 2 rutas router.get('/productoDelete', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
 
-router.post('/productoDelete', productController.traerParaConfirmar); // ruta que invoca al método que, dado un idPrd, 
+//router.post('/productoDelete', productController.traerParaConfirmar); // ruta que invoca al método que, dado un idPrd, 
                                                             // devuelve datos para confirmación previa a la eliminación.
-router.delete('/productoDelete/:idPrd', productController.eliminar);       // ruta que invoca al método que efectivamente elimina
+router.post('/productoDelete/:id', productController.eliminar);       // ruta que invoca al método que efectivamente elimina
                                                             // el ítem seleccionado.
+
+/* ******************************************************** */
 /* * Rutas para atender la gestión de Líneas de productos * */
+/* ******************************************************** */
 router.get('/linea/listar', productController.listarLinea);
 
 router.get('/linea/agregar', productController.agregarLinea);
@@ -72,8 +83,5 @@ let validacionEliminarLinea = [
 ];
 router.post('/linea/eliminar', validacionEliminarLinea, productController.confirmarEliminarLinea)
 router.post('/linea/eliminar/:id', validacionEliminarLinea, productController.eliminarGrabarLinea);
-
-router.get('/buscar', productController.buscar );
-router.post('/buscar', productController.buscar);
 
 module.exports = router;

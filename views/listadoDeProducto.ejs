@@ -9,7 +9,7 @@
             
             <div class="nav-bar">
                 <nav><!--nav> style="justify-content: space-around;"> -->
-
+               
                             <!-- if NO SOY admin, muestro el menú de público -->
                             <ul type="none">
                             <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
@@ -19,7 +19,42 @@
                             <li><a href="#">Ayuda</a></li>
                             </ul>
                             <br><br><br>
-                   
+               
+                            <!-- else soy admin, muestro el menú protegido de ABM de productos -->
+                            <nav>
+                                <nav  class="navbar_horflex nav-estilo-usuarios">
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/listar"><li>Listar usuarios</li></a></li>
+                                        <li><a href="/usuarios/registro"><li>Registrar Usuarios</li></a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/perfil/listar"><li>Listar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/agregar"><li>Agregar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/modificar"><li>Modificar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/eliminar"><li>Eliminar Perfiles</li></a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/intereses/listar"><li>Listar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/agregar"><li>Agregar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/modificar"><li>Modificar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/eliminar"><li>Eliminar Intereses</li></a></li>
+                                    </ul>
+                                </nav>
+                                <br>
+                                <nav class="navbar_horflex nav-estilo-productos">
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/productos/listar"><li>Listar Productos</li></a></li>
+                                        <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/productos/linea/listar"><li>Listar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/agregar"><li>Agregar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/modificar"><li>Modificar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/eliminar"><li>Eliminar Líneas</li></a></li>
+                                    </ul>
+                                </nav>
+                            </nav>
+                                         
                 </nav>
             </div>
             
@@ -31,6 +66,8 @@
                 <% if ( locals && locals.usuarioLogueado != undefined ) { %>
                     <strong><%= locals.usuarioLogueado.usuario %></strong>
                 <% } %>
+                    
+                
             </div>
 
         </div>
@@ -52,31 +89,47 @@
     
     <main class="flex-vertical">
         <div class="flex-vertical">
-                <table  style="border: 2px solid violet; padding: 3px;">
-                    <thead  style="border: 2px solid violet; text-align: center; padding: 5px;">
-                        <tr>
+                <table style="border: 1px solid purple; border-collapse: collapse; width: 90%;">
+                    <thead style="border: 1px solid purple; border-collapse: collapse;width: 75%;">
+                        <tr style="border: 1px solid purple; border-collapse: collapse;width: 75%;">
                             <div style=" background-color: rgb(236, 214, 241); border-radius: 5px; padding: 3px;"><h3><p>Listado de Productos</p></h3></div>
                         </tr>
                         <tr>
-                            <td>Id</td>
-                            <td>Nombre</td>
-                            <td>Descripción</td>
+                            <th style="border: 1px solid violet; text-align: center;padding: 8px;">ID</th>
+                            <th style="border: 1px solid violet; text-align: center;padding: 8px;">Cod. Prod.</th>
+                            <th style="border: 1px solid violet; text-align: center;padding: 8px;">Nombre de Producto</th>
+                            <th style="border: 1px solid violet; text-align: center;padding: 8px;">Descripción</th>
+                            <th style="border: 1px solid violet; text-align: center;padding: 8px;">Precio</th>
+                            <th style="border: 1px solid violet; text-align: center;padding: 8px;">Bonif.</th>
+                            <th style="border: 1px solid violet; text-align: center;padding: 8px;">Cantidad</th>
+                            <th style="border: 1px solid violet; text-align: center;padding: 8px;">Imágen</th>
+                            <th style="border: 1px solid violet; text-align: center;padding: 8px;">Gestión</th>
+
                         </tr>
                     </thead>
-                    <tbody style="border: 2px solid violet; padding: 3px;">
-                        <% for( let i = 0; (productosEncontrados.length - i) > 0; i++) { %>
-                            
-                            
-                            <tr>
-                                <td style="text-align: left; padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].idPrd %>)_  </p></strong></a></td>
-                                <td style="text-align: left; padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].nombre %> </p></strong></a></td>
-                                <td style="text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].descripcion %></p></strong></td>
-                                <td style="text-align: left; padding: 5px;"><img style="width: 39px;" src="<%= productosEncontrados[i].foto %>" alt="Foto de Producto"></td>
+                    <tbody style="border: 1px solid violet; border-collapse: collapse; width: 90%;">
+                        <% for( let i = 0; (productosEncontrados.length - i) > 0; i++) { %>                        
+                            <tr style="border: 1px solid violet; border-collapse: collapse; width: 75%;">
+                                <td style="border: 1px solid violet; text-align: center; padding: 8px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].idPrd %>)_  </p></strong></a></td>
+                                <td style="border: 1px solid violet; text-align: center; font-size: small; padding: 8px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].codigo %>  </p></strong></a></td>
+                                <td style="border: 1px solid violet; text-align: left; padding: 8px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].nombre %> </p></strong></a></td>
+                                <td style="border: 1px solid violet; text-align: left; padding: 8px;"><p><strong><%= productosEncontrados[i].descripcion %></p></strong></td>
+                                <td style="border: 1px solid violet; text-align: right; padding: 8px;"><p><strong><%= productosEncontrados[i].precio %></p></strong></td>
+                                <td style="border: 1px solid violet; text-align: center; padding: 8px;"><p><strong><%= productosEncontrados[i].bonif %></p></strong></td>
+                                <td style="border: 1px solid violet; text-align: right; padding: 8px;"><p><strong><%= productosEncontrados[i].cantidad %></p></strong></td>
+                                <td style="border: 1px solid violet; text-align: center; padding: 8px;"><img style="width: 39px;" src="<%= productosEncontrados[i].foto %>" alt="Foto de Producto"></td>
+                                <td style="border: 1px solid violet;text-align: center; padding: 8px;"><table style="border: 1px solid purple; border-collapse: collapse;width: 100%;">
+                                    <tr style="border: 1px solid violet; text-align: left;">
+                                        <td style="border: 1px solid violet; text-align: left;padding: 8px;"><a href="/productos/productoModificar/<%= productosEncontrados[i].idPrd %>">Modificar</a></td>
+                                        <td style="border: 1px solid violet; text-align: left;padding: 8px;"><a href="/productos/productoDelete/<%= productosEncontrados[i].idPrd %>">Eliminar</a></td>
+                                    </tr>
+                                </table>
+                            </td>
                             </tr>
                         <% } %>
                     </tbody>
                 </table>
-            
+
         </div>
     </main>
     

@@ -28,8 +28,6 @@
                                     <ul style="border: 1px solid purple; padding: 3px;">
                                         <li><a href="/usuarios/listar"><li>Listar usuarios</li></a></li>
                                         <li><a href="/usuarios/registro"><li>Registrar Usuarios</li></a></li>
-                                        <li><a href="/usuarios/modificar"><li>Modificar Usuarios</li></a></li>
-                                        <li><a href="/usuarios/eliminar"><li>Eliminar Usuarios</li></a></li>
                                     </ul>
                                     <ul style="border: 1px solid purple; padding: 3px;">
                                         <li><a href="/usuarios/perfil/listar"><li>Listar Perfiles</li></a></li>
@@ -49,8 +47,6 @@
                                     <ul style="border: 1px solid purple; padding: 3px;">
                                         <li><a href="/productos/listar"><li>Listar Productos</li></a></li>
                                         <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
-                                        <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
-                                        <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
                                     </ul>
                                     <ul style="border: 1px solid purple; padding: 3px;">
                                         <li><a href="/productos/linea/listar"><li>Listar Líneas</li></a></li>
@@ -97,57 +93,28 @@
                     <thead style="width: 100%;">
                         <tr><th><div style=" background-color: grey; border-radius: 5px;"><h3><p>Gestión de Usuarios - Eliminar</p></h3></div></th></tr>
                     </thead>
-
                     <tbody>
+                        <tr><td><div style="background-color: grey; border-radius: 5px; height: 2px;"></div></td></tr>
+                        <tr><td><div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div></td></tr>
+                        
                         <tr><td>
-                            <form action="/usuarios/registoEliminarConfirmar" method="POST">  
-                    
-                                <table class="formTableCrudDeProducto">
-                                    <tbody style="width: 100%;">
-                                        <tr><td><label><span>Id de Usuario</span></label></td></tr>
-                                        <tr>
-                                            <td>
-                                                <input type="text" name="idUsr" value="<%= userAEliminar.idUsr %>">
-                                                <input type="submit" value="Seleccionar">
-                                                <input type="reset" value="Limpiar">
-                                                <% if ( locals && locals.validacionesEliminarUsuario ) { %>
-                                                    <% if ( validacionesEliminarUsuario.idUsr != undefined ) { %>
-                                                        <p class="feedback"> <%= validacionesEliminarUsuario.idUsr.msg %></p>
-                                                    <% } %>
-                                                <% } %>
-                                            </td>
-                                        </tr>  
-                                        
-                                    </tbody>
-        
+                            <form action="/usuarios/eliminarGrabar/<%= userAEliminar.idUsr %>" method="POST" class="eliminarUsuario">
+                                <tr><td>
                                     <table class="formTableCrudDeProducto">
                                         <tbody style="width: 100%;">
                                             <tr><td><label><span>Id de Usuario: <%= userAEliminar.idUsr %></span></label></td></tr>
                                             <tr><td><label><span>Nombre: <%= userAEliminar.usuario %></span></label></td></tr>  
-                                            
+                                            <tr><td><input type="submit" value="Eliminar"></td></tr>             
                                         </tbody>
                                     </table>
-                                </table>
-
+                                </td></tr>
+                                
                             </form>
                         </td></tr>
-
+                        <tr><td><div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div></td></tr>
+                        <tr><td><div style="background-color: grey; border-radius: 5px; height: 2px;"></div></td></tr>
                     </tbody>
                 </table>
-
-                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
-                <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
-                <form action="/usuarios/eliminarGrabar/<%= userAEliminar.idUsr %>" method="POST"> 
-                    <input type="submit" value="Eliminar">
-                    <% if ( locals && locals.validacionesEliminarUsuario ) { %>
-                        <% if ( validacionesEliminarUsuario.idUsr != undefined ) { %>
-                            <p class="feedback"> <%= validacionesEliminarUsuario.idUsr.msg %></p>
-                        <% } %>
-                    <% } %> 
-                </form>
-
-                <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
-                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
 
             </div>           
         </center>      
@@ -155,6 +122,8 @@
     </main>
     
     <%- include( './partials/footer.ejs' ); -%>
+
+    <script src="/javascript/validarEliminarUsuario.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('./partials/head.ejs'); -%>
+
+    <header class="flex-vertical">
+        <div class="dentro-header">
+            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+            
+            <div class="nav-bar">
+                <nav><!--nav> style="justify-content: space-around;"> -->
+               
+                            <!-- if NO SOY admin, muestro el menú de público -->
+                            <ul type="none">
+                            <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Promociones</a></li>
+                            <li><a href="#">Ofertas</a></li>
+                            <li><a href="#">Ayuda</a></li>
+                            </ul>
+                            <br><br><br>
+               
+                            <!-- else soy admin, muestro el menú protegido de ABM de productos -->
+                            <nav>
+                                <nav  class="navbar_horflex nav-estilo-usuarios">
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/listar"><li>Listar usuarios</li></a></li>
+                                        <li><a href="/usuarios/registro"><li>Registrar Usuarios</li></a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/perfil/listar"><li>Listar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/agregar"><li>Agregar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/modificar"><li>Modificar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/eliminar"><li>Eliminar Perfiles</li></a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/intereses/listar"><li>Listar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/agregar"><li>Agregar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/modificar"><li>Modificar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/eliminar"><li>Eliminar Intereses</li></a></li>
+                                    </ul>
+                                </nav>
+                                <br>
+                                <nav class="navbar_horflex nav-estilo-productos">
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/productos/listar"><li>Listar Productos</li></a></li>
+                                        <li><a href="/productos/productoAgregar">Productos - Agregar</a></li> 
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/productos/linea/listar"><li>Listar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/agregar"><li>Agregar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/modificar"><li>Modificar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/eliminar"><li>Eliminar Líneas</li></a></li>
+                                    </ul>
+                                </nav>
+                            </nav>
+                                         
+                </nav>
+            </div>
+            
+            <div class="login-registro">
+                <a href="/usuarios/login">Logging</a>    
+                <a href="/usuarios/logout">Salir</a>   
+                <a href="/usuarios/registro">Registrate</a>
+                <a href="/productos/carrito">Mi Carrito<i class="fas fa-cart-plus"></i></a>
+                
+                    
+                
+            </div>
+
+        </div>
+
+        <div class="menu-burger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="buscador">
+            <form method="POST" action="/productos/buscar">
+                <input class="buscador-input" type="text" name="buscado" placeholder="Que producto buscas?"></input>
+                <button type="submit" ><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        
+    </header>
+
+<body>
+
+    <main style="background-color: white">
+        <center>
+            <div class=formCrudDeProducto>
+
+                <table class="formTableCrudDeProducto">
+                    <thead style="width: 100%;">
+                        <tr><th><div style=" background-color: grey; border-radius: 5px;"><h3><p>Gestión de Productos - Modificar</p></h3></div></th></tr>
+                    </thead>
+
+                    <tbody>
+                        <tr><td>
+                            <form action="/productos/productoModificar" method="POST">  
+                    
+                                <table class="formTableCrudDeProducto">
+                                    <tbody style="width: 100%;">
+                                        <tr><td><label><span>Código de Producto</span></label></td></tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="idPrd" value="<%= prodAModificar.idPrd %>" required>
+                                                <input type="submit" value="Seleccionar">
+                                            </td>
+                                        </tr>  
+                                        
+                                    </tbody>
+        
+                                    <tr><td><label><span>Descripción</span></label></td></tr>
+                                    <tr><td><input value="<%= prodAModificar.nombre %>" type="text" name="nombrePrd"></td></tr>
+                
+                                    <tr><td><label><span>Descripción Detallada</span></label></td></tr>
+                                    <tr><td><input  value="<%= prodAModificar.descripcion %>" type="text" name="DescDetalladaPrd"></td></tr>
+        
+                                    <tr><td><label><span>Línea</span></label></td></tr>
+                                    <tr>
+                                        <td>
+                                            <select id="linea" name="lineaPrd">
+                                                <option value="hogar">Hogar</option>
+                                                <option value="personal">Cuidado Personal</option>
+                                                <option value="abejas">Productos de las Abejas</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+        
+                                    <tr><td><label><span>Precio</span></label></td></tr>
+                                    <tr><td><input value="<%= prodAModificar.precio %>" type="text" name="PrecioPrd" id="PrecioPrd"></td></tr>
+                
+                                    <tr><td><label><span>Bonificación</span></label></td></tr>
+                                    <tr><td><input value="<%= prodAModificar.bonif %>"type="text" name="bonifPrd"></td></tr>
+                
+                                    <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
+                                    <tr><td><input type="file" name="foto"></td></tr>
+                
+                                </table>
+
+                            </form>
+                        </td></tr>
+
+                    </tbody>
+                </table>
+
+                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
+                <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
+                <form action="/productos/edit/<%= prodAModificar.idPrd %>" method="POST">
+                    <input type="submit" value="Modificar">
+                    <input type="reset" value="Limpiar">
+                </form>
+
+                <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
+                <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
+
+            </div>           
+        </center>      
+        
+    </main>
+    
+    <%- include( './partials/footer.ejs' ); -%>
+
+</body>
+</html>

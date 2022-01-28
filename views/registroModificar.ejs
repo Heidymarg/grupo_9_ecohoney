@@ -27,8 +27,6 @@
                                         <ul style="border: 1px solid purple; padding: 3px;">
                                             <li><a href="/usuarios/listar"><li>Listar usuarios</li></a></li>
                                             <li><a href="/usuarios/registro"><li>Registrar Usuarios</li></a></li>
-                                            <li><a href="/usuarios/modificar"><li>Modificar Usuarios</li></a></li>
-                                            <li><a href="/usuarios/eliminar"><li>Eliminar Usuarios</li></a></li>
                                         </ul>
                                         <ul style="border: 1px solid purple; padding: 3px;">
                                             <li><a href="/usuarios/perfil/listar"><li>Listar Perfiles</li></a></li>
@@ -47,9 +45,7 @@
                                     <nav class="navbar_horflex nav-estilo-productos">
                                         <ul style="border: 1px solid purple; padding: 3px;">
                                             <li><a href="/productos/listar"><li>Listar Productos</li></a></li>
-                                            <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
-                                            <li><a href="/productos/productoModificar">Productos - Modificar</a></li>
-                                            <li><a href="/productos/productoDelete">Productos - Eliminar</a></li> 
+                                            <li><a href="/productos/productoAgregar">Productos - Agregar</a></li> 
                                         </ul>
                                         <ul style="border: 1px solid purple; padding: 3px;">
                                             <li><a href="/productos/linea/listar"><li>Listar Líneas</li></a></li>
@@ -96,34 +92,15 @@
             -->
             
             <center style="background-color:lightblue;">
-                <h3> Gestión de Usuarios - Modificar Usuario</h3>
-
-                <form action="/usuarios/modificarSeleccionar" method="POST">
-                    
-                    <div class="flex-vertical">
-                        <label for="todosLosUsuarios">Seleccione el Usuario a Modificar</label>
-                        <select name="todosLosUsuarios" id="todosLosUsuarios" required>
-                            <option><span>Seleccioná un usuario</span></option>
-                                <% if ( todosLosUsuarios == null ) { %>
-                                    <p class="feedback">Seleccioná un usuario</p>
-                                <% } else { %>
-                                <% for ( let i = 0; (todosLosUsuarios.length - i) > 0; i++ ) { %> 
-                                    <option><span><%= todosLosUsuarios[i].usuario %></span></option>
-                                <% } %>
-                            <% } %>    
-                        </select>
-                    </div>
-
-                    <button type="submit" value="enviar">Seleccionar</button>
-                </form>        
+                <h3> Gestión de Usuarios - Modificar Usuario</h3>   
                                 
-                <form action="/usuarios/modificarGrabar" method="POST">
+                <form action="/usuarios/modificarGrabar/<%= usuarioSeleccionado.idUsr %>" method="POST">
                     <div class="flex-vertical">
                         <label>Usuario</label>
                         <% if( usuarioSeleccionado != undefined ) { %>
-                            <input type="text" name="user" value="<%= usuarioSeleccionado.usuario %>">
+                            <input type="text" name="user" class="user" value="<%= usuarioSeleccionado.usuario %>">
                         <% } else { %>
-                            <input type="text" name="user" value="<% locals.datosAnteriores.user %>">
+                            <input type="text" name="user" class="user" value="<% locals.datosAnteriores.user %>">
                             <% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.user != undefined ) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.user.msg %></p>
@@ -133,9 +110,9 @@
 
                         <label>Dirección de E-mail</label>
                         <% if( usuarioSeleccionado != undefined ) { %> 
-                            <input type="email" name="email" value="<%= usuarioSeleccionado.email %>">
+                            <input type="email" name="email" class="email" value="<%= usuarioSeleccionado.email %>">
                         <% } else { %>    
-                            <input type="email" name="email" value="<% locals.datosAnteriores.email %>">
+                            <input type="email" name="email" class="email" value="<% locals.datosAnteriores.email %>">
                             <% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.email != undefined ) { %>
                                     <p class="feedback"><%= resultadoValidaciones.email.msg %></p>
@@ -146,54 +123,54 @@
                     
                     <div class="flex-vertical">
                         <h4>Perfil del usuario</h4>
-                        <div class="perfil">
-                            <% if( usuarioSeleccionado != undefined ) { %>
-                                <% for( let i = 0; (perfiles.length - i) > 0; i++ ) { %>
-                                    <input type="radio" name="perfil" value="<%= perfiles[i].id_perfil %>" id="<%= perfiles[i].id_perfil %>">
-                                    <label for="<%= perfiles[i].nombre %>"><%= perfiles[i].nombre %></label>
-                                <% } %>
-                            <% } else { %>
-                                <% for( let i = 0; (perfiles.length - i) > 0; i++ ) { %>
-                                    <input type="radio" name="perfil" value="<%= perfiles[i].id_perfil %>" id="<%= perfiles[i].id_perfil %>">
-                                    <label for="<%= perfiles[i].nombre %>"><%= perfiles[i].nombre %></label>
-                                <% } %>
-                                <% if ( locals && locals.resultadoValidaciones ) { %>
-                                    <% if ( resultadoValidaciones.perfil != undefined ) { %>
-                                        <p class="feedback"> <%= resultadoValidaciones.perfil.msg %></p>
-                                    <% } %>    
-                                <% } %>
-                            <% } %>    
-                        </div>
-                    </div>
-                
-                    <div class="flex-vertical">
-                        <h4>Intereses</h4>
-                        <div class="intereses">
-                            <% if( usuarioSeleccionado != undefined ) { %>
-                                <% for( let i = 0; (intereses.length - i) > 0; i++ ) { %>
-                                    <input type="checkbox" name="intereses" value="<%= intereses[i].id_intereses %>" id="<%= intereses[i].id_intereses %>">
-                                    <label for="hogar"><%= intereses[i].nombre %></label>
-                                <% } %>
-                            <% } else { %>
-                                <% for( let i = 0; (intereses.length - i) > 0; i++ ) { %>
-                                    <input type="checkbox" name="intereses" value="<%= intereses[i].id_intereses %>" id="<%= intereses[i].id_intereses %>">
-                                    <label for="hogar"><%= intereses[i].nombre %></label>
-                                <% } %>
-                                <% if ( locals && locals.resultadoValidaciones ) { %>
-                                    <% if ( resultadoValidaciones.intereses != undefined ) { %>
-                                        <p class="feedback"> <%= resultadoValidaciones.intereses.msg %></p>
-                                    <% } %>
+                        <div>
+                            <% for( let i = 0; (perfiles.length - i) > 0; i++ ) { %>
+                                <input type="radio" name="perfil" class="perfil" value="<%= perfiles[i].id_perfil %>" id="<%= perfiles[i].id_perfil %>">
+                                <label for="<%= perfiles[i].nombre %>"><%= perfiles[i].nombre %></label>
+                            <% } %>
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <% if ( resultadoValidaciones.perfil != undefined ) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.perfil.msg %></p>
                                 <% } %>    
                             <% } %>
                         </div>
                     </div>
                 
                     <div class="flex-vertical">
+                        <h4>Intereses</h4>
+                        <div>
+                            <% for( let i = 0; (intereses.length - i) > 0; i++ ) { %>
+                                <input type="checkbox" name="intereses"  class="intereses"value="<%= intereses[i].id_intereses %>" id="<%= intereses[i].id_intereses %>">
+                                <label for="hogar"><%= intereses[i].nombre %></label>
+                            <% } %>
+                            <% if ( locals && locals.resultadoValidaciones ) { %>
+                                <% if ( resultadoValidaciones.intereses != undefined ) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.intereses.msg %></p>
+                                <% } %>
+                            <% } %>    
+                        </div>
+                    </div>
+
+                    <div class="flex-vertical">
+                        <h4>Elegí tu foto de usuario</h4>
+                        <% if( usuarioSeleccionado != undefined ) { %>
+                            <input type="file" name="foto" class="foto" value="<% locals.usuarioSeleccionado.foto %>"> 
+                        <% } else { %>
+                            <input type="file" name="foto" class="foto" value="<% locals.datosAnteriores.foto %>">
+                        <% } %>       
+                        <% if ( locals && locals.resultadoValidaciones ) { 
+                            if ( resultadoValidaciones.foto != undefined ) { %>
+                                <p class="feedback"> <%= resultadoValidaciones.foto.msg %> </p>
+                            <% } %>
+                        <% } %>
+                    </div>
+                
+                    <div class="flex-vertical">
                         <label>Elegí una Contraseña</label>    
                         <% if( usuarioSeleccionado != undefined ) { %>   
-                            <input type="password" name="pass" value="<% usuarioSeleccionado.pass %>">
+                            <input type="password" name="pass" class="pass" value="<% usuarioSeleccionado.pass %>">
                         <% } else { %> 
-                            <input type="password" name="pass" value="<% locals.datosAnteriores.pass %>">        
+                            <input type="password" name="pass" class="pass" value="<% locals.datosAnteriores.pass %>">        
                             <% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.pass != undefined ) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.pass.msg %></p>
@@ -202,9 +179,9 @@
                         <% } %>
                         <label>Reingresá la Contraseña</label>
                         <% if( usuarioSeleccionado != undefined ) { %>   
-                            <input type="password" name="pass_confirm" value="<% locals.datosAnteriores.pass_confirm %>">
+                            <input type="password" name="pass_confirm" class="pass_confirm" value="<% locals.datosAnteriores.pass_confirm %>">
                         <% } else { %> 
-                            <input type="password" name="pass_confirm" value="<% locals.datosAnteriores.pass_confirm %>">
+                            <input type="password" name="pass_confirm" class="pass_confirm" value="<% locals.datosAnteriores.pass_confirm %>">
                             <% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.pass_confirm != undefined) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.pass_confirm.msg %></p>
