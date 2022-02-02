@@ -101,7 +101,7 @@ const userController = {
         }
         
     },  
-    /* ******************** Para cargar usuario nuevo********************* */
+
     registroGrabar:(req,res) => {
         //ok no tocar.
         const {validationResult} = require('express-validator');
@@ -123,8 +123,7 @@ const userController = {
                 id_perfil : req.body.perfil,
                 id_intereses : req.body.intereses,
                 password : passOculta,
-                id_carrito: null,
-                foto: '/images/usuarios/' + req.body.foto
+                foto:'/images/users/' + req.body.foto
             } );
 
             Promise.all([perfiles,intereses])
@@ -140,7 +139,7 @@ const userController = {
         } 
     },
 
-    /* Para cargar Usuario nuevo */
+    /* Para modificar usuario */
     registroMostrar: (req,res) => { 
         //ok no tocar.
         Promise.all([perfiles,intereses])
@@ -148,99 +147,149 @@ const userController = {
             res.render('registro', {'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses});          
         } ) 
     },
-    /* ************** Modifcar Usuarios **************** */
+
     registroModificarMostrar: (req,res) => { 
         // ok no tocar
         const {validationResult} = require('express-validator');
-        let errores = validationResult( req );  
+        let errores = validationResult( req );
 
-       usuarioSeleccionado = db.usuarios.findByPk( req.params.id );
-       Promise.all((promesas = [perfiles, intereses, usuarioSeleccionado]))
-       .then( (promesas) => {
-            res.render('registroModificar', { 'resultadoValidaciones':errores.mapped(),'datosAnteriores': req.body, 'perfiles':promesas[0], 'intereses':promesas[1], 'usuarioSeleccionado': promesas[2]} );
-            return usuarioSeleccionado = promesas[2];
-        })
+        Promise.all([perfiles, intereses, todosLosUsuarios])
+        .then( ([perfiles, intereses, todosLosUsuarios]) => {
+            res.render('registroModificar', {'perfiles':perfiles, 'intereses':intereses, 'datosAnteriores': req.body, 'todosLosUsuarios': todosLosUsuarios, 'usuarioSeleccionado': undefined} );
+        } )    
+       
+    },
+    registroModificarSeleccionar:( req,res) => {
+        // ok no tocar        
+        const {validationResult} = require('express-validator');
+        let errores = validationResult( req );
 
+        db.usuarios.findAll( { where: { usuario: {[Op.eq] : req.body.todosLosUsuarios} } } )
+        .then(resultado => {
+            usuarioSeleccionado = resultado[0].idUsr;
+            console.log( 'Id usr selecionado para modificar: ' + usuarioSeleccionado );
+            if ( resultado.length == 0 ) {
+                res.send("Seleccioná un usuario de la lista!!! ")
+            } else {
+                Promise.all([perfiles, intereses, todosLosUsuarios])
+                .then( ([perfiles, intereses, todosLosUsuarios]) => {
+                    res.render('registroModificar', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses, 'todosLosUsuarios': todosLosUsuarios[0], 'usuarioSeleccionado': resultado[0]} );
+                })              
+            }
+        })           
     },
     registroModificarGrabar:(req,res) => {
         // ok no tocar
-        
+        let passOculta;
+            if ( req.body.pass === req.body.pass_confirm ) {
+                passOculta = encripta.hashSync( req.body.pass_confirm, 10 );
+            }
+
+        db.usuarios.update({
+            usuario: req.body.user,
+            email: req.body.email,
+            id_perfil: req.body.perfil,
+            id_intereses: req.body.intereses,
+            password: passOculta,
+            foto:'/images/users/' + req.body.foto
+
+        }, {
+            where : { idUsr : usuarioSeleccionado }
+        }).then( resultado => {
             const {validationResult} = require('express-validator');
             let errores = validationResult( req );
-            // ok res.send('usuario a modificar ' + usuarioSeleccionado.idUsr )
-            
-                let passOculta;
-                if ( req.body.pass === req.body.pass_confirm ) {
-                    passOculta = encripta.hashSync( req.body.pass_confirm, 10 );
-                }
-    
-                if ( errores.isEmpty()) {
-                    db.usuarios.update({
-                        usuario: req.body.user,
-                        email: req.body.email,
-                        id_perfil: req.body.perfil,
-                        id_intereses: req.body.intereses,
-                        foto:"images/usuarios/" + req.body.foto,
-                        password: passOculta
-                    }, {
-                        where : { idUsr : usuarioSeleccionado.idUsr }
-                    })
-                    .then( 
-                        db.usuarios.findAll()
-                        .then( resultado => { 
-                            return res.render('listadoUsuarios', {'listaDeUsuarios': resultado});
-                        } )
-                    )
-                } else {
-                    intereses= db.intereses.findAll();
-                    perfiles= db.perfiles.findAll(); 
-                    Promise.all((promesas = [perfiles, intereses, usuarioSeleccionado]))
-                    .then( resultado => { 
-                        return res.render('registroModificar', { 'datosAnteriores': req.body, 'perfiles':promesas[0], 'intereses':promesas[1], 'usuarioSeleccionado': promesas[2], 'resultadoValidaciones': errores.mapped()});
-                    } )
-                    
-                }
-                
-        }, 
-    /* ************** FinModifcar Usaurios *************** */
 
-    /* ********************* Eliminar Usuario ********************** */
+            Promise.all([perfiles, intereses, todosLosUsuarios])
+            .then( ([perfiles, intereses, todosLosUsuarios]) => {
+                res.render('registroModificar', {'perfiles':perfiles, 'intereses':intereses, 'datosAnteriores': req.body, 'todosLosUsuarios': todosLosUsuarios, 'usuarioSeleccionado': undefined} );
+            } )
+        })
+        
+    },
+    /* Fin Para modificar usuario */
+
+    /* Eliminar Usuario */
+    registroEliminarMostrar: (req,res) => { 
+        //const {validationResult} = require('express-validator');
+        //let errores = validationResult( req );
+        let userAEliminar = {
+            "idUsr": null,
+            "nombre": null,
+            "usuario": null,
+            "email": null,
+            "fechaNac": null,
+            "dni": null,
+            "domicilio": null,
+            "perfil": null,
+            "intereses": null,
+            "foto": null,
+            "password": null,
+            "privacidad": null
+        };
+        res.render('registroEliminar', {'userAEliminar': userAEliminar} );
+    },
     registoEliminarConfirmar: (req, res) => {
-        //ok  no tocar
 
-        db.usuarios.findByPk( req.params.id )
+        let userAEliminar = {
+            "idUsr": "No existe",
+            "nombre": "No existe",
+            "usuario": "No existe",
+            "email": null,
+            "fechaNac": null,
+            "dni": null,
+            "domicilio": null,
+            "perfil": null,
+            "intereses": null,
+            "foto": null,
+            "password": null,
+            "privacidad": null
+        };
+
+        db.usuarios.findByPk( req.body.idUsr )
         .then( resultado => {
-                res.render('registroEliminar', {'userAEliminar': resultado });
-                return usuarioSeleccionado = resultado;
-        } );
-
+            if ( resultado != undefined ) {
+                usuarioSeleccionado = resultado;
+                res.render('registroEliminar', {'userAEliminar': usuarioSeleccionado});
+            } else {
+                res.render('registroEliminar', {'userAEliminar': userAEliminar});
+            }
+        } )
+        return usuarioSeleccionado;
     },
     registroEliminarGrabar: function(req, res) { 
-        // ok no tocar.
-        
+
+        let userAEliminar = {
+            "idUsr": "No existe",
+            "nombre": "No existe",
+            "usuario": "No existe",
+            "email": null,
+            "fechaNac": null,
+            "dni": null,
+            "domicilio": null,
+            "perfil": null,
+            "intereses": null,
+            "foto": null,
+            "password": null,
+            "privacidad": null
+        };
+
+        console.log( 'Usuario a eliminar ' + usuarioSeleccionado.idUsr);
         db.usuarios.findByPk( usuarioSeleccionado.idUsr )
-        .then( resultado => 
-        {   
-            if ( resultado != undefined ) { 
-                db.usuarios.destroy( {where: { idUsr : resultado.idUsr}} );
-            } 
-		} )
-        .then( 
-            
-            db.usuarios.findAll()
-            .then( resultado => { 
-                return res.render('listadoUsuarios', {'resultadoValidaciones': errores.mapped});
-            } )
-        );
+        .then( resultado => {   
+                            if ( resultado != undefined ) { 
+                                db.usuarios.destroy( {where: { idUsr : resultado.idUsr}} );
+                            } 
+                            res.render('registroEliminar', {'userAEliminar': userAEliminar});
+		                    } );    
         
     },
-    /* ******************* Fin - Eliminar Usuario ******************* */
 
     listar: (req,res) => { 
 
         db.usuarios.findAll()
         .then( resultado => { 
             res.render('listadoUsuarios', {'listaDeUsuarios': resultado});
+            //res.render('listadoUsuarios', {'listaDeUsuarios': {idUsr: null, usuario: null, email: null}});
         } );
     },
 

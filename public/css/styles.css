@@ -84,7 +84,7 @@ header, head, footer {
 .feedback {
     color: red;
     font-size: small;
-    text-emphasis: filled red;
+    text-emphasis:  red;
 }
 /*MAIN*/
 main {

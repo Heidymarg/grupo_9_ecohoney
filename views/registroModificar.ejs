@@ -123,9 +123,9 @@
                     
                     <div class="flex-vertical">
                         <h4>Perfil del usuario</h4>
-                        <div>
+                        <div class="perfil">
                             <% for( let i = 0; (perfiles.length - i) > 0; i++ ) { %>
-                                <input type="radio" name="perfil" class="perfil" value="<%= perfiles[i].id_perfil %>" id="<%= perfiles[i].id_perfil %>">
+                                <input type="radio" name="perfil" class="uperfil" value="<%= perfiles[i].id_perfil %>" id="<%= perfiles[i].id_perfil %>">
                                 <label for="<%= perfiles[i].nombre %>"><%= perfiles[i].nombre %></label>
                             <% } %>
                             <% if ( locals && locals.resultadoValidaciones ) { %>
@@ -138,19 +138,21 @@
                 
                     <div class="flex-vertical">
                         <h4>Intereses</h4>
-                        <div>
-                            <% for( let i = 0; (intereses.length - i) > 0; i++ ) { %>
-                                <input type="checkbox" name="intereses"  class="intereses"value="<%= intereses[i].id_intereses %>" id="<%= intereses[i].id_intereses %>">
-                                <label for="hogar"><%= intereses[i].nombre %></label>
-                            <% } %>
+                        <div class="intereses">
+                            <div>
+                                <% for( let i = 0; (intereses.length - i) > 0; i++ ) { %>
+                                    <input type="checkbox" name="intereses" class="uinteres" value="<%= intereses[i].id_intereses %>" id="<%= intereses[i].id_intereses %>">
+                                    <label for="hogar"><%= intereses[i].nombre %></label>
+                                <% } %>
+                            </div>
                             <% if ( locals && locals.resultadoValidaciones ) { %>
                                 <% if ( resultadoValidaciones.intereses != undefined ) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.intereses.msg %></p>
                                 <% } %>
-                            <% } %>    
+                            <% } %>
                         </div>
                     </div>
-
+                
                     <div class="flex-vertical">
                         <h4>Elegí tu foto de usuario</h4>
                         <% if( usuarioSeleccionado != undefined ) { %>
@@ -202,9 +204,9 @@
                   
                     <button type="submit" value="enviar">Grabar</button>
                     <button type="reset" value="limpiar">Limpiar</button>         
-                </form>
-    
+                </form>    
             </center>
+            <script src="/javascript/validarModificarUsuarios.js"></script>
             
         </main>
     </body>

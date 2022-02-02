@@ -3,7 +3,7 @@ Retrospectiva
 Comenzar a hacer
 •   Establecer con mas precision tiempos de tareas individuales para luego en equipo debatir y ayudarnos con las dudas o problemas que surgen.
 •   Explorar codigos y funciones por fuera de lo visto que haga nuestra pagina visualmente mas atractiva.
-•   Mas compromido con el logro de las tareas individuales.
+•   Mas compromiso con el logro de las tareas individuales.
 
 
 Seguir haciendo
@@ -151,3 +151,26 @@ Dejar de hacer
 •	No finalizar aquello que empezamos con determinacion.
 
 ------------------------------------------------------------------
+Sprint 7
+
+Comenzar a hacer
+*  Más esfuerzo por ejecutar mejor la codificación.
+*  Seguir mejorando la estetica de la página.
+
+Seguir haciendo
+*	Las reuniones daily y weekly por zoom y whatsapp;
+*   Llevar al día las clases y ejercicios del PG;
+*  Practicar más código;
+
+Más de
+* Buscar diferentes fuentes de investigación.
+* Profundizar en lo aprendido y practicar más para
+    poder solucionar los problemas que se presentan.
+
+Menos de 
+*   Conformarnos con lo hecho.
+
+
+Dejar de hacer
+*	No finalizar aquello que empezamos con determinacion.
+
