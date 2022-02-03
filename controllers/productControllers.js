@@ -102,9 +102,10 @@ const productController = {
                 cantidad: req.body.cantidad,         
             })
 			.then(
+				console.log(error),
 			Promise.all([lineas])
             .then( ([lineas]) => {
-                res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
+                res.render('formularioCargaProducto', { 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
 			}))
 
         } else {
@@ -118,72 +119,82 @@ const productController = {
 	/* *************************** Modificar Producto ****************************** */
 	productoMostrarFormModificar: (req,res) => { 	
 		
-		productoSeleccionado = db.productos.findByPk( req.params.id );
-		Promise.all((promesas = [lineas, productoSeleccionado]))
+		prodAModificar = db.productos.findByPk( req.params.id );
+		Promise.all((promesas = [lineas, prodAModificar]))
 		.then( promesas => {
 			res.render('formularioModificarProducto',{'prodAModificar':promesas[1], 'lineas': promesas[0]}); 	     
-			return productoSeleccionado = promesas[1];
+			return prodAModificar = promesas[1];
 		})
 		
 
     },
 	modificar: (req, res) => {
 		
-		
-		db.productos.findByPk( productoSeleccionado.idPrd )
-		.then( resultado => {
-			if ( resultado != undefined ) {
-			
-				console.log(req.body.foto + '!!!'  + req.file.filename)
+		let {validationResult} = require('express-validator');
+	 let errores = validationResult(req);
+	 if(errores.isEmpty()){
+	 db.productos.findByPk( prodAModificar.idPrd )
+	 .then( resultado => {
+		 if ( resultado != undefined ) {
+		 
+			 console.log(prodAModificar + '!!!'  + req.file.filename)
 
-				db.productos.update( {
-					nombre: req.body.nombre,
-					codigo: req.body.codigo,
-					descripcion : req.body.descripcion,
-					id_lineas : req.body.linea,
-					precio : req.body.precio,
-					bonif: req.body.bonif,
-					foto:  '/images/'  + req.file.filename,
-					cantidad: req.body.cantidad,    
-				},{
-					where : { idPrd : resultado.idPrd }
-				})
-				
-			}
+			 db.productos.update( {
+				 nombre: req.body.nombre,
+				 codigo: req.body.codigo,
+				 descripcion : req.body.descripcion,
+				 id_lineas : req.body.linea,
+				 precio : req.body.precio,
+				 bonif: req.body.bonif,
+				 foto:  '/images'  +  req.file.filename,
+				 cantidad: req.body.cantidad,    
+			 },{
+				 where : { idPrd : resultado.idPrd }
+			 })
+			 
+		 }
+	 })
+	 .then(
+		 db.productos.findAll()
+				  .then( (resultado) => {
+			 res.render( 'listadoDeProducto', { 'resultadoValidaciones': errores.mapped(), 'productosEncontrados': resultado, }) 
+		 }))
+	 } else {
+		 Promise.all([lineas])
+		 .then( ([lineas]) => {
+			 res.render('formularioModificarProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body,'lineas': lineas});
+		 } )
+	 }
+	 
+	 
+ },
+
+ /* *************************** Eliminar Producto ****************************** */
+ productoMostrarFormEliminar: (req,res) => { 
+	// ok no tocar
+	db.productos.findByPk( req.params.id )
+	.then( resultado => {
+		res.render('formularioEliminarProducto', {'prodAEliminar': resultado });
+			return productoSeleccionado = resultado;
+	} );
+	
+},
+eliminar : (req, res) => {
+
+	//res.send( 'Producto a eliminar ' + req.params.id )
+	db.productos.findByPk( req.params.id )
+	.then( resultado => {
+		db.productos.destroy( {where: {idPrd : req.params.id}} )
+	})
+	.then(
+		db.productos.findAll()
+		.then( (resultado) => {
+			res.render( 'listadoDeProducto', { 'productosEncontrados': resultado }) 
 		})
-		.then(
-			db.productos.findAll()
-        	.then( (resultado) => {
-            	res.render( 'listadoDeProducto', { 'productosEncontrados': resultado }) 
-        	})
-		)
-		
-	},
+	)
+},
 
-	/* *************************** Eliminar Producto ****************************** */
-	productoMostrarFormEliminar: (req,res) => { 
-		// ok no tocar
-		db.productos.findByPk( req.params.id )
-        .then( resultado => {
-			res.render('formularioEliminarProducto', {'prodAEliminar': resultado });
-                return productoSeleccionado = resultado;
-        } );
-		
-    },
-	eliminar : (req, res) => {
 
-		//res.send( 'Producto a eliminar ' + req.params.id )
-		db.productos.findByPk( req.params.id )
-		.then( resultado => {
-			db.productos.destroy( {where: {idPrd : req.params.id}} )
-		})
-		.then(
-			db.productos.findAll()
-        	.then( (resultado) => {
-            	res.render( 'listadoDeProducto', { 'productosEncontrados': resultado }) 
-        	})
-		)
-	},
 
 		
 	/* ******************************************************************************** */

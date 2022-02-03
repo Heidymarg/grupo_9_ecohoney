@@ -86,16 +86,15 @@
         //return 0;     
         }   
         });
-          
         let foto= document.querySelector(".foto")
-            foto.addEventListener("focus", function() {
-        let formatoValido= (/^.jpg|.jpeg|.png^/i)
-        let imagesCorrectas = formatoValido.test(foto);
-                if(imagesCorrectas){
-                alert('La foto es valida');
-            }else{ alert('La foto no es valida');}    
-            
-        });
+    foto.addEventListener("blur", function() {
+   let formatoValido= (/^.jpg|.jpeg|.png^/i)
+   let imagesCorrectas = formatoValido.test(foto);
+        if(imagesCorrectas){
+         alert('La foto es valida');
+       }else{ alert('La foto no es valida');}    
+           
+       });
            
 
            

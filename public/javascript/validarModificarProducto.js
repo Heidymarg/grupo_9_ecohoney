@@ -28,7 +28,16 @@ window.addEventListener('load', function(){
               }
   
           });
-       
+             let descripcion = document.querySelector(".descripcion")
+        descripcion.addEventListener('focus', function(){
+          if (descripcion.value.length==0){
+              alert("El campo de descripcion tiene que estar completo");
+      
+          }else if (descripcion.value.length<20){
+              alert(" El campo de descripcion debe tener al menos 20 caracteres");
+          }
+
+      })
 
           let precio = document.querySelector(".precio")
           precio.addEventListener('blur', function(){
@@ -70,16 +79,10 @@ window.addEventListener('load', function(){
            
        });
 
-       let descripcion = document.querySelector(".descripcion")
-       descripcion.addEventListener('blur', function(){
-         if (descripcion.value.length==0){
-             alert("El campo de descripcion tiene que estar completo");
-     
-         }else if (descripcion.value.length<20){
-             alert(" El campo de descripcion debe tener al menos 20 caracteres");
-         }
-
-     });
 
  })               
+  
+  
+  
+  
   

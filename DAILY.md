@@ -60,3 +60,18 @@ equipo.
 
 - Se intensificaron las reuniones por chat y zoom con participación de todo el 
 equipo, dada la complejidad que demanda el sprint.
+
+---------------------------------------------------------------------------
+                          -----  Sprint 7-----
+---------------------------------------------------------------------------
+
+-Se dividieron las actividades entre los miembros del grupo, tal como lo expresa
+el Trello.
+
+-Se avanzó individualmente y se realizaron consultas sobre errores o estancamientos.
+
+-Se efectuaron reuniones por zoom para facilitar mediante el trabajo colaborativo la
+obtención correcta de las actividades del sprint.
+
+-Para la culminación del sprint se enfocó el esfuerzo en colectivo y el trabajo en conjunto
+del equipo. 

@@ -9,6 +9,8 @@ const path = require('path');
 const {check} = require('express-validator');
 
 
+//let validacionDeProducto = require('../middlewares/validacionDeProducto');
+
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null, 'public/images')
@@ -36,19 +38,42 @@ router.get('/lineaHogar', productController.inicioHogar);
 router.get('/listar', productController.listar);
 
 /*** Agregar nuevo producto ***/ 
-let validacionDeProductos = require('../middlewares/validacionDeProductos');
+
+
+const validacionDeProducto = [
+    check('codigo').notEmpty().withMessage('Completar el Código del Producto').bail(), 
+    check('nombre').notEmpty().withMessage('Completar el Nombre del Producto').bail(), 
+    check('descripcion').notEmpty().withMessage('Completar la descripción ').bail(), 
+    check('linea').notEmpty().withMessage('Seleccionar una o más opciones').bail(), 
+    check('precio').notEmpty().withMessage('Asignar el Precio ').bail(), 
+    check('bonif').notEmpty().withMessage('Completar la bonificación ').bail(),
+    check('foto').notEmpty().withMessage('Subir foto del producto').bail(),
+    check('cantidad').notEmpty().withMessage('Completar la cantidad ').bail(),
+     
+];
 router.get('/productoAgregar', productController.productoMostrarFormCarga);
-router.post('/agregarProducto', validacionDeProductos, upload.single('foto'), productController.grabar); 
+router.post('/agregarProducto',validacionDeProducto, upload.single('foto'), productController.grabar); 
 
 /*** Mostrar datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 
 router.get('/detalle', productController.detalle);
 
 /* *** Modificar producto *** */ 
+const validacionDeModificacion = [
+    check('codigo').notEmpty().withMessage('Completar el Código del Producto').bail(), 
+    check('nombre').notEmpty().withMessage('Completar el Nombre del Producto').bail(), 
+    check('descripcion').notEmpty().withMessage('Completar la descripción ').bail(), 
+    check('linea').notEmpty().withMessage('Seleccionar una o más opciones').bail(), 
+    check('precio').notEmpty().withMessage('Asignar el Precio ').bail(), 
+    check('bonif').notEmpty().withMessage('Completar la bonificación ').bail(),
+    check('foto').notEmpty().withMessage('Subir foto del producto').bail(),
+    check('cantidad').notEmpty().withMessage('Completar la cantidad ').bail(),
+     
+];
 router.get('/productoModificar/:id', productController.productoMostrarFormModificar ); 
 // antes. se va si anda todo bien router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 // se va si anda todo bien con dos rutas router.post('/productoModificar', productController.traerParaModificar);
-router.post('/edit/:id', upload.single('foto'), productController.modificar); 
+router.post('/edit/:id', validacionDeModificacion, upload.single('foto'), productController.modificar); 
 
 /* *** Eliminar un producto *** */ 
 router.get('/productoDelete/:id', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
