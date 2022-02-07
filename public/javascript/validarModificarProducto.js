@@ -80,4 +80,13 @@ window.addEventListener('load', function(){
        });
 
 
+<<<<<<< HEAD
  })
+=======
+ })               
+  
+  
+  
+  
+  
+>>>>>>> 563f129a6a8f196565243e4856b48e1709eb4b87
