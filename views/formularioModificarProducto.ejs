@@ -102,13 +102,28 @@
                                     
                                     <tr><td><label><span>Código de Producto</span></label></td></tr>
                                     <tr><td><input value="<%= prodAModificar.codigo %>" type="text" name="codigo" class="codigo"></td></tr>
+                                    <tr><td><% if ( locals && locals.resultadoValidaciones ) { 
+                                        if ( resultadoValidaciones.codigo != undefined) { %>
+                                            <p class="feedback"> <%= resultadoValidaciones.codigo.msg %></p>
+                                        <% } %>
+                                    <% } %> </td> </tr>
 
-                                    <tr><td><label><span>Descripción</span></label></td></tr>
+                                    <tr><td><label><span>Nombre</span></label></td></tr>
                                     <tr><td><input value="<%= prodAModificar.nombre %>" type="text" name="nombre" class="nombre"></td></tr>
-                
+                                    <tr><td> <% if ( locals && locals.resultadoValidaciones ) { 
+                                        if ( resultadoValidaciones.nombre != undefined) { %>
+                                            <p class="feedback"> <%= resultadoValidaciones.nombre.msg %></p>
+                                        <% } %>
+                                    <% } %> </td> </tr>
+
                                     <tr><td><label><span>Descripción Detallada</span></label></td></tr>
-                                    <tr><td><input  value="<%= prodAModificar.descripcion %>" type="text" name="descripcion"></td></tr>
-        
+                                    <tr><td><input  value="<%= prodAModificar.descripcion %>" type="text" name="descripcion" class= "descripcion"></td></tr>
+                                   <tr><td><% if ( locals && locals.resultadoValidaciones ) { 
+                                if ( resultadoValidaciones.descripcion != undefined) { %>
+                                    <p class="feedback"> <%= resultadoValidaciones.descripcion.msg %></p>
+                                <% } %>
+                            <% } %> </tr> </td>
+
                                     <tr><td><label><span>Línea</span></label></td></tr>
                                     <tr>
                                         <td>
@@ -116,32 +131,57 @@
                                                 <% for( let i = 0; (lineas.length - i) > 0; i++ ) { %>
                                                     <option value="<%= lineas[i].id_lineas%>"> <%= lineas[i].nombre%></option>
                                                 <% } %>
+                                                <% if ( locals && locals.resultadoValidaciones ) { 
+                                                    if ( resultadoValidaciones.linea!= undefined) { %>
+                                                    <p class="feedback"> <%= resultadoValidaciones.linea.msg %></p>
+                                                       <% } %>
+                                                   <% } %>
                                         </td>
                                     </tr>
         
                                     <tr><td><label><span>Precio</span></label></td></tr>
                                     <tr><td><input value="<%= prodAModificar.precio %>" type="text" name="precio" class="precio"></td></tr>
-                                    
+                                    <tr><td>
+                                        <% if ( locals && locals.resultadoValidaciones ) { 
+                                            if ( resultadoValidaciones.cantidad != undefined ) { %>
+                                                <p class="feedback"> <%= resultadoValidaciones.cantidad.msg %> </p>
+                                            <% } %>
+                                        <% } %>
+
+                                    </td></tr>
 
                                     <tr><td><label><span>Bonificación</span></label></td></tr>
                                     <tr><td><input value="<%= prodAModificar.bonif %>" type="text" name="bonif" class="bonif"></td></tr>
+                                    <tr><td>
+                                        <% if ( locals && locals.resultadoValidaciones ) { 
+                                            if ( resultadoValidaciones.bonificacion != undefined ) { %>
+                                                <p class="feedback"> <%= resultadoValidaciones.bonificacion.msg %> </p>
+                                            <% } %>
+                                        <% } %>
 
+                                    </td></tr> 
 
                                     <tr><td><label><span>Cantidad</span></label></td></tr>
                                     <tr><td><input value="<%= prodAModificar.cantidad %>" type="text" name="cantidad" class="cantidad"></td></tr>
+                                   <tr><td>
                                     <% if ( locals && locals.resultadoValidaciones ) { 
                                         if ( resultadoValidaciones.cantidad != undefined ) { %>
                                             <p class="feedback"> <%= resultadoValidaciones.cantidad.msg %> </p>
                                         <% } %>
                                     <% } %>
 
+                                   </td></tr> 
+
                                     <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
                                     <tr><td><input value="<%= prodAModificar.foto %>" type="file" name="foto" class="foto"></td></tr>
-                                    <% if ( locals && locals.resultadoValidaciones ) { 
-                                        if ( resultadoValidaciones.foto != undefined ) { %>
-                                            <p class="feedback"> <%= resultadoValidaciones.foto.msg %> </p>
+                                    <tr><td>
+                                        <% if ( locals && locals.resultadoValidaciones ) { 
+                                            if ( resultadoValidaciones.foto != undefined ) { %>
+                                                <p class="feedback"> <%= resultadoValidaciones.foto.msg %> </p>
+                                            <% } %>
                                         <% } %>
-                                    <% } %>
+
+                                    </td></tr>
                 
                                 </table>
 
@@ -167,6 +207,8 @@
     </main>
     
     <%- include( './partials/footer.ejs' ); -%>
+
+    <script src="/javascript/validarModificarProducto.js"></script>
 
 </body>
 </html>

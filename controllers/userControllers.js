@@ -3,9 +3,8 @@ const path = require('path');
 const fileSys = require('fs');
 const encripta = require('bcryptjs');
 const { localsName } = require('ejs');
-const { append } = require('express/lib/response');
-    
-
+const { append } = require('express/lib/response'); 
+const {validationResult, body} = require('express-validator');
 const db = require('../database/models');
 
 const { Op, where } = require('sequelize');
@@ -35,7 +34,7 @@ const userController = {
     },
     validarUsuario:(req,res) => { 
         //ok no tocar.
-        const {validationResult} = require('express-validator');
+    
         let error = validationResult( req ); 
 
         if (error.isEmpty()) {
@@ -64,6 +63,7 @@ const userController = {
                             // 2.2_ guardo el usuario en  session (o sea, lo logueo) si NO ESTá logueado
                             if ( req.session.usuarioLogueado == undefined ) {
                                 // 2.2.1_ Si tildó el recordarme
+                                //locals.usuarioLogueado = esElUsuario.usuario;//
                                 req.session.usuarioLogueado = esElUsuario.usuario;
                                 if ( req.body.recordarme == undefined ) { // activo cookie
                                     res.cookie('usuarioRecordado', esElUsuario.usuario, { maxAge: 24 * 60 * 60 * 1000 });
@@ -73,14 +73,24 @@ const userController = {
                             // ok hasta acá res.send( "Datos de Usuario correctamente ingresados : " + esElUsuario.usuario + " Su perfil es: " + suPerfil );
                             
                             if ( suPerfil == 'Administrador') {   
-                                // 2.2.1_ es usuario Administrador, va a indexProtegido
+                                // 2.2.1_ es usuario Administrador, vista con menú gestión de usuarios.
                                 db.productos.findAll()
                                 .then( listaDeIndex => {res.render('indexProtegido', {'usuarioLogueado': esElUsuario.usuario, 'usuarioPerfil': suPerfil, 'listado': listaDeIndex, 'listadoOfertas': listaDeIndex}); } )                                
-                            } else { 
-                                // 2.2.2_ no es Administrador, va a index de compradores y vendedores
+                            } else if (suPerfil =='Vendedor') {
+                                db.productos.findAll()
+                                .then( listaDeIndex => {res.render('indexVendedor', {'usuarioLogueado': esElUsuario.usuario, 'usuarioPerfil': suPerfil, 'listado': listaDeIndex, 'listadoOfertas': listaDeIndex}); } )
+                                //Mostrar vista con menú Gestión de Productos//
+                                    } else if(suPerfil== Invitado){
+                                //Mostrar vista para usuarios invitados//
+
+                                    }else{
+                                          // 2.2.2_ no es Administrador, va a index de compradores y vendedores
                                 db.productos.findAll()
                                 .then( listaDeIndex => {res.render('index', {'usuarioLogueado': esElUsuario.usuario,  'listado': listaDeIndex,'listadoOfertas': listaDeIndex});} )
-                            } 
+
+                                    }
+                              
+                            
                             
                             return suPerfil;
                         
@@ -104,7 +114,7 @@ const userController = {
     /* ******************** Para cargar usuario nuevo********************* */
     registroGrabar:(req,res) => {
         //ok no tocar.
-        const {validationResult} = require('express-validator');
+        
         let errores = validationResult( req );
 
         if ( errores.isEmpty() ) { // no hay errores
@@ -151,7 +161,7 @@ const userController = {
     /* ************** Modifcar Usuarios **************** */
     registroModificarMostrar: (req,res) => { 
         // ok no tocar
-        const {validationResult} = require('express-validator');
+        
         let errores = validationResult( req );  
 
        usuarioSeleccionado = db.usuarios.findByPk( req.params.id );
@@ -165,7 +175,6 @@ const userController = {
     registroModificarGrabar:(req,res) => {
         // ok no tocar
         
-            const {validationResult} = require('express-validator');
             let errores = validationResult( req );
             // ok res.send('usuario a modificar ' + usuarioSeleccionado.idUsr )
             

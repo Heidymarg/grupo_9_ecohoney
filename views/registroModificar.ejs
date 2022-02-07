@@ -94,7 +94,7 @@
             <center style="background-color:lightblue;">
                 <h3> Gestión de Usuarios - Modificar Usuario</h3>   
                                 
-                <form action="/usuarios/modificarGrabar/<%= usuarioSeleccionado.idUsr %>" method="POST">
+                <form action="/usuarios/modificarGrabar/<%= usuarioSeleccionado.idUsr %>" method="POST" enctype="multipart/form-data">
                     <div class="flex-vertical">
                         <label>Usuario</label>
                         <% if( usuarioSeleccionado != undefined ) { %>

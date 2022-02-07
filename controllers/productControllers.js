@@ -8,7 +8,7 @@ const op = db.Sequelize.Op;
 
 var listaDeProductosAbejas = db.productos.findAll();
 
-const {validationResult} = require('express-validator');
+const {validationResult, body} = require('express-validator');
 
 var idLineaParaEliminar = null;
 var idLineaParaModificar = null;
@@ -23,15 +23,15 @@ const productController = {
 	/* ************** Métodos para direccionar a Líneas de Productos ****************** */
 	/* ******************************************************************************** */	
     inicioCuidadoPersonal: (req,res) => { 
-		db.productos.findAll()
+		db.productos.findAll({where:{id_lineas:2}})
 		.then( listado => {res.render( 'lineaCuidadoPersonal', {usr: 'NoheliaK', 'listado': listado}) } )
     },
     inicioAbejas: (req,res) => { 
-		db.productos.findAll()
+		db.productos.findAll({where:{id_lineas:3}})
 		.then( listado => res.render( 'lineaProductoDeLasAbejas', { usr: 'Heidy', 'listado': listado }) )
     },
     inicioHogar: (req,res) => { 
-		db.productos.findAll()
+		db.productos.findAll({where:{id_lineas:1}})
 		.then( listado => res.render( 'lineaHogar', { usr: 'Oscar', 'listado': listado }) )
     },
 
@@ -87,7 +87,7 @@ const productController = {
     },
 	grabar: (req, res) => {
         // ok - falta validaciones back end
-        let {validationResult} = require('express-validator');
+     
         let errores = validationResult(req);
         if(errores.isEmpty()){
             
@@ -102,9 +102,10 @@ const productController = {
                 cantidad: req.body.cantidad,         
             })
 			.then(
+				console.log(error),
 			Promise.all([lineas])
             .then( ([lineas]) => {
-                res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
+                res.render('formularioCargaProducto', { 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
 			}))
 
         } else {
@@ -118,11 +119,11 @@ const productController = {
 	/* *************************** Modificar Producto ****************************** */
 	productoMostrarFormModificar: (req,res) => { 	
 		
-		productoSeleccionado = db.productos.findByPk( req.params.id );
-		Promise.all((promesas = [lineas, productoSeleccionado]))
+		prodAModificar = db.productos.findByPk( req.params.id );
+		Promise.all((promesas = [lineas, prodAModificar]))
 		.then( promesas => {
 			res.render('formularioModificarProducto',{'prodAModificar':promesas[1], 'lineas': promesas[0]}); 	     
-			return productoSeleccionado = promesas[1];
+			return prodAModificar = promesas[1];
 		})
 		
 
@@ -130,36 +131,43 @@ const productController = {
 	modificar: (req, res) => {
 		
 		
-		db.productos.findByPk( productoSeleccionado.idPrd )
-		.then( resultado => {
-			if ( resultado != undefined ) {
-			
-				console.log(req.body.foto + '!!!'  + req.file.filename)
+	 let errores = validationResult(req);
+	 if(errores.isEmpty()){
+	 db.productos.findByPk( prodAModificar.idPrd )
+	 .then( resultado => {
+		 if ( resultado != undefined ) {
+		 
+			 console.log(prodAModificar + '!!!'  + req.file.filename)
 
-				db.productos.update( {
-					nombre: req.body.nombre,
-					codigo: req.body.codigo,
-					descripcion : req.body.descripcion,
-					id_lineas : req.body.linea,
-					precio : req.body.precio,
-					bonif: req.body.bonif,
-					foto:  '/images/'  + req.file.filename,
-					cantidad: req.body.cantidad,    
-				},{
-					where : { idPrd : resultado.idPrd }
-				})
-				
-			}
-		})
-		.then(
-			db.productos.findAll()
-        	.then( (resultado) => {
-            	res.render( 'listadoDeProducto', { 'productosEncontrados': resultado }) 
-        	})
-		)
-		
-	},
-
+			 db.productos.update( {
+				 nombre: req.body.nombre,
+				 codigo: req.body.codigo,
+				 descripcion : req.body.descripcion,
+				 id_lineas : req.body.linea,
+				 precio : req.body.precio,
+				 bonif: req.body.bonif,
+				 foto:  '/images'  +  req.file.filename,
+				 cantidad: req.body.cantidad,    
+			 },{
+				 where : { idPrd : resultado.idPrd }
+			 })
+			 
+		 }
+	 })
+	 .then(
+		 db.productos.findAll()
+				  .then( (resultado) => {
+			 res.render( 'listadoDeProducto', { 'resultadoValidaciones': errores.mapped(), 'productosEncontrados': resultado, }) 
+		 }))
+	 } else {
+		 Promise.all([lineas])
+		 .then( ([lineas]) => {
+			 res.render('formularioModificarProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body,'lineas': lineas});
+		 } )
+	 }
+	 
+	 
+ },
 	/* *************************** Eliminar Producto ****************************** */
 	productoMostrarFormEliminar: (req,res) => { 
 		// ok no tocar
@@ -201,7 +209,7 @@ const productController = {
 			res.render("lineasAgregar");
 	},
 	agregarGrabarLinea: function(req,res) {
-		let {validationResult} = require('express-validator');
+	
 		let errores = validationResult(req);
 		if(errores.isEmpty()){
 			db.lineas.create( { nombre: req.body.linea } );	
@@ -233,7 +241,7 @@ const productController = {
 		
 		//res.send("dato a Modificar Grabar" + idLineaParaModificar);
 		
-		let {validationResult} = require('express-validator');
+	
 		let errores = validationResult(req);
 		//// viaja ok .then( resultado => {res.send('Linea a modificar' + resultado.id_lineas + '  ' + resultado.nombre + 'Nuevo Nombre: ' + req.body.nombre);} )
 		db.lineas.findByPk( idLineaParaModificar )
