@@ -9,10 +9,6 @@ const {check} = require('express-validator');
 let validacionDeProductos = require('../middlewares/validacionDeProductos');
 let validacionDeModificacion = require('../middlewares/validacionDeModificacion');
 
-
-let validacionDeProducto = require('../middlewares/validacionDeProductos');
-let validacionDeModificacion = require('../middlewares/validacionDeModificacion');
-
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null, 'public/images')
@@ -53,11 +49,7 @@ router.get('/detalle', productController.detalle);
 router.get('/productoModificar/:id', productController.productoMostrarFormModificar ); 
 // antes. se va si anda todo bien router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 // se va si anda todo bien con dos rutas router.post('/productoModificar', productController.traerParaModificar);
-<<<<<<< HEAD
-router.post('/edit/:id',validacionDeModificacion, upload.single('foto'), productController.modificar); 
-=======
 router.post('/edit/:id',  upload.single('foto'), validacionDeModificacion, productController.modificar); 
->>>>>>> 431653c80a822100672a4c1de0517385b03716d0
 
 /* *** Eliminar un producto *** */ 
 router.get('/productoDelete/:id', productController.productoMostrarFormEliminar );  // ruta que lleva al form.

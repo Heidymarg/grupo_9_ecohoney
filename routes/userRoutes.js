@@ -39,12 +39,7 @@ router.post('/registroGrabar',  upload.single('foto'),validacionDeRegistracion, 
 //////PARA MODIFICAR USUARIOS////////
 router.get('/modificar/:id', userController.registroModificarMostrar);
 
-<<<<<<< HEAD
-router.post('/modificarGrabar/:id', upload.single('foto'), validacionDeModificacionUsuario,
- userController.registroModificarGrabar);
-=======
 router.post('/modificarGrabar/:id',upload.single('foto'),  validacionDeModificacionUsuario, userController.registroModificarGrabar);
->>>>>>> 431653c80a822100672a4c1de0517385b03716d0
 
 ///PARA ELIMINAR USUARIOS////////
 router.get('/eliminar/:id', userController.registoEliminarConfirmar);
