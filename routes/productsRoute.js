@@ -6,6 +6,8 @@ const multer = require('multer');
 const productController = require('../controllers/productControllers');
 
 const {check} = require('express-validator');
+let validacionDeProductos = require('../middlewares/validacionDeProductos');
+let validacionDeModificacion = require('../middlewares/validacionDeModificacion');
 
 
 let validacionDeProducto = require('../middlewares/validacionDeProductos');
@@ -38,19 +40,24 @@ router.get('/lineaHogar', productController.inicioHogar);
 router.get('/listar', productController.listar);
 
 /*** Agregar nuevo producto ***/ 
+///Funcionan LAS VALIDACIONES DE BACK END Y FRONT END NO TOCAR///
 router.get('/productoAgregar', productController.productoMostrarFormCarga);
-//router.post('/agregarProducto',validacionDeProducto, upload.single('foto'), productController.grabar); 
-router.post('/agregarProducto', upload.single('foto'), productController.grabar); 
+router.post('/agregarProducto',  upload.single('foto'),validacionDeProductos, productController.grabar); 
 
 /*** Mostrar datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 
 router.get('/detalle', productController.detalle);
 
 /* *** Modificar producto *** */ 
+///Funcionan LAS VALIDACIONES DE BACK END Y FRONT END NO TOCAR///
 router.get('/productoModificar/:id', productController.productoMostrarFormModificar ); 
 // antes. se va si anda todo bien router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 // se va si anda todo bien con dos rutas router.post('/productoModificar', productController.traerParaModificar);
+<<<<<<< HEAD
 router.post('/edit/:id',validacionDeModificacion, upload.single('foto'), productController.modificar); 
+=======
+router.post('/edit/:id',  upload.single('foto'), validacionDeModificacion, productController.modificar); 
+>>>>>>> 431653c80a822100672a4c1de0517385b03716d0
 
 /* *** Eliminar un producto *** */ 
 router.get('/productoDelete/:id', productController.productoMostrarFormEliminar );  // ruta que lleva al form.

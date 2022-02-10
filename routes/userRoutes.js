@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 
-
+////Multer funciona NO TOCAR///
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null, 'public/images/usuarios')
@@ -23,23 +23,30 @@ const {check} = require('express-validator');
 const userController = require('../controllers/userControllers');
 
 /* para sprint 5 */
-const validacionDeRegistracion = require('../middlewares/validacionDeRegistracion');
-const validacionDeModificacionUsuario = require('../middlewares/validacionDeModificacionUsuario');
+let validacionDeRegistracion = require('../middlewares/validacionDeRegistracion');
+let validacionDeModificacionUsuario = require('../middlewares/validacionDeModificacionUsuario');
 const validacionDeInvitados = require('../middlewares/validacionDeInvitados');
 const validacionDeUsuario = require('../middlewares/validacionDeUsuario');
 /* para sprint 5 */
 
 
 
-router.get('/registro', userController.registroMostrar);    
-router.post('/registroGrabar', upload.single('foto'), validacionDeRegistracion, userController.registroGrabar);
-//router.post('/registroGrabar', upload.single('foto'), userController.registroGrabar);
+/////PARA AGREGAR USUARIOS/////
 
+router.get('/registro', userController.registroMostrar);    
+router.post('/registroGrabar',  upload.single('foto'),validacionDeRegistracion, userController.registroGrabar);
+
+//////PARA MODIFICAR USUARIOS////////
 router.get('/modificar/:id', userController.registroModificarMostrar);
 
+<<<<<<< HEAD
 router.post('/modificarGrabar/:id', upload.single('foto'), validacionDeModificacionUsuario,
  userController.registroModificarGrabar);
+=======
+router.post('/modificarGrabar/:id',upload.single('foto'),  validacionDeModificacionUsuario, userController.registroModificarGrabar);
+>>>>>>> 431653c80a822100672a4c1de0517385b03716d0
 
+///PARA ELIMINAR USUARIOS////////
 router.get('/eliminar/:id', userController.registoEliminarConfirmar);
 let validacionesEliminarUsuario = [
     check('idUsr').notEmpty().withMessage('Ingresar el Id de usuario a eliminar. Consultá Listar Usuarios').bail()

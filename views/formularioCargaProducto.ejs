@@ -112,8 +112,8 @@
                                 <% } %>
                             <% } %> </td> </tr>
         
-                            <tr><td><label><span>Descripción Detallada</span></label></td></tr>
-                            <tr><td><input type="text" name="descripcion"  name="descripcion"></td></tr>
+                            <tr><td><label><span>Descripción</span></label></td></tr>
+                            <tr><td><input type="text" name="descripcion"  class="descripcion"></td></tr>
                             <tr><td><% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.descripcion != undefined) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.descripcion.msg %></p>

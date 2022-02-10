@@ -117,7 +117,19 @@
                                     <% } %> </td> </tr>
 
                                     <tr><td><label><span>Descripción Detallada</span></label></td></tr>
+<<<<<<< HEAD
                                     <tr><td><input  value="<%= prodAModificar.descripcion %>" type="text" name="descripcion"></td></tr>
+=======
+<<<<<<< HEAD
+                                    <tr><td><input  value="<%= prodAModificar.descripcion %>" type="text" name="descripcion" class= "descripcion"></td></tr>
+=======
+<<<<<<< HEAD
+                                    <tr><td><input  value="<%= prodAModificar.descripcion %>" type="text" name="descripcion" class= "descripcion"></td></tr>
+=======
+                                    <tr><td><input  value="<%= prodAModificar.descripcion %>" type="text" name="descripcion"></td></tr>
+>>>>>>> 563f129a6a8f196565243e4856b48e1709eb4b87
+>>>>>>> 2ecd435f492b3658542f557799a670a31a586166
+>>>>>>> 431653c80a822100672a4c1de0517385b03716d0
                                    <tr><td><% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.descripcion != undefined) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.descripcion.msg %></p>
@@ -194,14 +206,17 @@
                 <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
                 <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
                 
-                    <input type="submit" value="Modificar">
-                    <input type="reset" value="Limpiar">
+                   
+                    
+                    <button type="submit" value="modifcar">Modificar</button>
+                    <button type="reset" value="limpiar">Limpiar</button> 
                 </form>
 
                 <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
                 <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
 
-            </div>           
+            </div>   
+        </form>        
         </center>      
         
     </main>
