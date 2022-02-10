@@ -8,7 +8,11 @@ const op = db.Sequelize.Op;
 
 var listaDeProductosAbejas = db.productos.findAll();
 
+<<<<<<< HEAD
 const {validationResult,body} = require('express-validator');
+=======
+const {validationResult, body} = require('express-validator');
+>>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 
 var idLineaParaEliminar = null;
 var idLineaParaModificar = null;
@@ -23,15 +27,15 @@ const productController = {
 	/* ************** Métodos para direccionar a Líneas de Productos ****************** */
 	/* ******************************************************************************** */	
     inicioCuidadoPersonal: (req,res) => { 
-		db.productos.findAll()
+		db.productos.findAll({where:{id_lineas:2}})
 		.then( listado => {res.render( 'lineaCuidadoPersonal', {usr: 'NoheliaK', 'listado': listado}) } )
     },
     inicioAbejas: (req,res) => { 
-		db.productos.findAll()
+		db.productos.findAll({where:{id_lineas:3}})
 		.then( listado => res.render( 'lineaProductoDeLasAbejas', { usr: 'Heidy', 'listado': listado }) )
     },
     inicioHogar: (req,res) => { 
-		db.productos.findAll()
+		db.productos.findAll({where:{id_lineas:1}})
 		.then( listado => res.render( 'lineaHogar', { usr: 'Oscar', 'listado': listado }) )
     },
 
@@ -130,7 +134,10 @@ const productController = {
     },
 	modificar: (req, res) => {
 		
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 	 let errores = validationResult(req);
 	 if(errores.isEmpty()){
 	 db.productos.findByPk( prodAModificar.idPrd )
@@ -244,6 +251,10 @@ eliminar : (req, res) => {
 		
 		//res.send("dato a Modificar Grabar" + idLineaParaModificar);
 		
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 		let errores = validationResult(req);
 		//// viaja ok .then( resultado => {res.send('Linea a modificar' + resultado.id_lineas + '  ' + resultado.nombre + 'Nuevo Nombre: ' + req.body.nombre);} )
 		db.lineas.findByPk( idLineaParaModificar )

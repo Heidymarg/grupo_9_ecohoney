@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+      
+    <%- include('./partials/head.ejs'); -%>
+    
+    <header class="flex-vertical">
+        <div class="dentro-header">
+            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+            
+            <div class="nav-bar">
+                <nav><!--nav> style="justify-content: space-around;"> -->
+                    <% if ( locals && locals.usuarioLogueado != undefined ) { %>
+                        <% if ( usuarioPerfil != 'Administrador' ) { %>
+                            <!-- if NO SOY admin, muestro el menú de público -->
+                            <ul type="none">
+                            <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">Promociones</a></li>
+                            <li><a href="#">Ofertas</a></li>
+                            <li><a href="#">Ayuda</a></li>
+                            </ul>
+                            <br><br><br>
+                        <% } else { %>
+                            <!-- else soy admin, muestro el menú protegido de ABM de productos -->
+                            <nav>
+                           
+                                <nav class="navbar_horflex nav-estilo-productos">
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/productos/listar"><li>Listar Productos</li></a></li>
+                                        <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
+
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/productos/linea/listar"><li>Listar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/agregar"><li>Agregar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/modificar"><li>Modificar Líneas</li></a></li>
+                                        <li><a href="/productos/linea/eliminar"><li>Eliminar Líneas</li></a></li>
+                                    </ul>
+                                </nav>
+                            </nav>
+                        <% } %>    
+                    <% } %>                      
+                </nav>
+            </div>
+            
+            <div class="login-registro">
+                <a href="/usuarios/login">Logging</a>    
+                <a href="/usuarios/logout">Salir</a>   
+                <a href="/usuarios/registro">Registrate</a>
+                <% if ( locals && locals.usuarioLogueado != undefined ) { %>
+                    <strong><%= locals.usuarioLogueado.usuario %></strong>
+                <% } %>
+            </div>
+
+        </div>
+
+        <div class="menu-burger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="buscador">
+            <form method="POST" action="/productos/buscar">
+                <input class="buscador-input" type="text" name="buscado" placeholder="Que producto buscas?"></input>
+                <button type="submit" ><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        
+    </header>
+
+<body> 
+    
+    <main class="flex-vertical">
+        
+        <div class="flex-Horizontal"> <!--cambie flex-vertical por horizontal, luego adaptamos-->
+            <!---------------OFERTAS------------------->
+            <div class=etiqueta-oferta>
+                <p class="titulo-ofertas">Ofertas especiales</p>
+                
+            </div>
+
+            <section class="Ofertas">
+                
+                <% for(let i = 0; (listadoOfertas.length - i) > 0; i++) { %>
+
+                    <article>
+                        <div class="contenedor1">
+                            <a href="/productos/detalle/<%= listadoOfertas[i].idPrd %>"><img style="width: 7em; height: 9em;" src=<%= listadoOfertas[i].foto %> alt=""></a>
+                            <table>
+                                <tr><td><p class="nombre"><%= listadoOfertas[i].nombre %></p></td></tr>
+                                <tr>
+                                    <td><p class="precios"><%= listadoOfertas[i].precio %></p></td>
+                                    <td><p class="descuentos"><%= listadoOfertas[i].bonif %></p></td>
+                                </tr>
+                                <tr><td><i class="fas fa-cart-plus"></i></td></tr>
+                            </table>
+                        </div>
+                    </article>
+
+                <% } %>
+
+            </section>
+            <!-------------------Fin seccion scrollable de Ofertas----------------->
+            
+            <!---------------Seccion scrollable de promociones---Esta seccion la cambie por especial de abejas.---------------->
+            
+            <!--ETIQUETA ESPECIAL DE ABEJAS-->
+            <div class=Etiqueta-Especial-Abejas>
+              <p class="titulo-Especial-abejas">Especial de Abejas</p>
+            </div>
+            
+            
+            <!-----ABEJAS---->
+
+            <section class="abejas">
+                
+                <% for(let i = 0; (listado.length - i) > 0; i++) { %>
+
+                    <article>
+                        <div class="contenedor1">
+                            <a href="/productos/detalle/<%= listado[i].idPrd %>"><img style="width: 7em; height: 9em;" src=<%= listado[i].foto %> alt=""></a>
+                            <table>
+                                <tr><td><p class="nombre"><%= listado[i].nombre %></p></td></tr>
+                                <tr>
+                                    <td><p class="precios"><%= listado[i].precio %></p></td>
+                                    <td><p class="descuentos"><%= listado[i].bonif %></p></td>
+                                </tr>
+                                <tr><td><i class="fas fa-cart-plus"></i></td></tr>
+                            </table>
+                        </div>
+                    </article>
+
+                    <% } %>                       
+            
+            </section>
+        </div>
+    </main>
+    
+    <%- include( './partials/footer.ejs' ); -%>
+
+</body>
+</html>

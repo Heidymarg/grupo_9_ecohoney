@@ -15,7 +15,7 @@
             <center style="background-color:lightblue;">
                 <h3> Completá tus datos</h3>
 
-                <form action="/usuarios/registroGrabar" method="POST" class="cargaProducto">
+                <form action="/usuarios/registroGrabar" method="POST" enctype="multipart/form-data" class="cargaProducto">
                     <div class="flex-vertical">
                         <label>Nombre y Apellido</label>
                         <input type="text" name="nombre" class='nombre' value="<% locals.datosAnteriores && datosAnteriores.nombre ? datosAnteriores.nombre : '' %>">
@@ -109,7 +109,7 @@
                         <input type="file" name="foto" value="<% locals.datosAnteriores.foto %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.foto != undefined ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.foto.msg %> </p>
+                                <p class="feedback"> <%= resultadoValidaciones.foto.msg %></p>
                             <% } %>
                         <% } %>
                     </div>
@@ -146,7 +146,7 @@
                 </form>
     
             </center>
-            <script src="/javascript/validarRegistro.js"></script>
+            <!--<script src="/javascript/validarRegistro.js"></script> -->
         </main>
     </body>
         <%- include( './partials/footer.ejs' ) %>

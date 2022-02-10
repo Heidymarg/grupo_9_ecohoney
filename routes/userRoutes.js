@@ -23,21 +23,38 @@ const {check} = require('express-validator');
 const userController = require('../controllers/userControllers');
 
 /* para sprint 5 */
+<<<<<<< HEAD
 let validacionDeRegistracion = require('../middlewares/validacionDeRegistracion');
 let validacionDeModificacionUsuario = require('../middlewares/validacionDeModificacionUsuario');
+=======
+const validacionDeRegistracion = require('../middlewares/validacionDeRegistracion');
+const validacionDeModificacionUsuario = require('../middlewares/validacionDeModificacionUsuario');
+>>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 const validacionDeInvitados = require('../middlewares/validacionDeInvitados');
 const validacionDeUsuario = require('../middlewares/validacionDeUsuario');
 /* para sprint 5 */
 
 
+<<<<<<< HEAD
 
 /////PARA AGREGAR USUARIOS/////
 
 router.get('/registro', userController.registroMostrar);    
 router.post('/registroGrabar',  upload.single('foto'),validacionDeRegistracion, userController.registroGrabar);
+=======
+
+router.get('/registro', userController.registroMostrar);    
+router.post('/registroGrabar', upload.single('foto'), validacionDeRegistracion, userController.registroGrabar);
+//router.post('/registroGrabar', upload.single('foto'), userController.registroGrabar);
+>>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 
 //////PARA MODIFICAR USUARIOS////////
 router.get('/modificar/:id', userController.registroModificarMostrar);
+<<<<<<< HEAD
+=======
+
+router.post('/modificarGrabar/:id', validacionDeModificacionUsuario, upload.single('foto'), userController.registroModificarGrabar);
+>>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 
 router.post('/modificarGrabar/:id',upload.single('foto'),  validacionDeModificacionUsuario, userController.registroModificarGrabar);
 
