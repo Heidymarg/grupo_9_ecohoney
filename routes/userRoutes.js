@@ -6,7 +6,7 @@ const path = require('path');
 
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
-        cb(null, 'public/destination/images/usuarios')
+        cb(null, 'public/images/usuarios')
     },
     filename: function(req,file,cb){
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
@@ -37,7 +37,8 @@ router.post('/registroGrabar', upload.single('foto'), validacionDeRegistracion, 
 
 router.get('/modificar/:id', userController.registroModificarMostrar);
 
-router.post('/modificarGrabar/:id', validacionDeModificacionUsuario, upload.single('foto'), userController.registroModificarGrabar);
+router.post('/modificarGrabar/:id', upload.single('foto'), validacionDeModificacionUsuario,
+ userController.registroModificarGrabar);
 
 router.get('/eliminar/:id', userController.registoEliminarConfirmar);
 let validacionesEliminarUsuario = [

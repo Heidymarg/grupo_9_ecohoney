@@ -47,18 +47,10 @@ router.get('/detalle/:id', productController.detalle);
 router.get('/detalle', productController.detalle);
 
 /* *** Modificar producto *** */ 
-<<<<<<< HEAD
-let validacionDeModificacion = require('../middlewares/validacionDeModificacion');
 router.get('/productoModificar/:id', productController.productoMostrarFormModificar ); 
 // antes. se va si anda todo bien router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 // se va si anda todo bien con dos rutas router.post('/productoModificar', productController.traerParaModificar);
 router.post('/edit/:id',validacionDeModificacion, upload.single('foto'), productController.modificar); 
-=======
-router.get('/productoModificar/:id', productController.productoMostrarFormModificar ); 
-// antes. se va si anda todo bien router.get('/productoModificar', productController.productoMostrarFormModificar ); 
-// se va si anda todo bien con dos rutas router.post('/productoModificar', productController.traerParaModificar);
-router.post('/edit/:id', validacionDeModificacion, upload.single('foto'), productController.modificar); 
->>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 
 /* *** Eliminar un producto *** */ 
 router.get('/productoDelete/:id', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
