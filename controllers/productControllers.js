@@ -130,7 +130,10 @@ const productController = {
     },
 	modificar: (req, res) => {
 		
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 	 let errores = validationResult(req);
 	 if(errores.isEmpty()){
 	 db.productos.findByPk( prodAModificar.idPrd )
@@ -138,6 +141,7 @@ const productController = {
 		 if ( resultado != undefined ) {
 		 
 			 console.log(prodAModificar + '!!!'  + req.file.filename)
+<<<<<<< HEAD
 
 			 db.productos.update( {
 				 nombre: req.body.nombre,
@@ -179,12 +183,15 @@ const productController = {
 		
     },
 	eliminar : (req, res) => {
+=======
+>>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 
 		//res.send( 'Producto a eliminar ' + req.params.id )
 		db.productos.findByPk( req.params.id )
 		.then( resultado => {
 			db.productos.destroy( {where: {idPrd : req.params.id}} )
 		})
+<<<<<<< HEAD
 		.then(
 			db.productos.findAll()
 			.then( (resultado) => {
@@ -192,6 +199,11 @@ const productController = {
 			})
 		)
 	},
+=======
+	)
+},
+
+>>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 
 
 		

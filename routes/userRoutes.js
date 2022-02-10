@@ -32,7 +32,8 @@ const validacionDeUsuario = require('../middlewares/validacionDeUsuario');
 
 
 router.get('/registro', userController.registroMostrar);    
-router.post('/registroGrabar', validacionDeRegistracion, upload.single('foto'), userController.registroGrabar);
+router.post('/registroGrabar', upload.single('foto'), validacionDeRegistracion, userController.registroGrabar);
+//router.post('/registroGrabar', upload.single('foto'), userController.registroGrabar);
 
 router.get('/modificar/:id', userController.registroModificarMostrar);
 

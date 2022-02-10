@@ -43,14 +43,13 @@ const userController = {
             db.usuarios.findAll({where:{usuario: req.body.usuario}})
             .then(resultado => { 
                 
-                esElUsuario = resultado[0].dataValues; 
-                
                 // 2_ Si el usuario está registrado
-                if ( esElUsuario != undefined ) {
+                if ( resultado != undefined ) {
 
+                    esElUsuario = resultado[0].dataValues;
+                    console.log( 'Usuario registrado: ' + esElUsuario ) 
                     //2.1_ Verifico su password
-                    if ( encripta.compareSync( req.body.password, esElUsuario.password )||
-                        (req.body.usuario != esElUsuario.usuario) ) {
+                    if ( encripta.compareSync( req.body.password, esElUsuario.password ) ) {
                     
                         var suPerfil = undefined;
                         db.perfiles.findAll( { where:{ id_perfil: esElUsuario.id_perfil } } )
@@ -64,8 +63,9 @@ const userController = {
                             if ( req.session.usuarioLogueado == undefined ) {
                                 // 2.2.1_ Si tildó el recordarme
                                 //locals.usuarioLogueado = esElUsuario.usuario;//
-                                req.session.usuarioLogueado = esElUsuario.usuario;
-                                if ( req.body.recordarme == undefined ) { // activo cookie
+                                req.session.usuarioLogueado = esElUsuario.usuario; //  revisar sprint 8
+                                //locals.usuarioLogueado.usuario = esElUsuario.usuario
+                                if ( req.body.recordarme != undefined ) { // activo cookie
                                     res.cookie('usuarioRecordado', esElUsuario.usuario, { maxAge: 24 * 60 * 60 * 1000 });
                                 } 
                             }
@@ -76,23 +76,19 @@ const userController = {
                                 // 2.2.1_ es usuario Administrador, vista con menú gestión de usuarios.
                                 db.productos.findAll()
                                 .then( listaDeIndex => {res.render('indexProtegido', {'usuarioLogueado': esElUsuario.usuario, 'usuarioPerfil': suPerfil, 'listado': listaDeIndex, 'listadoOfertas': listaDeIndex}); } )                                
-                            } else if (suPerfil =='Vendedor') {
+                            } else if ( suPerfil =='Vendedor' ) {
                                 db.productos.findAll()
                                 .then( listaDeIndex => {res.render('indexVendedor', {'usuarioLogueado': esElUsuario.usuario, 'usuarioPerfil': suPerfil, 'listado': listaDeIndex, 'listadoOfertas': listaDeIndex}); } )
                                 //Mostrar vista con menú Gestión de Productos//
-                                    } else if(suPerfil== Invitado){
-                                //Mostrar vista para usuarios invitados//
-
-                                    }else{
-                                          // 2.2.2_ no es Administrador, va a index de compradores y vendedores
-                                db.productos.findAll()
-                                .then( listaDeIndex => {res.render('index', {'usuarioLogueado': esElUsuario.usuario,  'listado': listaDeIndex,'listadoOfertas': listaDeIndex});} )
-
+                                } else if(suPerfil== 'Comprador'){
+                                    //Mostrar vista para usuarios invitados//
+                                    db.productos.findAll()
+                                        .then( listaDeIndex => {res.render('index', {'usuarioLogueado': esElUsuario.usuario,  'listado': listaDeIndex,'listadoOfertas': listaDeIndex});} )
+                                    } else {
+                                        // Es un invitado. Falta vista para invitados.
+                                        
+                                        
                                     }
-                              
-                            
-                            
-                            return suPerfil;
                         
                         }); // fin de db.perfiles.findAll( { where:{ id_perfil: esElUsuario.id_perfil } } )
       
@@ -114,35 +110,49 @@ const userController = {
     /* ******************** Para cargar usuario nuevo********************* */
     registroGrabar:(req,res) => {
         //ok no tocar.
-        
-        let errores = validationResult( req );
+        console.log(req.body )
+        var errores = validationResult( req );
 
         if ( errores.isEmpty() ) { // no hay errores
+            console.log( 'Entró por errores  empty' + errores )
+            
+            if ( req.file.filename != undefined ) {
 
-            // 1_ verifico igualdad de passwords y las encripto
-            let bcrypt;
-            let passOculta;
-            if ( req.body.pass === req.body.pass_confirm ) {
-                passOculta = encripta.hashSync( req.body.pass_confirm, 10 );
-            }
+               let passOculta;
+                if ( req.body.pass === req.body.pass_confirm ) {
+                    passOculta = encripta.hashSync( req.body.pass_confirm, 10 );
+                }
 
-            // 4_ grabo el usuario a tabla
-            db.usuarios.create( {
-                usuario : req.body.user,
-                email : req.body.email,
-                id_perfil : req.body.perfil,
-                id_intereses : req.body.intereses,
-                password : passOculta,
-                id_carrito: null,
-                foto: '/images/usuarios/' + req.body.foto
-            } );
-
-            Promise.all([perfiles,intereses])
-            .then( ([perfiles,intereses]) => {
-                res.render('registro', {'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses});          
-            } )
-
+                // 4_ grabo el usuario a tabla
+                db.usuarios.create( {
+                    usuario : req.body.user,
+                    email : req.body.email,
+                    id_perfil : req.body.perfil,
+                    id_intereses : req.body.intereses,
+                    password : passOculta,
+                    id_carrito: null,
+                    foto: '/images/usuarios/' + req.file.filename
+                } );
+                Promise.all([perfiles,intereses])
+                .then( ([perfiles,intereses]) => {
+                    res.render('registro', {'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses});          
+                } )
+                    
+            } else { // falta cargar la foto
+                console.log( errores )
+                Promise.all([perfiles,intereses])
+                .then( ([perfiles,intereses]) => {
+                    errores.push( {
+                        value: undefined,
+                        msg: 'Falta Cargar la Foto ',
+                        param: 'foto',
+                        location: 'file'
+                      })
+                    res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'perfiles': perfiles, 'intereses': intereses});
+                } )
+            }  
         } else { //hay errores
+            console.log( errores )
             Promise.all([perfiles,intereses])
             .then( ([perfiles,intereses]) => {
                 res.render('registro', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'perfiles': perfiles, 'intereses': intereses});
@@ -189,7 +199,7 @@ const userController = {
                         email: req.body.email,
                         id_perfil: req.body.perfil,
                         id_intereses: req.body.intereses,
-                        foto:"images/usuarios/" + req.body.foto,
+                        foto:"images/usuarios/" + req.file.filename,
                         password: passOculta
                     }, {
                         where : { idUsr : usuarioSeleccionado.idUsr }
@@ -238,7 +248,7 @@ const userController = {
             
             db.usuarios.findAll()
             .then( resultado => { 
-                return res.render('listadoUsuarios', {'resultadoValidaciones': errores.mapped});
+                return res.render('listadoUsuarios',{listaDeUsuarios: resultado });
             } )
         );
         
@@ -277,7 +287,7 @@ const userController = {
     },
     agregarGrabarPerfil: (req,res) => {
         
-        let {validationResult} = require('express-validator');
+        
 		let errores = validationResult(req);
 		if(errores.isEmpty()){
 			db.perfiles.create( { nombre: req.body.perfil } );	
@@ -306,7 +316,7 @@ const userController = {
 		return idPerfilParaModificar = req.body.perfil;
 	},
     modificarGrabarPerfil: function(req,res) {
-		let {validationResult} = require('express-validator');
+		
 		let errores = validationResult(req);
 		
 		db.perfiles.findByPk( idPerfilParaModificar )
@@ -343,7 +353,7 @@ const userController = {
         
     agregarGrabarInteres: (req, res) => {                              
 
-        let {validationResult} = require('express-validator');
+        
         let errores = validationResult(req);
         if(errores.isEmpty()){
             db.intereses.create( { nombre: req.body.interes } );	
@@ -371,7 +381,7 @@ const userController = {
         return idInteresParaModificar = req.body.intereses;
 	},
     modificarGrabarInteres: function(req,res) {
-		let {validationResult} = require('express-validator');
+		
 		let errores = validationResult(req);
 		
 		db.intereses.findByPk( idInteresParaModificar )

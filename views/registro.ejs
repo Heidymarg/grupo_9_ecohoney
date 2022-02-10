@@ -109,7 +109,7 @@
                         <input type="file" name="foto" value="<% locals.datosAnteriores.foto %>">
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.foto != undefined ) { %>
-                                <p class="feedback"> <%= resultadoValidaciones.foto.msg %> </p>
+                                <p class="feedback"> <%= resultadoValidaciones.foto.msg %></p>
                             <% } %>
                         <% } %>
                     </div>
@@ -146,7 +146,7 @@
                 </form>
     
             </center>
-            <script src="/javascript/validarRegistro.js"></script>
+            <!--<script src="/javascript/validarRegistro.js"></script> -->
         </main>
     </body>
         <%- include( './partials/footer.ejs' ) %>
