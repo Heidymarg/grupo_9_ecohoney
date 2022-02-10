@@ -10,9 +10,6 @@ let validacionDeProductos = require('../middlewares/validacionDeProductos');
 let validacionDeModificacion = require('../middlewares/validacionDeModificacion');
 
 
-let validacionDeProducto = require('../middlewares/validacionDeProductos');
-let validacionDeModificacion = require('../middlewares/validacionDeModificacion');
-
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null, 'public/images')
