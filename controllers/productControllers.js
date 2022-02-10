@@ -130,11 +130,6 @@ const productController = {
     },
 	modificar: (req, res) => {
 		
-<<<<<<< HEAD
-		
-=======
-		let {validationResult} = require('express-validator');
->>>>>>> 563f129a6a8f196565243e4856b48e1709eb4b87
 	 let errores = validationResult(req);
 	 if(errores.isEmpty()){
 	 db.productos.findByPk( prodAModificar.idPrd )
@@ -142,49 +137,6 @@ const productController = {
 		 if ( resultado != undefined ) {
 		 
 			 console.log(prodAModificar + '!!!'  + req.file.filename)
-<<<<<<< HEAD
-
-			 db.productos.update( {
-				 nombre: req.body.nombre,
-				 codigo: req.body.codigo,
-				 descripcion : req.body.descripcion,
-				 id_lineas : req.body.linea,
-				 precio : req.body.precio,
-				 bonif: req.body.bonif,
-				 foto:  '/images'  +  req.file.filename,
-				 cantidad: req.body.cantidad,    
-			 },{
-				 where : { idPrd : resultado.idPrd }
-			 })
-			 
-		 }
-	 })
-	 .then(
-		 db.productos.findAll()
-				  .then( (resultado) => {
-			 res.render( 'listadoDeProducto', { 'resultadoValidaciones': errores.mapped(), 'productosEncontrados': resultado, }) 
-		 }))
-	 } else {
-		 Promise.all([lineas])
-		 .then( ([lineas]) => {
-			 res.render('formularioModificarProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body,'lineas': lineas});
-		 } )
-	 }
-	 
-	 
- },
-	/* *************************** Eliminar Producto ****************************** */
-	productoMostrarFormEliminar: (req,res) => { 
-		// ok no tocar
-		db.productos.findByPk( req.params.id )
-        .then( resultado => {
-			res.render('formularioEliminarProducto', {'prodAEliminar': resultado });
-                return productoSeleccionado = resultado;
-        } );
-		
-    },
-	eliminar : (req, res) => {
-=======
 
 			 db.productos.update( {
 				 nombre: req.body.nombre,
@@ -241,7 +193,6 @@ eliminar : (req, res) => {
 	)
 },
 
->>>>>>> 563f129a6a8f196565243e4856b48e1709eb4b87
 
 
 		
