@@ -199,11 +199,7 @@ const userController = {
                         email: req.body.email,
                         id_perfil: req.body.perfil,
                         id_intereses: req.body.intereses,
-<<<<<<< HEAD
                         foto:'/images/usuarios/' + req.file.filename,
-=======
-                        foto:"images/usuarios/" + req.file.filename,
->>>>>>> 2ecd435f492b3658542f557799a670a31a586166
                         password: passOculta
                     }, {
                         where : { idUsr : usuarioSeleccionado.idUsr }

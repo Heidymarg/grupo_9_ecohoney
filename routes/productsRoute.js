@@ -40,25 +40,16 @@ router.get('/lineaHogar', productController.inicioHogar);
 router.get('/listar', productController.listar);
 
 /*** Agregar nuevo producto ***/ 
-<<<<<<< HEAD
 ///Funcionan LAS VALIDACIONES DE BACK END Y FRONT END NO TOCAR///
 router.get('/productoAgregar', productController.productoMostrarFormCarga);
 router.post('/agregarProducto',  upload.single('foto'),validacionDeProductos, productController.grabar); 
-=======
-router.get('/productoAgregar', productController.productoMostrarFormCarga);
-//router.post('/agregarProducto',validacionDeProducto, upload.single('foto'), productController.grabar); 
-router.post('/agregarProducto', upload.single('foto'), productController.grabar); 
->>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 
 /*** Mostrar datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 
 router.get('/detalle', productController.detalle);
 
 /* *** Modificar producto *** */ 
-<<<<<<< HEAD
 ///Funcionan LAS VALIDACIONES DE BACK END Y FRONT END NO TOCAR///
-=======
->>>>>>> 2ecd435f492b3658542f557799a670a31a586166
 router.get('/productoModificar/:id', productController.productoMostrarFormModificar ); 
 // antes. se va si anda todo bien router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 // se va si anda todo bien con dos rutas router.post('/productoModificar', productController.traerParaModificar);

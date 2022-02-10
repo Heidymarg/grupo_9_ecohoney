@@ -14,7 +14,3 @@ module.exports =[
     check('pass_confirm').notEmpty().withMessage('Reingresar la Contraseña, mínimo 8 caracteres ').bail(),
     check('privacidad').notEmpty().withMessage('Completar el campo Términos y Condiciones de Privacidad ').bail()
 ];
-<<<<<<< HEAD
-=======
-
->>>>>>> 2ecd435f492b3658542f557799a670a31a586166
