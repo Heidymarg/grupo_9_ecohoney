@@ -3,10 +3,10 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 
-
+////Multer funciona NO TOCAR///
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
-        cb(null, 'public/destination/images/usuarios')
+        cb(null, 'public/images/usuarios')
     },
     filename: function(req,file,cb){
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
@@ -23,41 +23,25 @@ const {check} = require('express-validator');
 const userController = require('../controllers/userControllers');
 
 /* para sprint 5 */
+let validacionDeRegistracion = require('../middlewares/validacionDeRegistracion');
+let validacionDeModificacionUsuario = require('../middlewares/validacionDeModificacionUsuario');
 const validacionDeInvitados = require('../middlewares/validacionDeInvitados');
 const validacionDeUsuario = require('../middlewares/validacionDeUsuario');
 /* para sprint 5 */
 
-let validacionDeRegistracion = [ 
-        check('nombre').notEmpty().withMessage('Completar el Nombre y Apellido').bail(), 
-        check('user').notEmpty().withMessage('Completar el Nombre de Usuario').bail(), 
-        check('email').notEmpty().withMessage('Completar el e-mail ').isEmail().withMessage('No es un email válido').bail(), 
-        check('birth_date').notEmpty().withMessage('Ingresar la fecha ').bail(), 
-        check('dni').notEmpty().withMessage('Completar DNI ').bail(), 
-        check('addres').notEmpty().withMessage('Completar el Domicilio ').bail(),
-        check('perfil').notEmpty().withMessage('Seleccionar alguna opción ').bail(),
-        check('intereses').notEmpty().withMessage('Seleccionar una o más opciones ').bail(),
-        check('foto').notEmpty().withMessage('Subir foto de perfil ').bail(), 
-        check('pass').notEmpty().withMessage('Completar la Contraseña, mínimo 8 caracteres ').bail(), 
-        check('pass_confirm').notEmpty().withMessage('Reingresar la Contraseña, mínimo 8 caracteres ').bail(),
-        check('privacidad').notEmpty().withMessage('Completar el campo Términos y Condiciones de Privacidad ').bail()
-    ];
+
+
+/////PARA AGREGAR USUARIOS/////
 
 router.get('/registro', userController.registroMostrar);    
-router.post('/registroGrabar', validacionDeRegistracion, upload.single('foto'), userController.registroGrabar);
+router.post('/registroGrabar',  upload.single('foto'),validacionDeRegistracion, userController.registroGrabar);
 
+//////PARA MODIFICAR USUARIOS////////
 router.get('/modificar/:id', userController.registroModificarMostrar);
-let validacionDeModificacionUsuario = [  
-    check('user').notEmpty().withMessage('Completar el Nombre de Usuario').bail(), 
-    check('email').notEmpty().withMessage('Completar el e-mail ').isEmail().withMessage('No es un email válido').bail(), 
-    check('perfil').notEmpty().withMessage('Seleccionar alguna opción ').bail(),
-    check('intereses').notEmpty().withMessage('Seleccionar una o más opciones ').bail(),
-    check('foto').notEmpty().withMessage('Subí una foto').bail(),
-    check('pass').notEmpty().withMessage('Completar la Contraseña, mínimo 8 caracteres ').bail(), 
-    check('pass_confirm').notEmpty().withMessage('Reingresar la Contraseña, mínimo 8 caracteres ').bail(),
-    check('privacidad').notEmpty().withMessage('Completar el campo Términos y Condiciones de Privacidad ').bail()
-];
-router.post('/modificarGrabar/:id', validacionDeModificacionUsuario, upload.single('foto'), userController.registroModificarGrabar);
 
+router.post('/modificarGrabar/:id',upload.single('foto'),  validacionDeModificacionUsuario, userController.registroModificarGrabar);
+
+///PARA ELIMINAR USUARIOS////////
 router.get('/eliminar/:id', userController.registoEliminarConfirmar);
 let validacionesEliminarUsuario = [
     check('idUsr').notEmpty().withMessage('Ingresar el Id de usuario a eliminar. Consultá Listar Usuarios').bail()

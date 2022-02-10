@@ -180,7 +180,7 @@ const userController = {
                         email: req.body.email,
                         id_perfil: req.body.perfil,
                         id_intereses: req.body.intereses,
-                        foto:"images/usuarios/" + req.body.foto,
+                        foto:'/images/usuarios/' + req.file.filename,
                         password: passOculta
                     }, {
                         where : { idUsr : usuarioSeleccionado.idUsr }

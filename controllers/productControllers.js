@@ -8,7 +8,7 @@ const op = db.Sequelize.Op;
 
 var listaDeProductosAbejas = db.productos.findAll();
 
-const {validationResult} = require('express-validator');
+const {validationResult,body} = require('express-validator');
 
 var idLineaParaEliminar = null;
 var idLineaParaModificar = null;
@@ -87,7 +87,7 @@ const productController = {
     },
 	grabar: (req, res) => {
         // ok - falta validaciones back end
-        let {validationResult} = require('express-validator');
+     
         let errores = validationResult(req);
         if(errores.isEmpty()){
             
@@ -102,10 +102,10 @@ const productController = {
                 cantidad: req.body.cantidad,         
             })
 			.then(
-				console.log(error),
+				console.log(errores),
 			Promise.all([lineas])
             .then( ([lineas]) => {
-                res.render('formularioCargaProducto', { 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
+                res.render('formularioCargaProducto', { 'resultadoValidaciones': errores.mapped(),'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
 			}))
 
         } else {
@@ -130,7 +130,7 @@ const productController = {
     },
 	modificar: (req, res) => {
 		
-		let {validationResult} = require('express-validator');
+		
 	 let errores = validationResult(req);
 	 if(errores.isEmpty()){
 	 db.productos.findByPk( prodAModificar.idPrd )
@@ -146,7 +146,7 @@ const productController = {
 				 id_lineas : req.body.linea,
 				 precio : req.body.precio,
 				 bonif: req.body.bonif,
-				 foto:  '/images'  +  req.file.filename,
+				 foto:  '/images/'  +  req.file.filename,
 				 cantidad: req.body.cantidad,    
 			 },{
 				 where : { idPrd : resultado.idPrd }
@@ -212,7 +212,7 @@ eliminar : (req, res) => {
 			res.render("lineasAgregar");
 	},
 	agregarGrabarLinea: function(req,res) {
-		let {validationResult} = require('express-validator');
+	
 		let errores = validationResult(req);
 		if(errores.isEmpty()){
 			db.lineas.create( { nombre: req.body.linea } );	
@@ -244,7 +244,6 @@ eliminar : (req, res) => {
 		
 		//res.send("dato a Modificar Grabar" + idLineaParaModificar);
 		
-		let {validationResult} = require('express-validator');
 		let errores = validationResult(req);
 		//// viaja ok .then( resultado => {res.send('Linea a modificar' + resultado.id_lineas + '  ' + resultado.nombre + 'Nuevo Nombre: ' + req.body.nombre);} )
 		db.lineas.findByPk( idLineaParaModificar )
