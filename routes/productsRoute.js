@@ -59,29 +59,11 @@ router.get('/detalle/:id', productController.detalle);
 router.get('/detalle', productController.detalle);
 
 /* *** Modificar producto *** */ 
-<<<<<<< HEAD
 let validacionDeModificacion = require('../middlewares/validacionDeModificacion');
 router.get('/productoModificar/:id', productController.productoMostrarFormModificar ); 
 // antes. se va si anda todo bien router.get('/productoModificar', productController.productoMostrarFormModificar ); 
 // se va si anda todo bien con dos rutas router.post('/productoModificar', productController.traerParaModificar);
 router.post('/edit/:id',validacionDeModificacion, upload.single('foto'), productController.modificar); 
-=======
-const validacionDeModificacion = [
-    check('codigo').notEmpty().withMessage('Completar el Código del Producto').bail(), 
-    check('nombre').notEmpty().withMessage('Completar el Nombre del Producto').bail(), 
-    check('descripcion').notEmpty().withMessage('Completar la descripción ').bail(), 
-    check('linea').notEmpty().withMessage('Seleccionar una o más opciones').bail(), 
-    check('precio').notEmpty().withMessage('Asignar el Precio ').bail(), 
-    check('bonif').notEmpty().withMessage('Completar la bonificación ').bail(),
-    check('foto').notEmpty().withMessage('Subir foto del producto').bail(),
-    check('cantidad').notEmpty().withMessage('Completar la cantidad ').bail(),
-     
-];
-router.get('/productoModificar/:id', productController.productoMostrarFormModificar ); 
-// antes. se va si anda todo bien router.get('/productoModificar', productController.productoMostrarFormModificar ); 
-// se va si anda todo bien con dos rutas router.post('/productoModificar', productController.traerParaModificar);
-router.post('/edit/:id', validacionDeModificacion, upload.single('foto'), productController.modificar); 
->>>>>>> 563f129a6a8f196565243e4856b48e1709eb4b87
 
 /* *** Eliminar un producto *** */ 
 router.get('/productoDelete/:id', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
