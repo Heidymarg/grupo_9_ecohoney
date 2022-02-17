@@ -1,15 +1,27 @@
 module.exports =
 {
   "development": {
-<<<<<<< HEAD
    "port":"3330",
-=======
-  
->>>>>>> f168409e2d540aaff9077877e2b6547878022e49
     "username": "root",
-    "password": "",
+    "password": "123456",
     "database": "ecohoney",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }
+

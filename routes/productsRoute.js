@@ -9,10 +9,6 @@ const {check} = require('express-validator');
 let validacionDeProductos = require('../middlewares/validacionDeProductos');
 let validacionDeModificacion = require('../middlewares/validacionDeModificacion');
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f168409e2d540aaff9077877e2b6547878022e49
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null, 'public/images')

@@ -1,0 +1,59 @@
+[
+    {"idUsr":1,
+        "nombre":"Oscar Chiaradia",
+        "usuario":"oscar.chiaradia@gmail.com",
+        "email":"oscar.chiaradia@gmail.com",
+        "perfil":"Administrador",
+        "intereses":"personal",
+        "foto":"avatars-avataaars.png"
+        },
+        
+    {"idUsr":2,
+        "nombre":"Heidy",
+        "usuario":"heidy@gmail.com",
+        "email":"heidy@gmail.com",
+        "perfil":"Administrador",
+        "intereses":"hogar",
+        "foto":"female-avatar.png"
+      },
+        
+    {"idUsr":3,
+        "nombre":
+        "Nohelia",
+        "usuario":"nohelia@ecohoney.com",
+        "email":"nohelia@ecohoney.com",
+        "perfil":"Administrador",
+        "intereses":"Cuidado Personal",
+        "foto":"female-avatar.png"
+        },
+        
+    {"idUsr":4,
+        "nombre":"Elena",
+        "usuario":"elena@comprador.com",
+        "email":"pepe@comprador.com",
+        "perfil":"comprador",
+        "intereses":["hogar","personal","miel"],
+        "foto":"female-avatar.png"
+        },
+        
+    {"idUsr":5,
+        "nombre":"Diego Diaz",
+        "usuario":"diegog@ecohoney.dh",
+        "email":"diego@ecohoney.dh",
+        "perfil":"Vendedor",
+        "intereses":"personal",
+        "foto":"avatars-avataaars.png"
+        },
+
+        
+    {"idUsr":6,
+        "nombre":"Pepe",
+        "usuario":"pepe.chiaradia@gmail.com",
+        "email":"pepe.chiaradia@gmail.com",
+        "perfil":"Invitado",
+        "intereses":"invitado",
+        "foto":"avatars-avataaars.png"
+       }
+    
+    ]
+

@@ -1,0 +1,77 @@
+[
+    {"idPrd":"0",
+        "nombre":"Envoltorio ecologico",
+        "codigo":"SKU7148-0050",
+        "descripcion":"Envase apto para el contacto con alimentos",
+        "id_lineas":"Abejas",
+        "precio":"$150",
+        "bonif":"30%",
+        "foto":"/images/envoltorio-ecologico-colmena.jpg",
+        "cantidad":"1"},
+
+        {"idPrd":"01",
+        "nombre":"Pabilo",
+        "codigo":"SKU7148-0051",
+        "descripcion":"Pabilo de algodón de 6 cabos en bobina de 200 grs, ideal para todo tipo de artesanía ",
+        "id_lineas":"Hogar",
+        "precio":"200",
+        "bonif":"15%",
+        "foto":"/images/pabilo-organico.jpg",
+        "cantidad":"1"},
+            
+        {"idPrd":"02",
+        "nombre":"Honey Essence",
+        "codigo":"SKU7148-0052",
+        "descripcion":"Crema envase 60cc, acción analgésica, antiinflamatoria, vasomotora",
+        "id_lineas":"Cuidado Personal",
+        "precio":"1800",
+        "bonif":"25%",
+        "foto":"/images/honey-essence.jpg",
+        "cantidad":"1"},
+
+        {"idPrd":"03",
+        "nombre":"Crema Nutritiva",
+        "codigo":"SKU7148-0053",
+        "descripcion":" Tratamiento intensivo dia y noche con ácido hialurónico, vitamina E y liposomas de ceramidas, libre de parabenos. ",
+        "id_lineas":"Cuidado Personal",
+        "precio":"2500",
+        "bonif":"15%",
+        "foto":"/images/crema-nutritiva.PNG",
+        "cantidad":"1"},
+
+                    
+        {"idPrd":"04",
+        "nombre":"Velas Miel",
+        "codigo":"SKU7148-0054",
+        "descripcion":"Vela de cera virgen  100% natural, en vaso de vidrio reutilizable. combustión lenta y larga duración. ",
+        "id_lineas":"Abejas",
+        "precio":"895",
+        "bonif":"10%",
+        "foto":"/images/velas-miel-organic.jpg",
+        "cantidad":"1"},
+
+    {"idPrd":"05",
+        "nombre":"Vaso Plegable",
+        "codigo":"SKU7148-0055",
+        "descripcion":"Ideal para actividades al aire libre, práctico ya que ahorra mucho espacio al momento de transportar, 100% biodegradable. ",
+        "id_lineas":"Hogar",
+        "precio":"2000",
+        "bonif":"12%",
+        "foto":"/images/vaso-plegable.jpg",
+        "cantidad":"1"},
+            
+        {"idPrd":"06",
+            "nombre":"Miel Orgánica",
+            "codigo":"SKU7148-0056",
+            "descripcion":"Miel Orgánica por 500 grs, endulza aromatiza y da sabor a diversas preparaciones culinarias y beneficios para la salud ",
+            "id_lineas":"Abejas",
+            "precio":"1050",
+            "bonif":"15%",
+            "foto":"/images/miel-organica.PNG",
+            "cantidad":"1"}
+                         
+    
+        
+        ]
+        
+

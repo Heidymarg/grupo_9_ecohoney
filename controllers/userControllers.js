@@ -255,7 +255,7 @@ const userController = {
         
     },
     /* ******************* Fin - Eliminar Usuario ******************* */
-
+    /* ********Para listar usuarios********************/ 
     listar: (req,res) => { 
 
         db.usuarios.findAll()

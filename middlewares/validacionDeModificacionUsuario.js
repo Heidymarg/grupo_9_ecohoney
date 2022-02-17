@@ -11,8 +11,3 @@ module.exports = validacionDeModificacionUsuario = [
     check('pass_confirm').notEmpty().withMessage('Reingresar la Contraseña, mínimo 8 caracteres ').bail(),
     check('privacidad').notEmpty().withMessage('Completar el campo Términos y Condiciones de Privacidad ').bail()
 ];
-<<<<<<< HEAD
-
-
-=======
->>>>>>> f168409e2d540aaff9077877e2b6547878022e49
