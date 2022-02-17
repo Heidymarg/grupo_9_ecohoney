@@ -3,34 +3,60 @@
 
     <%- include('./partials/head.ejs'); -%>
    
-   <body>
-    <%- include( './partials/header.ejs' ); -%>  
+    <header class="flex-vertical">
+        <%- include('./partials/header-Comprador.ejs'); -%>
+    </header>
     
-    <main class="flex-vertical">
-        
-        <section>
-            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
-        </section>
+   <body>
+        <main class="flex-vertical">
 
-      
-        
+            <div class="listacarrito">
 
-
-              
-                    <main class="carrito">
-                    <div class="listacarrito">
-                        <label for="carrito">Carrito:</label>
-                        <input type="carrito">
-                        
-                        <label for="guardado">Guardado:</label>
-                        <input type="guardado">
-                    </div></div>
-                          
-                        <h3 >Tú carrito está vacío</h3>
-                
-                    </div>
+                <form action="/usuarios/carrito/comprar" method="POST">
+                    <table style="width: 37vw">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #ddd;">
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th> P. Unit.</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for ( let i = 0; (carrito.length - i) > 0; i++ ) { %> 
+                                <tr style="border-bottom: 1px solid #ddd;">
+                                    <td style="width: 50%">
+                                        <a href='/usuarios/carrito/sacarItem/<%= carrito[i].id %>'><p><%= carrito[i].nombre %></p></a>
+                                    </td>
+                                    <td style="width: 15%">
+                                        <p><%= carrito[i].cantidad %></p>
+                                    </td>
+                                    <td style="width: 20%">
+                                        <p><%= carrito[i].precioU %></p>
+                                    </td>
+                                    <td style="width: 30%">
+                                        <p><%= (Number(carrito[i].precioU) * Number(carrito[i].cantidad)) %></p>
+                                    </td>
+                                </tr>
+                            <% } %>
+                            <hr>
+                            
+                            <hr>
+                            <tr><td><button type="submit">Pagar</button></td></tr>
+                        </tbody>
+                    </table>    
+                </form>
+                <form action="/usuarios/carrito/vaciar" method="POST">
+                    <button type="submit">Vaciar Carrito</button>
+                </form>
+            </div>           
+           
+            <% if ( locals.cookies == undefined ) { %> 
+                <h4>Tú carrito está vacío</h3>
+            <% } %>
+            
                   
-            </main>
-                </body>
-                <%- include( './partials/footer.ejs' ); -%>
-            </html>
+        </main>
+    </body>
+        <%- include( './partials/footer.ejs' ); -%>
+</html>

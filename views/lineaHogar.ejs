@@ -3,24 +3,49 @@
 
     <%- include('./partials/head.ejs'); -%>
 
-<body>
+<header class="flex-vertical">
+    <% if ( usuarioLogueado != undefined ) { %>
+        
+        <% if ( usuarioPerfil == 'Administrador' ) { %>
+            <%- include('./partials/header-Admin.ejs'); -%>
+            
+            <% } else if ( usuarioPerfil == 'Vendedor' ) { %>
+                <%- include('./partials/header-Vendedor.ejs'); -%>
 
-    <%- include( './partials/header.ejs' ); -%>  
+                <% } else if ( usuarioPerfil == 'Comprador' ) { %>
+                    <%- include('./partials/header-Comprador.ejs'); -%>
+
+                    <% } else { %> <!-- es invitado -->
+                        <div class="dentro-header">
+                            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+                    
+                            <div class="nav-bar">
+                                <nav><!--nav> style="justify-content: space-around;"> -->
+                                    <%- include('./partials/nav-general.ejs'); -%>                                         
+                                </nav>
+                            </div>
+                    
+                            <%- include('./partials/nav-usuarios.ejs'); -%>    
+                        </div>
+                <% } %>
+
+    <% } else { %> <!-- usuario no loqueado -->
+        <%- include('./partials/header.ejs'); -%>
+    <% } %>   
+</header>    
+       
+    
+<body>
     
     <main class="flex-vertical">
-        <!--
-        <section>
-            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
-        </section>
-        -->
+
         <div class="flex-Horizontal"> <!--cambie flex-vertical por horizontal, luego adaptamos-->
             <!---------------OFERTAS------------------->
           <div class=etiqueta-oferta>
             <p class="titulo-ofertas">Nuestra Línea Hogar</p>
           </div>
 
-          <section class="Ofertas">
-                                
+          <section class="Ofertas">                               
             <% for(let i = 0; (listado.length - i) > 0; i++) { %>
 
                 <article>

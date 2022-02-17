@@ -10,7 +10,7 @@ module.exports = [
   check('precio').notEmpty().withMessage('Falta cargar el Precio').bail(),
   check('bonif').notEmpty().withMessage('Falta cargar la Bonificación').bail(),
   check('cantidad').notEmpty().withMessage('Ingresar un stock inicial').bail(),
-  check('foto').notEmpty().withMessage('Falta subir una foto de producto').bail()
+  //check('foto').notEmpty().withMessage('Falta subir una foto de producto').bail()
 ];
 
   

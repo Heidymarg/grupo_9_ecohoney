@@ -3,51 +3,37 @@
       
     <%- include('./partials/head.ejs'); -%>
     
-    <header class="flex-vertical">
-        <div class="dentro-header">
-            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
-            
-            <div class="nav-bar">
-                <nav><!--nav> style="justify-content: space-around;"> -->
-
-                            <!-- if NO SOY admin, muestro el menú de público -->
-                            <ul type="none">
-                            <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
-                            <li><a href="/">Home</a></li>
-                            <li><a href="#">Promociones</a></li>
-                            <li><a href="#">Ofertas</a></li>
-                            <li><a href="#">Ayuda</a></li>
-                            </ul>
-                            <br><br><br>
-                   
-                </nav>
-            </div>
-            
-            <div class="login-registro">
-                <a href="/usuarios/login">Logging</a>    
-                <a href="/usuarios/logout">Salir</a>   
-                <a href="/usuarios/registro">Registrate</a>
-                <a href="/productos/carrito">Mi Carrito<i class="fas fa-cart-plus"></i></a>
-                <% if ( locals && locals.usuarioLogueado != undefined ) { %>
-                    <strong><%= locals.usuarioLogueado.usuario %></strong>
-                <% } %>
-            </div>
-
-        </div>
-
-        <div class="menu-burger">
-            <i class="fas fa-bars"></i>
-        </div>
-
-        <div class="buscador">
-            <form method="POST" action="/productos/buscar">
-                <input class="buscador-input" type="text" name="buscado" placeholder="Que producto buscas?"></input>
-                <button type="submit" ><i class="fas fa-search"></i></button>
-            </form>
-        </div>
+<header>
+    <% if ( usuarioLogueado != undefined ) { %>
         
-    </header>
+        <% if ( usuarioPerfil == 'Administrador' ) { %>
+            <%- include('./partials/header-Admin.ejs'); -%>
+            
+            <% } else if ( usuarioPerfil == 'Vendedor' ) { %>
+                <%- include('./partials/header-Vendedor.ejs'); -%>
 
+                <% } else if ( usuarioPerfil == 'Comprador' ) { %>
+                    <%- include('./partials/header-Comprador.ejs'); -%>
+
+                    <% } else { %> <!-- es invitado -->
+                        <div class="dentro-header">
+                            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+                    
+                            <div class="nav-bar">
+                                <nav><!--nav> style="justify-content: space-around;"> -->
+                                    <%- include('./partials/nav-general.ejs'); -%>                                         
+                                </nav>
+                            </div>
+                    
+                            <%- include('./partials/nav-usuarios.ejs'); -%>    
+                        </div>
+                <% } %>
+
+    <% } else { %> <!-- usuario no loqueado -->
+        <%- include('./partials/header.ejs'); -%>
+    <% } %>  
+</header>          
+    
 <body> 
     
     <main class="flex-vertical">
@@ -69,7 +55,13 @@
                                 <td style="border: 1px solid violet; text-align: left; padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].idPrd %>)_</strong></a></td>
                                 <td style="border: 1px solid violet; text-align: left; padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"><p><strong><%= productosEncontrados[i].nombre %> </p></strong></a></td>
                                 <td style="border: 1px solid violet; text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].descripcion %></p></strong></td>
-                                <td style="border: 1px solid violet; text-align: left;padding: 5px;"><img style="width: 39px;" src="<%= productosEncontrados[i].foto %>" alt="Foto de Producto"></td>
+                                <td style="border: 1px solid violet; text-align: left;padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"" alt="Producto Detallado"><img style="width: 39px;" src="<%= productosEncontrados[i].foto %>" alt="Foto de Producto"></a></td>
+                                <td style="border: 1px solid violet; text-align: left;padding: 5px;">
+                                    <div>
+                                        <a href='/usuarios/carrito/agregarItem/<%= productosEncontrados[i].idPrd %>'>
+                                        <i id="iconos-prod" class="fas fa-cart-plus"></i></a> 
+                                    </div>
+                                </td>
                             </tr>
                         <% } %>
                     </tbody>

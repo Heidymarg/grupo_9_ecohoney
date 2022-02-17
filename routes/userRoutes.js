@@ -33,7 +33,6 @@ const validacionDeUsuario = require('../middlewares/validacionDeUsuario');
 
 router.get('/registro', userController.registroMostrar);    
 router.post('/registroGrabar', upload.single('foto'), validacionDeRegistracion, userController.registroGrabar);
-//router.post('/registroGrabar', upload.single('foto'), userController.registroGrabar);
 
 router.get('/modificar/:id', userController.registroModificarMostrar);
 
@@ -49,7 +48,6 @@ router.post('/eliminarGrabar/:id', validacionesEliminarUsuario, userController.r
 router.get('/listar', userController.listar);
 
 router.get('/login', userController.login);
-
 let validacionDeLogin = [ 
     check('usuario').notEmpty().withMessage('Completar el usuario ').isEmail().withMessage('No es un nombre de usuario válido').bail(), 
     check('password').notEmpty().withMessage('Completar la Contraseña, mínimo 8 caracteres ').bail(), 
@@ -96,7 +94,11 @@ let validacionEliminarInteres = [check('interes').notEmpty().withMessage('Comple
 router.post('/intereses/eliminar', validacionEliminarInteres, userController.confirmarEliminarInteres)
 router.post('/intereses/eliminar/:id', validacionEliminarInteres, userController.eliminarInteres);
 
-//router.get('/carrito', userController.carrito);
-
-
+/* ************** CARRITO *************** */
+router.get('/carrito/mostrar', userController.carritoMostrar);
+router.post('/carrito/agregarItem/:idPrd', userController.carritoAgregarItem);
+router.post('/carrito/sacarItem/:idPrd', userController.carritoSacarItem);
+router.post('/carrito/comprar', userController.carritoComprar);
+router.post('/carrito/vaciar', userController.carritoVaciar);
+/* ************* FIN CARRITO *************** */
 module.exports = router;

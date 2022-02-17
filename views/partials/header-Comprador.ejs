@@ -1,0 +1,23 @@
+
+    <div class="dentro-header">
+        <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+
+        <div class="nav-bar">
+            <nav><!--nav> style="justify-content: space-around;"> -->
+                <%- include('./nav-general.ejs'); -%>                                         
+            </nav>
+        </div>
+
+        <div>
+            <%- include('./nav-usuarios.ejs'); -%>
+            
+            <a href="/usuarios/carrito/mostrar">Mi Carrito<i class="fas fa-cart-plus"></i></a>
+            
+            <% if ( locals.usuarioLogueado != undefined ) { %>
+                <strong><%= locals.usuarioLogueado %></strong>
+                <strong> |<%= locals.usuarioPerfil %>| </strong>
+            <% } %>  
+        </div>
+    </div>
+
+    

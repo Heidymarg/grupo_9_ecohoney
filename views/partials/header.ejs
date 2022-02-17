@@ -1,42 +1,22 @@
-<header class="flex-vertical">
-    <div class="dentro-header">
-        <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
-        
-        <div class="nav-bar">
-            <nav><!--nav> style="justify-content: space-around;"> -->
-                <ul type="none">
-                    <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
-                    <li><a href="/">Home</a></li>
-                    <li><a href="#">Promociones</a></li>
-                    <li><a href="#">Ofertas</a></li>
-                    <li><a href="#">Ayuda</a></li>
-                </ul>
-                
-            </nav>
-        </div>
-        
-        <div class="login-registro">
-            <a href="/usuarios/login">Logging</a>    
-            <a href="/usuarios/logout">Salir</a>   
-            <a href="/usuarios/registro">Registrate</a>
-            <a href="/productos/carrito">Mi Carrito<i class="fas fa-cart-plus"></i></a>
-            <% if ( locals && locals.usuarioLogueado != undefined ) { %>
-                <strong><%= locals.usuarioLogueado.usuario %></strong>
-            <% } %>
-        </div>
 
-    </div>
+<div class="dentro-header">
 
-    <div class="menu-burger">
-        <i class="fas fa-bars"></i>
-    </div>
-
-    <div class="buscador">
-        <form method="POST" action="/productos/buscar">
-            <input class="buscador-input" type="text" name="buscado" placeholder="Que producto buscas?"></input>
-            <button type="submit" ><i class="fas fa-search"></i></button>
-        </form>
-        
-    </div>
+    <div><img class="logo" src="/images/logo-prueba-prueba.png" alt="logo"></div>
     
-</header> 
+    <div class="nav-bar"><%- include('./nav-general.ejs'); -%></div>
+    
+    <div class="login-registro">
+        <%- include('./nav-usuarios.ejs'); -%>
+        <% if ( locals.usuarioValidado != undefined ) { %>
+            <% if ( locals.usuarioValidado.usuarioPerfil == 'Comprador' ) { %>
+                <a href="/productos/carritoMostrar">Mi Carrito<i class="fas fa-cart-plus"></i></a>
+            <% } %>
+            <strong><%= locals.usuarioValidado %></strong>
+        <% } %>
+    </div>
+
+</div>    
+
+<% if ( locals.usuarioValidado != undefined ) { %>
+    <strong><%= locals.usuarioValidado %></strong>
+<% } %> 

@@ -3,52 +3,100 @@
 
     <%- include('./partials/head.ejs') %>
     
-<body>
+<header>
+    <% if ( usuarioLogueado != undefined ) { %>
+        
+        <% if ( usuarioPerfil == 'Administrador' ) { %>
+            <%- include('./partials/header-Admin.ejs'); -%>
+            
+            <% } else if ( usuarioPerfil == 'Vendedor' ) { %>
+                <%- include('./partials/header-Vendedor.ejs'); -%>
 
-    <%- include( './partials/header.ejs' )%>  
+                <% } else if ( usuarioPerfil == 'Comprador' ) { %>
+                    <%- include('./partials/header-Comprador.ejs'); -%>
+
+                    <% } else { %> <!-- es invitado -->
+                        <div class="dentro-header">
+                            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+                    
+                            <div class="nav-bar">
+                                <nav><!--nav> style="justify-content: space-around;"> -->
+                                    <%- include('./partials/nav-general.ejs'); -%>                                         
+                                </nav>
+                            </div>
+                    
+                            <%- include('./partials/nav-usuarios.ejs'); -%>    
+                        </div>
+                <% } %>
+
+    <% } else { %> <!-- usuario no loqueado -->
+        <%- include('./partials/header.ejs'); -%>
+    <% } %>  
+</header>
+
+<body> 
     
     <main>
         
-        <article >
+        <article>
             <div class="pcaja0" >
-                <div style="border: radius 5px; " > 
-                    <!-- <img class="imgprd"  src="/images/velas-miel-organic.jpg" alt="velas"></div> -->
-                    <img class="imgprd"  src="<%= product.foto %>" alt="velas"></div>
+                
+                <img  class="imgprd"  src="<%= product.foto %>" alt="<%= product.nombre %>">
+
+                <div style="width: 70vw" > 
+                    
              
                     <div class="flex-vertical-producto">
-                        <div style="width:100%;height: 50%;">
-                           
+                        <div style="width:100%; height: 50%; border-radius: 5px;">
+                           <br><br>
                             <div class="pcaja1">
                                 <h2 class="title"><%= product.nombre %></h2> 
-                              
                             </div>
-                        <div  class="producto1">
-                        
+                        </div>
                     </div>
     
-                    <div>
-                        <div style="padding-left:40%;width: 100%;" class="prd"><%= product.codigo %></div> 
-                        <p class="parrafo"> 
-                            <%= product.descripcion %>
-                        </p>
-                        <div>
-                            <div class="prd"> 
-                                <div class=" btn-prueba1">
-                                <h3><%= product.precio %>$</h3>
-                            </div> 
-                            
-                            <div class="btn-prueba2">
-                                <input type="number" class="selector" name="quantity" value="1" min="1" max="10" title="Qty">
-                            </div> 
-                            <div class="btn-prueba3">
-                                  <a href="/usuarios/carrito">
-                                   <i id="iconos-prod" class="fas fa-cart-plus"></i></a> 
-                            </div>    
-                        </div>
-                        <p style="padding-left: 50%; font-size: 95%"> Añadir al Carrito </p>
-                    </div>
-                   
+                    <div  style="border-radius: 5px; ">
+                        <center>
+                            <br>
+                            <p style="padding-left:40%;width: 100%;" class="prd">Cod.: <%= product.codigo %></p> 
+                            <br>
+                            <p><%= product.descripcion %></p>
+                            <br><br>
+                            <div class="detalle-producto">
+                                <!-- <div class=" btn-prueba1"> -->
+                                <p>Precio de Lista </p><h3> <%= product.precio %>$</h3>
+                                <!-- </div> -->
+                                <p>Bonificación </p><h3><%= product.bonif %>$</h3>
+                            </div>
+                            <br>
+                        </center>
                         
+                        <div style="border-radius: 5px; ">
+                            <center>
+                                 
+                                <div>
+                                    <form action="/usuarios/carrito/agregarItem/<%= product.idPrd %>" method="POST">
+                                        <table>
+                                            <tr>
+                                                <td style="padding: 7px">
+                                                    <input style="border: 1px solid grey; width:3vw; border-radius:5px;" type="number" class="selector" name="quantity" value="1">
+                                                </td>
+                                                <td style="padding: 7px">
+                                                    <div>
+                                                        <button type="submit">
+                                                            <a href='/usuarios/carrito/agregarItem/<%= product.idPrd %>'>
+                                                            <i id="iconos-prod" class="fas fa-cart-plus"></i></a> 
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                            </center>
+                            
+                        </div>    
+                    </div>
                 </div>  
             </div>
         </article>

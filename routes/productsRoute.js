@@ -8,8 +8,8 @@ const productController = require('../controllers/productControllers');
 const {check} = require('express-validator');
 
 
-let validacionDeProducto = require('../middlewares/validacionDeProductos');
-let validacionDeModificacion = require('../middlewares/validacionDeModificacion');
+var validacionDeProducto = require('../middlewares/validacionDeProductos');
+var validacionDeModificacion = require('../middlewares/validacionDeModificacion');
 
 var storage = multer.diskStorage({
     destination:function(req,file,cb){
@@ -39,8 +39,8 @@ router.get('/listar', productController.listar);
 
 /*** Agregar nuevo producto ***/ 
 router.get('/productoAgregar', productController.productoMostrarFormCarga);
-//router.post('/agregarProducto',validacionDeProducto, upload.single('foto'), productController.grabar); 
-router.post('/agregarProducto', upload.single('foto'), productController.grabar); 
+router.post('/agregarProducto', upload.single('foto') ,validacionDeProducto, productController.grabar); 
+//router.post('/agregarProducto', upload.single('foto'), productController.grabar); 
 
 /*** Mostrar datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 

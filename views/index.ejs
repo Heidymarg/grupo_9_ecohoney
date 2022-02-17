@@ -2,16 +2,46 @@
 <html lang="en">
       
     <%- include('./partials/head.ejs'); -%>
+
+<header>
+    <% if ( usuarioLogueado != undefined ) { %>
+        
+        <% if ( usuarioPerfil == 'Administrador' ) { %>
+            <%- include('./partials/header-Admin.ejs'); -%>
+            
+            <% } else if ( usuarioPerfil == 'Vendedor' ) { %>
+                <%- include('./partials/header-Vendedor.ejs'); -%>
+
+                <% } else if ( usuarioPerfil == 'Comprador' ) { %>
+                    <%- include('./partials/header-Comprador.ejs'); -%>
+
+                    <% } else { %> <!-- es invitado -->
+                        <div class="dentro-header">
+                            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+                    
+                            <div class="nav-bar">
+                                <nav><!--nav> style="justify-content: space-around;"> -->
+                                    <%- include('./partials/nav-general.ejs'); -%>                                         
+                                </nav>
+                            </div>
+                    
+                            <%- include('./partials/nav-usuarios.ejs'); -%>    
+                        </div>
+                <% } %>
+
+    <% } else { %> <!-- usuario no loqueado -->
+        <%- include('./partials/header.ejs'); -%>
+    <% } %> 
+    <%- include('./partials/menu-burger.ejs'); -%>
+    <%- include('./partials/buscardor-productos.ejs'); -%>
+    
+</header>
     
 <body>
 
-    <%- include( './partials/header.ejs' ); -%>   
-    
     <main class="flex-vertical">
         
-        <section>
-            <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
-        </section>
+        <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
 
         <div class="flex-Horizontal"> <!--cambie flex-vertical por horizontal, luego adaptamos-->
             <!---------------OFERTAS------------------->
@@ -109,9 +139,8 @@
             <div class="content">
                 <div class="text">Productos de las abejas</div>
             </div>
-        </div>  -->
-
-    </section> 
+        </div> 
+    </section>  -->
 
     </main>
 

@@ -2,87 +2,10 @@
 <html lang="en">
       
     <%- include('./partials/head.ejs'); -%>
+<header>
+    <%- include('./partials/header-Vendedor.ejs'); -%>
+</header>    
     
-    <header class="flex-vertical">
-        <div class="dentro-header">
-            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
-            
-            <div class="nav-bar">
-                <nav><!--nav> style="justify-content: space-around;"> -->
-
-                            <!-- if NO SOY admin, muestro el menú de público -->
-                            <ul type="none">
-                            <!--el views de linea hogar cambiarlo por el de categoria cuando se tenga listo su html-->
-                            <li><a href="/">Home</a></li>
-                            <li><a href="#">Promociones</a></li>
-                            <li><a href="#">Ofertas</a></li>
-                            <li><a href="#">Ayuda</a></li>
-                            </ul>
-                            <br><br><br>
-
-                            <!-- else soy admin, muestro el menú protegido de ABM de productos -->
-                            <nav>
-                                <nav  class="navbar_horflex nav-estilo-usuarios">
-                                    <ul style="border: 1px solid purple; padding: 3px;">
-                                        <li><a href="/usuarios/listar"><li>Listar usuarios</li></a></li>
-                                        <li><a href="/usuarios/registro"><li>Registrar Usuarios</li></a></li>
-                                    </ul>
-                                    <ul style="border: 1px solid purple; padding: 3px;">
-                                        <li><a href="/usuarios/perfil/listar"><li>Listar Perfiles</li></a></li>
-                                        <li><a href="/usuarios/perfil/agregar"><li>Agregar Perfiles</li></a></li>
-                                        <li><a href="/usuarios/perfil/modificar"><li>Modificar Perfiles</li></a></li>
-                                        <li><a href="/usuarios/perfil/eliminar"><li>Eliminar Perfiles</li></a></li>
-                                    </ul>
-                                    <ul style="border: 1px solid purple; padding: 3px;">
-                                        <li><a href="/usuarios/intereses/listar"><li>Listar Intereses</li></a></li>
-                                        <li><a href="/usuarios/intereses/agregar"><li>Agregar Intereses</li></a></li>
-                                        <li><a href="/usuarios/intereses/modificar"><li>Modificar Intereses</li></a></li>
-                                        <li><a href="/usuarios/intereses/eliminar"><li>Eliminar Intereses</li></a></li>
-                                    </ul>
-                                </nav>
-                                <br>
-                                <nav class="navbar_horflex nav-estilo-productos">
-                                    <ul style="border: 1px solid purple; padding: 3px;">
-                                        <li><a href="/productos/listar"><li>Listar Productos</li></a></li>
-                                        <li><a href="/productos/productoAgregar">Productos - Agregar</a></li>
-                                    </ul>
-                                    <ul style="border: 1px solid purple; padding: 3px;">
-                                        <li><a href="/productos/linea/listar"><li>Listar Líneas</li></a></li>
-                                        <li><a href="/productos/linea/agregar"><li>Agregar Líneas</li></a></li>
-                                        <li><a href="/productos/linea/modificar"><li>Modificar Líneas</li></a></li>
-                                        <li><a href="/productos/linea/eliminar"><li>Eliminar Líneas</li></a></li>
-                                    </ul>
-                                </nav>
-                            </nav>
-                   
-                </nav>
-            </div>
-            
-            <div class="login-registro">
-                <a href="/usuarios/login">Logging</a>    
-                <a href="/usuarios/logout">Salir</a>   
-                <a href="/usuarios/registro">Registrate</a>
-                <a href="/productos/carrito">Mi Carrito<i class="fas fa-cart-plus"></i></a>
-                <% if ( locals && locals.usuarioLogueado != undefined ) { %>
-                    <strong><%= locals.usuarioLogueado.usuario %></strong>
-                <% } %>
-            </div>
-
-        </div>
-
-        <div class="menu-burger">
-            <i class="fas fa-bars"></i>
-        </div>
-
-        <div class="buscador">
-            <form method="POST" action="/productos/buscar">
-                <input class="buscador-input" type="text" name="buscado" placeholder="Que producto buscas?"></input>
-                <button type="submit" ><i class="fas fa-search"></i></button>
-            </form>
-        </div>
-        
-    </header>
-
 <body> 
     
     <main class="flex-vertical">

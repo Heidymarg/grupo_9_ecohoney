@@ -56,8 +56,8 @@ module.exports = function(sequelize, dataTypes) {
     }
 
     usuario.associate = function(models) {
-        usuario.belongsTo(models.carrito, {
-            as: "carrito",
+        usuario.belongsTo(models.carritos, {
+            as: "carritos",
             foreignKey: "id_carrito",
             allowNull: false            
         }) 

@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
         <%- include('./partials/head.ejs') %>
+
+<header>
+    <%- include( './partials/header.ejs' ) %>  
+</header>
     
     <body>
-        <%- include( './partials/header.ejs' ) %>  
                  
         <main class="register">
-            <!--
-            <section>
-                <img  class="banner" src="/images/banner-juntos.png" alt="Banner de prueba">
-            </section>
-            -->
-            
+
             <center style="background-color:lightblue;">
                 <h3> Completá tus datos</h3>
 
@@ -146,7 +144,7 @@
                 </form>
     
             </center>
-            <!--<script src="/javascript/validarRegistro.js"></script> -->
+            <script src="/javascript/validarRegistro.js"></script>
         </main>
     </body>
         <%- include( './partials/footer.ejs' ) %>

@@ -1,0 +1,41 @@
+
+        <div class="dentro-header">
+            <img class="logo" src="/images/logo-prueba-prueba.png" alt="logo">
+            
+            <div class="nav-bar">
+                            <!-- else Es admin, muestra el menú protegido de ABM de Usuarios -->
+                                <nav  class="navbar_horflex nav-estilo-usuarios">
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/listar"><li>Listar usuarios</li></a></li>
+                                        <li><a href="/usuarios/registro"><li>Registrar Usuarios</li></a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/perfil/listar"><li>Listar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/agregar"><li>Agregar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/modificar"><li>Modificar Perfiles</li></a></li>
+                                        <li><a href="/usuarios/perfil/eliminar"><li>Eliminar Perfiles</li></a></li>
+                                    </ul>
+                                    <ul style="border: 1px solid purple; padding: 3px;">
+                                        <li><a href="/usuarios/intereses/listar"><li>Listar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/agregar"><li>Agregar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/modificar"><li>Modificar Intereses</li></a></li>
+                                        <li><a href="/usuarios/intereses/eliminar"><li>Eliminar Intereses</li></a></li>
+                                    </ul>
+                                </nav>
+            </div>
+            
+            <div class="login-registro">
+                <a href="/usuarios/login">Logging</a>    
+                <a href="/usuarios/logout">Salir</a>   
+                <br>
+                <% if ( locals.usuarioLogueado != undefined ) { %>
+                    <strong><%= locals.usuarioLogueado %></strong>
+                    <strong> |<%= locals.usuarioPerfil %>| </strong>
+                <% } %>   
+            </div>
+
+        </div>
+
+        <%- include('./menu-burger.ejs'); -%>
+
+        <%- include('./buscardor-productos.ejs'); -%>
