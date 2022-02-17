@@ -3,10 +3,19 @@ const method_override = require('method-override');
 const app = express();
 const path = require( "path" );
 
+
+//Requerimos rutas de Api
+const productsApiRouter = require('./routes/api/productsApiRoutes');
+const usersApiRouter = require('./routes/api/usersApiRoutes');
+
 app.use( express.static( path.join( __dirname, "public" ) ) );
 app.use( method_override('_method')); // Necesario para procesar PUTs y DELETEs
 app.use(express.urlencoded({ extended: false })); // Necesario para los Formularios !!!
 app.use(express.json());
+
+//Endpoints de Apis
+app.use('/api/products', productsApiRouter);
+app.use('/api/users', usersApiRouter);
 
 /* ***** Para Strint 5 ***** */
 const encripta = require('bcryptjs');

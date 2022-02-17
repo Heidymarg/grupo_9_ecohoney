@@ -1,6 +1,8 @@
 const {check} = require('express-validator');
+const validacionDeModificacionUsuario = require('./validacionDeModificacionUsuario');
     
-module.exports = [
+module.exports = 
+   modificacionDeProductos = [
     check('codigo').notEmpty().withMessage('Completar el Código del Producto').bail(), 
     check('nombre').notEmpty().withMessage('Completar el Nombre del Producto').bail(), 
     check('descripcion').notEmpty().withMessage('Completar la descripción ').bail(), 
@@ -10,4 +12,4 @@ module.exports = [
     //check('foto').notEmpty().withMessage('Subir foto del producto').bail(),
     check('cantidad').notEmpty().withMessage('Completar la cantidad ').bail(),
      
-];
+]

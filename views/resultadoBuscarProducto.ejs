@@ -57,10 +57,23 @@
                                 <td style="border: 1px solid violet; text-align: left; padding: 5px;"><p><strong><%= productosEncontrados[i].descripcion %></p></strong></td>
                                 <td style="border: 1px solid violet; text-align: left;padding: 5px;"><a href="/productos/detalle/<%= productosEncontrados[i].idPrd %>"" alt="Producto Detallado"><img style="width: 39px;" src="<%= productosEncontrados[i].foto %>" alt="Foto de Producto"></a></td>
                                 <td style="border: 1px solid violet; text-align: left;padding: 5px;">
-                                    <div>
-                                        <a href='/usuarios/carrito/agregarItem/<%= productosEncontrados[i].idPrd %>'>
-                                        <i id="iconos-prod" class="fas fa-cart-plus"></i></a> 
-                                    </div>
+                                    <form action="/usuarios/carrito/agregarItem/<%= productosEncontrados[i].idPrd %>" method="POST">
+                                        <table>
+                                            <tr>
+                                                <td style="padding: 7px">
+                                                    <input style="border: 1px solid grey; width:3vw; border-radius:5px;" type="number" class="selector" name="quantity" value="1">
+                                                </td>
+                                                <td style="padding: 7px">
+                                                    <div>
+                                                        <button type="submit">
+                                                            <a href='/usuarios/carrito/agregarItem/<%= productosEncontrados[i].idPrd %>'>
+                                                            <i id="iconos-prod" class="fas fa-cart-plus"></i></a> 
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
                                 </td>
                             </tr>
                         <% } %>

@@ -1,6 +1,7 @@
 const {check} = require('express-validator');
+const validacionDeModificacion = require('./validacionDeModificacion');
     
-module.exports = [
+module.exports = validacionDeModificacionUsuario = [
     check('user').notEmpty().withMessage('Completar el Nombre de Usuario').bail(), 
     check('email').notEmpty().withMessage('Completar el e-mail ').isEmail().withMessage('No es un email válido').bail(), 
     check('perfil').notEmpty().withMessage('Seleccionar alguna opción ').bail(),
@@ -10,4 +11,3 @@ module.exports = [
     check('pass_confirm').notEmpty().withMessage('Reingresar la Contraseña, mínimo 8 caracteres ').bail(),
     check('privacidad').notEmpty().withMessage('Completar el campo Términos y Condiciones de Privacidad ').bail()
 ];
-

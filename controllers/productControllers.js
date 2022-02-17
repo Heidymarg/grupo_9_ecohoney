@@ -7,7 +7,7 @@ const op = db.Sequelize.Op;
 
 var listaDeProductosAbejas = db.productos.findAll();
 
-const {validationResult, body} = require('express-validator');
+const {validationResult,body} = require('express-validator');
 
 var idLineaParaEliminar = null;
 var idLineaParaModificar = null;
@@ -148,6 +148,7 @@ const productController = {
     },
 	modificar: (req, res) => {
 		
+		
 	 let errores = validationResult(req);
 	 if(errores.isEmpty()){
 	 db.productos.findByPk( prodAModificar.idPrd )
@@ -163,7 +164,7 @@ const productController = {
 				 id_lineas : req.body.linea,
 				 precio : req.body.precio,
 				 bonif: req.body.bonif,
-				 foto:  '/images'  +  req.file.filename,
+				 foto:  '/images/'  +  req.file.filename,
 				 cantidad: req.body.cantidad,    
 			 },{
 				 where : { idPrd : resultado.idPrd }
@@ -181,36 +182,49 @@ const productController = {
 		 .then( ([lineas]) => {
 			 res.render('formularioModificarProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body,'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil });
 		 } )
-	 }
-	 
-	 
- },
+	 }	 
+ 	},
+	/* *************************** Eliminar Producto ****************************** */
+	productoMostrarFormEliminar: (req,res) => { 
+		// ok no tocar
+		db.productos.findByPk( req.params.id )
+        .then( resultado => {
+			res.render('formularioEliminarProducto', {'prodAEliminar': resultado });
+                return productoSeleccionado = resultado;
+        } );
+		
+    },
 
- /* *************************** Eliminar Producto ****************************** */
- productoMostrarFormEliminar: (req,res) => { 
+ 	/* *************************** Eliminar Producto ****************************** */
+ 	productoMostrarFormEliminar: (req,res) => { 
 	// ok no tocar
-	db.productos.findByPk( req.params.id )
-	.then( resultado => {
-		res.render('formularioEliminarProducto', {'prodAEliminar': resultado, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil });
-			return productoSeleccionado = resultado;
-	} );
+		db.productos.findByPk( req.params.id )
+		.then( resultado => {
+			res.render('formularioEliminarProducto', {'prodAEliminar': resultado, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil });
+				return productoSeleccionado = resultado;
+		} );
 	
-},
-eliminar : (req, res) => {
+	},
+	eliminar : (req, res) => {
 
-	//res.send( 'Producto a eliminar ' + req.params.id )
-	db.productos.findByPk( req.params.id )
-	.then( resultado => {
-		db.productos.destroy( {where: {idPrd : req.params.id}} )
-	})
-	.then(
-		db.productos.findAll()
-		.then( (resultado) => {
-			res.render( 'listadoDeProducto', { 'productosEncontrados': resultado, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil }) 
+		//res.send( 'Producto a eliminar ' + req.params.id )
+		db.productos.findByPk( req.params.id )
+		.then( resultado => {
+			db.productos.destroy( {where: {idPrd : req.params.id}} )
 		})
-	)
-},
-
+		.then(
+			db.productos.findAll()
+			.then( (resultado) => {
+				res.render( 'listadoDeProducto', { 'productosEncontrados': resultado, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil }) 
+			})
+			.then(
+				db.productos.findAll()
+				.then( (resultado) => {
+					res.render( 'listadoDeProducto', { 'productosEncontrados': resultado }) 
+				})
+			)
+		)
+	},
 
 
 		
@@ -260,7 +274,6 @@ eliminar : (req, res) => {
 		
 		//res.send("dato a Modificar Grabar" + idLineaParaModificar);
 		
-	
 		let errores = validationResult(req);
 		//// viaja ok .then( resultado => {res.send('Linea a modificar' + resultado.id_lineas + '  ' + resultado.nombre + 'Nuevo Nombre: ' + req.body.nombre);} )
 		db.lineas.findByPk( idLineaParaModificar )
@@ -294,6 +307,8 @@ eliminar : (req, res) => {
 		res.render('lineasEliminar', {'lineaAEliminar': lineaAEliminar, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil});
 		} );
 	},
+
+	
 
 };
 module.exports = productController;

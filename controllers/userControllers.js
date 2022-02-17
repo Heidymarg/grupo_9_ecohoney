@@ -197,7 +197,7 @@ const userController = {
     /* ************** Modifcar Usuarios **************** */
     registroModificarMostrar: (req,res) => { 
         // ok no tocar
-        
+        const {validationResult} = require('express-validator');
         let errores = validationResult( req );  
 
        usuarioSeleccionado = db.usuarios.findByPk( req.params.id );
@@ -211,6 +211,7 @@ const userController = {
     registroModificarGrabar:(req,res) => {
         // ok no tocar
         
+            const {validationResult} = require('express-validator');
             let errores = validationResult( req );
             // ok res.send('usuario a modificar ' + usuarioSeleccionado.idUsr )
             
@@ -225,7 +226,7 @@ const userController = {
                         email: req.body.email,
                         id_perfil: req.body.perfil,
                         id_intereses: req.body.intereses,
-                        foto:"images/usuarios/" + req.file.filename,
+                        foto:'/images/usuarios/' + req.file.filename,
                         password: passOculta
                     }, {
                         where : { idUsr : usuarioSeleccionado.idUsr }
@@ -246,7 +247,7 @@ const userController = {
                     
                 }
                 
-        }, 
+        },
     /* ************** FinModifcar Usaurios *************** */
 
     /* ********************* Eliminar Usuario ********************** */
@@ -280,7 +281,7 @@ const userController = {
         
     },
     /* ******************* Fin - Eliminar Usuario ******************* */
-
+    /* ********Para listar usuarios********************/ 
     listar: (req,res) => { 
 
         db.usuarios.findAll()
