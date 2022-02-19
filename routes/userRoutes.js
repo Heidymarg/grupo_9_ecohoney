@@ -23,8 +23,8 @@ const {check} = require('express-validator');
 const userController = require('../controllers/userControllers');
 
 /* para sprint 5 */
-let validacionDeRegistracion = require('../middlewares/validacionDeRegistracion');
-let validacionDeModificacionUsuario = require('../middlewares/validacionDeModificacionUsuario');
+const validacionDeRegistracion = require('../middlewares/validacionDeRegistracion');
+const validacionDeModificacionUsuario = require('../middlewares/validacionDeModificacionUsuario');
 const validacionDeInvitados = require('../middlewares/validacionDeInvitados');
 const validacionDeUsuario = require('../middlewares/validacionDeUsuario');
 /* para sprint 5 */

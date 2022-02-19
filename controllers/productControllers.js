@@ -89,14 +89,18 @@ const productController = {
         db.lineas.findAll()
 		.then(resultado => { res.render('formularioCargaProducto', {'lineas': resultado, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil}) }); 
     },
+	/*
 	grabar: (req, res) => {
         // ok - falta validaciones back end
      
         let errores = validationResult(req);
+
         if(errores.isEmpty()){
 
-			if ( req.file.filename != undefined ) {
+			if ( req.file != undefined ) {
 				
+				console.log( ' Foto !!!'  + req.file.filename);
+
 				db.productos.create({ 
 					nombre: req.body.nombre,
 					codigo: req.body.codigo,
@@ -108,11 +112,13 @@ const productController = {
 					cantidad: req.body.cantidad,         
 				})
 				.then(
-					console.log(errores),
-				Promise.all([lineas])
-				.then( ([lineas]) => {
-					res.render('formularioCargaProducto', { 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil});
+					Promise.all([lineas])
+					.then( ([lineas]) => {
+						console.log( ' Producto cargado: '  + req.body.nombre );
+						res.render('formularioCargaProducto', { 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil});
 				}))
+				.catch( error => console.log( error ) )
+
 			} else { // falta cargar la foto
 				Promise.all([lineas])
 				.then( ([lineas]) => {
@@ -134,6 +140,40 @@ const productController = {
         }
         
     },
+	*/
+
+	grabar: (req, res) => {
+        // ok - falta validaciones back end
+     
+        let errores = validationResult(req);
+        if(errores.isEmpty()){
+            
+            db.productos.create({ 
+                nombre: req.body.nombre,
+                codigo: req.body.codigo,
+                descripcion : req.body.descripcion,
+                id_lineas : req.body.linea,
+                precio : req.body.precio,
+                bonif: req.body.bonif,
+				foto:  "/images/"  + req.file.filename,
+                cantidad: req.body.cantidad,         
+            })
+			.then(
+				console.log(errores),
+			Promise.all([lineas])
+            .then( ([lineas]) => {
+                res.render('formularioCargaProducto', { 'resultadoValidaciones': errores.mapped(),'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
+			}))
+
+        } else {
+            Promise.all([lineas])
+            .then( ([lineas]) => {
+                res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
+            } )
+        }
+        
+    },
+
 	/* *************************** Modificar Producto ****************************** */
 	productoMostrarFormModificar: (req,res) => { 	
 		
@@ -146,6 +186,64 @@ const productController = {
 		
 
     },
+	/*
+	modificar: (req, res) => {
+		
+		let errores = validationResult(req);
+
+		console.log(prodAModificar + '!!!'  + req.file.filename);
+
+		if(errores.isEmpty()) {
+
+			if ( req.file != undefined ) {
+
+				db.productos.findByPk( prodAModificar.idPrd )
+				.then( resultado => {
+					 if ( resultado != undefined ) {
+	
+						db.productos.update( {
+							nombre: req.body.nombre,
+							codigo: req.body.codigo,
+							descripcion : req.body.descripcion,
+							id_lineas : req.body.linea,
+							precio : req.body.precio,
+							bonif: req.body.bonif,
+							foto:  '/images'  +  req.file.filename,
+							cantidad: req.body.cantidad,    
+						},{
+							where : { idPrd : resultado.idPrd }
+						}) 
+					}
+				 })
+				 .then(
+					 db.productos.findAll()
+					.then( (resultado) => {
+						res.render( 'listadoDeProducto', { 'resultadoValidaciones': errores.mapped(), 'productosEncontrados': resultado, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil }) 
+					})
+				)
+
+			} else { // falta cargar la foto
+				Promise.all([lineas])
+				.then( ([lineas]) => {
+					errores.push( {
+						value: undefined,
+						msg: 'Falta Cargar la Foto ',
+						param: 'foto',
+						location: 'file'
+					  })
+					res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil});
+				} )
+			}   
+
+	 	} else {
+		 	Promise.all([lineas])
+		 	.then( ([lineas]) => {
+				res.render('formularioModificarProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body,'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil });
+			} )
+		}	 
+ 	},
+	 */
+
 	modificar: (req, res) => {
 		
 		
@@ -175,15 +273,18 @@ const productController = {
 	 .then(
 		 db.productos.findAll()
 				  .then( (resultado) => {
-			 res.render( 'listadoDeProducto', { 'resultadoValidaciones': errores.mapped(), 'productosEncontrados': resultado, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil }) 
+			 res.render( 'listadoDeProducto', { 'resultadoValidaciones': errores.mapped(), 'productosEncontrados': resultado, }) 
 		 }))
 	 } else {
 		 Promise.all([lineas])
 		 .then( ([lineas]) => {
-			 res.render('formularioModificarProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body,'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil });
+			 res.render('formularioModificarProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body,'lineas': lineas});
 		 } )
-	 }	 
- 	},
+	 }
+	 
+	 
+ },
+
 	/* *************************** Eliminar Producto ****************************** */
 	productoMostrarFormEliminar: (req,res) => { 
 		// ok no tocar

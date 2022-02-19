@@ -22,7 +22,7 @@ module.exports = function( sequelize, dataTypes ) {
             as: 'usuarios',
             through: "interesesDeUsuarios",
             foreignKey: "id_Usr",
-            otherKey: "id_intereses",
+            otherKey: "id_interes",
             timestamps: false
         });    
     }

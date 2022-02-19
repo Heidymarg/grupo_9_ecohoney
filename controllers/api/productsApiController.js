@@ -44,7 +44,7 @@ const productsApiController = {
                    status: 200,
                    total: lineas.length,
                    url: "/api/products",
-                  lineas: lineas.length,
+                    //lineas: lineas.length,
                    lineasNombre: arrayLineas,
                    countByIdLineas: [
                        {cuidadoPersonal:cuidadoPersonal.length},
@@ -54,16 +54,17 @@ const productsApiController = {
                 },
                 data: lineas.map(product => {
                     return{
-                  nombre: product.nombre,
-				      codigo: product.codigo,
-				      descripcion : product.descripcion,
-				     id_lineas : product.id_lineas,
-				      precio : product.precio,
-				      bonif: product.bonif,
-				      foto:   product.foto,
-				      cantidad: product.cantidad,   
-                     
-                  }
+                        idPrd: product.idPrd,
+                        nombre: product.nombre,
+				        codigo: product.codigo,
+				        descripcion : product.descripcion,
+				        id_lineas : product.id_lineas,
+				        precio : product.precio,
+				        bonif: product.bonif,
+				        foto:   product.foto,
+				        cantidad: product.cantidad,   
+                        detalle: "/api/products/" + product.idPrd, 
+                    }
                })
             }
             res.json(respuesta)
@@ -73,7 +74,7 @@ const productsApiController = {
      
     },
 
-     detalle:(req,res)=>{
+    detalle:(req,res)=>{
         db.productos.findByPk(req.params.id, {
             include:['lineas']
         })
@@ -84,7 +85,7 @@ const productsApiController = {
                     url: "/api/products/"                
                 },
                 data:  { 
-                   idPrd: product.idPrd,
+                    idPrd: product.idPrd,
                     nombre: product.nombre,
 				    codigo: product.codigo,
 				    descripcion: product.descripcion,
@@ -92,10 +93,7 @@ const productsApiController = {
 				    precio : product.precio,
 				    bonif: product.bonif,
 				    foto:  product.foto,
-				    cantidad: product.cantidad,   
-                   //lineas: {nombre:product.lineas.nombre}, 
-                      
-                    
+				    cantidad: product.cantidad,                       
                 }
            }
             console.log(respuesta)

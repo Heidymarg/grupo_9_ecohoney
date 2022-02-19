@@ -21,7 +21,8 @@ module.exports = function( sequelize, dataTypes )
             perfil.associate = function(models) {
                 perfil.hasMany(models.usuarios, {
                     as: "usuarios",
-                    foreignKey: "idUsr",
+                    foreignKey: "id_perfil",
+                    allowNull: false,
                     });    
             }
 

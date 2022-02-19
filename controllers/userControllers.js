@@ -134,6 +134,11 @@ const userController = {
         
     },  
     /* ******************** Para cargar usuario nuevo********************* */
+
+
+    
+
+    
     registroGrabar:(req,res) => {
         //ok no tocar.
         console.log(req.body )
@@ -185,7 +190,7 @@ const userController = {
             } )
         } 
     },
-
+    
     /* Para cargar Usuario nuevo */
     registroMostrar: (req,res) => { 
         //ok no tocar.

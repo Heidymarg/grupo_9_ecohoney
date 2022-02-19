@@ -15,12 +15,13 @@ const usersApiController = {
                 },
                 data: usuarios.map(users => {
                     return{
-                        usuarios:users.usuario,
-                            email: users.email,
-                            id_perfil: users.id_perfil,
-                            id_intereses: users.id_intereses,
-                            foto: users.foto,
-                            
+                        id: users.idUsr,
+                        usuario:users.usuario,
+                        email: users.email,
+                        id_perfil: users.id_perfil,
+                        id_intereses: users.id_intereses,
+                        foto: users.foto,
+                        detalle: "/api/users/" + users.idUsr    
                     }
                 })
             }
@@ -37,11 +38,12 @@ const usersApiController = {
                     url: "/api/users/:id/" ,
                 },
                 data:{
-                    
-                 usuario
-                         
-                    
-                }    
+                        id: usuario.idUsr,
+                        nombre: usuario.usuario,
+                        email: usuario.email,
+                        id_perfil: usuario.id_perfil,
+                        avatar: usuario.foto
+                    }    
             }
             console.log(usuario)
             res.json(respuesta)

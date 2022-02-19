@@ -81,9 +81,4 @@ window.addEventListener('load', function(){
 
      });
 
-<<<<<<< HEAD
- })               
-  
-=======
  })
->>>>>>> f168409e2d540aaff9077877e2b6547878022e49

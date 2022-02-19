@@ -1,14 +1,14 @@
 module.exports = function(sequelize, dataTypes) {
     let alias = "interesesDeUsuarios";
     let cols = {
-        idUsr:{ 
+        id_Usr:{ 
             type: dataTypes.INTEGER,
             primaryKey: true,
             notNull:true
         },
-        id_interes: {type:dataTypes.INTEGER,
-        notNull:true},
-        primaryKey: true
+            id_interes: {type:dataTypes.INTEGER,
+            primaryKey: true,
+            notNull:true},
     }
 
     let config  = {

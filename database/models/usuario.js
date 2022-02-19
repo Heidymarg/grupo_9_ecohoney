@@ -49,18 +49,10 @@ module.exports = function(sequelize, dataTypes) {
     usuario.associate = function(models) {
         usuario.belongsToMany(models.intereses, {
             through: "interesesDeUsuarios",
-            foreignKey: "id_intereses",
+            foreignKey: "id_interes",
             otherKey: 'id_Usr',
             timestamps: false
         });    
-    }
-
-    usuario.associate = function(models) {
-        usuario.belongsTo(models.carritos, {
-            as: "carritos",
-            foreignKey: "id_carrito",
-            allowNull: false            
-        }) 
     }
 
     return usuario;  

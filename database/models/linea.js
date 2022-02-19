@@ -20,7 +20,8 @@ module.exports = function( sequelize, dataTypes ) {
     linea.associate = function(models) {
         linea.hasMany(models.productos, {
             as: "productos",
-            foreignKey: "idPrd",
+            foreignKey: "id_lineas",
+            allowNull: false,
         });    
     }
     
