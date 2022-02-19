@@ -25,40 +25,46 @@ const productsApiController = {
         
          
    
-         db.productos.findAll({
+        db.productos.findAll({
             include:['lineas']
        })
-     // })
-        .then(lineas=>{console.log(lineas)
+       /*
+       .then( lineas=>{console.log(lineas)
             let arrayLineas = []
             for(let i=0; i<lineas.length ; i++){
                arrayLineas.push({
                nombre: lineas[i].dataValues.nombre,
                 })
             }
-            let cuidadoPersonal = lineas.filter(linea => linea.id_lineas == 1)
-            let hogar = lineas.filter(linea => linea.id_lineas== 2)
-            let abejas = lineas.filter(linea => linea.id_lineas == 3)
+        
+       */
+        .then( products => {
+            let cuidadoPersonal = products.filter(products => products.id_lineas == 1)
+            let hogar = products.filter(products => products.id_lineas== 2)
+            let abejas = products.filter(products => products.id_lineas == 3)
+
+             
+
             let respuesta = {
                 meta: {
                    status: 200,
-                   total: lineas.length,
+                   total: products.length,
                    url: "/api/products",
-                    //lineas: lineas.length,
-                   lineasNombre: arrayLineas,
+                   //lineas: lineas.length,
+                   //lineasNombre: arrayLineas,
                    countByIdLineas: [
                        {cuidadoPersonal:cuidadoPersonal.length},
                        {hogar: hogar.length},
                        {abejas: abejas.length}
                    ]
                 },
-                data: lineas.map(product => {
+                data: products.map(product => {
                     return{
                         idPrd: product.idPrd,
                         nombre: product.nombre,
 				        codigo: product.codigo,
 				        descripcion : product.descripcion,
-				        id_lineas : product.id_lineas,
+				        lineas: product.lineas.nombre,// relación uno a muchos
 				        precio : product.precio,
 				        bonif: product.bonif,
 				        foto:   product.foto,
@@ -89,7 +95,8 @@ const productsApiController = {
                     nombre: product.nombre,
 				    codigo: product.codigo,
 				    descripcion: product.descripcion,
-				    id_lineas : product.id_lineas,
+				    //id_lineas : product.id_lineas,
+                    lineas: product.lineas.nombre,// relación uno a muchos
 				    precio : product.precio,
 				    bonif: product.bonif,
 				    foto:  product.foto,
@@ -110,7 +117,7 @@ const productsApiController = {
     ultimo: (req, res) => {
        //db.lineas.findAll({order:[["idPrd"]], limit:1})
 
-       db.productos.findAll({order:[["idPrd"]], limit:1})
+       db.productos.findAll({order:[["idPrd", "DESC"]], limit:1})
        .then(function (product) {
            
            product[0].setDataValue("endpoint", "/api/products/lastProducts/" + product.length)

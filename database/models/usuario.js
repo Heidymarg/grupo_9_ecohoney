@@ -39,18 +39,18 @@ module.exports = function(sequelize, dataTypes) {
     let usuario = sequelize.define(alias, cols, config);
 
     usuario.associate = function(models) {
-        usuario.belongsTo(models.perfiles, {
-            as:"perfiles",
+        usuario.belongsTo(models.perfiles,{
+            as: "perfiles",
             foreignKey: "id_perfil",
-            allowNull: false
+            allowNull: false,
         });
     }
 
     usuario.associate = function(models) {
         usuario.belongsToMany(models.intereses, {
             through: "interesesDeUsuarios",
-            foreignKey: "id_interes",
-            otherKey: 'id_Usr',
+            foreignKey: "id_Usr",
+            otherKey: "id_interes",
             timestamps: false
         });    
     }
