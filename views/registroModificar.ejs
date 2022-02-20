@@ -16,15 +16,15 @@
             -->
             
             <center style="background-color:lightblue;">
-                <h3> Gestión de Usuarios - Modificar Usuario</h3>   
                                 
                 <form action="/usuarios/modificarGrabar/<%= usuarioSeleccionado.idUsr %>" method="POST" enctype="multipart/form-data">
                     <div class="flex-vertical">
+                        <div style=" background-color: gold; border-radius: 5px; padding: 3px;"><h3> Gestión de Usuarios - Modificar Usuario</h3></div>
                         <label>Usuario</label>
                         <% if( usuarioSeleccionado != undefined ) { %>
                             <input type="text" name="user" class="user" value="<%= usuarioSeleccionado.usuario %>">
                         <% } else { %>
-                            <input type="text" name="user" class="user" value="<% locals.datosAnteriores.user %>">
+                            <input type="text" name="user" class="user" value="<%= locals.datosAnteriores.usuario %>">
                             <% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.user != undefined ) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.user.msg %></p>
@@ -36,7 +36,7 @@
                         <% if( usuarioSeleccionado != undefined ) { %> 
                             <input type="email" name="email" class="email" value="<%= usuarioSeleccionado.email %>">
                         <% } else { %>    
-                            <input type="email" name="email" class="email" value="<% locals.datosAnteriores.email %>">
+                            <input type="email" name="email" class="email" value="<%= locals.datosAnteriores.email %>">
                             <% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.email != undefined ) { %>
                                     <p class="feedback"><%= resultadoValidaciones.email.msg %></p>
@@ -79,9 +79,9 @@
                     <div class="flex-vertical">
                         <h4>Elegí tu foto de usuario</h4>
                         <% if( usuarioSeleccionado != undefined ) { %>
-                            <input type="file" name="foto" class="foto" value="<% locals.usuarioSeleccionado.foto %>"> 
+                            <input type="file" name="foto" class="foto" value="<%= locals.usuarioSeleccionado.foto %>"> 
                         <% } else { %>
-                            <input type="file" name="foto" class="foto" value="<% locals.datosAnteriores.foto %>">
+                            <input type="file" name="foto" class="foto" value="<%= locals.datosAnteriores.foto %>">
                         <% } %>       
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.foto != undefined ) { %>
@@ -129,7 +129,8 @@
                     <button type="reset" value="limpiar">Limpiar</button>         
                 </form>    
             </center>
-            <script src="/javascript/validarModificarUsuarios.js"></script>
+            
+            <!-- <script src="/javascript/validarModificarUsuarios.js"></script> -->
             
         </main>
     </body>

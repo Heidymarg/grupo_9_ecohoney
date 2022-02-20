@@ -17,7 +17,7 @@ const usersApiController = {
                         id: usuario.idUsr,
                         usuario: usuario.usuario,
                         email: usuario.email,
-                        //perfil: usuario.perfiles.nombre, sequelize no reconoce la relación co perfiles
+                        perfil: usuario.id_perfil, //perfil: usuario.perfiles.nombre, sequelize no reconoce la relación co perfiles
                         intereses: usuario.intereses.nombre,
                         foto: usuario.foto,
                         detalle: "/api/users/" + usuario.idUsr    
@@ -43,6 +43,7 @@ const usersApiController = {
                         id: usuario.idUsr,
                         nombre: usuario.usuario,
                         email: usuario.email,
+                        perfil: usuario.id_perfil,
                         intereses: usuario.intereses.nombre,
                         avatar: usuario.foto
                 }    

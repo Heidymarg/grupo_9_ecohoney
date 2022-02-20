@@ -10,15 +10,23 @@
     
     <main class="flex-vertical">
         <div class="flex-vertical">
-            <div style=" background-color: gold; border-radius: 5px; padding: 3px;"><h3><p>Gestión de Productos - Listado de Líneas</p></h3></div>
-            <% for( let i = 0; (lineas.length - i) > 0; i++) { %>
-                <table>
-                    <tr>
-                        <td><p><strong><%= lineas[i].id_lineas %>)_ </p></strong></td>
-                        <td><p><strong><%= lineas[i].nombre %></p></strong></td>
+            <div style=" background-color: rgb(236, 214, 241); border-radius: 5px; padding: 3px;"><h3><p>Gestión de Productos - Listado de Líneas</p></h3></div>
+            <table>
+                <thead>
+                    <tr style="border: 1px solid purple; border-collapse: collapse;width: 75%;">
+                        <th style="border: 1px solid purple; text-align: center;padding: 8px;">ID</th>
+                        <th style="border: 1px solid purple; text-align: center;padding: 8px;">Descripción</th>
                     </tr>
-                </table>
-            <% } %>
+                </thead>
+                <tbody>
+                    <% for( let i = 0; (lineas.length - i) > 0; i++) { %>
+                        <tr>
+                            <td style="border: 1px solid purple; text-align: center;padding: 8px;"><p><strong><%= lineas[i].id_lineas %> </p></strong></td>
+                            <td style="border: 1px solid purple; text-align: center;padding: 8px;"><p><strong><%= lineas[i].nombre %></p></strong></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
         </div>
     </main>
     

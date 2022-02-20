@@ -26,10 +26,8 @@ var idPerfilParaEliminar= undefined;
 
 var perfiles = db.perfiles.findAll();
 var intereses = db.intereses.findAll();
-var todosLosUsuarios = db.usuarios.findAll();
 
 var listaDeIndex = db.productos.findAll();
-var listaOfertas = db.productos.findAll();
 
 var carrito = [];
 var total = 0;
@@ -133,12 +131,8 @@ const userController = {
         return usuarioLogueado;
         
     },  
+
     /* ******************** Para cargar usuario nuevo********************* */
-
-
-    
-
-    
     registroGrabar:(req,res) => {
         //ok no tocar.
         console.log(req.body )
@@ -199,6 +193,7 @@ const userController = {
             res.render('registro', {'datosAnteriores': req.body, 'perfiles':perfiles, 'intereses':intereses, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil':req.session.suPerfil });          
         } ) 
     },
+
     /* ************** Modifcar Usuarios **************** */
     registroModificarMostrar: (req,res) => { 
         // ok no tocar
@@ -219,40 +214,75 @@ const userController = {
             const {validationResult} = require('express-validator');
             let errores = validationResult( req );
             // ok res.send('usuario a modificar ' + usuarioSeleccionado.idUsr )
-            
+
+        if ( errores.isEmpty()) { 
+
+            if ( req.file.filename != undefined ) {
+
                 let passOculta;
                 if ( req.body.pass === req.body.pass_confirm ) {
                     passOculta = encripta.hashSync( req.body.pass_confirm, 10 );
                 }
-    
-                if ( errores.isEmpty()) {
-                    db.usuarios.update({
-                        usuario: req.body.user,
-                        email: req.body.email,
-                        id_perfil: req.body.perfil,
-                        id_intereses: req.body.intereses,
-                        foto:'/images/usuarios/' + req.file.filename,
-                        password: passOculta
+                 
+                db.usuarios.update({
+                    usuario: req.body.user,
+                    email: req.body.email,
+                    id_perfil: req.body.perfil,
+                    id_intereses: req.body.intereses,
+                    foto:'/images/usuarios/' + req.file.filename,
+                    password: passOculta
                     }, {
-                        where : { idUsr : usuarioSeleccionado.idUsr }
-                    })
-                    .then( 
-                        db.usuarios.findAll()
-                        .then( resultado => { 
-                            return res.render('listadoUsuarios', {'listaDeUsuarios': resultado, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil':req.session.suPerfil });
-                        } )
-                    )
-                } else {
-                    intereses= db.intereses.findAll();
-                    perfiles= db.perfiles.findAll(); 
-                    Promise.all((promesas = [perfiles, intereses, usuarioSeleccionado]))
+                    where : { idUsr : usuarioSeleccionado.idUsr }
+                })
+                .then( 
+                    db.usuarios.findAll()
                     .then( resultado => { 
-                        return res.render('registroModificar', { 'datosAnteriores': req.body, 'perfiles':promesas[0], 'intereses':promesas[1], 'usuarioSeleccionado': promesas[2], 'resultadoValidaciones': errores.mapped(), 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil':req.session.suPerfil });
+                        return res.render('listadoUsuarios', {
+                            'listaDeUsuarios': resultado, 
+                            'usuarioLogueado':req.session.usuarioAceptado, 
+                            'usuarioPerfil':req.session.suPerfil });
                     } )
-                    
-                }
-                
-        },
+                )
+
+            } else { // falta cargar la foto
+                console.log( errores )
+                Promise.all([perfiles,intereses])
+                .then( ([perfiles,intereses]) => {
+                    errores.push( {
+                        value: undefined,
+                        msg: 'Falta Cargar la Foto ',
+                        param: 'foto',
+                        location: 'file'
+                      })
+                    res.render('registro', {
+                        'resultadoValidaciones': errores.mapped(), 
+                        'usuarioSeleccionado': usuarioSeleccionado, 
+                        'datosAnteriores': req.body, 
+                        'datosAnteriores': req.body, 
+                        'perfiles': perfiles, 
+                        'intereses': intereses, 
+                        'usuarioLogueado':req.session.usuarioAceptado, 
+                        'usuarioPerfil':req.session.suPerfil 
+                    });
+                } )
+            }
+
+        } else {
+            intereses = db.intereses.findAll();
+            perfiles = db.perfiles.findAll(); 
+            Promise.all((promesas = [perfiles, intereses, usuarioSeleccionado]))
+            .then( resultado => { 
+                return res.render('registroModificar', {
+                            'datosAnteriores': req.body, 
+                            'perfiles': perfiles, 
+                            'intereses': intereses, 
+                            'usuarioSeleccionado': usuarioSeleccionado, 
+                            'resultadoValidaciones': errores.mapped()
+                        });
+            } )
+            
+        }            
+    },
     /* ************** FinModifcar Usaurios *************** */
 
     /* ********************* Eliminar Usuario ********************** */
@@ -304,10 +334,22 @@ const userController = {
 
         if ( recordarme == undefined ) {
             res.clearCookie('usuarioRecordado');
-            res.clearCookie('suPerfil');
-            req.session.destroy();    
+            res.clearCookie('suPerfil');   
         }
-        res.redirect('/');        
+        
+        req.session.destroy(); 
+
+        db.productos.findAll()
+        .then( resultado => {
+            res.render( 'index', { 
+                'listado': listaDeIndex, 
+                'listadoOfertas': resultado,
+                'listado': resultado, 
+                'usuarioLogueado': undefined, 
+                'usuarioPerfil': undefined 
+            })           
+        })
+        
     },
 
     /* *** Métodos para atender la gestión de perfiles e intereses de usuarios *** */

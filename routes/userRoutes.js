@@ -38,7 +38,6 @@ router.post('/registroGrabar', upload.single('foto'), validacionDeRegistracion, 
 
 //////PARA MODIFICAR USUARIOS////////
 router.get('/modificar/:id', userController.registroModificarMostrar);
-
 router.post('/modificarGrabar/:id',upload.single('foto'),  validacionDeModificacionUsuario, userController.registroModificarGrabar);
 
 ///PARA ELIMINAR USUARIOS////////

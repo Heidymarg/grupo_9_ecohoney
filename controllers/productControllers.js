@@ -89,17 +89,19 @@ const productController = {
         db.lineas.findAll()
 		.then(resultado => { res.render('formularioCargaProducto', {'lineas': resultado, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil}) }); 
     },
-	/*
+	
 	grabar: (req, res) => {
         // ok - falta validaciones back end
      
         let errores = validationResult(req);
 
-        if(errores.isEmpty()){
+        if (errores.isEmpty()) {
+
+			console.log( 'entra por errores.isEmpty' )
 
 			if ( req.file != undefined ) {
 				
-				console.log( ' Foto !!!'  + req.file.filename);
+				console.log( ' Hay Foto !!!'  + req.file.filename);
 
 				db.productos.create({ 
 					nombre: req.body.nombre,
@@ -112,27 +114,37 @@ const productController = {
 					cantidad: req.body.cantidad,         
 				})
 				.then(
+				
 					Promise.all([lineas])
 					.then( ([lineas]) => {
+						console.log( 'Supestamente grabó y renderiza de nuevo a cargar producto ');
 						console.log( ' Producto cargado: '  + req.body.nombre );
 						res.render('formularioCargaProducto', { 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil});
-				}))
+					})
+				)
 				.catch( error => console.log( error ) )
 
 			} else { // falta cargar la foto
+
+				console.log( 'Entró por falta foto ');
+				var error_foto = [ {
+					value: "",
+					msg: 'Falta Cargar la Foto ',
+					param: 'foto',
+					location: 'file'
+				  }]
+				
 				Promise.all([lineas])
 				.then( ([lineas]) => {
-					errores.push( {
-                        value: undefined,
-                        msg: 'Falta Cargar la Foto ',
-                        param: 'foto',
-                        location: 'file'
-                      })
-					res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil});
+					res.render('formularioCargaProducto', {'resultadoValidaciones': error_foto, 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil});
 				} )
 			}          
 
         } else {
+
+			console.log( 'Entró por hay errores ' );
+			errores.array().forEach( err => console.log(err));
+
             Promise.all([lineas])
             .then( ([lineas]) => {
                 res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil});
@@ -140,8 +152,8 @@ const productController = {
         }
         
     },
-	*/
-
+	
+	/*
 	grabar: (req, res) => {
         // ok - falta validaciones back end
      
@@ -172,7 +184,7 @@ const productController = {
             } )
         }
         
-    },
+    },*/
 
 	/* *************************** Modificar Producto ****************************** */
 	productoMostrarFormModificar: (req,res) => { 	

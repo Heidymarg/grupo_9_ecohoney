@@ -41,7 +41,6 @@ router.get('/listar', productController.listar);
 ///Funcionan LAS VALIDACIONES DE BACK END Y FRONT END NO TOCAR///
 router.get('/productoAgregar', productController.productoMostrarFormCarga);
 router.post('/agregarProducto', upload.single('foto') ,validacionDeProducto, productController.grabar); 
-//router.post('/agregarProducto', upload.single('foto'), productController.grabar); 
 
 /*** Mostrar datos de un producto ***/ 
 router.get('/detalle/:id', productController.detalle); 
@@ -50,18 +49,12 @@ router.get('/detalle', productController.detalle);
 /* *** Modificar producto *** */ 
 ///Funcionan LAS VALIDACIONES DE BACK END Y FRONT END NO TOCAR///
 router.get('/productoModificar/:id', productController.productoMostrarFormModificar ); 
-// antes. se va si anda todo bien router.get('/productoModificar', productController.productoMostrarFormModificar ); 
-// se va si anda todo bien con dos rutas router.post('/productoModificar', productController.traerParaModificar);
 router.post('/edit/:id',  upload.single('foto'), validacionDeModificacion, productController.modificar); 
 
 /* *** Eliminar un producto *** */ 
-router.get('/productoDelete/:id', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
-// como antes. se va si anda todo bien con 2 rutas router.get('/productoDelete', productController.productoMostrarFormEliminar );  // ruta que lleva al form.
-
-//router.post('/productoDelete', productController.traerParaConfirmar); // ruta que invoca al método que, dado un idPrd, 
-                                                            // devuelve datos para confirmación previa a la eliminación.
-router.post('/productoDelete/:id', productController.eliminar);       // ruta que invoca al método que efectivamente elimina
-                                                            // el ítem seleccionado.
+router.get('/productoDelete/:id', productController.productoMostrarFormEliminar );  // ruta que lleva al form.                                                          // devuelve datos para confirmación previa a la eliminación.
+router.post('/productoDelete/:id', productController.eliminar);     // ruta que invoca al método que efectivamente elimina
+                                                                    // el ítem seleccionado.
 
 /* ******************************************************** */
 /* * Rutas para atender la gestión de Líneas de productos * */

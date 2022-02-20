@@ -11,14 +11,23 @@
     
     <main class="flex-vertical">
         <div class="flex-vertical">
-            <% for( let i = 0; (perfiles.length - i) > 0; i++) { %>
-                <table>
-                    <tr>
-                        <td><p><strong><%= perfiles[i].id_perfil %>)_ </p></strong></td>
-                        <td><p><strong><%= perfiles[i].nombre %></p></strong></td>
+            <table>
+                <thead>
+                    <div style=" background-color: gold; border-radius: 5px; padding: 3px;"><h3>Gestión de Usuarios - Listado de Perfiles</h3></div>
+                    <tr style="border: 1px solid purple; border-collapse: collapse;width: 75%;">
+                        <th style="border: 1px solid purple; text-align: center;padding: 8px;">ID</th>
+                        <th style="border: 1px solid purple; text-align: center;padding: 8px;">Descripción</th>
                     </tr>
-                </table>
-            <% } %>
+                </thead>
+                <tbody>
+                    <% for( let i = 0; (perfiles.length - i) > 0; i++) { %>
+                        <tr style="border: 1px solid purple; text-align: left;padding: 8px;">
+                            <td style="border: 1px solid purple; text-align: left;padding: 8px;"><p><strong><%= perfiles[i].id_perfil %> </p></strong></td>
+                            <td style="border: 1px solid purple; text-align: left;padding: 8px;"><p><strong><%= perfiles[i].nombre %></p></strong></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
         </div>
     </main>
     

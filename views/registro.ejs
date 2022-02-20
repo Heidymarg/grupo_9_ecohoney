@@ -32,7 +32,8 @@
                         <% } %>
 
                         <label>Dirección de E-mail</label>
-                        <input type="email" name="email" class="email" value="<% locals.datosAnteriores.email %>">
+                        <input type="text" name="email" class='email' value="">
+                        <!-- <input type="email" name="email" class="email" value="<% locals.datosAnteriores.email %>"> -->
                         <% if ( locals && locals.resultadoValidaciones ) { 
                             if ( resultadoValidaciones.email != undefined ) { %>
                                 <p class="feedback"><%= resultadoValidaciones.email.msg %></p>
@@ -145,7 +146,7 @@
     
             </center>
 
-            <script src="/javascript/validarRegistro.js"></script>
+            <!-- <script src="/javascript/validarRegistro.js"></script> -->
 
         </main>
     </body>

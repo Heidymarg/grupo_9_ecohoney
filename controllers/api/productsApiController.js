@@ -7,27 +7,12 @@ const op = db.Sequelize.Op;
 const productsApiController = {
    
     listar:(req,res)=>{
-        // db.productos.findAll()
-        //   .then(products=> {
-        
-        //      const response = {
-        //         meta:{
-        //            status:200,
-        //            total: products.length,
-        //            url:'api/productos'
-        //         },
-        //         data:products
-        //      }
-        //      res.json(response) 
-        //     })  
-        //     .catch(error=> console.log(error))
          
-        
-         
-   
+        var cantLineas = 0;
         db.productos.findAll({
             include:['lineas']
        })
+       
        /*
        .then( lineas=>{console.log(lineas)
             let arrayLineas = []
@@ -42,15 +27,14 @@ const productsApiController = {
             let cuidadoPersonal = products.filter(products => products.id_lineas == 1)
             let hogar = products.filter(products => products.id_lineas== 2)
             let abejas = products.filter(products => products.id_lineas == 3)
-
-             
+          
 
             let respuesta = {
                 meta: {
                    status: 200,
                    total: products.length,
                    url: "/api/products",
-                   //lineas: lineas.length,
+                   lineas: cantLineas,
                    //lineasNombre: arrayLineas,
                    countByIdLineas: [
                        {cuidadoPersonal:cuidadoPersonal.length},
@@ -84,23 +68,24 @@ const productsApiController = {
         db.productos.findByPk(req.params.id, {
             include:['lineas']
         })
-        .then(product=>{
+        .then(producto => {
+
             let respuesta = {
                 meta:{
                     status: 200,
                     url: "/api/products/"                
                 },
                 data:  { 
-                    idPrd: product.idPrd,
-                    nombre: product.nombre,
-				    codigo: product.codigo,
-				    descripcion: product.descripcion,
-				    //id_lineas : product.id_lineas,
-                    lineas: product.lineas.nombre,// relación uno a muchos
-				    precio : product.precio,
-				    bonif: product.bonif,
-				    foto:  product.foto,
-				    cantidad: product.cantidad,                       
+                    idPrd: producto.idPrd,
+                    nombre: producto.nombre,
+				    codigo: producto.codigo,
+				    descripcion: producto.descripcion,
+				    //id_lineas : producto.id_lineas,
+                    lineas: producto.lineas.nombre,// relación uno a muchos
+				    precio : producto.precio,
+				    bonif: producto.bonif,
+				    foto:  producto.foto,
+				    cantidad: producto.cantidad,                       
                 }
            }
             console.log(respuesta)
@@ -135,6 +120,26 @@ const productsApiController = {
         .catch(function(error){
            res.json({status:500}).json(error)
 
+        })
+    },
+
+    cantLineas: (req, res) => {
+
+        db.lineas.findAll()
+        .then(function (lineas) {
+            
+            let apiResponse= {
+                meta: {
+                    status: 200,
+                    url:"/api/products/cantLineas",
+                    total: lineas.length
+                },
+                data: lineas
+            }
+                res.json(apiResponse)
+        })
+        .catch(function(error){
+            res.json({status:500}).json(error)
         })
     }
 
