@@ -1,46 +1,54 @@
 const { response } = require('express');
 const { json } = require('express/lib/response');
+const { Promise } = require('sequelize');
 const db = require('../../database/models');
 const sequelize = db.sequelize;
 const op = db.Sequelize.Op;
 
+var arrayLineas = [];
+var totalLineas = 0;
+var countByIdLineas =[];
+
 const productsApiController = {
    
     listar:(req,res)=>{
-         
-        var cantLineas = 0;
-        db.productos.findAll({
-            include:['lineas']
-       })
-       
-       /*
-       .then( lineas=>{console.log(lineas)
-            let arrayLineas = []
-            for(let i=0; i<lineas.length ; i++){
-               arrayLineas.push({
-               nombre: lineas[i].dataValues.nombre,
-                })
-            }
         
-       */
+        db.lineas.findAll()
+        .then( lineas=>{
+            arrayLineas = [];
+            totalLineas = lineas.length;
+            for (let i = 0; (lineas.length - i) > 0; i++) {
+                arrayLineas.push( lineas[i].nombre )
+            }
+            return arrayLineas;
+        });
+
+        let products = db.productos.findAll({ include:['lineas'] })     
         .then( products => {
+            /*
             let cuidadoPersonal = products.filter(products => products.id_lineas == 1)
             let hogar = products.filter(products => products.id_lineas== 2)
             let abejas = products.filter(products => products.id_lineas == 3)
-          
+            */
 
+            countByIdLineas =[];
+            arrayLineas.forEach( (item,i) => 
+                countByIdLineas.push( [item, products.filter(products => products.id_lineas == i).length] )
+            );
+                                    
             let respuesta = {
                 meta: {
-                   status: 200,
-                   total: products.length,
-                   url: "/api/products",
-                   lineas: cantLineas,
-                   //lineasNombre: arrayLineas,
-                   countByIdLineas: [
-                       {cuidadoPersonal:cuidadoPersonal.length},
-                       {hogar: hogar.length},
-                       {abejas: abejas.length}
-                   ]
+                    status: 200,
+                    total: products.length,
+                    url: "/api/products",
+                    lineas: totalLineas,
+                    lineasNombre: arrayLineas,
+                    countByIdLineas: countByIdLineas,
+                        /*[
+                            {cuidadoPersonal:cuidadoPersonal.length},
+                            {hogar: hogar.length},
+                            {abejas: abejas.length}
+                        ],*/
                 },
                 data: products.map(product => {
                     return{
@@ -80,7 +88,6 @@ const productsApiController = {
                     nombre: producto.nombre,
 				    codigo: producto.codigo,
 				    descripcion: producto.descripcion,
-				    //id_lineas : producto.id_lineas,
                     lineas: producto.lineas.nombre,// relación uno a muchos
 				    precio : producto.precio,
 				    bonif: producto.bonif,
@@ -121,28 +128,7 @@ const productsApiController = {
            res.json({status:500}).json(error)
 
         })
-    },
-
-    cantLineas: (req, res) => {
-
-        db.lineas.findAll()
-        .then(function (lineas) {
-            
-            let apiResponse= {
-                meta: {
-                    status: 200,
-                    url:"/api/products/cantLineas",
-                    total: lineas.length
-                },
-                data: lineas
-            }
-                res.json(apiResponse)
-        })
-        .catch(function(error){
-            res.json({status:500}).json(error)
-        })
     }
-
 }
 
 module.exports = productsApiController;

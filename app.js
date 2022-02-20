@@ -40,13 +40,11 @@ const PORT    = 3131;
 const rutaIndex= require("./routes/indexRoute");
 const rutaProductos = require("./routes/productsRoute");
 const rutaUsuarios = require('./routes/userRoutes');
-const rutaLineas = require('./routes/api/apiLineas');
 /* ----------------- FIN ------------------ */
 
 app.use( "/", rutaIndex );
 app.use( "/productos", rutaProductos);
 app.use( "/usuarios", rutaUsuarios);
-app.use('/lineas/cantLineas', rutaLineas)
 /* ----------------- FIN ------------------ */
 
 app.listen( PORT, () => { console.log( `Eco HONeY corriendo en el puerto ${PORT}` ) } );
