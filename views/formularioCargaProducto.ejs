@@ -10,9 +10,14 @@
 <body>
 
     <main style="background-color: white">
+        <!--<script>
+            function setFocusEnCodigo() {
+                document.getElementById('codigo').focus()
+            }
+        </script> -->
         <center>
             <div class=formCrudDeProducto>
-                <form action="/productos/agregarProducto" method="POST" enctype="multipart/form-data">    
+                <form id="registro" class="registro" action="/productos/agregarProducto" method="POST" enctype="multipart/form-data">    
                     <table class="formTableCrudDeProducto">
 
                         <thead style="width: 100%;">
@@ -21,7 +26,8 @@
 
                         <tbody style="width: 100%;">
                             <tr><td><label><span>Código de Producto</span></label></td></tr>
-                            <tr><td><input type="text" name="codigo"  class="codigo"></td></tr>
+                            <tr><td><input type="text" name="codigo" id="codigo" class="codigo" placeholder="codigo"></td></tr>
+                            <tr><td><div class="text-danger" id="codError"></div></td></tr>
                             <tr><td><% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.codigo != undefined) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.codigo.msg %></p>
@@ -29,7 +35,7 @@
                             <% } %> </td> </tr>
         
                             <tr><td><label><span>Nombre</span></label></td></tr>
-                            <tr><td><input type="text" name="nombre"  class="nombre"></td></tr>
+                            <tr><td><input type="text" name="nombre" id="nombre" class="nombre" placeholder="nombre"></td></tr>
                             <tr><td> <% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.nombre != undefined) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.nombre.msg %></p>
@@ -37,7 +43,7 @@
                             <% } %> </td> </tr>
         
                             <tr><td><label><span>Descripción</span></label></td></tr>
-                            <tr><td><input type="text" name="descripcion"  class="descripcion"></td></tr>
+                            <tr><td><input type="text" name="descripcion" id="descripcion" class="descripcion"  placeholder="descripción"></td></tr>
                             <tr><td><% if ( locals && locals.resultadoValidaciones ) { 
                                 if ( resultadoValidaciones.descripcion != undefined) { %>
                                     <p class="feedback"> <%= resultadoValidaciones.descripcion.msg %></p>
@@ -47,7 +53,7 @@
                             <tr><td><label><span>Línea</span></label></td></tr>
                             <tr>
                                 <td>
-                                    <select id="linea" name="linea" class="linea">
+                                    <select id="linea" name="linea" id="linea" class="linea">
                                         <% for( let i = 0; (lineas.length - i) > 0; i++ ) { %>
                                             <option value="<%= lineas[i].id_lineas%>"> <%= lineas[i].nombre%></option>
                                         <% } %>
@@ -61,7 +67,7 @@
                             </tr>
 
                             <tr><td><label><span>Precio</span></label></td></tr>
-                            <tr><td><input type="text" name="precio" class="precio"></td></tr>
+                            <tr><td><input type="text" name="precio" id="precio" class="precio"  placeholder="$"></td></tr>
                                     <tr><td>
                                 <% if ( locals && locals.resultadoValidaciones ) { 
                                     if ( resultadoValidaciones.precio != undefined ) { %>
@@ -70,7 +76,7 @@
                                 <% } %>
                             </td></tr>
                             <tr><td><label><span>Bonificación</span></label></td></tr>
-                            <tr><td><input type="text" name="bonif" class="bonif"></td></tr>
+                            <tr><td><input type="text" name="bonif" id="bonif" class="bonif"  placeholder="%"></td></tr>
                             <tr><td>
                                 <% if ( locals && locals.resultadoValidaciones ) { 
                                     if ( resultadoValidaciones.bonif != undefined ) { %>
@@ -80,7 +86,7 @@
                             </td></tr>
 
                             <tr><td><label><span>Cantidad</span></label></td></tr>
-                            <tr><td><input type="text" name="cantidad" class="cantidad"></td></tr>
+                            <tr><td><input type="text" name="cantidad" id="cantidad" class="cantidad"  placeholder="stock"></td></tr>
                             <tr><td>
                                 <% if ( locals && locals.resultadoValidaciones ) { 
                                     if ( resultadoValidaciones.cantidad != undefined ) { %>
@@ -90,7 +96,7 @@
                             </td></tr>
         
                             <tr><td><label><h3><span>Foto de Producto</span></h4></label></td></tr>
-                            <tr><td><input type="file" name="foto"  class="foto"></td></tr>
+                            <tr><td><input type="file" name="foto" id="foto" class="foto"></td></tr>
                             <tr><td>
                                 <% if ( locals && locals.resultadoValidaciones ) { %> 
                                     <p class="feedback"> <%= resultadoValidaciones.msg %> </p>
@@ -115,7 +121,9 @@
     </main>
     
     <%- include( './partials/footer.ejs' ); -%>
-    <!-- <script src="/javascript/validarCargaProducto.js"></script> -->
 
 </body>
+
+    <script src="/javascript/validarCargaProducto.js"></script>
+
 </html>

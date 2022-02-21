@@ -24,7 +24,7 @@
                 <br>
                 <form method="POST" action="/productos/linea/agregar">
                     <label>Descripcion</label>
-                    <input type="text" id=" " name="linea"> 
+                    <input type="text" id="linea" class="linea" name="linea"> 
                     <% if ( locals && locals.resultadoValidaciones ) {
                         if ( resultadoValidaciones.linea != undefined )  { %>
                             <p class="feedback"> <%= resultadoValidaciones.linea.msg %></p>

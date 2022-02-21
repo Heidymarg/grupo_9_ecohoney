@@ -66,8 +66,8 @@
                                     <tr><td><input value="<%= prodAModificar.precio %>" type="text" name="precio" class="precio"></td></tr>
                                     <tr><td>
                                         <% if ( locals && locals.resultadoValidaciones ) { 
-                                            if ( resultadoValidaciones.cantidad != undefined ) { %>
-                                                <p class="feedback"> <%= resultadoValidaciones.cantidad.msg %> </p>
+                                            if ( resultadoValidaciones.precio != undefined ) { %>
+                                                <p class="feedback"> <%= resultadoValidaciones.precio.msg %> </p>
                                             <% } %>
                                         <% } %>
 
@@ -77,8 +77,8 @@
                                     <tr><td><input value="<%= prodAModificar.bonif %>" type="text" name="bonif" class="bonif"></td></tr>
                                     <tr><td>
                                         <% if ( locals && locals.resultadoValidaciones ) { 
-                                            if ( resultadoValidaciones.bonificacion != undefined ) { %>
-                                                <p class="feedback"> <%= resultadoValidaciones.bonificacion.msg %> </p>
+                                            if ( resultadoValidaciones.bonif != undefined ) { %>
+                                                <p class="feedback"> <%= resultadoValidaciones.bonif.msg %> </p>
                                             <% } %>
                                         <% } %>
 
@@ -126,6 +126,8 @@
                 <div style="background-color: whitesmoke; padding-top: 4px; height: 3px; "></div>
                 <div style="background-color: grey; border-radius: 5px; height: 2px;"></div>
 
+                <div id="errores" class="errores"><ul></ul></div>
+
             </div>   
         </form>        
         </center>      
@@ -134,7 +136,7 @@
     
     <%- include( './partials/footer.ejs' ); -%>
 
-    <!-- <script src="/javascript/validarModificarProducto.js"></script> -->
+    <script src="/javascript/validarModificarProducto.js"></script>
 
 </body>
 </html>

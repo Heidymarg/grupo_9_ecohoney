@@ -7,9 +7,12 @@ module.exports = [
   check('descripcion').notEmpty().withMessage('Ingresar una descripción de producto')
   .isLength({min: 20}).withMessage('La descripción debe tener al menos 20 caracteres').bail(),
   check('linea').notEmpty().withMessage('Seleccionar una Línea de Producto').bail(),
-  check('precio').notEmpty().withMessage('Falta cargar el Precio').bail(),
-  check('bonif').notEmpty().withMessage('Falta cargar la Bonificación').bail(),
-  check('cantidad').notEmpty().withMessage('Ingresar un stock inicial').bail(),
+  check('precio').notEmpty().withMessage('Falta cargar el Precio')
+  .isString('precio').withMessage("Debe ser un valor numérico").bail(),
+  check('bonif').notEmpty().withMessage('Falta cargar la Bonificación')
+  .isString('bonif').withMessage("Debe ser un valor numérico").bail(),
+  check('cantidad').notEmpty().withMessage('Ingresar un stock inicial')
+  .isString('cantidad').withMessage("Debe ser un valor entero").bail(),
   //check('foto').notEmpty().withMessage('Falta subir una foto de producto').bail() se valida en el controlador
 ];
 

@@ -68,7 +68,8 @@ let validacionLineaNueva = [
 router.post('/linea/agregar',validacionLineaNueva, productController.agregarGrabarLinea);
 
 let validacionModificarLinea = [ 
-    check('linea').notEmpty().withMessage('Completar el campo Descripción').bail()   
+    check('linea').notEmpty().withMessage('Completar el campo Descripción')
+    .isLength({min: 5}).withMessage('El nombre debe tener al menos 5 caracteres').bail()   
 ];
 router.get('/linea/modificar', productController.modificarLinea);
 router.post('/linea/modificar', validacionModificarLinea, productController.confirmarModificarLinea);

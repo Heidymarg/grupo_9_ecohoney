@@ -7,9 +7,10 @@ module.exports =
     check('nombre').notEmpty().withMessage('Completar el Nombre del Producto').bail(), 
     check('descripcion').notEmpty().withMessage('Completar la descripción ').bail(), 
     check('linea').notEmpty().withMessage('Seleccionar una o más opciones').bail(), 
-    check('precio').notEmpty().withMessage('Asignar el Precio ').bail(), 
-    check('bonif').notEmpty().withMessage('Completar la bonificación ').bail(),
-    //check('foto').notEmpty().withMessage('Subir foto del producto').bail(),
-    check('cantidad').notEmpty().withMessage('Completar la cantidad ').bail(),
-     
+    check('precio').notEmpty().withMessage('Falta cargar el Precio')
+    .isString('precio').withMessage("Debe ser un valor numérico").bail(),
+    check('bonif').notEmpty().withMessage('Falta cargar la Bonificación')
+    .isString('bonif').withMessage("Debe ser un valor numérico").bail(),
+    check('cantidad').notEmpty().withMessage('Ingresar un stock inicial')
+    .isString('cantidad').withMessage("Debe ser un valor entero").bail(),     
 ]

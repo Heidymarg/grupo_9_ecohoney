@@ -152,39 +152,6 @@ const productController = {
         }
         
     },
-	
-	/*
-	grabar: (req, res) => {
-        // ok - falta validaciones back end
-     
-        let errores = validationResult(req);
-        if(errores.isEmpty()){
-            
-            db.productos.create({ 
-                nombre: req.body.nombre,
-                codigo: req.body.codigo,
-                descripcion : req.body.descripcion,
-                id_lineas : req.body.linea,
-                precio : req.body.precio,
-                bonif: req.body.bonif,
-				foto:  "/images/"  + req.file.filename,
-                cantidad: req.body.cantidad,         
-            })
-			.then(
-				console.log(errores),
-			Promise.all([lineas])
-            .then( ([lineas]) => {
-                res.render('formularioCargaProducto', { 'resultadoValidaciones': errores.mapped(),'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
-			}))
-
-        } else {
-            Promise.all([lineas])
-            .then( ([lineas]) => {
-                res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas});
-            } )
-        }
-        
-    },*/
 
 	/* *************************** Modificar Producto ****************************** */
 	productoMostrarFormModificar: (req,res) => { 	
@@ -198,18 +165,19 @@ const productController = {
 		
 
     },
-	/*
+
 	modificar: (req, res) => {
 		
 		let errores = validationResult(req);
-
-		console.log(prodAModificar + '!!!'  + req.file.filename);
 
 		if(errores.isEmpty()) {
 
 			if ( req.file != undefined ) {
 
-				db.productos.findByPk( prodAModificar.idPrd )
+				console.log(req.params.id + '!!!'  + req.file.filename);
+
+				//db.productos.findByPk( prodAModificar.idPrd )
+				db.productos.findByPk( req.params.id )
 				.then( resultado => {
 					 if ( resultado != undefined ) {
 	
@@ -220,7 +188,7 @@ const productController = {
 							id_lineas : req.body.linea,
 							precio : req.body.precio,
 							bonif: req.body.bonif,
-							foto:  '/images'  +  req.file.filename,
+							foto:  '/images/'  +  req.file.filename,
 							cantidad: req.body.cantidad,    
 						},{
 							where : { idPrd : resultado.idPrd }
@@ -237,13 +205,14 @@ const productController = {
 			} else { // falta cargar la foto
 				Promise.all([lineas])
 				.then( ([lineas]) => {
-					errores.push( {
+						let errores = [];
+						errores.push( {
 						value: undefined,
 						msg: 'Falta Cargar la Foto ',
 						param: 'foto',
 						location: 'file'
 					  })
-					res.render('formularioCargaProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil});
+					res.render('formularioModificarProducto', {'resultadoValidaciones': errores, 'datosAnteriores': req.body, 'datosAnteriores': req.body, 'lineas': lineas, 'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': req.session.suPerfil});
 				} )
 			}   
 
@@ -254,48 +223,6 @@ const productController = {
 			} )
 		}	 
  	},
-	 */
-
-	modificar: (req, res) => {
-		
-		
-	 let errores = validationResult(req);
-	 if(errores.isEmpty()){
-	 db.productos.findByPk( prodAModificar.idPrd )
-	 .then( resultado => {
-		 if ( resultado != undefined ) {
-		 
-			 console.log(prodAModificar + '!!!'  + req.file.filename)
-
-			 db.productos.update( {
-				 nombre: req.body.nombre,
-				 codigo: req.body.codigo,
-				 descripcion : req.body.descripcion,
-				 id_lineas : req.body.linea,
-				 precio : req.body.precio,
-				 bonif: req.body.bonif,
-				 foto:  '/images/'  +  req.file.filename,
-				 cantidad: req.body.cantidad,    
-			 },{
-				 where : { idPrd : resultado.idPrd }
-			 })
-			 
-		 }
-	 })
-	 .then(
-		 db.productos.findAll()
-				  .then( (resultado) => {
-			 res.render( 'listadoDeProducto', { 'resultadoValidaciones': errores.mapped(), 'productosEncontrados': resultado, }) 
-		 }))
-	 } else {
-		 Promise.all([lineas])
-		 .then( ([lineas]) => {
-			 res.render('formularioModificarProducto', {'resultadoValidaciones': errores.mapped(), 'datosAnteriores': req.body, 'datosAnteriores': req.body,'lineas': lineas});
-		 } )
-	 }
-	 
-	 
- },
 
 	/* *************************** Eliminar Producto ****************************** */
 	productoMostrarFormEliminar: (req,res) => { 
