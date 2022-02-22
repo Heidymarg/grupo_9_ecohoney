@@ -174,3 +174,12 @@ Menos de
 Dejar de hacer
 *	No finalizar aquello que empezamos con determinacion.
 
+-----------------------------------------------------------------
+Sprint 8
+
+Finalización del sprint y del proyecto con éxito.
+Aprendimos a resolver los conflictos con empatía y a
+gestionar las crisis con creatividad.
+
+
+

@@ -75,3 +75,16 @@ obtención correcta de las actividades del sprint.
 
 -Para la culminación del sprint se enfocó el esfuerzo en colectivo y el trabajo en conjunto
 del equipo. 
+
+----------------------------------------------------------------------------------
+                     --------Sprint 8-----------
+---------------------------------------------------------------------------------
+ Finalización del sprint y del proyecto con éxito.
+Aprendimos a resolver los conflictos con empatía y a
+gestionar las crisis con creatividad.
+
+Esfuerzo intensivo para la milla final. 
+
+
+
+

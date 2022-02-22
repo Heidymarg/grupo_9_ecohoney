@@ -69,7 +69,7 @@ const userController = {
                         
                         db.perfiles.findByPk(usuarioLogueado.id_perfil)
                         .then( suPerfil => { 
-                            
+                            console.log( '!!!!' + suPerfil.nombre)
                             usuarioPerfil = suPerfil.nombre;
                             if ( suPerfil != undefined ) {
                                 // 2.2.1_ El perfil del usuario es:
@@ -85,7 +85,7 @@ const userController = {
                                         //Mostrar vista con menú Gestión de Productos//
                                         db.productos.findAll()
                                         .then( listaDeIndex => { res.render('indexProtegido', {'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil':req.session.suPerfil , 'listado': listaDeIndex, 'listadoOfertas': listaDeIndex}); } )
-                                    } else if(suPerfil.nombre == 'Comprador') {
+                                    } else if (suPerfil.nombre == 'Comprador') {
                                             // Inicializar el CARRITO.
                                             res.cookie( 'carrito_' + req.session.usuarioAceptado, {}, { maxAge: 2 * 60 * 1000 });
                                             //Mostrar vista HOME= index.js
@@ -95,7 +95,13 @@ const userController = {
                                             } )
                                         } else {
                                             // Es un invitado. Mostrar vista para invitados.
-                                            res.send( `Vista de ${suPerfil}` )
+                                            res.cookie( 'carrito_' + req.session.usuarioAceptado, {}, { maxAge: 2 * 60 * 1000 });
+                                            //Mostrar vista HOME= index.js
+                                            db.productos.findAll()
+                                            .then( listaDeIndex => {
+                                                res.render('indexProtegido', {'usuarioLogueado':req.session.usuarioAceptado, 'usuarioPerfil': 'Comprador' , 'listado': listaDeIndex, 'listadoOfertas': listaDeIndex});
+                                            } ) 
+                                            console.log('!!!' + suPerfil.nombre)
                                         }
                             } else {
                                 console.log( `Perfil ${suPerfil} no encontrado`)
